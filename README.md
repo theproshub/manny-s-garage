@@ -1,3 +1,6 @@
+[GitHub's initial README content]
+>>>>>>> some-commit-hash... Initial commit
+
 # Manny's Garage
 
 Modern auto repair website for Manny's Garage in Fargo, built with Next.js, Tailwind CSS, Supabase, and Twilio.
