@@ -1,0 +1,68 @@
+import { z } from "zod";
+
+export const bookingSchema = z.object({
+  name: z.string().min(2, "Please share your name."),
+  phone: z
+    .string()
+    .min(10, "Please share a phone number.")
+    .regex(/^[0-9+()\-\s]+$/, "Phone number format looks invalid."),
+  vehicle: z.string().min(3, "Please include your car make and model."),
+  issue: z.string().min(10, "Please describe the repair issue."),
+  preferredDate: z
+    .string()
+    .min(1, "Please choose a preferred date.")
+    .refine((value) => !Number.isNaN(Date.parse(value)), {
+      message: "Preferred date is invalid.",
+    }),
+});
+
+export type BookingPayload = z.infer<typeof bookingSchema>;
+
+export const chatSteps: Array<{
+  key: keyof BookingPayload;
+  label: string;
+  prompt: string;
+  placeholder: string;
+}> = [
+  {
+    key: "name",
+    label: "Name",
+    prompt: "Let's get your name first.",
+    placeholder: "Manny Garcia",
+  },
+  {
+    key: "phone",
+    label: "Phone",
+    prompt: "Best phone number to text or call you back?",
+    placeholder: "(701) 555-0142",
+  },
+  {
+    key: "vehicle",
+    label: "Vehicle",
+    prompt: "What are you driving? Include the make and model.",
+    placeholder: "2018 Ford F-150",
+  },
+  {
+    key: "issue",
+    label: "Issue",
+    prompt: "Tell me what is going on with the vehicle.",
+    placeholder: "Brake pedal feels soft and squeaks while stopping.",
+  },
+  {
+    key: "preferredDate",
+    label: "Preferred date",
+    prompt: "What day would you like Manny's Garage to take a look?",
+    placeholder: "2026-03-20",
+  },
+];
+
+export function formatBookingText(payload: BookingPayload) {
+  return [
+    "New Manny's Garage booking request",
+    `Name: ${payload.name}`,
+    `Phone: ${payload.phone}`,
+    `Vehicle: ${payload.vehicle}`,
+    `Issue: ${payload.issue}`,
+    `Preferred date: ${payload.preferredDate}`,
+  ].join("\n");
+}
