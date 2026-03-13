@@ -48,3 +48,43 @@ Modern auto repair website for Manny's Garage in Fargo, built with Next.js, Tail
 | `OWNER_PHONE_NUMBER` | Owner phone number receiving booking SMS (optional) |
 
 Without Supabase, bookings are stored in `data/bookings.json`. With Supabase, run the SQL in `supabase/schema.sql` to create the `repair_bookings` table.
+
+## Deploy on Vercel
+
+The project is ready to link to Vercel.
+
+### Option A: Deploy with Vercel CLI
+
+1. Install the CLI and log in (if needed):
+
+   ```bash
+   npm i -g vercel
+   vercel login
+   ```
+
+2. From the project root, link and deploy:
+
+   ```bash
+   vercel
+   ```
+
+   Follow the prompts (link to existing project or create new one). To deploy to production:
+
+   ```bash
+   vercel --prod
+   ```
+
+### Option B: Deploy from GitHub
+
+1. Push this repo to GitHub (create a new repo, then):
+
+   ```bash
+   git remote add origin https://github.com/YOUR_USERNAME/manny-garage.git
+   git push -u origin main
+   ```
+
+2. Go to [vercel.com](https://vercel.com) → **Add New** → **Project** → Import your GitHub repo.
+
+3. Configure env vars in the Vercel project **Settings → Environment Variables** (same as `.env.example`), then deploy.
+
+After deployment, add your env variables in the Vercel dashboard under **Settings → Environment Variables** so booking and optional Supabase/Twilio work in production.
