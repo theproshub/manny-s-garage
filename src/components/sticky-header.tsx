@@ -108,7 +108,7 @@ export function StickyHeader() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white backdrop-blur transition-colors hover:bg-white/10 lg:hidden"
+              className="flex min-touch items-center justify-center rounded-full border border-white/10 bg-white/5 text-white backdrop-blur transition-colors hover:bg-white/10 lg:hidden [min-width:44px] [min-height:44px]"
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -116,16 +116,26 @@ export function StickyHeader() {
         </div>
       </motion.header>
 
-      {/* Mobile Menu Overlay */}
-          <AnimatePresence>
+      {/* Mobile Menu Backdrop + Panel */}
+      <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -12, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -12, scale: 0.98 }}
-            transition={{ type: "spring", damping: 28, stiffness: 260 }}
-            className="fixed inset-x-4 top-20 z-40 rounded-[2rem] border border-white/10 bg-black/90 p-6 backdrop-blur-2xl shadow-2xl lg:hidden"
-          >
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-30 bg-black/50 backdrop-blur-sm lg:hidden"
+              aria-hidden
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -12, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -12, scale: 0.98 }}
+              transition={{ type: "spring", damping: 28, stiffness: 260 }}
+              className="fixed left-4 right-4 z-40 rounded-[2rem] border border-white/10 bg-black/90 p-6 backdrop-blur-2xl shadow-2xl lg:hidden [top:max(5.5rem,calc(env(safe-area-inset-top,0px)+4.5rem))]"
+            >
             <nav className="flex flex-col space-y-2">
               <p className="orbitron mb-2 px-4 text-xs font-bold uppercase tracking-widest text-zinc-500">Menu</p>
               {NAV_LINKS.map((link) => {
@@ -135,7 +145,7 @@ export function StickyHeader() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center justify-between rounded-2xl px-4 py-4 text-lg font-medium transition-colors ${
+                    className={`flex min-h-[48px] items-center justify-between rounded-2xl px-4 py-4 text-lg font-medium transition-colors ${
                       isActive ? "bg-white/10 text-white" : "text-zinc-400 hover:bg-white/5 hover:text-white"
                     }`}
                   >
@@ -154,7 +164,8 @@ export function StickyHeader() {
                 </Link>
               </div>
             </nav>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

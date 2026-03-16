@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { ChatAssistant } from "@/components/chat-assistant";
 import { SectionHeading } from "@/components/section-heading";
+import { BackToHome } from "@/components/back-to-home";
 import { siteImages } from "@/lib/site-images";
 
 const itServices = [
@@ -60,15 +61,16 @@ export default function ITPages() {
 
   return (
     <main className="relative overflow-x-hidden pt-10">
-      
+      <div className="noise-overlay" aria-hidden />
+
       {/* ─── HERO ─── */}
       <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-20 lg:mb-32">
         <div className="relative overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-black shadow-2xl shadow-cyan-900/20 lg:rounded-[3rem] min-h-[600px] flex items-center">
-          
-          <div className="absolute inset-0">
-             <Image src={siteImages.itConsultant} alt="" fill className="object-cover opacity-25 grayscale" />
-             <div className="absolute inset-0 bg-gradient-to-r from-black via-black/95 to-cyan-950/50" />
+          <div className="absolute inset-0 hidden sm:block">
+            <Image src={siteImages.itConsultant} alt="" fill className="object-cover opacity-25 grayscale" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/95 to-cyan-950/50" />
           </div>
+          <div className="absolute inset-0 bg-black/95 sm:hidden" aria-hidden />
 
           <div className="relative z-10 p-8 sm:p-14 lg:p-20 w-full">
             <motion.div
@@ -77,10 +79,13 @@ export default function ITPages() {
               transition={{ duration: 0.6 }}
               className="max-w-2xl"
             >
-              <span className="premium-badge mb-5 inline-flex border-cyan-500/50 bg-cyan-500/10 text-cyan-300">
-                IT & NETWORKING
-              </span>
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl pb-2">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                <BackToHome />
+                <span className="premium-badge orbitron inline-flex text-[10px] tracking-[0.2em] border-cyan-500/50 bg-cyan-500/10 text-cyan-300">
+                  IT & NETWORKING
+                </span>
+              </div>
+              <h1 className="mt-5 sm:mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl pb-2">
                 Smart Solutions for<br/>
                 <span className="text-cyan-400">Home & Business.</span>
               </h1>

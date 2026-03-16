@@ -57,7 +57,7 @@ export default function HandymanPage() {
 
   return (
     <main className="relative min-h-screen overflow-x-hidden pt-10">
-      <div className="noise-overlay" />
+      <div className="noise-overlay" aria-hidden />
 
       {/* Hero */}
       <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16 lg:mb-24">
@@ -66,11 +66,13 @@ export default function HandymanPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <BackToHome />
-          <span className="premium-badge badge-orange mt-6 mb-5 inline-flex">
-            Handyman Services
-          </span>
-          <h1 className="text-4xl font-bold tracking-tight text-white mb-6 sm:text-5xl lg:text-6xl">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            <BackToHome />
+            <span className="premium-badge badge-orange orbitron inline-flex text-[10px] tracking-[0.2em]">
+              HANDYMAN SERVICES
+            </span>
+          </div>
+          <h1 className="mt-5 sm:mt-6 text-4xl font-bold tracking-tight text-white mb-6 sm:text-5xl lg:text-6xl">
             Home Installation <span className="metal-text">Done Right.</span>
           </h1>
           <p className="text-lg text-zinc-400 leading-relaxed max-w-2xl">

@@ -3,12 +3,12 @@ import { Wrench, MapPin, PhoneCall, Mail, ChevronRight } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-white/[0.06] bg-[#030507] pt-16 pb-safe sm:pt-24">
+    <footer className="relative border-t border-white/[0.06] bg-[#030507] pt-12 pb-safe sm:pt-24">
       <div className="noise-overlay" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/20 to-transparent" />
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent to-black/20" aria-hidden />
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 [padding-left:max(1rem,env(safe-area-inset-left))] [padding-right:max(1rem,env(safe-area-inset-right))]">
+        <div className="grid gap-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-4 lg:gap-8">
           {/* Brand Col */}
           <div className="flex flex-col gap-6">
             <Link href="/" className="inline-flex items-center gap-2">
@@ -37,7 +37,7 @@ export function Footer() {
                 { label: "Book Service", href: "/book" },
               ].map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="group inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-orange-300">
+                  <Link href={link.href} className="group inline-flex min-h-[44px] items-center gap-2 py-2 text-sm text-zinc-400 transition-colors hover:text-orange-300">
                     <ChevronRight className="h-3 w-3 text-white/20 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-orange-400" />
                     {link.label}
                   </Link>
@@ -55,7 +55,7 @@ export function Footer() {
                 { label: "Contact", href: "/about#contact" },
               ].map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="group inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-cyan-300">
+                  <Link href={link.href} className="group inline-flex min-h-[44px] items-center gap-2 py-2 text-sm text-zinc-400 transition-colors hover:text-cyan-300">
                     <ChevronRight className="h-3 w-3 text-white/20 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-cyan-400" />
                     {link.label}
                   </Link>

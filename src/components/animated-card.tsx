@@ -55,8 +55,8 @@ export function AnimatedCard({
         <h3 className="text-xl font-bold text-white transition-colors duration-300 group-hover:text-cyan-400">
           {title}
         </h3>
-        {/* Description reveals smoothly on hover (height auto trick) */}
-        <div className="grid grid-rows-[0fr] opacity-60 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:grid-rows-[1fr] group-hover:opacity-100">
+        {/* Description: always visible on mobile (no hover); reveals on hover from sm up */}
+        <div className="grid grid-rows-[1fr] opacity-100 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] sm:grid-rows-[0fr] sm:opacity-60 sm:group-hover:grid-rows-[1fr] sm:group-hover:opacity-100">
           <div className="overflow-hidden">
             <p className="mt-3 text-sm leading-6 text-zinc-300">{description}</p>
           </div>

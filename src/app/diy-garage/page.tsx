@@ -53,7 +53,7 @@ export default function DIYGaragePage() {
 
   return (
     <main className="relative min-h-screen overflow-x-hidden pt-10">
-      <div className="noise-overlay" />
+      <div className="noise-overlay" aria-hidden />
 
       {/* Hero */}
       <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16 lg:mb-24">
@@ -63,11 +63,13 @@ export default function DIYGaragePage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <BackToHome />
-            <span className="premium-badge badge-orange mt-6 mb-5 inline-flex">
-              DIY Bay Rental
-            </span>
-            <h1 className="text-4xl font-bold tracking-tight text-white mb-6 sm:text-5xl lg:text-6xl">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+              <BackToHome />
+              <span className="premium-badge badge-orange orbitron inline-flex text-[10px] tracking-[0.2em]">
+                DIY BAY RENTAL
+              </span>
+            </div>
+            <h1 className="mt-5 sm:mt-6 text-4xl font-bold tracking-tight text-white mb-6 sm:text-5xl lg:text-6xl">
               Your Space. <span className="metal-text">Your Tools.</span>
             </h1>
             <p className="text-lg text-zinc-400 leading-relaxed max-w-xl">
@@ -88,7 +90,7 @@ export default function DIYGaragePage() {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-card)] border border-white/10"
+            className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-card)] border border-white/10 hidden sm:block"
           >
             <Image
               src={siteImages.diyGarage}

@@ -5,10 +5,14 @@ import { motion } from "framer-motion";
 import { MapPin, PhoneCall, Mail, Clock, ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import Link from "next/link";
+import { BackToHome } from "@/components/back-to-home";
+import { siteImages } from "@/lib/site-images";
 
 export default function AboutPage() {
   return (
     <main className="relative overflow-x-hidden pt-10">
+      <div className="noise-overlay" aria-hidden />
+
       {/* ─── HERO ─── */}
       <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-20 lg:mb-32">
         <div className="text-center max-w-3xl mx-auto pt-12 pb-8">
@@ -17,9 +21,12 @@ export default function AboutPage() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
            >
-             <span className="premium-badge mb-5 inline-flex">
-               COMPANY OVERVIEW
-             </span>
+             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-5">
+               <BackToHome />
+               <span className="premium-badge badge-orange orbitron inline-flex text-[10px] tracking-[0.2em]">
+                 COMPANY OVERVIEW
+               </span>
+             </div>
              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl pb-4">
                A New Standard of <span className="metal-text">Care.</span>
              </h1>
@@ -29,13 +36,13 @@ export default function AboutPage() {
            </motion.div>
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative h-[400px] sm:h-[500px] w-full rounded-[2rem] overflow-hidden border border-white/10"
+          className="relative w-full rounded-[2rem] overflow-hidden border border-white/10 hidden sm:block sm:h-[500px]"
         >
-          <Image src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2000&auto=format&fit=crop" alt="Friendly team at Manny's Garage" fill className="object-cover opacity-80" unoptimized/>
+          <Image src={siteImages.teamAbout} alt="Friendly team at Manny's Garage" fill className="object-cover opacity-80" sizes="(max-width: 1280px) 100vw, 1280px" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
         </motion.div>
       </section>

@@ -26,12 +26,14 @@ const heroImages = [
 ];
 
 const galleryImages = [
-  siteImages.garageHero,
-  siteImages.diagnostics,
-  siteImages.handymanTv,
-  siteImages.handymanFurniture,
-  siteImages.handymanCameras,
-  siteImages.diyGarage,
+  { src: siteImages.garageHero, alt: "Auto repair bay at Manny's Garage" },
+  { src: siteImages.diagnostics, alt: "Vehicle diagnostics and check engine service" },
+  { src: siteImages.brakeSuspension, alt: "Brake and suspension repair" },
+  { src: siteImages.handymanTv, alt: "TV mounting and handyman services" },
+  { src: siteImages.handymanFurniture, alt: "Furniture assembly" },
+  { src: siteImages.handymanCameras, alt: "Security camera installation" },
+  { src: siteImages.diyGarage, alt: "DIY garage bay rental" },
+  { src: siteImages.itConsultant, alt: "IT and tech consulting" },
 ];
 
 const testimonials = [
@@ -67,101 +69,126 @@ const faqs = [
   },
 ];
 
+const heroSlideLabels = [
+  "Auto repair and diagnostics",
+  "Handyman and TV mounting",
+  "DIY garage bay rental",
+  "IT and tech services",
+];
+
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [carouselPaused, setCarouselPaused] = useState(false);
 
   useEffect(() => {
+    if (carouselPaused) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroImages.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [carouselPaused]);
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
     <main className="relative overflow-x-hidden">
-      <div className="noise-overlay" />
+      <div className="noise-overlay" aria-hidden />
 
       {/* ─── HERO ─── */}
-      <section className="relative mx-auto flex min-h-[90vh] max-w-7xl flex-col justify-center px-4 pb-16 pt-10 sm:px-6 lg:px-8">
-        <div className="grid flex-1 items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-          <div className="min-w-0 max-w-2xl relative z-10">
+      <section className="relative flex min-h-[85vh] flex-col pb-14 sm:min-h-[88vh] sm:pb-16 lg:min-h-[88vh] lg:pb-8">
+        <div className="hero-bg-gradient" aria-hidden />
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-10 sm:px-6 sm:py-16 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8 lg:py-20 xl:gap-20">
+          {/* Left: Copy */}
+          <div className="order-2 mt-8 lg:order-1 lg:mt-0 lg:max-w-[32rem]">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-5 flex flex-wrap items-center gap-3 sm:mb-7"
+              transition={{ duration: 0.5 }}
+              className="mb-4 flex flex-wrap items-center gap-2 sm:mb-5"
             >
-              <span className="premium-badge badge-orange">Fargo, ND</span>
+              <span className="premium-badge badge-orange flex items-center gap-1.5">
+                <MapPin className="h-3.5 w-3.5" aria-hidden />
+                Fargo, ND
+              </span>
+              <span className="text-zinc-500 text-sm">· One shop, four ways we help</span>
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
+              transition={{ duration: 0.5, delay: 0.06 }}
+              className="text-[2.25rem] font-bold leading-[1.1] tracking-tight min-[375px]:text-[2.75rem] sm:text-5xl lg:text-[3.25rem] xl:text-6xl"
             >
               <span className="metal-text block">Manny&apos;s Garage</span>
-              <span className="mt-2 block text-white/90 sm:mt-3">
-                Auto, Handyman, DIY & <span className="orange-glow-text">IT.</span> One place.
+              <span className="mt-2 block text-white/92 sm:mt-2.5">
+                Where Fargo <span className="orange-glow-text">gets it done.</span>
+              </span>
+              <span className="mt-1 block text-white/70 text-[0.9em] font-semibold sm:mt-1.5">
+                Auto · Handyman · DIY · IT
               </span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-6 max-w-xl text-[15px] leading-relaxed text-zinc-400 sm:mt-7 sm:text-lg"
+              transition={{ duration: 0.5, delay: 0.12 }}
+              className="mt-5 max-w-lg text-[15px] leading-[1.65] text-zinc-400 sm:mt-6 sm:text-base"
             >
-              Auto repair, handyman installations, IT support, and a DIY bay—all under one roof in Fargo.
+              Repair your ride, upgrade your home, rent a bay, or sort your tech. One shop—no runaround.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-4"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-6 sm:mt-8"
             >
-              <Link href="/book?service=automotive" className="btn-primary group">
-                Book Auto
-                <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
-              <Link href="/handyman" className="btn-outline group">
-                Handyman
-                <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
-              <Link href="/diy-garage" className="btn-outline group">
-                DIY Bay
-                <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
-              <Link href="/it" className="btn-outline group">
-                IT
-                <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+                <Link
+                  href="/book"
+                  className="btn-primary group min-touch inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-base font-semibold shadow-[0_0_0_1px_rgba(255,122,26,0.35),0_8px_32px_rgba(255,88,0,0.35)] transition-all duration-200 hover:shadow-[0_0_0_1px_rgba(255,122,26,0.45),0_12px_40px_rgba(255,88,0,0.45)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-h-[52px] sm:px-8 sm:py-4 sm:text-[0.9375rem]"
+                >
+                  Book service
+                  <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                </Link>
+                <a
+                  href="#contact"
+                  className="min-touch inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 text-base font-semibold text-white/95 backdrop-blur-sm transition-all duration-200 hover:border-white/35 hover:bg-white/10 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-h-[52px] sm:px-8 sm:py-4 sm:text-[0.9375rem]"
+                >
+                  Contact
+                </a>
+              </div>
             </motion.div>
           </div>
 
+          {/* Right: Image carousel */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="relative min-w-0 overflow-hidden rounded-[var(--radius-card)] border border-white/[0.08] shadow-xl shadow-black/30"
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="hero-image-wrap order-1 lg:order-2"
           >
-            <div className="hero-glow" />
-            <div className="relative aspect-[4/3] w-full bg-black">
+            <div className="hero-glow" aria-hidden />
+            <div
+              className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/[0.09] bg-black shadow-2xl shadow-black/40 ring-1 ring-white/[0.06] lg:aspect-[16/10]"
+              onMouseEnter={() => setCarouselPaused(true)}
+              onMouseLeave={() => setCarouselPaused(false)}
+              onFocus={() => setCarouselPaused(true)}
+              onBlur={() => setCarouselPaused(false)}
+            >
+              <div aria-live="polite" aria-label={`Slide ${currentSlide + 1}: ${heroSlideLabels[currentSlide]}`} className="sr-only" />
               <AnimatePresence mode="popLayout">
                 <motion.div
                   key={currentSlide}
-                  initial={{ opacity: 0, scale: 1.05 }}
+                  initial={{ opacity: 0, scale: 1.04 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
                   className="absolute inset-0"
                 >
                   <Image
                     src={heroImages[currentSlide]}
-                    alt={`Service showcase ${currentSlide + 1}`}
+                    alt={`Manny's Garage in Fargo, ND — ${heroSlideLabels[currentSlide]}`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -170,25 +197,49 @@ export default function Home() {
                 </motion.div>
               </AnimatePresence>
               <div className="img-side-overlay z-10" />
-              <div className="absolute top-6 right-6 z-20 flex gap-2">
-                {heroImages.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentSlide(idx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      idx === currentSlide ? "w-6 bg-orange-400" : "w-1.5 bg-white/30 hover:bg-white/50"
-                    }`}
-                    aria-label={`Go to slide ${idx + 1}`}
-                  />
-                ))}
+              <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between sm:bottom-5 sm:left-5 sm:right-5">
+                <div className="flex gap-2">
+                  {heroImages.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentSlide(idx)}
+                      className={`rounded-full transition-all duration-300 ${
+                        idx === currentSlide
+                          ? "h-2 w-8 bg-orange-400"
+                          : "h-2 w-2 bg-white/35 hover:bg-white/55"
+                      }`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                      aria-current={idx === currentSlide ? "true" : undefined}
+                    />
+                  ))}
+                </div>
+                <span className="text-xs font-medium text-white/70 tabular-nums">
+                  Slide {currentSlide + 1} of {heroImages.length}
+                </span>
               </div>
             </div>
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+          className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 sm:bottom-6 lg:bottom-8"
+        >
+          <a
+            href="#services"
+            className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
+            aria-label="Scroll to services"
+          >
+            <span className="text-[10px] font-semibold uppercase tracking-widest">See services</span>
+            <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
+          </a>
+        </motion.div>
       </section>
 
       {/* ─── SERVICE CARDS ─── */}
-      <section id="services" className="relative mx-auto max-w-7xl px-4 pb-24 pt-10 sm:px-6 lg:px-8">
+      <section id="services" className="relative mx-auto max-w-7xl scroll-mt-24 px-4 pb-16 pt-8 sm:px-6 sm:pb-24 sm:pt-10 sm:scroll-mt-28 lg:px-8 lg:scroll-mt-32">
         <SectionHeading
           badge="What We Offer"
           title={<>Choose Your <span className="orange-glow-text">Service</span></>}
@@ -196,7 +247,7 @@ export default function Home() {
           align="center"
         />
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <AnimatedCard
             title="Automotive Service"
             description="Professional repair and maintenance for cars and light trucks."
@@ -237,16 +288,16 @@ export default function Home() {
       </section>
 
       {/* ─── GALLERY ─── */}
-      <section className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <section className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <SectionHeading
           badge="Gallery"
           title="Our Facility & Work"
           align="center"
         />
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
-          {galleryImages.map((src, i) => (
+        <div className="mt-8 grid grid-cols-2 gap-2 sm:mt-12 sm:grid-cols-3 sm:gap-4">
+          {galleryImages.map((item, i) => (
             <motion.div
-              key={src}
+              key={item.src}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -254,26 +305,26 @@ export default function Home() {
               className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-black"
             >
               <Image
-                src={src}
-                alt={`Gallery ${i + 1}`}
+                src={item.src}
+                alt={item.alt}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 640px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden />
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* ─── TESTIMONIALS ─── */}
-      <section className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <section className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <SectionHeading
           badge="Testimonials"
           title="What Our Customers Say"
           align="center"
         />
-        <div className="mt-12 grid gap-6 sm:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-6 sm:grid-cols-3">
           {testimonials.map((t, i) => (
             <motion.blockquote
               key={i}
@@ -295,9 +346,9 @@ export default function Home() {
       </section>
 
       {/* ─── FAQ ─── */}
-      <section className="relative mx-auto max-w-3xl px-4 py-24 sm:px-6 lg:px-8">
+      <section id="faq" className="relative mx-auto max-w-3xl scroll-mt-24 px-4 py-16 sm:px-6 sm:py-24 sm:scroll-mt-28 lg:px-8 lg:scroll-mt-32">
         <SectionHeading badge="FAQ" title="Frequently Asked Questions" align="center" />
-        <div className="mt-12 space-y-3">
+        <div className="mt-8 space-y-2 sm:mt-12 sm:space-y-3">
           {faqs.map((faq, i) => (
             <motion.div
               key={i}
@@ -309,9 +360,12 @@ export default function Home() {
             >
               <button
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="flex w-full items-center justify-between p-5 text-left"
+                className="flex w-full min-h-[44px] items-center justify-between p-4 text-left sm:p-5 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                aria-expanded={openFaq === i}
+                aria-controls={`faq-answer-${i}`}
+                id={`faq-question-${i}`}
               >
-                <span className="font-semibold text-white pr-4">{faq.q}</span>
+                <span className="font-semibold text-white pr-4 text-sm sm:text-base">{faq.q}</span>
                 <ChevronDown
                   className={`h-5 w-5 shrink-0 text-orange-400 transition-transform duration-300 ${openFaq === i ? "rotate-180" : ""}`}
                 />
@@ -319,13 +373,16 @@ export default function Home() {
               <AnimatePresence>
                 {openFaq === i && (
                   <motion.div
+                    id={`faq-answer-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-question-${i}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <p className="px-5 pb-5 text-zinc-400">{faq.a}</p>
+                    <p className="px-4 pb-4 text-zinc-400 text-sm sm:px-5 sm:pb-5 sm:text-base">{faq.a}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -335,48 +392,67 @@ export default function Home() {
       </section>
 
       {/* ─── CONTACT ─── */}
-      <section id="contact" className="relative mx-auto max-w-7xl px-4 pb-32 pt-24 sm:px-6 lg:px-8">
+      <section id="contact" className="relative mx-auto max-w-7xl scroll-mt-24 px-4 pb-24 pt-16 sm:px-6 sm:pb-32 sm:pt-24 sm:scroll-mt-28 lg:px-8 lg:scroll-mt-32">
         <SectionHeading
           badge="Contact"
           title="Visit or Get in Touch"
           description="We're here to help. Call, email, or stop by our facility."
           align="center"
         />
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
+        <div className="mt-8 grid gap-6 sm:mt-12 sm:gap-8 lg:grid-cols-2 lg:items-start">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-6 rounded-2xl border border-white/10 bg-black/40 p-8 backdrop-blur-sm"
+            className="rounded-2xl border border-white/10 bg-black/40 p-6 backdrop-blur-sm sm:p-8"
           >
-            <h3 className="text-lg font-bold text-white">Contact Info</h3>
-            <ul className="space-y-4 text-zinc-400">
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-orange-400" />
-                <span>123 Mechanic Ave, Fargo, ND 58103</span>
-              </li>
-              <li>
-                <a href="tel:+17015550142" className="flex items-center gap-3 transition-colors hover:text-white">
-                  <PhoneCall className="h-5 w-5 shrink-0 text-cyan-400" />
-                  (701) 555-0142
-                </a>
-              </li>
-              <li>
-                <a href="mailto:service@mannysgarage.com" className="flex items-center gap-3 transition-colors hover:text-white">
-                  service@mannysgarage.com
-                </a>
-              </li>
-            </ul>
-            <Link href="/book" className="btn-primary group mt-4 inline-flex">
-              Book Service
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+            <p className="text-lg font-semibold text-white sm:text-xl">
+              One tap to <span className="orange-glow-text">call</span>, <span className="text-cyan-400">email</span>, or <span className="text-orange-400">get directions</span>.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href="tel:+17015550142"
+                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2.5 text-sm font-semibold text-cyan-300 transition-all hover:border-cyan-400/50 hover:bg-cyan-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+              >
+                <PhoneCall className="h-4 w-4" />
+                Call
+              </a>
+              <a
+                href="mailto:service@mannysgarage.com"
+                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white/90 transition-all hover:border-white/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+              >
+                Email
+              </a>
+              <a
+                href="https://maps.google.com/?q=123+Mechanic+Ave+Fargo+ND+58103"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-orange-500/30 bg-orange-500/10 px-4 py-2.5 text-sm font-semibold text-orange-300 transition-all hover:border-orange-400/50 hover:bg-orange-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+              >
+                <MapPin className="h-4 w-4" />
+                Directions
+              </a>
+            </div>
+            <div className="mt-6 space-y-3 border-t border-white/10 pt-6 text-sm text-zinc-400">
+              <p className="flex items-start gap-3">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" />
+                123 Mechanic Ave, Fargo, ND 58103
+              </p>
+              <p>(701) 555-0142 · Mon–Fri 8am–6pm, Sat 9am–3pm</p>
+            </div>
+            <Link
+              href="/book"
+              className="btn-primary group mt-6 inline-flex min-touch w-full items-center justify-center gap-2 sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+            >
+              Book service
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
             </Link>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-zinc-900"
+            className="relative aspect-[4/3] min-h-[220px] overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 sm:min-h-0"
           >
             <iframe
               title="Manny's Garage location"
@@ -386,7 +462,7 @@ export default function Home() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-            <div className="absolute inset-0 pointer-events-none border border-white/5 rounded-2xl" />
+            <div className="absolute inset-0 pointer-events-none rounded-2xl border border-white/5" />
           </motion.div>
         </div>
       </section>

@@ -60,7 +60,7 @@ const defaultForm: FormState = {
 function BookPageFallback() {
   return (
     <main className="relative min-h-[90vh] overflow-x-hidden px-4 py-12 sm:px-6 lg:px-8">
-      <div className="noise-overlay" />
+      <div className="noise-overlay" aria-hidden />
       <div className="relative mx-auto max-w-2xl">
         <BackToHome />
         <div className="mt-6 h-10 w-64 animate-pulse rounded-lg bg-white/10" />
@@ -143,7 +143,7 @@ function BookPageContent() {
   if (confirmed) {
     return (
       <main className="relative min-h-[80vh] flex flex-col items-center justify-center px-4 py-20">
-        <div className="noise-overlay" />
+        <div className="noise-overlay" aria-hidden />
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -178,13 +178,18 @@ function BookPageContent() {
 
   return (
     <main className="relative min-h-[90vh] overflow-x-hidden px-4 py-12 sm:px-6 lg:px-8">
-      <div className="noise-overlay" />
+      <div className="noise-overlay" aria-hidden />
       <div className="relative mx-auto max-w-2xl">
-        <BackToHome />
+        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+          <BackToHome />
+          <span className="premium-badge badge-orange orbitron inline-flex text-[10px] tracking-[0.2em]">
+            BOOKING
+          </span>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-6"
+          className="mt-5 sm:mt-6"
         >
           <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Book Your Service
@@ -231,7 +236,7 @@ function BookPageContent() {
                 className="space-y-4"
               >
                 <h2 className="text-xl font-semibold text-white">Select service</h2>
-                <div className="grid gap-3 sm:grid-cols-3">
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   {SERVICE_OPTIONS.map((opt) => {
                     const Icon = opt.icon;
                     const isSelected = form.serviceType === opt.id;
@@ -240,18 +245,23 @@ function BookPageContent() {
                         key={opt.id}
                         type="button"
                         onClick={() => updateForm({ serviceType: opt.id as FormState["serviceType"] })}
-                        className={`flex flex-col items-center gap-3 rounded-2xl border p-6 text-left transition-all ${
+                        className={`group relative flex flex-col items-center gap-3 rounded-2xl border p-6 text-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] ${
                           isSelected
-                            ? "border-orange-500 bg-orange-500/10 text-white"
-                            : "border-white/10 bg-black/40 text-zinc-400 hover:border-white/20 hover:text-white"
+                            ? "border-orange-500 bg-orange-500/15 text-white shadow-[0_0_0_1px_rgba(255,122,26,0.4)]"
+                            : "border-white/10 bg-black/40 text-zinc-400 hover:border-white/25 hover:bg-white/5 hover:text-white"
                         }`}
                       >
-                        <Icon className="h-8 w-8" />
+                        {isSelected && (
+                          <span className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-orange-500 text-white" aria-hidden>
+                            <Check className="h-3.5 w-3.5" />
+                          </span>
+                        )}
+                        <Icon className={`h-8 w-8 ${isSelected ? "text-orange-400" : "text-zinc-500 group-hover:text-zinc-300"}`} />
                         <span className="font-medium">{opt.label}</span>
                         <Link
                           href={opt.href}
                           onClick={(e) => e.stopPropagation()}
-                          className="text-xs text-orange-400 hover:underline"
+                          className="text-xs text-orange-400 hover:underline focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-[var(--background)] rounded"
                         >
                           Learn more →
                         </Link>
