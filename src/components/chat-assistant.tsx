@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Bot, LoaderCircle, MessageSquare, Send, X } from "lucide-react";
+import { Bot, LoaderCircle, MessageSquare, RotateCcw, Send, X } from "lucide-react";
 import { bookingSchema, chatSteps, type BookingPayload } from "@/lib/booking";
 import { cn } from "@/lib/utils";
 
@@ -16,7 +16,7 @@ const initialMessages: ChatMessage[] = [
     id: "intro-1",
     role: "assistant",
     content:
-      "Hi, I'm Manny's booking assistant. I can get your repair request lined up in just a couple of minutes.",
+      "Hi! I’m Manny’s booking assistant. I’ll walk you through a few quick details so we can get you scheduled.",
   },
   {
     id: "intro-2",
@@ -200,93 +200,91 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
         type="button"
         onClick={() => onOpenChange(!open)}
         aria-label={open ? "Close assistant" : "Book with AI assistant"}
-        className="accent-ring focus-ring min-touch fixed right-4 bottom-4 z-50 flex items-center gap-2 rounded-full border border-orange-400/40 bg-zinc-950/95 px-4 py-3 text-sm font-semibold text-white backdrop-blur-md hover:-translate-y-0.5 hover:border-orange-300/50 hover:bg-zinc-900/95 active:translate-y-0 [bottom:max(1rem,env(safe-area-inset-bottom))] [right:max(1rem,env(safe-area-inset-right))] sm:right-6 sm:bottom-6 sm:gap-3"
+        className="accent-ring focus-ring min-touch fixed z-50 flex items-center gap-2 rounded-full border border-orange-400/40 bg-zinc-950/95 px-3 py-3 text-sm font-semibold text-white backdrop-blur-md hover:-translate-y-0.5 hover:border-orange-300/50 hover:bg-zinc-900/95 active:translate-y-0 sm:right-6 sm:bottom-6 sm:gap-3 sm:px-4 sm:py-3 [bottom:max(0.75rem,env(safe-area-inset-bottom))] [right:max(0.75rem,env(safe-area-inset-right))]"
       >
         {open ? (
-          <X className="h-5 w-5 sm:h-4 sm:w-4" />
+          <X className="h-5 w-5 shrink-0 sm:h-4 sm:w-4" />
         ) : (
-          <div className="rounded-full bg-orange-500/15 p-1 text-orange-400">
+          <div className="rounded-full bg-orange-500/15 p-1 text-orange-400 shrink-0">
             <MessageSquare className="h-5 w-5 sm:h-4 sm:w-4" />
           </div>
         )}
-        <span className="hidden sm:inline">{open ? "Close assistant" : "Book with AI assistant"}</span>
+        <span className="hidden min-[420px]:inline">{open ? "Close assistant" : "Book with AI assistant"}</span>
       </button>
 
       <div
         className={cn(
-          "panel-strong fixed left-4 right-4 z-40 max-h-[min(24rem,70dvh)] max-w-sm overflow-hidden rounded-2xl shadow-2xl shadow-black/50 transition-all duration-300 ease-out [bottom:max(5rem,calc(env(safe-area-inset-bottom)+4.5rem))] sm:left-auto sm:right-6 sm:bottom-24 sm:max-h-[24rem]",
+          "panel-strong fixed z-40 flex max-h-[min(85dvh,26rem)] w-[calc(100vw-1.5rem)] max-w-sm flex-col overflow-hidden rounded-2xl shadow-2xl shadow-black/50 transition-all duration-300 ease-out sm:left-auto sm:right-6 sm:max-h-[min(28rem,80dvh)] sm:w-full sm:max-w-sm md:max-h-[32rem] [left:max(0.75rem,env(safe-area-inset-left))] [right:max(0.75rem,env(safe-area-inset-right))] [bottom:max(5.25rem,calc(env(safe-area-inset-bottom)+5rem))] sm:[bottom:max(6rem,calc(env(safe-area-inset-bottom)+5.5rem))]",
           open
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none translate-y-4 opacity-0",
         )}
       >
-        <div className="border-b border-white/10 bg-linear-to-r from-orange-500/20 via-transparent to-transparent px-4 py-3 sm:px-5 sm:py-4">
+        <div className="shrink-0 border-b border-white/10 bg-gradient-to-r from-orange-500/15 via-transparent to-transparent px-3 py-3 sm:px-5 sm:py-4">
           <div className="flex items-center justify-between gap-2 sm:gap-3">
             <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
-              <div className="shrink-0 rounded-xl bg-orange-500/20 p-2 text-orange-300 sm:rounded-2xl">
-                <Bot className="h-4 w-4 sm:h-5 sm:w-5" />
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-orange-500/25 ring-1 ring-orange-400/20 sm:h-11 sm:w-11 sm:rounded-2xl">
+                <Bot className="h-5 w-5 text-orange-300 sm:h-5 sm:w-5" />
               </div>
               <div className="min-w-0">
-                <p className="truncate text-sm font-semibold">Manny&apos;s Garage Assistant</p>
-                <p className="hidden text-xs text-zinc-400 sm:block">Fargo repair booking concierge</p>
+                <p className="truncate text-sm font-bold tracking-tight text-white">Manny&apos;s Garage Assistant</p>
+                <p className="hidden truncate text-xs text-zinc-400 sm:block">Book auto, handyman, IT, or DIY</p>
               </div>
             </div>
             <button
               type="button"
               onClick={resetChat}
-              className="focus-ring min-touch shrink-0 rounded-lg px-3 py-2 text-xs text-zinc-400 hover:text-white"
+              aria-label="Start over"
+              className="focus-ring min-touch flex shrink-0 items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2.5 py-2 text-xs font-medium text-zinc-400 transition-colors hover:border-white/15 hover:bg-white/10 hover:text-white"
             >
-              Reset
+              <RotateCcw className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Reset</span>
             </button>
           </div>
         </div>
 
-        <div className="border-b border-white/6 px-5 py-3">
-          <div className="flex items-center justify-between text-xs text-zinc-500">
-            <span>
-              {stepIndex < chatSteps.length ? `Step ${stepIndex + 1} of ${chatSteps.length}` : "Complete"}
+        <div className="shrink-0 border-b border-white/[0.06] px-3 py-2.5 sm:px-5 sm:py-3">
+          <div className="flex min-w-0 items-center justify-between gap-2">
+            <span className="min-w-0 truncate text-xs font-medium text-zinc-400" title={stepIndex < chatSteps.length ? `Step ${stepIndex + 1} of ${chatSteps.length} — ${chatSteps[stepIndex]?.label}` : "Complete"}>
+              {stepIndex < chatSteps.length
+                ? `Step ${stepIndex + 1} of ${chatSteps.length} · ${chatSteps[stepIndex]?.label}`
+                : "Complete"}
             </span>
-            <span>{stepIndex < chatSteps.length ? chatSteps[stepIndex]?.label : "Booking sent"}</span>
           </div>
-          <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/5">
+          <div className="mt-2 h-1 overflow-hidden rounded-full bg-white/5">
             <div
-              className="h-full rounded-full bg-orange-500 transition-all duration-500 ease-out"
+              className="h-full rounded-full bg-gradient-to-r from-orange-500 to-orange-400 transition-all duration-500 ease-out"
               style={{
-                width: `${((Math.min(stepIndex, chatSteps.length) + 1) / (chatSteps.length + 1)) * 100}%`,
+                width: `${((stepIndex + 1) / chatSteps.length) * 100}%`,
               }}
             />
           </div>
         </div>
 
-        <div className="max-h-[min(14rem,50dvh)] space-y-3 overflow-y-auto overscroll-contain px-4 py-4 sm:max-h-[24rem]">
+        <div className="min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain px-3 py-3 sm:px-4 sm:py-4">
           {messages.map((message) => (
             <div
               key={message.id}
               className={cn(
-                "max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-6",
+                "max-w-[90%] rounded-2xl px-3 py-2.5 text-sm leading-relaxed sm:max-w-[88%] sm:px-4 sm:py-3",
                 message.role === "assistant"
-                  ? "panel mr-auto text-zinc-100"
-                  : "ml-auto bg-orange-500 text-zinc-950 shadow-md shadow-orange-950/25",
+                  ? "mr-auto border border-white/5 bg-white/[0.03] text-zinc-100"
+                  : "ml-auto bg-orange-500 text-zinc-950 shadow-lg shadow-orange-950/20",
               )}
             >
               {message.content}
             </div>
           ))}
           {submitting ? (
-            <div className="panel mr-auto flex max-w-[88%] items-center gap-2 rounded-2xl px-4 py-3 text-sm text-zinc-100">
-              <LoaderCircle className="h-4 w-4 animate-spin text-orange-300" />
-              Sending your booking request...
+            <div className="mr-auto flex max-w-[90%] items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.03] px-3 py-2.5 text-sm text-zinc-300 sm:max-w-[88%] sm:px-4 sm:py-3">
+              <LoaderCircle className="h-4 w-4 shrink-0 animate-spin text-orange-400" />
+              <span className="truncate">Sending your booking...</span>
             </div>
           ) : null}
         </div>
 
-        <div className="px-4 py-3 pb-safe sm:py-4">
-          <p className="mb-2 px-1 text-xs text-zinc-500">
-            {stepIndex < chatSteps.length
-              ? `Current step: ${chatSteps[stepIndex]?.label}`
-              : "Booking request sent"}
-          </p>
-          <div className="flex items-end gap-2">
+        <div className="shrink-0 px-3 py-2.5 pb-[env(safe-area-inset-bottom)] sm:px-4 sm:py-4">
+          <div className="flex min-w-0 items-end gap-2">
             <textarea
               rows={2}
               value={draft}
@@ -300,16 +298,17 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
               placeholder={
                 stepIndex < chatSteps.length
                   ? chatSteps[stepIndex]?.placeholder
-                  : "Tap reset to start another booking."
+                  : "Reset to start another booking"
               }
               disabled={stepIndex >= chatSteps.length || submitting}
-              className="focus-ring min-h-[48px] flex-1 resize-none rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-base text-white transition-colors placeholder:text-zinc-500 focus:border-orange-400/50 focus:bg-white/[0.06] sm:min-h-[56px] sm:rounded-2xl sm:text-sm"
+              className="focus-ring min-h-[44px] min-w-0 flex-1 resize-none rounded-xl border border-white/10 bg-white/[0.05] px-3 py-2.5 text-base text-white placeholder:text-zinc-500 focus:border-orange-400/40 focus:bg-white/[0.07] focus:ring-2 focus:ring-orange-400/20 sm:min-h-[52px] sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm"
             />
             <button
               type="button"
               onClick={() => void handleSend()}
               disabled={stepIndex >= chatSteps.length || submitting}
-              className="focus-ring min-touch flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-orange-500 text-zinc-950 hover:bg-orange-400 disabled:cursor-not-allowed disabled:bg-zinc-800 disabled:text-zinc-500 sm:rounded-2xl"
+              aria-label="Send"
+              className="focus-ring min-touch flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-orange-500 text-zinc-950 shadow-md shadow-orange-950/25 hover:bg-orange-400 disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-500 disabled:shadow-none sm:h-12 sm:w-12 sm:rounded-2xl"
             >
               <Send className="h-4 w-4" />
             </button>

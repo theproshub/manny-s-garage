@@ -1,272 +1,261 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  Camera,
-  Calculator,
-  Hammer,
-  Tv,
-  MessageSquare,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, Calculator, Cctv, Sofa, Tv } from "lucide-react";
+import { SectionHeading } from "@/components/section-heading";
+import { BackToHome } from "@/components/back-to-home";
+import { siteImages } from "@/lib/site-images";
 
-const handymanServices = [
+const TV_PRICE_PER_INCH = 1.75;
+const CAMERA_PRICE = 120;
+const FURNITURE_PRICE_PER_ITEM = 50;
+
+const services = [
   {
-    id: "furniture",
-    title: "Furniture assembly",
-    description:
-      "We assemble beds, dressers, nightstands, bookshelves, and more. Flat-pack or pre-built delivery—we get it done so you don't have to.",
+    title: "Furniture Assembly",
+    description: "Includes beds, dressers, nightstands, and cabinets.",
     price: "$50 per item",
-    icon: Hammer,
-    quoteType: "items" as const,
-    unitLabel: "Number of items",
-    rate: 50,
+    icon: Sofa,
+    image: siteImages.handymanFurniture,
   },
   {
-    id: "tv",
-    title: "TV mounting",
-    description:
-      "Secure, level wall mounts for any TV size. We handle drilling, anchoring, and cable management so your setup looks clean.",
-    price: "$1.75 per inch (screen diagonal)",
+    title: "TV Mounting",
+    description: "Professional mounting with wire management.",
+    price: "$1.75 per inch",
     icon: Tv,
-    quoteType: "inches" as const,
-    unitLabel: "TV size (inches diagonal)",
-    rate: 1.75,
+    image: siteImages.handymanTv,
   },
   {
-    id: "cameras",
-    title: "Security cameras",
-    description:
-      "Indoor and outdoor camera installation. We run cables, mount units, and help with app setup so you can monitor from anywhere.",
+    title: "Security Camera Installation",
+    description: "Install and configure your security cameras.",
     price: "$120 per camera",
-    icon: Camera,
-    quoteType: "cameras" as const,
-    unitLabel: "Number of cameras",
-    rate: 120,
+    icon: Cctv,
+    image: siteImages.handymanCameras,
   },
-];
-
-const furnitureItems = [
-  { label: "Bed", price: 50 },
-  { label: "Dresser", price: 50 },
-  { label: "Night stand", price: 50 },
 ];
 
 export default function HandymanPage() {
-  const [quoteService, setQuoteService] = useState<string>("furniture");
-  const [quoteQty, setQuoteQty] = useState<number>(2);
-  const [quoteInches, setQuoteInches] = useState<number>(55);
-  const [furnitureCounts, setFurnitureCounts] = useState<Record<string, number>>({
-    bed: 0,
-    dresser: 0,
-    "night stand": 0,
-  });
+  const [tvInches, setTvInches] = useState(55);
+  const [cameras, setCameras] = useState(0);
+  const [furnitureItems, setFurnitureItems] = useState(0);
 
-  const currentService = handymanServices.find((s) => s.id === quoteService);
-
-  function getQuoteTotal(): number {
-    if (quoteService === "furniture") {
-      return (
-        (furnitureCounts.bed || 0) * 50 +
-        (furnitureCounts.dresser || 0) * 50 +
-        (furnitureCounts["night stand"] || 0) * 50
-      );
-    }
-    if (quoteService === "tv") return quoteInches * 1.75;
-    if (quoteService === "cameras") return quoteQty * 120;
-    return 0;
-  }
-
-  const quoteTotal = getQuoteTotal();
+  const estimate = useMemo(() => {
+    const tvTotal = tvInches > 0 ? tvInches * TV_PRICE_PER_INCH : 0;
+    const cameraTotal = cameras * CAMERA_PRICE;
+    const furnitureTotal = furnitureItems * FURNITURE_PRICE_PER_ITEM;
+    const total = tvTotal + cameraTotal + furnitureTotal;
+    return {
+      tvTotal: Math.round(tvTotal * 100) / 100,
+      cameraTotal,
+      furnitureTotal,
+      total,
+    };
+  }, [tvInches, cameras, furnitureItems]);
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden">
-      <div className="grid-overlay" />
+    <main className="relative min-h-screen overflow-x-hidden pt-10">
       <div className="noise-overlay" />
 
-      <header className="panel sticky top-2 z-20 mx-3 mt-3 flex items-center justify-between gap-3 rounded-2xl px-3 py-2.5 sm:top-4 sm:mx-6 sm:px-6 sm:py-3">
-        <Link
-          href="/"
-          className="focus-ring min-touch inline-flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white"
+      {/* Hero */}
+      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16 lg:mb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          <ArrowLeft className="h-4 w-4" />
-          Main menu
-        </Link>
-        <p className="truncate text-xs font-semibold uppercase tracking-widest text-orange-300">Handyman services</p>
-      </header>
-
-      <div className="mx-auto max-w-4xl px-4 pb-safe-fab pt-6 sm:px-6 sm:pt-8 lg:px-8">
-        <div className="mb-8 sm:mb-12">
-          <p className="text-sm uppercase tracking-[0.28em] text-orange-300">Handyman</p>
-          <h1 className="mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">
-            Handyman services at Manny&apos;s Garage
+          <BackToHome />
+          <span className="premium-badge badge-orange mt-6 mb-5 inline-flex">
+            Handyman Services
+          </span>
+          <h1 className="text-4xl font-bold tracking-tight text-white mb-6 sm:text-5xl lg:text-6xl">
+            Home Installation <span className="metal-text">Done Right.</span>
           </h1>
-          <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-zinc-400 sm:text-base">
-            Full details on every service we offer: TV mounting, security cameras, and furniture assembly.
-            Use the AI price quote below for an instant estimate, then use the link to book on the main page.
+          <p className="text-lg text-zinc-400 leading-relaxed max-w-2xl">
+            TV mounting, security cameras, and furniture assembly—with clear pricing and professional results.
           </p>
-        </div>
+        </motion.div>
+      </section>
 
-        <section className="space-y-8">
-          {handymanServices.map((service) => {
+      {/* Service cards with pricing */}
+      <section className="relative mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+        <SectionHeading
+          badge="Services & Pricing"
+          title="What We Offer"
+          align="center"
+        />
+        <div className="mt-12 grid gap-6 sm:grid-cols-3">
+          {services.map((service, i) => {
             const Icon = service.icon;
             return (
-              <article
-                key={service.id}
-                className="panel-strong rounded-2xl p-5 sm:rounded-[1.75rem] sm:p-6 lg:p-8"
+              <motion.article
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group relative overflow-hidden rounded-[var(--radius-card)] border border-white/10 bg-black/40 backdrop-blur-sm transition-all hover:border-orange-500/20"
               >
-                <div className="mb-6 flex items-start justify-between gap-4">
-                  <div className="flex items-center gap-4">
-                    <div className="rounded-2xl bg-orange-500/15 p-3 text-orange-300">
+                <div className="relative h-48 w-full">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                  <div className="absolute bottom-4 left-4 flex items-center gap-3">
+                    <div className="rounded-xl bg-orange-500/20 p-2.5 text-orange-400 ring-1 ring-orange-400/30">
                       <Icon className="h-6 w-6" />
                     </div>
-                    <div>
-                      <h2 className="text-xl font-semibold text-white sm:text-2xl">
-                        {service.title}
-                      </h2>
-                      <p className="mt-1 text-sm font-medium text-orange-200">{service.price}</p>
-                    </div>
+                    <span className="font-bold text-white">{service.title}</span>
                   </div>
                 </div>
-                <p className="text-zinc-400 leading-7">{service.description}</p>
-              </article>
+                <div className="p-6">
+                  <p className="text-zinc-400 text-sm leading-relaxed">{service.description}</p>
+                  <p className="mt-3 font-semibold text-orange-400">{service.price}</p>
+                </div>
+              </motion.article>
             );
           })}
-        </section>
+        </div>
+      </section>
 
-        <section className="mt-14">
-          <div className="mb-6 flex items-center gap-3">
-            <div className="rounded-2xl bg-orange-500/15 p-2 text-orange-300">
-              <Calculator className="h-5 w-5" />
-            </div>
+      {/* AI Price Quote Calculator */}
+      <section id="calculator" className="relative border-y border-white/10 bg-black/40 py-20 backdrop-blur-sm">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-[1fr_380px]">
             <div>
-              <h2 className="text-2xl font-semibold text-white">AI price quote</h2>
-              <p className="text-sm text-zinc-400">
-                Get an instant estimate. Final price may vary by job complexity.
-              </p>
-            </div>
-          </div>
-
-          <div className="panel-strong rounded-2xl p-5 sm:rounded-[1.75rem] sm:p-6 lg:p-8">
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-zinc-300">Service type</label>
-              <select
-                value={quoteService}
-                onChange={(e) => setQuoteService(e.target.value)}
-                className="focus-ring min-touch mt-2 w-full max-w-xs rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-base text-white transition-colors focus:border-orange-400/50 focus:bg-white/[0.07] sm:text-sm"
+              <SectionHeading
+                badge="Quote Calculator"
+                title="Get Your Price Estimate"
+                description="Enter your needs below. The total updates automatically."
+              />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="mt-8 space-y-6"
               >
-                <option value="furniture">Furniture assembly — $50 per item</option>
-                <option value="tv">TV mounting — $1.75 per inch</option>
-                <option value="cameras">Security cameras — $120 per camera</option>
-              </select>
-            </div>
-
-            {quoteService === "furniture" && (
-              <div className="space-y-4">
-                <p className="text-sm text-zinc-400">
-                  Bed, dresser, and night stand are $50 each. Add quantities:
-                </p>
-                <div className="grid gap-4 sm:grid-cols-3">
-                  {furnitureItems.map((item) => (
-                    <div key={item.label}>
-                      <label className="block text-sm text-zinc-400">{item.label}</label>
-                      <input
-                        type="number"
-                        min={0}
-                        max={20}
-                        value={furnitureCounts[item.label.toLowerCase()] ?? 0}
-                        onChange={(e) =>
-                          setFurnitureCounts((prev) => ({
-                            ...prev,
-                            [item.label.toLowerCase()]: Math.max(
-                              0,
-                              parseInt(e.target.value, 10) || 0
-                            ),
-                          }))
-                        }
-                        className="focus-ring min-touch mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-base text-white transition-colors focus:border-orange-400/50 focus:bg-white/[0.07] sm:text-sm"
-                      />
-                    </div>
-                  ))}
+                <div>
+                  <label htmlFor="tv-inches" className="block text-sm font-medium text-zinc-300 mb-2">
+                    TV size (inches)
+                  </label>
+                  <input
+                    id="tv-inches"
+                    type="number"
+                    min={0}
+                    max={120}
+                    value={tvInches}
+                    onChange={(e) =>
+                      setTvInches(Math.max(0, Math.min(120, parseInt(e.target.value, 10) || 0)))
+                    }
+                    className="focus-ring w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white transition-colors focus:border-orange-400/50"
+                  />
+                  <p className="mt-1 text-xs text-zinc-500">$1.75 × {tvInches} in = ${(tvInches * TV_PRICE_PER_INCH).toFixed(2)}</p>
                 </div>
-              </div>
-            )}
+                <div>
+                  <label htmlFor="cameras" className="block text-sm font-medium text-zinc-300 mb-2">
+                    Number of security cameras
+                  </label>
+                  <input
+                    id="cameras"
+                    type="number"
+                    min={0}
+                    max={20}
+                    value={cameras}
+                    onChange={(e) =>
+                      setCameras(Math.max(0, Math.min(20, parseInt(e.target.value, 10) || 0)))
+                    }
+                    className="focus-ring w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white transition-colors focus:border-orange-400/50"
+                  />
+                  <p className="mt-1 text-xs text-zinc-500">$120 × {cameras} = ${cameras * CAMERA_PRICE}</p>
+                </div>
+                <div>
+                  <label htmlFor="furniture" className="block text-sm font-medium text-zinc-300 mb-2">
+                    Number of furniture items
+                  </label>
+                  <input
+                    id="furniture"
+                    type="number"
+                    min={0}
+                    max={20}
+                    value={furnitureItems}
+                    onChange={(e) =>
+                      setFurnitureItems(Math.max(0, Math.min(20, parseInt(e.target.value, 10) || 0)))
+                    }
+                    className="focus-ring w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white transition-colors focus:border-orange-400/50"
+                  />
+                  <p className="mt-1 text-xs text-zinc-500">$50 × {furnitureItems} = ${furnitureItems * FURNITURE_PRICE_PER_ITEM}</p>
+                </div>
+              </motion.div>
+            </div>
 
-            {quoteService === "tv" && (
-              <div>
-                <label className="block text-sm text-zinc-400">
-                  TV size (diagonal inches)
-                </label>
-                <input
-                  type="number"
-                  min={20}
-                  max={120}
-                  value={quoteInches}
-                  onChange={(e) =>
-                    setQuoteInches(Math.max(20, Math.min(120, parseInt(e.target.value, 10) || 20)))
-                  }
-                  className="focus-ring min-touch mt-2 w-full max-w-xs rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-base text-white transition-colors focus:border-orange-400/50 focus:bg-white/[0.07] sm:text-sm"
-                />
-              </div>
-            )}
-
-            {quoteService === "cameras" && (
-              <div>
-                <label className="block text-sm text-zinc-400">Number of cameras</label>
-                <input
-                  type="number"
-                  min={1}
-                  max={20}
-                  value={quoteQty}
-                  onChange={(e) =>
-                    setQuoteQty(Math.max(1, Math.min(20, parseInt(e.target.value, 10) || 1)))
-                  }
-                  className="focus-ring min-touch mt-2 w-full max-w-xs rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-base text-white transition-colors focus:border-orange-400/50 focus:bg-white/[0.07] sm:text-sm"
-                />
-              </div>
-            )}
-
-            <div className="mt-8 flex flex-wrap items-center gap-6">
-              <div className="rounded-2xl border border-orange-400/30 bg-orange-500/10 px-6 py-4">
-                <p className="text-xs uppercase tracking-wider text-orange-200">
-                  Estimated total
+            <div className="lg:pt-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="panel-cyber sticky top-28 rounded-[var(--radius-card)] p-8"
+              >
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-500/20 text-orange-400 ring-1 ring-orange-400/30">
+                  <Calculator className="h-7 w-7" />
+                </div>
+                <p className="text-xs font-bold uppercase tracking-wider text-zinc-500">Estimated Total</p>
+                <p className="mt-2 text-4xl font-black text-white">${estimate.total.toFixed(2)}</p>
+                <div className="mt-6 space-y-2 border-t border-white/10 pt-4 text-sm text-zinc-400">
+                  {estimate.tvTotal > 0 && (
+                    <p>TV mounting: ${estimate.tvTotal.toFixed(2)}</p>
+                  )}
+                  {estimate.cameraTotal > 0 && (
+                    <p>Cameras: ${estimate.cameraTotal}</p>
+                  )}
+                  {estimate.furnitureTotal > 0 && (
+                    <p>Furniture: ${estimate.furnitureTotal}</p>
+                  )}
+                </div>
+                <p className="mt-4 text-xs text-zinc-500">
+                  Final quote may vary. Parts not included unless specified.
                 </p>
-                <p className="text-3xl font-semibold text-white">
-                  ${quoteTotal.toFixed(2)}
-                </p>
-              </div>
+                <div className="mt-8 flex flex-col gap-3">
+                  <Link
+                    href={`/book?service=handyman&estimate=${encodeURIComponent(estimate.total.toFixed(2))}`}
+                    className="btn-primary group w-full justify-center"
+                  >
+                    Book Service
+                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  </Link>
+                  <Link href="/" className="btn-outline w-full justify-center">
+                    Back to Home
+                  </Link>
+                </div>
+              </motion.div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="mt-10 rounded-2xl border border-orange-400/20 bg-orange-500/10 p-5 sm:mt-14 sm:rounded-[1.75rem] sm:p-6 lg:p-8">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 className="text-xl font-semibold text-white">Ready to book?</h2>
-              <p className="mt-2 text-zinc-300">
-                Use the link below to go to the main page and book with the assistant, or head back to the main menu.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/"
-                className="accent-ring focus-ring inline-flex items-center gap-2 rounded-full bg-orange-500 px-6 py-3.5 text-sm font-semibold text-zinc-950 hover:-translate-y-0.5 hover:bg-orange-400 active:translate-y-0"
-              >
-                <MessageSquare className="h-4 w-4" />
-                Link to book (main page)
-              </Link>
-              <Link
-                href="/"
-                className="focus-ring inline-flex items-center gap-2 rounded-full border border-white/10 px-6 py-3.5 text-sm font-medium text-zinc-300 hover:border-white/20 hover:text-white"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                Back to main menu
-              </Link>
-            </div>
+      {/* CTA */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-white/10 bg-black/40 p-8">
+          <div>
+            <h2 className="text-xl font-bold text-white">Ready to schedule?</h2>
+            <p className="mt-1 text-zinc-400">Use the calculator above, then book your service.</p>
           </div>
-        </section>
-      </div>
+          <div className="flex gap-4">
+            <Link href="/book?service=handyman" className="btn-primary group">
+              Book Service
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
+            <Link href="/" className="btn-outline">
+              Back to Home
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

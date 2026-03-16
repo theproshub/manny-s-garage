@@ -4,7 +4,8 @@
   "private": true,
   "description": "Modern auto repair website for Manny's Garage in Fargo.",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
+    "dev:turbo": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint ."
@@ -19,8 +20,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@radix-ui/react-navigation-menu": "^1.2.14",
     "@supabase/supabase-js": "^2.99.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.36.0",
     "lucide-react": "^0.577.0",
     "next": "^16.1.6",
     "react": "^19.2.4",

@@ -1,19 +1,25 @@
 import { z } from "zod";
 
+export const serviceTypes = ["automotive", "handyman", "diy"] as const;
+export type ServiceType = (typeof serviceTypes)[number];
+
 export const bookingSchema = z.object({
   name: z.string().min(2, "Please share your name."),
   phone: z
     .string()
     .min(10, "Please share a phone number.")
     .regex(/^[0-9+()\-\s]+$/, "Phone number format looks invalid."),
-  vehicle: z.string().min(3, "Please include your car make and model."),
-  issue: z.string().min(10, "Please describe the repair issue."),
+  vehicle: z.string().optional(),
+  issue: z.string().optional(),
   preferredDate: z
     .string()
     .min(1, "Please choose a preferred date.")
     .refine((value) => !Number.isNaN(Date.parse(value)), {
       message: "Preferred date is invalid.",
     }),
+  serviceType: z.enum(serviceTypes).optional(),
+  estimatedTotal: z.string().optional(),
+  notes: z.string().optional(),
 });
 
 export type BookingPayload = z.infer<typeof bookingSchema>;
@@ -57,12 +63,16 @@ export const chatSteps: Array<{
 ];
 
 export function formatBookingText(payload: BookingPayload) {
-  return [
+  const lines = [
     "New Manny's Garage booking request",
+    payload.serviceType ? `Service: ${payload.serviceType}` : null,
     `Name: ${payload.name}`,
     `Phone: ${payload.phone}`,
-    `Vehicle: ${payload.vehicle}`,
-    `Issue: ${payload.issue}`,
+    payload.vehicle ? `Vehicle: ${payload.vehicle}` : null,
+    payload.issue ? `Issue: ${payload.issue}` : null,
     `Preferred date: ${payload.preferredDate}`,
-  ].join("\n");
+    payload.estimatedTotal ? `Est. total: $${payload.estimatedTotal}` : null,
+    payload.notes ? `Notes: ${payload.notes}` : null,
+  ].filter(Boolean) as string[];
+  return lines.join("\n");
 }

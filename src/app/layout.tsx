@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import { StickyHeader } from "@/components/sticky-header";
+import { Footer } from "@/components/footer";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -28,7 +30,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={plusJakarta.variable}>
-      <body className="min-h-screen">{children}</body>
+      <body className="min-h-screen relative bg-[#030507]">
+        <StickyHeader />
+        <div className="pt-16 sm:pt-20 lg:pt-24">{children}</div>
+        <Footer />
+      </body>
     </html>
   );
 }

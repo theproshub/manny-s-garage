@@ -42,6 +42,8 @@ export async function POST(request: Request) {
 
     const booking = parsed.data;
     const supabase = getSupabaseAdminClient();
+    const vehicle = booking.vehicle ?? "";
+    const issue = booking.issue ?? (booking.serviceType ? `${booking.serviceType} booking` : "General");
 
     let savedToSupabase = false;
     let savedToDemo = false;
@@ -52,8 +54,8 @@ export async function POST(request: Request) {
       const { error } = await supabase.from("repair_bookings").insert({
         name: booking.name,
         phone: booking.phone,
-        vehicle: booking.vehicle,
-        issue: booking.issue,
+        vehicle,
+        issue,
         preferred_date: booking.preferredDate,
       });
 
