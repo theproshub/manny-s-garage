@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowRight,
   CarFront,
   ChevronDown,
   Cpu,
@@ -19,10 +18,10 @@ import { SectionHeading } from "@/components/section-heading";
 import { siteImages } from "@/lib/site-images";
 
 const heroImages = [
-  siteImages.garageHero,
-  siteImages.diagnostics,
-  siteImages.handymanTv,
-  siteImages.diyGarage,
+  "/hero/hero-handyman.png",
+  "/hero/hero-handyman-grid.png",
+  "/hero/hero-handyman-services.png",
+  "/hero/hero-bays.png",
 ];
 
 const galleryImages = [
@@ -70,10 +69,10 @@ const faqs = [
 ];
 
 const heroSlideLabels = [
-  "Auto repair and diagnostics",
-  "Handyman and TV mounting",
-  "DIY garage bay rental",
-  "IT and tech services",
+  "Handyman Services",
+  "Handyman — assembly, TV, cameras & more",
+  "Handyman & IT services",
+  "Our service bays",
 ];
 
 export default function Home() {
@@ -110,21 +109,34 @@ export default function Home() {
                 <MapPin className="h-3.5 w-3.5" aria-hidden />
                 Fargo, ND
               </span>
-              <span className="text-zinc-500 text-sm">· One shop, four ways we help</span>
+              <span className="text-zinc-500 text-sm">· All your fixes, one spot</span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.06 }}
-              className="text-[2.25rem] font-bold leading-[1.1] tracking-tight min-[375px]:text-[2.75rem] sm:text-5xl lg:text-[3.25rem] xl:text-6xl"
+              className="text-[2.25rem] font-bold leading-[1.15] tracking-tight min-[375px]:text-[2.75rem] sm:text-5xl lg:text-[3.25rem] xl:text-6xl"
             >
               <span className="metal-text block">Manny&apos;s Garage</span>
               <span className="mt-2 block text-white/92 sm:mt-2.5">
-                Where Fargo <span className="orange-glow-text">gets it done.</span>
+                All your fixes. <span className="orange-glow-text">One spot.</span>
               </span>
-              <span className="mt-1 block text-white/70 text-[0.9em] font-semibold sm:mt-1.5">
-                Auto · Handyman · DIY · IT
+              <span className="mt-3 flex flex-wrap items-center justify-center gap-2 sm:mt-4 sm:gap-2.5" aria-label="Services: Auto, Handyman, DIY, IT">
+                {[
+                  { label: "Auto", href: "/auto" },
+                  { label: "Handyman", href: "/handyman" },
+                  { label: "DIY", href: "/diy-garage" },
+                  { label: "IT", href: "/it" },
+                ].map(({ label, href }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    className="rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-[0.8rem] font-medium text-white/80 backdrop-blur-sm transition-colors hover:border-orange-400/40 hover:bg-orange-400/10 hover:text-orange-300 sm:text-[0.85rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                  >
+                    {label}
+                  </Link>
+                ))}
               </span>
             </motion.h1>
 
@@ -132,33 +144,11 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.12 }}
-              className="mt-5 max-w-lg text-[15px] leading-[1.65] text-zinc-400 sm:mt-6 sm:text-base"
+              className="mt-4 max-w-lg text-[15px] leading-[1.65] text-zinc-400 sm:mt-5 sm:text-base"
             >
-              Repair your ride, upgrade your home, rent a bay, or sort your tech. One shop—no runaround.
+              Full-service auto repair, handyman, DIY bay rental, and IT support. One spot in Fargo, ND—no runaround.
             </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-6 sm:mt-8"
-            >
-              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-                <Link
-                  href="/book"
-                  className="btn-primary group min-touch inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-base font-semibold shadow-[0_0_0_1px_rgba(255,122,26,0.35),0_8px_32px_rgba(255,88,0,0.35)] transition-all duration-200 hover:shadow-[0_0_0_1px_rgba(255,122,26,0.45),0_12px_40px_rgba(255,88,0,0.45)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-h-[52px] sm:px-8 sm:py-4 sm:text-[0.9375rem]"
-                >
-                  Book service
-                  <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                </Link>
-                <a
-                  href="#contact"
-                  className="min-touch inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 text-base font-semibold text-white/95 backdrop-blur-sm transition-all duration-200 hover:border-white/35 hover:bg-white/10 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-h-[52px] sm:px-8 sm:py-4 sm:text-[0.9375rem]"
-                >
-                  Contact
-                </a>
-              </div>
-            </motion.div>
           </div>
 
           {/* Right: Image carousel */}
@@ -197,7 +187,7 @@ export default function Home() {
                 </motion.div>
               </AnimatePresence>
               <div className="img-side-overlay z-10" />
-              <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between sm:bottom-5 sm:left-5 sm:right-5">
+              <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center sm:bottom-5 sm:left-5 sm:right-5">
                 <div className="flex gap-2">
                   {heroImages.map((_, idx) => (
                     <button
@@ -213,9 +203,6 @@ export default function Home() {
                     />
                   ))}
                 </div>
-                <span className="text-xs font-medium text-white/70 tabular-nums">
-                  Slide {currentSlide + 1} of {heroImages.length}
-                </span>
               </div>
             </div>
           </motion.div>
@@ -424,7 +411,7 @@ export default function Home() {
                 Email
               </a>
               <a
-                href="https://maps.google.com/?q=123+Mechanic+Ave+Fargo+ND+58103"
+                href="https://maps.apple.com/maps?q=1335+Main+Ave+S+Fargo+ND+58103"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-orange-500/30 bg-orange-500/10 px-4 py-2.5 text-sm font-semibold text-orange-300 transition-all hover:border-orange-400/50 hover:bg-orange-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
@@ -436,17 +423,10 @@ export default function Home() {
             <div className="mt-6 space-y-3 border-t border-white/10 pt-6 text-sm text-zinc-400">
               <p className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" />
-                123 Mechanic Ave, Fargo, ND 58103
+                1335 Main Ave S, Fargo, ND 58103
               </p>
               <p>(701) 555-0142 · Mon–Fri 8am–6pm, Sat 9am–3pm</p>
             </div>
-            <Link
-              href="/book"
-              className="btn-primary group mt-6 inline-flex min-touch w-full items-center justify-center gap-2 sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-            >
-              Book service
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
-            </Link>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -456,7 +436,7 @@ export default function Home() {
           >
             <iframe
               title="Manny's Garage location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2182.360848876!2d-96.789387!3d46.8772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDUyJzM3LjkiTiA5NsKwNDcnMjEuOCJX!5e0!3m2!1sen!2sus!4v1640000000000!5m2!1sen!2sus"
+              src="https://www.google.com/maps?q=1335+Main+Ave+S+Fargo+ND+58103&output=embed"
               className="absolute inset-0 h-full w-full border-0"
               allowFullScreen
               loading="lazy"

@@ -16,7 +16,7 @@ const initialMessages: ChatMessage[] = [
     id: "intro-1",
     role: "assistant",
     content:
-      "Hi! I’m Manny’s booking assistant. I’ll walk you through a few quick details so we can get you scheduled.",
+      "Hi! I’m Manny, owner of Manny’s Garage. I’ll walk you through a few quick details so we can get you scheduled.",
   },
   {
     id: "intro-2",
@@ -173,7 +173,7 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
           role: "assistant",
           content:
             data.message ??
-            "You're all set. Manny's Garage received your booking request and will follow up soon.",
+            "You're all set. I got your request and will follow up with you soon.",
         },
       ]);
       setStepIndex(chatSteps.length);
@@ -199,7 +199,7 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
       <button
         type="button"
         onClick={() => onOpenChange(!open)}
-        aria-label={open ? "Close assistant" : "Book with AI assistant"}
+        aria-label={open ? "Close chat" : "Chat with Manny"}
         className="accent-ring focus-ring min-touch fixed z-50 flex items-center gap-2 rounded-full border border-orange-400/40 bg-zinc-950/95 px-3 py-3 text-sm font-semibold text-white backdrop-blur-md hover:-translate-y-0.5 hover:border-orange-300/50 hover:bg-zinc-900/95 active:translate-y-0 sm:right-6 sm:bottom-6 sm:gap-3 sm:px-4 sm:py-3 [bottom:max(0.75rem,env(safe-area-inset-bottom))] [right:max(0.75rem,env(safe-area-inset-right))]"
       >
         {open ? (
@@ -209,7 +209,7 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
             <MessageSquare className="h-5 w-5 sm:h-4 sm:w-4" />
           </div>
         )}
-        <span className="hidden min-[420px]:inline">{open ? "Close assistant" : "Book with AI assistant"}</span>
+        <span className="hidden min-[420px]:inline">{open ? "Close chat" : "Chat with Manny"}</span>
       </button>
 
       <div
@@ -227,8 +227,8 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
                 <Bot className="h-5 w-5 text-orange-300 sm:h-5 sm:w-5" />
               </div>
               <div className="min-w-0">
-                <p className="truncate text-sm font-bold tracking-tight text-white">Manny&apos;s Garage Assistant</p>
-                <p className="hidden truncate text-xs text-zinc-400 sm:block">Book auto, handyman, IT, or DIY</p>
+                <p className="truncate text-sm font-bold tracking-tight text-white">Manny</p>
+                <p className="hidden truncate text-xs text-zinc-400 sm:block">Shop owner — book auto, handyman, IT, or DIY</p>
               </div>
             </div>
             <button

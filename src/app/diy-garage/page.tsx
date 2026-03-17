@@ -6,16 +6,16 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
+  ArrowUpFromLine,
   Calculator,
   CarFront,
-  Wrench,
-  Gauge,
   Droplets,
-  Wind,
-  Zap,
+  Gauge,
   Layout,
   UserCog,
-  ArrowUpFromLine,
+  Wind,
+  Wrench,
+  Zap,
 } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { BackToHome } from "@/components/back-to-home";
@@ -34,6 +34,14 @@ const equipment = [
   { name: "Power tools", icon: Zap },
   { name: "Workbench and lighting", icon: Layout },
 ];
+
+function scrollToCalculatorAndFocus(inputId: string) {
+  const section = document.getElementById("calculator");
+  section?.scrollIntoView({ behavior: "smooth", block: "start" });
+  setTimeout(() => {
+    document.getElementById(inputId)?.focus({ preventScroll: true });
+  }, 450);
+}
 
 export default function DIYGaragePage() {
   const [hours, setHours] = useState(2);
@@ -140,12 +148,22 @@ export default function DIYGaragePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black/40 p-5 transition-colors hover:border-orange-500/20"
+                className="overflow-hidden rounded-2xl border border-white/10 bg-black/40 transition-colors hover:border-orange-500/20"
               >
-                <div className="rounded-xl bg-orange-500/15 p-3 text-orange-400">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <span className="font-semibold text-white">{item.name}</span>
+                <button
+                  type="button"
+                  onClick={() => scrollToCalculatorAndFocus("hours")}
+                  className="group flex w-full items-center gap-4 p-5 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-2xl"
+                  aria-describedby="calculator"
+                >
+                  <div className="rounded-xl bg-orange-500/15 p-3 text-orange-400 shrink-0">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <span className="font-semibold text-white flex-1">{item.name}</span>
+                  <span className="text-xs font-medium text-zinc-400 group-hover:text-orange-400 transition-colors shrink-0">
+                    Get quote →
+                  </span>
+                </button>
               </motion.div>
             );
           })}

@@ -3,7 +3,7 @@
 
 # Manny's Garage
 
-Modern auto repair website for Manny's Garage in Fargo, built with Next.js, Tailwind CSS, Supabase, and Twilio.
+Modern auto repair website for Manny's Garage in Fargo, ND, built with Next.js, Tailwind CSS, Supabase, and Twilio.
 
 ## Features
 

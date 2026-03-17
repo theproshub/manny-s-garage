@@ -32,6 +32,24 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: rgba(255, 122, 26, 0.2);
+}
+
+/* Responsive scroll-margin so anchor links clear the fixed header */
+[id] {
+  scroll-margin-top: 5rem; /* 80px — safe for smallest header */
+}
+@media (min-width: 640px) {
+  [id] { scroll-margin-top: 5.5rem; }
+}
+@media (min-width: 768px) {
+  [id] { scroll-margin-top: 6.5rem; }
+}
+@media (min-width: 1024px) {
+  [id] { scroll-margin-top: 8rem; }
+}
+@media (min-width: 1280px) {
+  [id] { scroll-margin-top: 9rem; }
 }
 
 body {
@@ -39,6 +57,7 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   padding-left: env(safe-area-inset-left, 0);
   padding-right: env(safe-area-inset-right, 0);
   padding-bottom: env(safe-area-inset-bottom, 0);

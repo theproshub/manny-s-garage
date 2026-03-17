@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { Wrench, MapPin, PhoneCall, Mail, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { MapPin, PhoneCall, Mail, ChevronRight } from "lucide-react";
+import { siteImages } from "@/lib/site-images";
 
 export function Footer() {
   return (
@@ -11,17 +13,17 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-4 lg:gap-8">
           {/* Brand Col */}
           <div className="flex flex-col gap-6">
-            <Link href="/" className="inline-flex items-center gap-2">
-              <div className="flex items-center justify-center rounded-lg bg-orange-500/10 p-2">
-                <Wrench className="h-5 w-5 text-orange-400" strokeWidth={2.5} />
-              </div>
-              <div className="flex flex-col">
-                <span className="orbitron text-sm font-bold tracking-[0.2em] text-white">MANNY'S</span>
-                <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-orange-400">GARAGE</span>
-              </div>
+            <Link href="/" className="inline-flex items-center">
+              <Image
+                src={siteImages.logo}
+                alt="Manny's Garage — Automotive, Handyman, IT & More"
+                width={180}
+                height={56}
+                className="h-20 w-auto object-contain object-left sm:h-[100px] md:h-[120px] lg:h-[140px] xl:h-[148px]"
+              />
             </Link>
             <p className="text-sm leading-6 text-zinc-400">
-              Premium auto repair, handyman services, IT consulting, and DIY garage rentals. Fargo&apos;s most advanced service center.
+              Premium auto repair, handyman services, IT consulting, and DIY garage rentals. Fargo, ND&apos;s most advanced service center.
             </p>
           </div>
 
@@ -68,7 +70,7 @@ export function Footer() {
             <ul className="flex flex-col gap-4 text-sm text-zinc-400">
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" />
-                <span>123 Mechanic Ave<br/>Fargo, ND 58103</span>
+                <span>1335 Main Ave S<br/>Fargo, ND 58103</span>
               </li>
               <li>
                 <a href="tel:+17015550142" className="flex items-center gap-3 transition-colors hover:text-white">

@@ -7,6 +7,9 @@ const unsplash = (id: string) =>
   `https://images.unsplash.com/photo-${id}?w=1200&q=80&auto=format&fit=crop`;
 
 export const siteImages = {
+  /** Site logo (transparent PNG) */
+  logo: "/logo.png",
+
   // —— Auto ——
   /** Garage hero - car in shop (Frankie Cordoba, Unsplash) */
   garageHero: unsplash("1646807284302-170c9505b2e7"),

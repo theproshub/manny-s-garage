@@ -2,7 +2,7 @@
   "name": "manny's-garage",
   "version": "1.0.0",
   "private": true,
-  "description": "Modern auto repair website for Manny's Garage in Fargo.",
+  "description": "Modern auto repair website for Manny's Garage in Fargo, ND.",
   "scripts": {
     "dev": "next dev --webpack",
     "dev:turbo": "next dev --turbopack",
@@ -40,6 +40,7 @@
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.1.6",
     "postcss": "^8.5.8",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
   }

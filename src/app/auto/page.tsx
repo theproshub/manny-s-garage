@@ -55,9 +55,13 @@ const testimonials = [
 ];
 
 const autoFaqs = [
-  { q: "Do I need an appointment for automotive service?", a: "Yes. Book online or use our chat assistant to schedule. We offer same-day and next-day slots when available." },
+  { q: "Do I need an appointment for automotive service?", a: "Yes. Book online or chat with Manny to schedule. We offer same-day and next-day slots when available." },
   { q: "Do you work on my make and model?", a: "We work on most cars and light trucks. If you're unsure, use the diagnostic chat or call us—we'll confirm before you book." },
 ];
+
+function scrollToAutoCta() {
+  document.getElementById("auto-cta")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export default function AutoPage() {
   const [assistantOpen, setAssistantOpen] = useState(false);
@@ -158,7 +162,7 @@ export default function AutoPage() {
           {autoServices.map((service, i) => {
             const Icon = service.icon;
             return (
-              <motion.article
+              <motion.div
                 key={service.title}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -166,19 +170,29 @@ export default function AutoPage() {
                 transition={{ delay: i * 0.08, duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
                 className="panel-strong group relative overflow-hidden rounded-2xl border border-white/[0.08] transition-all duration-300 hover:border-orange-500/25 hover:shadow-xl hover:shadow-orange-900/10 sm:rounded-[2rem]"
               >
-                <div className="relative h-36 sm:h-44 w-full overflow-hidden">
-                  <Image src={service.img} alt={service.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, 50vw" />
-                  <div className="img-overlay" />
-                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 cyber-badge text-[10px] sm:text-xs">{service.stat}</div>
-                </div>
-                <div className="relative p-5 sm:p-7 z-10 -mt-6 sm:-mt-8">
-                  <div className="mb-3 inline-flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-orange-500/20 ring-1 ring-orange-500/40 backdrop-blur-xl text-orange-400">
-                    <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
+                <button
+                  type="button"
+                  onClick={scrollToAutoCta}
+                  className="w-full text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-2xl sm:rounded-[2rem]"
+                  aria-describedby="auto-cta"
+                >
+                  <div className="relative h-36 sm:h-44 w-full overflow-hidden pointer-events-none">
+                    <Image src={service.img} alt={service.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, 50vw" />
+                    <div className="img-overlay" />
+                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 cyber-badge text-[10px] sm:text-xs">{service.stat}</div>
+                    <span className="absolute bottom-3 right-3 text-xs font-medium text-white/80 group-hover:text-orange-400 transition-colors">
+                      Get quote →
+                    </span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white mt-2 group-hover:text-orange-400 transition-colors">{service.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-zinc-400">{service.description}</p>
-                </div>
-              </motion.article>
+                  <div className="relative p-5 sm:p-7 z-10 -mt-6 sm:-mt-8">
+                    <div className="mb-3 inline-flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-orange-500/20 ring-1 ring-orange-500/40 backdrop-blur-xl text-orange-400">
+                      <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold text-white mt-2 group-hover:text-orange-400 transition-colors">{service.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-zinc-400">{service.description}</p>
+                  </div>
+                </button>
+              </motion.div>
             );
           })}
         </div>
@@ -265,7 +279,7 @@ export default function AutoPage() {
       </section>
 
       {/* ─── CTA ─── */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <section id="auto-cta" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 scroll-mt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -276,7 +290,7 @@ export default function AutoPage() {
           <div className="relative z-10">
             <h2 className="text-2xl font-bold text-white mb-3 sm:mb-4 sm:text-4xl">Ready to fix your car?</h2>
             <p className="text-zinc-400 mb-6 sm:mb-8 text-base sm:text-lg max-w-xl mx-auto">
-              Use our AI assistant to describe the symptoms. We&apos;ll match you with the right service and get you scheduled.
+              Chat with Manny to describe your symptoms. We&apos;ll match you with the right service and get you scheduled.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
               <button onClick={() => setAssistantOpen(true)} className="btn-primary min-touch inline-flex items-center gap-2">

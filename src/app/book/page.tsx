@@ -6,7 +6,6 @@ import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
-  ArrowLeft,
   Check,
   CarFront,
   Tv,
@@ -88,6 +87,7 @@ function BookPageContent() {
     const estimate = searchParams.get("estimate");
     if (service && ["automotive", "handyman", "diy", "it"].includes(service)) {
       updateForm({ serviceType: service, estimatedTotal: estimate ?? "" });
+      setStep(2); // Skip to Review price estimate when arriving from a service page
     }
   }, [searchParams, updateForm]);
 
@@ -244,7 +244,10 @@ function BookPageContent() {
                       <button
                         key={opt.id}
                         type="button"
-                        onClick={() => updateForm({ serviceType: opt.id as FormState["serviceType"] })}
+                        onClick={() => {
+                          updateForm({ serviceType: opt.id as FormState["serviceType"] });
+                          setStep(2);
+                        }}
                         className={`group relative flex flex-col items-center gap-3 rounded-2xl border p-6 text-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] ${
                           isSelected
                             ? "border-orange-500 bg-orange-500/15 text-white shadow-[0_0_0_1px_rgba(255,122,26,0.4)]"
@@ -458,17 +461,9 @@ function BookPageContent() {
           </AnimatePresence>
         </div>
 
-        {/* Navigation */}
-        <div className="mt-12 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
-          <button
-            type="button"
-            onClick={() => setStep((s) => Math.max(1, s - 1))}
-            disabled={step === 1}
-            className="btn-outline justify-center sm:justify-start disabled:opacity-40 disabled:pointer-events-none"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back
-          </button>
+        {/* Navigation — step 1 advances on service select */}
+        {step > 1 && (
+        <div className="mt-12 flex justify-end">
           {step < 5 ? (
             <button
               type="button"
@@ -476,7 +471,7 @@ function BookPageContent() {
               disabled={!canProceed()}
               className="btn-primary group justify-center sm:justify-end disabled:opacity-50 disabled:pointer-events-none"
             >
-              Next
+              Continue
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1" />
             </button>
           ) : (
@@ -491,6 +486,7 @@ function BookPageContent() {
             </button>
           )}
         </div>
+        )}
       </div>
     </main>
   );

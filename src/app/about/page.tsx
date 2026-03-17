@@ -97,7 +97,7 @@ export default function AboutPage() {
              <div className="flex flex-col items-center text-center p-8 rounded-3xl border border-white/5 bg-white/5">
                 <MapPin className="h-8 w-8 text-cyan-400 mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2">Headquarters</h3>
-                <p className="text-zinc-400">123 Mechanic Ave<br/>Fargo, ND 58103</p>
+                <p className="text-zinc-400">1335 Main Ave S<br/>Fargo, ND 58103</p>
              </div>
 
              <div className="flex flex-col items-center text-center p-8 rounded-3xl border border-white/5 bg-white/5">

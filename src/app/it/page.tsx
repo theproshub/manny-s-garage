@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -55,6 +56,10 @@ const techStack = [
   { name: "pfSense", icon: Lock },
   { name: "Proxmox", icon: Terminal }
 ];
+
+function scrollToItCta() {
+  document.getElementById("it-cta")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export default function ITPages() {
   const [assistantOpen, setAssistantOpen] = useState(false);
@@ -117,23 +122,33 @@ export default function ITPages() {
 
         <div className="grid gap-6 sm:grid-cols-2">
           {itServices.map((service, i) => (
-             <motion.div
-               key={i}
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ delay: i * 0.1, duration: 0.5 }}
-               className="group relative overflow-hidden rounded-[2rem] border border-white/5 bg-black/40 p-8 backdrop-blur-sm transition-colors hover:border-cyan-500/30 hover:bg-black/80"
-             >
-               <div className="mb-6 flex items-start justify-between">
-                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-500/10 text-cyan-400 ring-1 ring-cyan-500/30 group-hover:bg-cyan-500/20 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all">
-                   {service.icon}
-                 </div>
-                 <span className="orbitron text-xs font-bold text-zinc-500 uppercase tracking-wider">{service.stats}</span>
-               </div>
-               <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">{service.title}</h3>
-               <p className="mt-4 text-zinc-400 leading-relaxed">{service.description}</p>
-             </motion.div>
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              className="group relative overflow-hidden rounded-[2rem] border border-white/5 bg-black/40 backdrop-blur-sm transition-colors hover:border-cyan-500/30 hover:bg-black/80"
+            >
+              <button
+                type="button"
+                onClick={scrollToItCta}
+                className="w-full p-8 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-[2rem]"
+                aria-describedby="it-cta"
+              >
+                <div className="mb-6 flex items-start justify-between">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-500/10 text-cyan-400 ring-1 ring-cyan-500/30 group-hover:bg-cyan-500/20 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all">
+                    {service.icon}
+                  </div>
+                  <span className="orbitron text-xs font-bold text-zinc-500 uppercase tracking-wider">{service.stats}</span>
+                </div>
+                <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">{service.title}</h3>
+                <p className="mt-4 text-zinc-400 leading-relaxed">{service.description}</p>
+                <span className="mt-4 inline-block text-xs font-medium text-zinc-500 group-hover:text-cyan-400 transition-colors">
+                  Get quote & support →
+                </span>
+              </button>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -165,16 +180,24 @@ export default function ITPages() {
       </section>
 
       {/* ─── CTA ─── */}
-       <section className="mx-auto max-w-4xl px-4 py-24 sm:px-6 lg:px-8 text-center">
+       <section id="it-cta" className="mx-auto max-w-4xl px-4 py-24 sm:px-6 lg:px-8 text-center scroll-mt-24">
          <div className="panel-cyber rounded-[3rem] p-12">
             <h2 className="text-3xl font-bold text-white mb-4 sm:text-4xl">System Offline? Network Slow?</h2>
-            <p className="text-zinc-400 mb-8 text-lg">Don't wait. Chat with our intelligent assistant to log your issue and get routed to a tech immediately.</p>
-            <button 
-              onClick={() => setAssistantOpen(true)} 
-              className="inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all bg-cyan-500 text-black px-8 py-4 text-lg hover:bg-cyan-400 shadow-[0_0_40px_rgba(6,182,212,0.4)]"
-            >
-              Get IT Support <ArrowRight className="h-5 w-5" />
-            </button>
+            <p className="text-zinc-400 mb-8 text-lg">Don't wait. Chat with Manny to log your issue and get routed to a tech immediately.</p>
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+              <button 
+                onClick={() => setAssistantOpen(true)} 
+                className="inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all bg-cyan-500 text-black px-8 py-4 text-lg hover:bg-cyan-400 shadow-[0_0_40px_rgba(6,182,212,0.4)]"
+              >
+                Get IT Support <ArrowRight className="h-5 w-5" />
+              </button>
+              <Link 
+                href="/book?service=it" 
+                className="inline-flex items-center justify-center gap-2 rounded-full font-bold border-2 border-cyan-400/50 bg-transparent text-cyan-300 px-8 py-4 text-lg hover:bg-cyan-500/10 hover:border-cyan-400 transition-all"
+              >
+                Book directly
+              </Link>
+            </div>
          </div>
       </section>
 

@@ -2,10 +2,12 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import { Menu, X, Wrench, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
+import { siteImages } from "@/lib/site-images";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -13,8 +15,6 @@ const NAV_LINKS = [
   { href: "/handyman", label: "Handyman Services" },
   { href: "/diy-garage", label: "DIY Garage" },
   { href: "/it", label: "IT Consultant" },
-  { href: "/book", label: "Book Service" },
-  { href: "/#contact", label: "Contact" },
 ];
 
 export function StickyHeader() {
@@ -33,24 +33,26 @@ export function StickyHeader() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 py-2.5 sm:px-6 sm:py-4 transition-all duration-300 [padding-left:max(0.75rem,env(safe-area-inset-left))] [padding-right:max(0.75rem,env(safe-area-inset-right))]"
+        className="fixed top-0 left-0 right-0 z-50 flex justify-center px-2 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 transition-all duration-300 [padding-left:max(0.5rem,env(safe-area-inset-left))] [padding-right:max(0.5rem,env(safe-area-inset-right))]"
       >
         <div
-          className={`flex w-full max-w-7xl items-center justify-between gap-2 rounded-full border transition-all duration-500 ${
+          className={`flex w-full max-w-7xl items-center justify-between gap-2 rounded-full border transition-all duration-500 min-h-[64px] sm:min-h-[80px] md:min-h-[100px] lg:min-h-[120px] xl:min-h-[140px] ${
             isScrolled
-              ? "border-white/[0.08] bg-black/70 shadow-xl shadow-black/20 backdrop-blur-xl px-3 py-2.5 sm:px-6 sm:py-3"
+              ? "border-white/[0.08] bg-black/70 shadow-xl shadow-black/20 backdrop-blur-xl px-2 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3"
               : "border-transparent bg-transparent px-2 py-2"
           }`}
         >
-          {/* Logo */}
-          <Link href="/" className="group flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
-            <div className={`flex items-center justify-center rounded-lg transition-all duration-500 ${isScrolled ? "bg-orange-500/10 p-2" : "bg-orange-500 p-2.5 shadow-[0_0_20px_rgba(255,122,26,0.5)] group-hover:shadow-[0_0_30px_rgba(255,122,26,0.8)]"}`}>
-              <Wrench className={`shrink-0 transition-colors ${isScrolled ? "h-5 w-5 text-orange-400" : "h-5 w-5 text-black"}`} strokeWidth={2.5} />
-            </div>
-            <div className="flex flex-col">
-              <span className="orbitron text-sm font-bold tracking-[0.2em] text-white">MANNY'S</span>
-              <span className={`text-[10px] font-bold tracking-[0.3em] uppercase transition-colors ${isScrolled ? "text-orange-400" : "text-white/70"}`}>GARAGE</span>
-            </div>
+          {/* Logo — scales with viewport */}
+          <Link href="/" className="group flex min-h-[64px] sm:min-h-[80px] md:min-h-[100px] lg:min-h-[120px] xl:min-h-[140px] shrink-0 items-center" onClick={() => setMobileMenuOpen(false)}>
+            <Image
+              src={siteImages.logo}
+              alt="Manny's Garage — Automotive, Handyman, IT & More"
+              width={180}
+              height={56}
+              className="block h-16 w-auto object-contain object-left object-center sm:h-[80px] md:h-[100px] lg:h-[120px] xl:h-[140px]"
+              priority
+              sizes="(max-width: 640px) 140px, (max-width: 768px) 180px, (max-width: 1024px) 220px, 260px"
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -59,7 +61,7 @@ export function StickyHeader() {
               <NavigationMenu.List className="flex items-center justify-center space-x-0.5 rounded-[2rem] bg-white/[0.04] p-1.5 backdrop-blur-sm border border-white/[0.06]">
                 
                 {NAV_LINKS.map((link) => {
-                  const isActive = pathname === link.href || (link.href === "/#contact" && pathname === "/");
+                  const isActive = pathname === link.href;
                   return (
                     <NavigationMenu.Item key={link.href}>
                       <NavigationMenu.Link asChild>
@@ -89,22 +91,8 @@ export function StickyHeader() {
             </NavigationMenu.Root>
           </div>
 
-          {/* CTA / Actions */}
+          {/* Actions */}
           <div className="flex items-center gap-3">
-            <Link
-              href="/book"
-              className={`group hidden sm:inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all overflow-hidden relative ${
-                isScrolled
-                  ? "bg-orange-500/10 border border-orange-500/50 text-orange-400 px-5 py-2 text-sm hover:bg-orange-500/20 hover:border-orange-500/60"
-                  : "bg-white text-black px-6 py-2.5 text-sm hover:shadow-[0_0_28px_rgba(255,255,255,0.25)] hover:scale-[1.02]"
-              }`}
-            >
-              <span className="relative z-10">Book Service</span>
-              {!isScrolled && (
-                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              )}
-            </Link>
-
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -134,7 +122,7 @@ export function StickyHeader() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -12, scale: 0.98 }}
               transition={{ type: "spring", damping: 28, stiffness: 260 }}
-              className="fixed left-4 right-4 z-40 rounded-[2rem] border border-white/10 bg-black/90 p-6 backdrop-blur-2xl shadow-2xl lg:hidden [top:max(5.5rem,calc(env(safe-area-inset-top,0px)+4.5rem))]"
+              className="fixed left-3 right-3 z-40 rounded-2xl border border-white/10 bg-black/90 p-5 backdrop-blur-2xl shadow-2xl sm:left-4 sm:right-4 sm:rounded-[2rem] sm:p-6 lg:hidden [top:max(4.5rem,calc(env(safe-area-inset-top,0px)+3.75rem))]"
             >
             <nav className="flex flex-col space-y-2">
               <p className="orbitron mb-2 px-4 text-xs font-bold uppercase tracking-widest text-zinc-500">Menu</p>
@@ -154,15 +142,6 @@ export function StickyHeader() {
                   </Link>
                 );
               })}
-              <div className="pt-4">
-                <Link
-                  href="/book"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex w-full items-center justify-center gap-2 rounded-2xl bg-orange-500 py-4 font-bold text-black"
-                >
-                  Book Service Now
-                </Link>
-              </div>
             </nav>
             </motion.div>
           </>

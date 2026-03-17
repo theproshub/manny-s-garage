@@ -37,6 +37,16 @@ const services = [
   },
 ];
 
+const CALCULATOR_INPUT_IDS = ["furniture", "tv-inches", "cameras"] as const;
+
+function scrollToCalculatorAndFocus(inputId: string) {
+  const section = document.getElementById("calculator");
+  section?.scrollIntoView({ behavior: "smooth", block: "start" });
+  setTimeout(() => {
+    document.getElementById(inputId)?.focus({ preventScroll: true });
+  }, 450);
+}
+
 export default function HandymanPage() {
   const [tvInches, setTvInches] = useState(55);
   const [cameras, setCameras] = useState(0);
@@ -91,8 +101,9 @@ export default function HandymanPage() {
         <div className="mt-12 grid gap-6 sm:grid-cols-3">
           {services.map((service, i) => {
             const Icon = service.icon;
+            const inputId = CALCULATOR_INPUT_IDS[i];
             return (
-              <motion.article
+              <motion.div
                 key={service.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -100,27 +111,37 @@ export default function HandymanPage() {
                 transition={{ delay: i * 0.1 }}
                 className="group relative overflow-hidden rounded-[var(--radius-card)] border border-white/10 bg-black/40 backdrop-blur-sm transition-all hover:border-orange-500/20"
               >
-                <div className="relative h-48 w-full">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                  <div className="absolute bottom-4 left-4 flex items-center gap-3">
-                    <div className="rounded-xl bg-orange-500/20 p-2.5 text-orange-400 ring-1 ring-orange-400/30">
-                      <Icon className="h-6 w-6" />
+                <button
+                  type="button"
+                  onClick={() => scrollToCalculatorAndFocus(inputId)}
+                  className="w-full text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-[var(--radius-card)]"
+                  aria-describedby="calculator"
+                >
+                  <div className="relative h-48 w-full pointer-events-none">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                    <div className="absolute bottom-4 left-4 flex items-center gap-3">
+                      <div className="rounded-xl bg-orange-500/20 p-2.5 text-orange-400 ring-1 ring-orange-400/30">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <span className="font-bold text-white">{service.title}</span>
                     </div>
-                    <span className="font-bold text-white">{service.title}</span>
+                    <span className="absolute bottom-4 right-4 text-xs font-medium text-white/80 group-hover:text-orange-400 transition-colors">
+                      Get quote →
+                    </span>
                   </div>
-                </div>
-                <div className="p-6">
-                  <p className="text-zinc-400 text-sm leading-relaxed">{service.description}</p>
-                  <p className="mt-3 font-semibold text-orange-400">{service.price}</p>
-                </div>
-              </motion.article>
+                  <div className="p-6">
+                    <p className="text-zinc-400 text-sm leading-relaxed">{service.description}</p>
+                    <p className="mt-3 font-semibold text-orange-400">{service.price}</p>
+                  </div>
+                </button>
+              </motion.div>
             );
           })}
         </div>
