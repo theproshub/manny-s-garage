@@ -60,7 +60,7 @@ const faqs = [
 const heroSlideLabels = [
   "Handyman Services",
   "Handyman — assembly, TV, cameras & more",
-  "Handyman & IT services",
+  "Handyman & I.T services",
   "Our service bays",
 ];
 
@@ -86,61 +86,48 @@ export default function Home() {
       <section className="relative flex min-h-[85vh] flex-col pb-14 sm:min-h-[88vh] sm:pb-16 lg:min-h-[88vh] lg:pb-8">
         <div className="hero-bg-gradient" aria-hidden />
         <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pt-0 pb-10 sm:px-6 sm:pt-2 sm:pb-16 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8 lg:pt-4 lg:pb-20 xl:gap-20">
-          {/* Mobile: service links above hero image */}
-          <nav
-            className="order-0 flex flex-wrap items-center justify-center gap-2 pb-2 lg:hidden"
-            aria-label="Services"
-          >
-            {[
-              { label: "Auto", href: "/auto" },
-              { label: "Handyman", href: "/handyman" },
-              { label: "DIY", href: "/diy-garage" },
-              { label: "IT", href: "/it" },
-            ].map(({ label, href }) => (
-              <Link
-                key={label}
-                href={href}
-                className="rounded-full border border-white/20 bg-white/5 px-3.5 py-2 text-sm font-medium text-white/90 backdrop-blur-sm transition-colors hover:border-orange-400/40 hover:bg-orange-400/10 hover:text-orange-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-
           {/* Left: Copy */}
-          <div className="order-2 mt-8 lg:order-1 lg:mt-0 lg:max-w-[32rem]">
+          <div className="order-2 mt-8 lg:order-1 lg:mt-0 lg:max-w-[36rem]">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-4 flex flex-wrap items-center gap-2 sm:mb-5"
+              className="mb-5 flex flex-wrap items-center gap-2 sm:mb-6"
             >
               <span className="premium-badge badge-orange flex items-center gap-1.5">
                 <MapPin className="h-3.5 w-3.5" aria-hidden />
                 Fargo, ND
               </span>
-              <span className="text-zinc-500 text-sm">· All your fixes, one spot</span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.06 }}
-              className="text-[2.25rem] font-bold leading-[1.15] tracking-tight min-[375px]:text-[2.75rem] sm:text-5xl lg:text-[3.25rem] xl:text-6xl"
+              className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
             >
               <span className="metal-text block">Manny&apos;s Garage</span>
-              <span className="mt-2 block text-white/92 sm:mt-2.5">
-                All your fixes. <span className="orange-glow-text">One spot.</span>
-              </span>
+              <motion.span
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                className="mt-4 flex items-center gap-3 sm:mt-5 sm:gap-4"
+              >
+                <span className="h-px w-8 shrink-0 bg-gradient-to-r from-orange-400/60 to-transparent sm:w-10" aria-hidden />
+                <span className="text-base font-medium tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
+                  <span className="text-orange-300">Welcome in</span>
+                  <span className="text-white/90">—we&apos;re here to help.</span>
+                </span>
+              </motion.span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.12 }}
-              className="mt-4 max-w-lg text-[15px] leading-[1.65] text-zinc-400 sm:mt-5 sm:text-base"
+              className="mt-6 border-l-2 border-orange-500/50 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Full-service auto repair, handyman, DIY bay rental, and IT support. One spot in Fargo, ND—no runaround.
+              Fargo&apos;s go-to spot for car repairs, handyman work, equipped DIY bays—everything you need under one roof.
             </motion.p>
 
           </div>
@@ -220,51 +207,62 @@ export default function Home() {
       </section>
 
       {/* ─── SERVICE CARDS ─── */}
-      <section id="services" className="relative mx-auto max-w-7xl scroll-mt-24 px-4 pb-16 pt-8 sm:px-6 sm:pb-24 sm:pt-10 sm:scroll-mt-28 lg:px-8 lg:scroll-mt-32">
-        <SectionHeading
-          badge="What We Offer"
-          title={<>Choose Your <span className="orange-glow-text">Service</span></>}
-          description="From full-service auto repair to handyman installations, IT & networking, and DIY bay rental—all under one roof."
-          align="center"
-        />
+      <section id="services" className="relative scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
+        <div className="mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 sm:pb-24 sm:pt-14 lg:px-8">
+          <SectionHeading
+            badge="What We Offer"
+            title={<>Choose Your <span className="orange-glow-text">Service</span></>}
+            description="From full-service auto repair to handyman installations, I.T & networking, and DIY bay rental—all under one roof."
+            align="center"
+          />
 
-        <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <AnimatedCard
-            title="Automotive Service"
-            description="Professional repair and maintenance for cars and light trucks."
-            imageSrc={siteImages.diagnostics}
-            icon={<CarFront className="h-6 w-6" />}
-            tag="AUTO"
-            href="/auto"
-            delay={0.1}
-          />
-          <AnimatedCard
-            title="Handyman Services"
-            description="Home installation services including TV mounting, security cameras, and furniture assembly."
-            imageSrc={siteImages.handymanTv}
-            icon={<Tv className="h-6 w-6" />}
-            tag="HOME"
-            href="/handyman"
-            delay={0.2}
-          />
-          <AnimatedCard
-            title="DIY Garage"
-            description="Rent a fully equipped garage space and work on your own vehicle."
-            imageSrc={siteImages.diyGarage}
-            icon={<Hammer className="h-6 w-6" />}
-            tag="RENTAL"
-            href="/diy-garage"
-            delay={0.3}
-          />
-          <AnimatedCard
-            title="IT Consultant"
-            description="Network setup, PC builds, data recovery, and smart home integration."
-            imageSrc={siteImages.itConsultant}
-            icon={<Cpu className="h-6 w-6" />}
-            tag="IT"
-            href="/it"
-            delay={0.4}
-          />
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 md:gap-5 lg:gap-6">
+            <AnimatedCard
+              title="Automotive Service"
+              description="Professional repair and maintenance for cars and light trucks."
+              imageSlides={[
+                siteImages.diagnostics,
+                siteImages.brakeSuspension,
+                siteImages.engineMaintenance,
+                siteImages.batteryCharging,
+              ]}
+              icon={<CarFront className="h-6 w-6" />}
+              tag="AUTO"
+              href="/auto"
+              delay={0.1}
+            />
+            <AnimatedCard
+              title="Handyman Services"
+              description="Home installation services including TV mounting, security cameras, and furniture assembly."
+              imageSlides={[
+                siteImages.handymanTv,
+                siteImages.handymanFurniture,
+                siteImages.handymanCameras,
+              ]}
+              icon={<Tv className="h-6 w-6" />}
+              tag="HOME"
+              href="/handyman"
+              delay={0.2}
+            />
+            <AnimatedCard
+              title="DIY Garage"
+              description="Rent a fully equipped garage space and work on your own vehicle."
+              imageSlides={[siteImages.diyGarage]}
+              icon={<Hammer className="h-6 w-6" />}
+              tag="RENTAL"
+              href="/diy-garage"
+              delay={0.3}
+            />
+            <AnimatedCard
+              title="I.T Consultant"
+              description="Network setup, PC builds, data recovery, and smart home integration."
+              imageSlides={[siteImages.itConsultant]}
+              icon={<Cpu className="h-6 w-6" />}
+              tag="I.T"
+              href="/it"
+              delay={0.4}
+            />
+          </div>
         </div>
       </section>
 

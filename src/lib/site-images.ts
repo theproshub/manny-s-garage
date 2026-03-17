@@ -1,6 +1,6 @@
 /**
  * Content-related stock photos (Unsplash, Pexels) used across the site.
- * Each image is chosen to match the app goal: auto, handyman, DIY garage, IT.
+ * Each image is chosen to match the app goal: auto, handyman, DIY garage, I.T.
  * URLs use w=1200&q=80 for consistent quality and Next.js Image optimization.
  */
 const unsplash = (id: string) =>
@@ -34,7 +34,7 @@ export const siteImages = {
   /** Garage with car on lifts - DIY bay rental (Lorenzo Hamers, Unsplash) */
   diyGarage: "/hero/diy-garage-bay.png",
 
-  // —— IT ——
+  // —— I.T ——
   /** Laptop / tech workspace (Teodor Skrebnev, Unsplash) */
   itConsultant: unsplash("1715967635831-f5a1f9658880"),
 

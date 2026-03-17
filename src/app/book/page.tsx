@@ -29,7 +29,7 @@ const SERVICE_OPTIONS = [
   { id: "automotive", label: "Automotive Service", icon: CarFront, href: "/auto" },
   { id: "handyman", label: "Handyman Services", icon: Tv, href: "/handyman" },
   { id: "diy", label: "DIY Garage", icon: Hammer, href: "/diy-garage" },
-  { id: "it", label: "IT Consultant", icon: Cpu, href: "/it" },
+  { id: "it", label: "I.T Consultant", icon: Cpu, href: "/it" },
 ];
 
 type FormState = {
@@ -177,30 +177,31 @@ function BookPageContent() {
   }
 
   return (
-    <main className="relative min-h-[90vh] overflow-x-hidden px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <main className="relative min-h-[90vh] overflow-x-hidden pt-6 sm:pt-10 px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8">
       <div className="noise-overlay" aria-hidden />
       <div className="relative mx-auto max-w-2xl">
-        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           <BackToHome />
-          <span className="premium-badge badge-orange orbitron inline-flex text-[10px] tracking-[0.2em]">
-            BOOKING
+          <span className="premium-badge badge-orange orbitron text-[10px] tracking-[0.15em]">
+            BOOK A SERVICE
           </span>
         </div>
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-5 sm:mt-6"
+          transition={{ duration: 0.4 }}
+          className="mt-3 sm:mt-4"
         >
-          <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl">
+          <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
             Book Your <span className="orange-glow-text">Service</span>
           </h1>
-          <p className="mt-2 text-sm text-zinc-400 sm:text-base">
-            Follow the steps below. Your booking will be sent to the shop and we&apos;ll confirm with you.
+          <p className="mt-2 text-sm text-zinc-400">
+            Follow the steps below. We&apos;ll confirm your appointment with you.
           </p>
         </motion.div>
 
         {/* Step indicator */}
-        <div className="mt-8 sm:mt-10 flex items-center justify-between gap-2">
+        <div className="mt-6 sm:mt-8 flex items-center justify-between gap-2">
           {STEPS.map((s, i) => (
             <div key={s.id} className="flex flex-1 items-center">
               <div
@@ -224,7 +225,7 @@ function BookPageContent() {
         </div>
 
         {/* Step content */}
-        <div className="mt-10 sm:mt-12 min-h-[320px]">
+        <div className="mt-8 sm:mt-10 min-h-[300px]">
           <AnimatePresence mode="wait">
             {step === 1 && (
               <motion.div
@@ -293,21 +294,37 @@ function BookPageContent() {
                     </p>
                   </div>
                 ) : (
-                  <div className="rounded-2xl border border-white/[0.08] bg-black/40 p-6 shadow-xl shadow-black/20 backdrop-blur-sm">
-                    <p className="text-sm text-zinc-400 sm:text-base">
-                      {form.serviceType === "handyman" && (
-                        <>No estimate was provided. Get a quote on the <Link href="/handyman#calculator" className="text-orange-400 hover:underline">Handyman</Link> page, then return to book.</>
-                      )}
-                      {form.serviceType === "diy" && (
-                        <>No estimate was provided. Get a quote on the <Link href="/diy-garage#calculator" className="text-orange-400 hover:underline">DIY Garage</Link> page, then return to book.</>
-                      )}
-                      {form.serviceType === "automotive" && (
-                        <>Automotive estimates are provided after we assess your vehicle. Proceed to choose date and contact info.</>
-                      )}
-                      {form.serviceType === "it" && (
-                        <>No estimate was provided. Get a quote on the <Link href="/it/services" className="text-orange-400 hover:underline">IT Services</Link> page, then return to book.</>
-                      )}
-                    </p>
+                  <div className="space-y-4">
+                    {(form.serviceType === "handyman" || form.serviceType === "diy") && (
+                      <Link
+                        href={form.serviceType === "handyman" ? "/handyman#calculator" : "/diy-garage#calculator"}
+                        className="flex items-center justify-between gap-4 rounded-xl border border-orange-500/30 bg-orange-500/10 p-4 sm:p-5 text-left transition-colors hover:border-orange-500/50 hover:bg-orange-500/15 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-[var(--background)]"
+                      >
+                        <span>
+                          <span className="block font-semibold text-white">Quote Calculator</span>
+                          <span className="mt-0.5 block text-sm text-zinc-400">
+                            {form.serviceType === "handyman" ? "Get a fixed-price estimate for TV, cameras, furniture." : "Select hours and optional mechanic assistance."}
+                          </span>
+                        </span>
+                        <ArrowRight className="h-5 w-5 shrink-0 text-orange-400" />
+                      </Link>
+                    )}
+                    <div className="rounded-2xl border border-white/[0.08] bg-black/40 p-6 shadow-xl shadow-black/20 backdrop-blur-sm">
+                      <p className="text-sm text-zinc-400 sm:text-base">
+                        {form.serviceType === "handyman" && (
+                          <>No estimate in this session. Use the Quote Calculator above, then return to book with your total.</>
+                        )}
+                        {form.serviceType === "diy" && (
+                          <>No estimate in this session. Use the Quote Calculator above, then return to book with your total.</>
+                        )}
+                        {form.serviceType === "automotive" && (
+                          <>Automotive estimates are provided after we assess your vehicle. Proceed to choose date and contact info.</>
+                        )}
+                        {form.serviceType === "it" && (
+                          <>No estimate was provided. Get a quote on the <Link href="/it/services" className="text-orange-400 hover:underline">I.T Services</Link> page, then return to book.</>
+                        )}
+                      </p>
+                    </div>
                   </div>
                 )}
               </motion.div>

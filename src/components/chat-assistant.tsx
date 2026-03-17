@@ -228,7 +228,7 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
               </div>
               <div className="min-w-0">
                 <p className="truncate text-sm font-bold tracking-tight text-white">Manny</p>
-                <p className="hidden truncate text-xs text-zinc-400 sm:block">Shop owner — book auto, handyman, IT, or DIY</p>
+                <p className="hidden truncate text-xs text-zinc-400 sm:block">Shop owner — book auto, handyman, I.T, or DIY</p>
               </div>
             </div>
             <button

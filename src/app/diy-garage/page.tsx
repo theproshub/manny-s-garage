@@ -12,13 +12,12 @@ import {
   Droplets,
   Gauge,
   Layout,
-  UserCog,
   Wind,
-  Wrench,
   Zap,
 } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { BackToHome } from "@/components/back-to-home";
+import { RecalculateCalculatorLink } from "@/components/recalculate-calculator-link";
 import { siteImages } from "@/lib/site-images";
 
 const HOURLY_RATE = 20;
@@ -58,47 +57,39 @@ export default function DIYGaragePage() {
       <div className="noise-overlay" aria-hidden />
 
       {/* Hero */}
-      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-14 sm:mb-20 lg:mb-24">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 lg:mb-16">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -16 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
           >
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <BackToHome />
-              <span className="premium-badge badge-orange orbitron inline-flex text-[10px] tracking-[0.2em]">
-                DIY BAY RENTAL
+              <span className="premium-badge badge-orange orbitron text-[10px] tracking-[0.15em]">
+                DIY BAY
               </span>
             </div>
-            <h1 className="mt-5 sm:mt-6 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+            <h1 className="mt-3 sm:mt-4 text-2xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
               Your Space. <span className="orange-glow-text">Your Tools.</span>
             </h1>
-            <p className="mt-4 text-base text-zinc-400 leading-relaxed max-w-xl sm:text-lg">
-              Manny&apos;s Garage offers a fully equipped DIY repair space where customers can work on their own vehicles using professional tools and equipment.
+            <p className="mt-2 text-sm text-zinc-400 max-w-md sm:text-base">
+              Rent a fully equipped bay by the hour. Lift, scanner, tools included. Get a quote below.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
-              <a
-                href="#calculator"
-                className="btn-primary group min-h-[44px] inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
-              >
-                <Calculator className="h-4 w-4 shrink-0" aria-hidden />
-                Price Quote
-              </a>
-              <Link
-                href="/"
-                className="btn-outline min-h-[44px] inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-5 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
-              >
-                Back to Home
-              </Link>
-            </div>
+            <a
+              href="#calculator"
+              className="mt-4 inline-flex h-10 items-center gap-2 rounded-full bg-orange-500 px-4 py-2 text-sm font-bold text-white shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:h-11 sm:px-5 sm:py-2.5"
+            >
+              <Calculator className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden />
+              Get quote
+            </a>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/[0.09] bg-black shadow-2xl shadow-black/40 ring-1 ring-white/[0.06] sm:rounded-[2rem] hidden sm:block"
+            transition={{ duration: 0.4 }}
+            className="relative aspect-[4/3] overflow-hidden rounded-xl border border-white/[0.09] bg-black shadow-xl shadow-black/30 sm:rounded-2xl hidden sm:block"
           >
             <Image
               src={siteImages.diyGarage}
@@ -108,30 +99,14 @@ export default function DIYGaragePage() {
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
           </motion.div>
         </div>
       </section>
 
-      {/* Description & Equipment */}
+      {/* Equipment */}
       <section className="relative mx-auto max-w-7xl scroll-mt-28 px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-        <div className="panel-strong rounded-2xl border border-white/[0.08] shadow-xl shadow-black/20 p-8 sm:p-12">
-          <div className="flex items-start gap-6">
-            <div className="rounded-2xl bg-orange-500/15 p-4 text-orange-300 shrink-0">
-              <Wrench className="h-8 w-8" />
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl">
-                Fully Equipped DIY Space
-              </h2>
-              <p className="mt-4 text-zinc-400 leading-7 max-w-2xl">
-                Manny&apos;s Garage offers a fully equipped DIY repair space where customers can work on their own vehicles using professional tools and equipment.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-16">
+        <div className="mt-0">
           <SectionHeading
             badge="Included"
             title="Available Equipment"
@@ -178,6 +153,7 @@ export default function DIYGaragePage() {
           <p className="mt-2 text-sm text-zinc-500">
             Optional professional mechanic assistance is available at $40 per hour when you need an extra set of hands or expert advice.
           </p>
+          <RecalculateCalculatorLink href="#calculator" className="mt-4" />
         </div>
       </section>
 
@@ -253,45 +229,9 @@ export default function DIYGaragePage() {
                   Book Garage Time
                   <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
                 </Link>
-                <Link
-                  href="/"
-                  className="btn-outline w-full min-h-[44px] justify-center inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-5 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
-                >
-                  Back to Home
-                </Link>
               </div>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-        <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-white/[0.08] bg-black/40 shadow-xl shadow-black/20 p-6 sm:p-8 backdrop-blur-sm">
-          <div className="flex items-start gap-4">
-            <div className="rounded-xl bg-orange-500/15 p-3 text-orange-400 shrink-0">
-              <UserCog className="h-6 w-6" />
-            </div>
-            <div>
-              <h2 className="text-lg font-bold text-white sm:text-xl">Need a hand?</h2>
-              <p className="mt-1 text-sm text-zinc-400 sm:text-base">Add mechanic assistance in the calculator when you book.</p>
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-3 sm:gap-4">
-            <Link
-              href="/book?service=diy"
-              className="btn-primary group min-h-[44px] inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
-            >
-              Book Garage Time
-              <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
-            </Link>
-            <Link
-              href="/"
-              className="btn-outline min-h-[44px] inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-5 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
-            >
-              Back to Home
-            </Link>
-          </div>
         </div>
       </section>
     </main>

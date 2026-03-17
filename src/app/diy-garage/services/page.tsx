@@ -17,6 +17,7 @@ import {
   CarFront,
 } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
+import { RecalculateCalculatorLink } from "@/components/recalculate-calculator-link";
 import { siteImages } from "@/lib/site-images";
 
 const HOURLY_RATE = 20;
@@ -53,23 +54,23 @@ export default function DIYGarageServicesPage() {
       <div className="noise-overlay" aria-hidden />
 
       {/* Hero */}
-      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16 lg:mb-20">
+      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 lg:mb-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
         >
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             <BackToHome />
-            <span className="premium-badge badge-orange orbitron inline-flex text-[10px] tracking-[0.2em]">
-              SERVICES & PRICING
+            <span className="premium-badge badge-orange orbitron text-[10px] tracking-[0.15em]">
+              DIY BAY · SERVICES & PRICING
             </span>
           </div>
-          <h1 className="mt-5 sm:mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mt-3 sm:mt-4 text-2xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
             DIY Bay <span className="orange-glow-text">Services & Pricing</span>
           </h1>
-          <p className="mt-4 text-lg text-zinc-400 leading-relaxed max-w-2xl">
-            Rent a fully equipped bay by the hour. Add optional mechanic assistance when you need an extra set of hands. Clear pricing below.
+          <p className="mt-2 text-sm text-zinc-400 max-w-xl sm:text-base">
+            Bay by the hour, optional mechanic. Clear pricing below.
           </p>
         </motion.div>
       </section>
@@ -107,6 +108,7 @@ export default function DIYGarageServicesPage() {
               <p className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Pricing</p>
               <p className="mt-2 text-3xl font-bold text-orange-400">${HOURLY_RATE} <span className="text-lg font-normal text-zinc-400">per hour</span></p>
               <p className="mt-2 text-sm text-zinc-400">Minimum 1 hour. Max {MAX_HOURS} hours per session. All equipment included.</p>
+              <RecalculateCalculatorLink href="/diy-garage#calculator" className="mt-4" />
             </div>
             <ul className="mt-6 space-y-2 text-sm text-zinc-400">
               {bayIncludes.map((item, i) => (
@@ -140,6 +142,7 @@ export default function DIYGarageServicesPage() {
                 <p className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Pricing</p>
                 <p className="mt-2 text-3xl font-bold text-orange-400">${MECHANIC_RATE_PER_HOUR} <span className="text-lg font-normal text-zinc-400">per hour</span></p>
                 <p className="mt-2 text-sm text-zinc-400">Optional. Book your bay first, then add mechanic hours when you schedule or at the shop.</p>
+                <RecalculateCalculatorLink href="/diy-garage#calculator" className="mt-4" />
               </div>
               <ul className="mt-6 space-y-2 text-sm text-zinc-400">
                 {mechanicIncludes.map((item, i) => (

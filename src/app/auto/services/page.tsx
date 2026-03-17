@@ -80,23 +80,23 @@ export default function AutoServicesPage() {
       <div className="noise-overlay" aria-hidden />
 
       {/* Hero */}
-      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16 lg:mb-20">
+      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 lg:mb-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
         >
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             <BackToHome />
-            <span className="premium-badge badge-orange orbitron inline-flex text-[10px] tracking-[0.2em]">
-              SERVICES & PRICING
+            <span className="premium-badge badge-orange orbitron text-[10px] tracking-[0.15em]">
+              AUTO · SERVICES & PRICING
             </span>
           </div>
-          <h1 className="mt-5 sm:mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mt-3 sm:mt-4 text-2xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
             Auto <span className="orange-glow-text">Services & Pricing</span>
           </h1>
-          <p className="mt-4 text-lg text-zinc-400 leading-relaxed max-w-2xl">
-            Full-spectrum auto care from diagnostics to maintenance. We provide a written estimate after assessing your vehicle—book below to get started.
+          <p className="mt-2 text-sm text-zinc-400 max-w-xl sm:text-base">
+            Diagnostics, maintenance, brakes, battery. Written estimate after we assess your vehicle.
           </p>
         </motion.div>
       </section>

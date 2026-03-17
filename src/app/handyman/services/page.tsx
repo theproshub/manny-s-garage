@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Cctv, Check, Sofa, Tv } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
+import { RecalculateCalculatorLink } from "@/components/recalculate-calculator-link";
 import { siteImages } from "@/lib/site-images";
 
 const FURNITURE_PRICE = 50;
@@ -46,23 +47,23 @@ export default function HandymanServicesPage() {
       <div className="noise-overlay" aria-hidden />
 
       {/* Hero */}
-      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16 lg:mb-20">
+      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 lg:mb-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
         >
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             <BackToHome />
-            <span className="premium-badge badge-orange orbitron inline-flex text-[10px] tracking-[0.2em]">
-              SERVICES & PRICING
+            <span className="premium-badge badge-orange orbitron text-[10px] tracking-[0.15em]">
+              HANDYMAN · SERVICES & PRICING
             </span>
           </div>
-          <h1 className="mt-5 sm:mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Handyman <span className="metal-text">Services & Pricing</span>
+          <h1 className="mt-3 sm:mt-4 text-2xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            Handyman <span className="orange-glow-text">Services & Pricing</span>
           </h1>
-          <p className="mt-4 text-lg text-zinc-400 leading-relaxed max-w-2xl">
-            Clear pricing and professional installation for furniture assembly, TV mounting, and security cameras. Get a quote and book below.
+          <p className="mt-2 text-sm text-zinc-400 max-w-xl sm:text-base">
+            Furniture, TV mounting, security cameras. Fixed prices—get a quote and book below.
           </p>
         </motion.div>
       </section>
@@ -100,6 +101,7 @@ export default function HandymanServicesPage() {
               <p className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Pricing</p>
               <p className="mt-2 text-3xl font-bold text-orange-400">${FURNITURE_PRICE} <span className="text-lg font-normal text-zinc-400">per item</span></p>
               <p className="mt-2 text-sm text-zinc-400">Multiple items in one visit: same rate per piece. Large or complex items may be quoted separately.</p>
+              <RecalculateCalculatorLink href="/handyman#calculator" className="mt-4" />
             </div>
             <ul className="mt-6 space-y-2 text-sm text-zinc-400">
               {furnitureIncludes.map((item, i) => (
@@ -133,9 +135,10 @@ export default function HandymanServicesPage() {
                 <p className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Pricing</p>
                 <p className="mt-2 text-3xl font-bold text-orange-400">${TV_PRICE_PER_INCH.toFixed(2)} <span className="text-lg font-normal text-zinc-400">per inch (diagonal)</span></p>
                 <p className="mt-2 text-sm text-zinc-400">Based on your TV&apos;s screen size. Example: 55&quot; = ${(55 * TV_PRICE_PER_INCH).toFixed(2)}. Mount hardware not included unless specified.</p>
+                <RecalculateCalculatorLink href="/handyman#calculator" className="mt-4" />
               </div>
               <ul className="mt-6 space-y-2 text-sm text-zinc-400">
-                {tvIncludes.map((item, i) => (
+              {tvIncludes.map((item, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <Check className="h-4 w-4 shrink-0 text-orange-400 mt-0.5" />
                     {item}
@@ -208,6 +211,7 @@ export default function HandymanServicesPage() {
               <p className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Pricing</p>
               <p className="mt-2 text-3xl font-bold text-orange-400">${CAMERA_PRICE} <span className="text-lg font-normal text-zinc-400">per camera</span></p>
               <p className="mt-2 text-sm text-zinc-400">Includes mounting, basic cable run, and app setup. Cameras and NVR/DVR supplied by you or quoted separately.</p>
+              <RecalculateCalculatorLink href="/handyman#calculator" className="mt-4" />
             </div>
             <ul className="mt-6 space-y-2 text-sm text-zinc-400">
               {cameraIncludes.map((item, i) => (

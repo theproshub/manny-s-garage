@@ -11,27 +11,20 @@ export function Footer() {
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent to-black/20" aria-hidden />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 [padding-left:max(1rem,env(safe-area-inset-left))] [padding-right:max(1rem,env(safe-area-inset-right))]">
         <div className="grid gap-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-4 lg:gap-8">
-          {/* Brand Col — same clarity/glow as header */}
-          <div className="relative flex flex-col gap-6">
-            <div
-              className="logo-wrap-gradient absolute -left-2 -top-2 -right-2 h-32 rounded-2xl sm:h-40 lg:h-44"
-              aria-hidden
-            />
-            <Link
-              href="/"
-              className="relative z-10 inline-flex transition-transform duration-300 ease-out hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-            >
+          {/* Brand Col — logo same position as previous wrench + text */}
+          <div className="flex flex-col gap-6">
+            <Link href="/" className="inline-flex items-center">
               <Image
                 src={siteImages.logo}
-                alt="Manny's Garage — Automotive, Handyman, IT & More"
-                width={340}
-                height={145}
-                className="logo-brand h-[180px] w-auto object-contain object-left sm:h-[200px] md:h-[220px] lg:h-[240px] xl:h-[248px]"
-                sizes="(max-width: 640px) 220px, (max-width: 768px) 260px, (max-width: 1024px) 300px, 340px"
+                alt="Manny's Garage — Automotive, Handyman, I.T & More"
+                width={240}
+                height={64}
+                className="h-16 w-auto max-w-[240px] object-contain object-left sm:h-20"
+                sizes="(max-width: 640px) 160px, 200px"
               />
             </Link>
             <p className="text-sm leading-6 text-zinc-400">
-              Premium auto repair, handyman services, IT consulting, and DIY garage rentals. Fargo, ND&apos;s most advanced service center.
+              Premium auto repair, handyman services, I.T consulting, and DIY garage rentals. Fargo&apos;s most advanced service center.
             </p>
           </div>
 
@@ -43,7 +36,7 @@ export function Footer() {
                 { label: "Automotive Services", href: "/auto" },
                 { label: "Handyman Services", href: "/handyman" },
                 { label: "DIY Garage", href: "/diy-garage" },
-                { label: "IT Consultant", href: "/it" },
+                { label: "I.T Consultant", href: "/it" },
                 { label: "Book Service", href: "/book" },
               ].map((link) => (
                 <li key={link.label}>
@@ -78,7 +71,7 @@ export function Footer() {
             <ul className="flex flex-col gap-4 text-sm text-zinc-400">
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" />
-                <span>1335 Main Ave S<br/>Fargo, ND 58103</span>
+                <span>123 Mechanic Ave<br/>Fargo, ND 58103</span>
               </li>
               <li>
                 <a href="tel:+17015550142" className="flex items-center gap-3 transition-colors hover:text-white">

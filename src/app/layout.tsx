@@ -11,9 +11,9 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Manny's Garage — Auto, Handyman, DIY Bay & IT | Fargo, ND",
+  title: "Manny's Garage — Auto, Handyman, DIY Bay & I.T | Fargo, ND",
   description:
-    "Manny's Garage — auto repair, handyman, DIY bay, and IT in Fargo, ND. Repair your ride, upgrade your home, rent a bay, or sort your tech. One shop—no runaround.",
+    "Manny's Garage — auto repair, handyman, DIY bay, and I.T in Fargo, ND. Repair your ride, upgrade your home, rent a bay, or sort your tech. One shop—no runaround.",
 };
 
 export const viewport: Viewport = {
@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang="en" className={plusJakarta.variable}>
       <body className="min-h-screen relative bg-[#030507]">
         <StickyHeader />
-        <div className="pt-0 lg:pt-[140px]">{children}</div>
+        <div className="pt-[72px] sm:pt-20 lg:pt-[140px]">{children}</div>
         <Footer />
       </body>
     </html>

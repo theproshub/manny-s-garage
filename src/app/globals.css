@@ -220,18 +220,6 @@ select:focus {
   }
 }
 
-/* ── Header logo (brand clarity + glow) ── */
-.logo-brand {
-  filter: contrast(1.2) brightness(1.1) drop-shadow(0 0 8px rgba(255, 140, 0, 0.4));
-  transition: filter 0.3s ease, transform 0.3s ease;
-}
-.logo-brand:hover {
-  filter: contrast(1.2) brightness(1.2) drop-shadow(0 0 8px rgba(255, 140, 0, 0.4));
-}
-.logo-wrap-gradient {
-  background: radial-gradient(circle, rgba(255, 140, 0, 0.15), transparent 70%);
-}
-
 @keyframes hero-pulse-glow {
   0%, 100% { opacity: 0.75; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.08); }
