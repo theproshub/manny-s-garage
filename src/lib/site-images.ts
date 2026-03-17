@@ -13,10 +13,10 @@ export const siteImages = {
   // —— Auto ——
   /** Garage hero - car in shop (Frankie Cordoba, Unsplash) */
   garageHero: unsplash("1646807284302-170c9505b2e7"),
-  /** Diagnostics / check engine - mechanic at scanner (Dextar Vision, Unsplash) */
-  diagnostics: unsplash("1771340012319-0b4fca008b54"),
-  /** Brake rotor & caliper - brake/suspension (Erik Mclean, Unsplash) */
-  brakeSuspension: unsplash("1581092160562-40aa08e78837"),
+  /** Engine bay - diagnostics / automotive service (Michael Lock, Unsplash) */
+  diagnostics: "/hero/auto-engine-bay.png",
+  /** Brake rotor & caliper - brake/suspension (Toby Hall, Unsplash) */
+  brakeSuspension: "/hero/auto-brake-suspension.png",
   /** Engine bay - tune-ups & maintenance (Unsplash) */
   engineMaintenance: unsplash("1486262715619-67b85e0b08d3"),
   /** Electrical / workshop - battery/charging (reuse diagnostics-style; Unsplash CDN uses numeric IDs only) */
@@ -25,14 +25,14 @@ export const siteImages = {
   // —— Handyman ——
   /** TV on wall - TV mounting (BoliviaInteligente, Unsplash) */
   handymanTv: unsplash("1717295248380-9b10f252dbcb"),
-  /** Living room / furniture (Prydumano Design, Unsplash) */
-  handymanFurniture: unsplash("1724582586495-d050726cf354"),
-  /** Security camera (Pexels) */
-  handymanCameras: "https://images.pexels.com/photos/179993/pexels-photo-179993.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  /** Living room / furniture assembly (Francesca Tosolini, Unsplash) */
+  handymanFurniture: "/hero/handyman-furniture.png",
+  /** Security camera installation (Alexis Dreher, Unsplash) */
+  handymanCameras: "/hero/handyman-security-camera.png",
 
   // —— DIY garage ——
-  /** Workshop / tools - DIY bay (PB Swiss Tools, Unsplash) */
-  diyGarage: unsplash("1770656505795-350f37352c7a"),
+  /** Garage with car on lifts - DIY bay rental (Lorenzo Hamers, Unsplash) */
+  diyGarage: "/hero/diy-garage-bay.png",
 
   // —— IT ——
   /** Laptop / tech workspace (Teodor Skrebnev, Unsplash) */

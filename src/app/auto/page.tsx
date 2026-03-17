@@ -8,6 +8,7 @@ import {
   ArrowRight,
   ChevronDown,
   Gauge,
+  MessageSquare,
   ShieldCheck,
   Wrench,
   BatteryCharging,
@@ -17,6 +18,8 @@ import { ChatAssistant } from "@/components/chat-assistant";
 import { SectionHeading } from "@/components/section-heading";
 import { BackToHome } from "@/components/back-to-home";
 import { siteImages } from "@/lib/site-images";
+
+const AUTO_SERVICE_LINKS = ["/auto/services#diagnostics", "/auto/services#brake-suspension", "/auto/services#engine-maintenance", "/auto/services#battery-charging"] as const;
 
 const autoServices = [
   {
@@ -59,9 +62,6 @@ const autoFaqs = [
   { q: "Do you work on my make and model?", a: "We work on most cars and light trucks. If you're unsure, use the diagnostic chat or call us—we'll confirm before you book." },
 ];
 
-function scrollToAutoCta() {
-  document.getElementById("auto-cta")?.scrollIntoView({ behavior: "smooth", block: "start" });
-}
 
 export default function AutoPage() {
   const [assistantOpen, setAssistantOpen] = useState(false);
@@ -87,50 +87,41 @@ export default function AutoPage() {
           </div>
           <div className="absolute inset-0 bg-black/90 sm:hidden" aria-hidden />
 
-          <div className="relative z-10 p-5 sm:p-12 lg:p-20 grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-14">
-            <div className="flex flex-col justify-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-                className="flex flex-col h-full"
-              >
-                <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-                  <BackToHome />
-                  <span className="premium-badge badge-orange orbitron inline-flex text-[10px] tracking-[0.2em]">
-                    AUTOMOTIVE SERVICES
-                  </span>
-                </div>
-                <h1 className="mt-5 sm:mt-6 text-3xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
-                  Expert <span className="metal-text">Auto Care.</span>
-                </h1>
-                <p className="mt-3 sm:mt-4 text-base text-zinc-400 leading-relaxed max-w-lg sm:text-lg">
-                  From routine maintenance to complex engine diagnostics. We combine decades of hands-on experience with modern diagnostic tools to get you back on the road safely.
-                </p>
-                <div className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4">
-                  <Link href="/book?service=automotive" className="btn-primary group min-touch inline-flex items-center gap-2">
-                    Book Automotive Service
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </Link>
-                  <button onClick={() => setAssistantOpen(true)} className="btn-outline min-touch">
-                    Quick chat booking
-                  </button>
-                </div>
-              </motion.div>
-            </div>
-
+          <div className="relative z-10 p-5 sm:p-12 lg:p-20">
             <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.12, ease: "easeOut" }}
-              className="relative flex flex-col justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="flex flex-col max-w-2xl"
             >
-              <div className="relative h-[240px] sm:h-[320px] lg:h-[380px] w-full rounded-xl overflow-hidden border border-white/10 shadow-2xl sm:rounded-2xl bg-black/40">
-                <Image src={siteImages.diagnostics} alt="Diagnostics and auto care" fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
-                <div className="img-overlay" />
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between z-10">
-                  <span className="text-xs font-medium uppercase tracking-wider text-white/90">Diagnostics & check engine</span>
-                </div>
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                <BackToHome />
+                <span className="premium-badge badge-orange orbitron inline-flex text-[10px] tracking-[0.2em]">
+                  AUTOMOTIVE SERVICES
+                </span>
+              </div>
+              <h1 className="mt-5 sm:mt-6 text-3xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+                Expert <span className="orange-glow-text">Auto Care.</span>
+              </h1>
+              <p className="mt-3 sm:mt-4 text-base text-zinc-400 leading-relaxed max-w-lg sm:text-lg">
+                From routine maintenance to complex engine diagnostics. We combine decades of hands-on experience with modern diagnostic tools to get you back on the road safely.
+              </p>
+              <div className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4">
+                <Link
+                  href="/book?service=automotive"
+                  className="btn-primary group min-h-[44px] inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+                >
+                  Book Automotive Service
+                  <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setAssistantOpen(true)}
+                  className="btn-outline min-h-[44px] inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-5 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+                >
+                  <MessageSquare className="h-4 w-4 shrink-0" aria-hidden />
+                  Quick chat booking
+                </button>
               </div>
             </motion.div>
           </div>
@@ -151,7 +142,7 @@ export default function AutoPage() {
       </section>
 
       {/* ─── SERVICES GRID ─── */}
-      <section id="services" className="relative mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8 scroll-mt-20">
+      <section id="services" className="relative mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8 scroll-mt-28">
         <SectionHeading
           badge="Our Capabilities"
           title={<>Full-Spectrum <span className="orange-glow-text">Auto Care</span></>}
@@ -161,6 +152,7 @@ export default function AutoPage() {
         <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
           {autoServices.map((service, i) => {
             const Icon = service.icon;
+            const detailHref = AUTO_SERVICE_LINKS[i];
             return (
               <motion.div
                 key={service.title}
@@ -168,13 +160,11 @@ export default function AutoPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.08, duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
-                className="panel-strong group relative overflow-hidden rounded-2xl border border-white/[0.08] transition-all duration-300 hover:border-orange-500/25 hover:shadow-xl hover:shadow-orange-900/10 sm:rounded-[2rem]"
+                className="panel-strong group relative overflow-hidden rounded-2xl border border-white/[0.08] shadow-xl shadow-black/20 transition-all duration-300 hover:border-orange-500/25 hover:shadow-orange-950/10 sm:rounded-[2rem]"
               >
-                <button
-                  type="button"
-                  onClick={scrollToAutoCta}
-                  className="w-full text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-2xl sm:rounded-[2rem]"
-                  aria-describedby="auto-cta"
+                <Link
+                  href={detailHref}
+                  className="block w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-2xl sm:rounded-[2rem] min-h-[44px]"
                 >
                   <div className="relative h-36 sm:h-44 w-full overflow-hidden pointer-events-none">
                     <Image src={service.img} alt={service.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, 50vw" />
@@ -184,14 +174,14 @@ export default function AutoPage() {
                       Get quote →
                     </span>
                   </div>
-                  <div className="relative p-5 sm:p-7 z-10 -mt-6 sm:-mt-8">
+                  <div className="relative p-5 sm:p-7 z-10 -mt-6 sm:-mt-8 border-t border-white/[0.06]">
                     <div className="mb-3 inline-flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-orange-500/20 ring-1 ring-orange-500/40 backdrop-blur-xl text-orange-400">
                       <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold text-white mt-2 group-hover:text-orange-400 transition-colors">{service.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-zinc-400">{service.description}</p>
                   </div>
-                </button>
+                </Link>
               </motion.div>
             );
           })}
@@ -199,7 +189,7 @@ export default function AutoPage() {
       </section>
 
       {/* ─── REVIEWS / TRUST ─── */}
-      <section className="relative border-y border-white/10 bg-black/40 py-16 sm:py-24 backdrop-blur-md">
+      <section className="relative border-y border-white/[0.06] bg-black/30 py-16 sm:py-24 backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeading
             badge="Client Trust"
@@ -249,7 +239,7 @@ export default function AutoPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.06 }}
-              className="overflow-hidden rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm"
+              className="overflow-hidden rounded-2xl border border-white/[0.08] bg-black/40 backdrop-blur-sm"
             >
               <button
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
@@ -279,24 +269,32 @@ export default function AutoPage() {
       </section>
 
       {/* ─── CTA ─── */}
-      <section id="auto-cta" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 scroll-mt-24">
+      <section id="auto-cta" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 scroll-mt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/50 backdrop-blur-sm px-6 py-12 sm:rounded-[2rem] sm:px-10 sm:py-16 text-center"
+          className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-black/40 shadow-xl shadow-black/20 backdrop-blur-sm px-6 py-12 sm:rounded-[2rem] sm:px-10 sm:py-16 text-center"
         >
           <div className="absolute inset-0 bg-gradient-to-b from-orange-500/5 to-transparent pointer-events-none" />
           <div className="relative z-10">
-            <h2 className="text-2xl font-bold text-white mb-3 sm:mb-4 sm:text-4xl">Ready to fix your car?</h2>
+            <h2 className="text-xl font-bold text-white mb-3 sm:mb-4 sm:text-2xl md:text-4xl">Ready to fix your car?</h2>
             <p className="text-zinc-400 mb-6 sm:mb-8 text-base sm:text-lg max-w-xl mx-auto">
               Chat with Manny to describe your symptoms. We&apos;ll match you with the right service and get you scheduled.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-              <button onClick={() => setAssistantOpen(true)} className="btn-primary min-touch inline-flex items-center gap-2">
-                Start Diagnostic Intake <ArrowRight className="h-4 w-4" />
+              <button
+                type="button"
+                onClick={() => setAssistantOpen(true)}
+                className="btn-primary min-h-[44px] inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+              >
+                Start Diagnostic Intake
+                <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </button>
-              <Link href="/book?service=automotive" className="btn-outline min-touch inline-flex items-center gap-2">
+              <Link
+                href="/book?service=automotive"
+                className="btn-outline min-h-[44px] inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-5 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+              >
                 Book directly
               </Link>
             </div>

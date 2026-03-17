@@ -142,32 +142,32 @@ function BookPageContent() {
 
   if (confirmed) {
     return (
-      <main className="relative min-h-[80vh] flex flex-col items-center justify-center px-4 py-20">
+      <main className="relative min-h-[80vh] flex flex-col items-center justify-center px-4 py-14 sm:py-20">
         <div className="noise-overlay" aria-hidden />
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
-          className="relative z-10 max-w-lg w-full text-center"
+          className="relative z-10 max-w-lg w-full rounded-2xl border border-white/[0.08] bg-black/40 p-8 shadow-xl shadow-black/20 backdrop-blur-sm text-center sm:p-10"
         >
-          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-500/20 text-green-400 ring-2 ring-green-400/30">
-            <Check className="h-10 w-10" />
+          <div className="mx-auto mb-6 flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full bg-green-500/20 text-green-400 ring-2 ring-green-400/30">
+            <Check className="h-8 w-8 sm:h-10 sm:w-10" />
           </div>
-          <h1 className="text-3xl font-bold text-white sm:text-4xl">
+          <h1 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl">
             Booking Confirmed
           </h1>
-          <p className="mt-4 text-zinc-400">
+          <p className="mt-4 text-sm text-zinc-400 sm:text-base">
             Your request has been received. Manny&apos;s Garage will be notified and will follow up shortly to confirm your appointment.
           </p>
-          <p className="mt-2 text-sm text-zinc-500">
+          <p className="mt-2 text-xs text-zinc-500 sm:text-sm">
             You may receive a text or call to confirm date and time.
           </p>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <Link href="/" className="btn-primary group justify-center">
+          <div className="mt-8 sm:mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <Link href="/" className="btn-primary group min-h-[44px] justify-center">
               Back to Home
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1" />
             </Link>
-            <Link href="/book" className="btn-outline justify-center">
+            <Link href="/book" className="btn-outline min-h-[44px] justify-center">
               Book Another
             </Link>
           </div>
@@ -177,7 +177,7 @@ function BookPageContent() {
   }
 
   return (
-    <main className="relative min-h-[90vh] overflow-x-hidden px-4 py-12 sm:px-6 lg:px-8">
+    <main className="relative min-h-[90vh] overflow-x-hidden px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       <div className="noise-overlay" aria-hidden />
       <div className="relative mx-auto max-w-2xl">
         <div className="flex flex-wrap items-center gap-3 sm:gap-4">
@@ -191,23 +191,23 @@ function BookPageContent() {
           animate={{ opacity: 1, y: 0 }}
           className="mt-5 sm:mt-6"
         >
-          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Book Your Service
+          <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl">
+            Book Your <span className="orange-glow-text">Service</span>
           </h1>
-          <p className="mt-2 text-zinc-400">
+          <p className="mt-2 text-sm text-zinc-400 sm:text-base">
             Follow the steps below. Your booking will be sent to the shop and we&apos;ll confirm with you.
           </p>
         </motion.div>
 
         {/* Step indicator */}
-        <div className="mt-10 flex items-center justify-between gap-2">
+        <div className="mt-8 sm:mt-10 flex items-center justify-between gap-2">
           {STEPS.map((s, i) => (
             <div key={s.id} className="flex flex-1 items-center">
               <div
-                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-colors ${
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-colors min-h-[44px] min-w-[44px] ${
                   step >= s.id
                     ? "bg-orange-500 text-black"
-                    : "border border-white/20 text-zinc-500"
+                    : "border border-white/[0.2] text-zinc-500"
                 }`}
               >
                 {step > s.id ? <Check className="h-4 w-4" /> : s.id}
@@ -215,7 +215,7 @@ function BookPageContent() {
               {i < STEPS.length - 1 && (
                 <div
                   className={`h-0.5 flex-1 mx-1 rounded ${
-                    step > s.id ? "bg-orange-500/50" : "bg-white/10"
+                    step > s.id ? "bg-orange-500/50" : "bg-white/[0.08]"
                   }`}
                 />
               )}
@@ -224,7 +224,7 @@ function BookPageContent() {
         </div>
 
         {/* Step content */}
-        <div className="mt-12 min-h-[320px]">
+        <div className="mt-10 sm:mt-12 min-h-[320px]">
           <AnimatePresence mode="wait">
             {step === 1 && (
               <motion.div
@@ -235,7 +235,7 @@ function BookPageContent() {
                 transition={{ duration: 0.25 }}
                 className="space-y-4"
               >
-                <h2 className="text-xl font-semibold text-white">Select service</h2>
+                <h2 className="text-lg font-semibold text-white sm:text-xl">Select service</h2>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   {SERVICE_OPTIONS.map((opt) => {
                     const Icon = opt.icon;
@@ -248,10 +248,10 @@ function BookPageContent() {
                           updateForm({ serviceType: opt.id as FormState["serviceType"] });
                           setStep(2);
                         }}
-                        className={`group relative flex flex-col items-center gap-3 rounded-2xl border p-6 text-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] ${
+                        className={`group relative flex min-h-[44px] flex-col items-center gap-3 rounded-2xl border p-5 sm:p-6 text-center transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] ${
                           isSelected
-                            ? "border-orange-500 bg-orange-500/15 text-white shadow-[0_0_0_1px_rgba(255,122,26,0.4)]"
-                            : "border-white/10 bg-black/40 text-zinc-400 hover:border-white/25 hover:bg-white/5 hover:text-white"
+                            ? "border-orange-500 bg-orange-500/15 text-white shadow-xl shadow-orange-950/20"
+                            : "border-white/[0.08] bg-black/40 text-zinc-400 shadow-xl shadow-black/20 hover:border-orange-500/25 hover:bg-white/5 hover:text-white hover:shadow-orange-950/10"
                         }`}
                       >
                         {isSelected && (
@@ -259,12 +259,12 @@ function BookPageContent() {
                             <Check className="h-3.5 w-3.5" />
                           </span>
                         )}
-                        <Icon className={`h-8 w-8 ${isSelected ? "text-orange-400" : "text-zinc-500 group-hover:text-zinc-300"}`} />
-                        <span className="font-medium">{opt.label}</span>
+                        <Icon className={`h-7 w-7 sm:h-8 sm:w-8 ${isSelected ? "text-orange-400" : "text-zinc-500 group-hover:text-zinc-300"}`} />
+                        <span className="font-medium text-sm sm:text-base">{opt.label}</span>
                         <Link
                           href={opt.href}
                           onClick={(e) => e.stopPropagation()}
-                          className="text-xs text-orange-400 hover:underline focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-[var(--background)] rounded"
+                          className="text-xs text-orange-400 hover:underline focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-[var(--background)] rounded min-h-[24px]"
                         >
                           Learn more →
                         </Link>
@@ -283,18 +283,18 @@ function BookPageContent() {
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-4"
               >
-                <h2 className="text-xl font-semibold text-white">Review price estimate</h2>
+                <h2 className="text-lg font-semibold text-white sm:text-xl">Review price estimate</h2>
                 {form.estimatedTotal ? (
-                  <div className="rounded-2xl border border-orange-500/30 bg-orange-500/10 p-6">
-                    <p className="text-sm text-zinc-400">Estimated total</p>
-                    <p className="text-3xl font-bold text-white mt-1">${form.estimatedTotal}</p>
+                  <div className="rounded-2xl border border-white/[0.08] border-orange-500/30 bg-orange-500/10 p-6 shadow-xl shadow-black/20">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Estimated total</p>
+                    <p className="text-2xl font-bold text-white mt-2 sm:text-3xl">${form.estimatedTotal}</p>
                     <p className="mt-2 text-xs text-zinc-500">
                       Final price may be confirmed when we contact you.
                     </p>
                   </div>
                 ) : (
-                  <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
-                    <p className="text-zinc-400">
+                  <div className="rounded-2xl border border-white/[0.08] bg-black/40 p-6 shadow-xl shadow-black/20 backdrop-blur-sm">
+                    <p className="text-sm text-zinc-400 sm:text-base">
                       {form.serviceType === "handyman" && (
                         <>No estimate was provided. Get a quote on the <Link href="/handyman#calculator" className="text-orange-400 hover:underline">Handyman</Link> page, then return to book.</>
                       )}
@@ -303,6 +303,9 @@ function BookPageContent() {
                       )}
                       {form.serviceType === "automotive" && (
                         <>Automotive estimates are provided after we assess your vehicle. Proceed to choose date and contact info.</>
+                      )}
+                      {form.serviceType === "it" && (
+                        <>No estimate was provided. Get a quote on the <Link href="/it/services" className="text-orange-400 hover:underline">IT Services</Link> page, then return to book.</>
                       )}
                     </p>
                   </div>
@@ -318,9 +321,9 @@ function BookPageContent() {
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-4"
               >
-                <h2 className="text-xl font-semibold text-white">Choose date and time</h2>
+                <h2 className="text-lg font-semibold text-white sm:text-xl">Choose date and time</h2>
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
+                  <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
                     <label htmlFor="date" className="block text-sm font-medium text-zinc-300 mb-2">
                       Preferred date
                     </label>
@@ -330,10 +333,10 @@ function BookPageContent() {
                       value={form.date}
                       onChange={(e) => updateForm({ date: e.target.value })}
                       min={new Date().toISOString().slice(0, 10)}
-                      className="focus-ring w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white"
+                      className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white min-h-[44px]"
                     />
                   </div>
-                  <div>
+                  <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
                     <label htmlFor="time" className="block text-sm font-medium text-zinc-300 mb-2">
                       Preferred time
                     </label>
@@ -342,7 +345,7 @@ function BookPageContent() {
                       type="time"
                       value={form.time}
                       onChange={(e) => updateForm({ time: e.target.value })}
-                      className="focus-ring w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white"
+                      className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white min-h-[44px]"
                     />
                   </div>
                 </div>
@@ -357,9 +360,9 @@ function BookPageContent() {
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-4"
               >
-                <h2 className="text-xl font-semibold text-white">Contact information</h2>
+                <h2 className="text-lg font-semibold text-white sm:text-xl">Contact information</h2>
                 <div className="space-y-4">
-                  <div>
+                  <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
                     <label htmlFor="name" className="block text-sm font-medium text-zinc-300 mb-2">
                       Full name *
                     </label>
@@ -369,10 +372,10 @@ function BookPageContent() {
                       value={form.name}
                       onChange={(e) => updateForm({ name: e.target.value })}
                       placeholder="Your name"
-                      className="focus-ring w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-zinc-500"
+                      className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-zinc-500 min-h-[44px]"
                     />
                   </div>
-                  <div>
+                  <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
                     <label htmlFor="phone" className="block text-sm font-medium text-zinc-300 mb-2">
                       Phone number *
                     </label>
@@ -382,12 +385,12 @@ function BookPageContent() {
                       value={form.phone}
                       onChange={(e) => updateForm({ phone: e.target.value })}
                       placeholder="(701) 555-0142"
-                      className="focus-ring w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-zinc-500"
+                      className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-zinc-500 min-h-[44px]"
                     />
                   </div>
                   {form.serviceType === "automotive" && (
                     <>
-                      <div>
+                      <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
                         <label htmlFor="vehicle" className="block text-sm font-medium text-zinc-300 mb-2">
                           Vehicle (make & model)
                         </label>
@@ -397,10 +400,10 @@ function BookPageContent() {
                           value={form.vehicle}
                           onChange={(e) => updateForm({ vehicle: e.target.value })}
                           placeholder="e.g. 2018 Ford F-150"
-                          className="focus-ring w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-zinc-500"
+                          className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-zinc-500 min-h-[44px]"
                         />
                       </div>
-                      <div>
+                      <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
                         <label htmlFor="issue" className="block text-sm font-medium text-zinc-300 mb-2">
                           Describe the issue
                         </label>
@@ -410,12 +413,12 @@ function BookPageContent() {
                           onChange={(e) => updateForm({ issue: e.target.value })}
                           placeholder="What needs to be repaired?"
                           rows={3}
-                          className="focus-ring w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-zinc-500 resize-none"
+                          className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-zinc-500 resize-none min-h-[88px]"
                         />
                       </div>
                     </>
                   )}
-                  <div>
+                  <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
                     <label htmlFor="notes" className="block text-sm font-medium text-zinc-300 mb-2">
                       Additional notes
                     </label>
@@ -425,7 +428,7 @@ function BookPageContent() {
                       onChange={(e) => updateForm({ notes: e.target.value })}
                       placeholder="Anything else we should know?"
                       rows={2}
-                      className="focus-ring w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-zinc-500 resize-none"
+                      className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-zinc-500 resize-none min-h-[72px]"
                     />
                   </div>
                 </div>
@@ -440,8 +443,8 @@ function BookPageContent() {
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-4"
               >
-                <h2 className="text-xl font-semibold text-white">Confirm booking</h2>
-                <div className="rounded-2xl border border-white/10 bg-black/40 p-6 space-y-3 text-sm">
+                <h2 className="text-lg font-semibold text-white sm:text-xl">Confirm booking</h2>
+                <div className="rounded-2xl border border-white/[0.08] bg-black/40 p-6 shadow-xl shadow-black/20 backdrop-blur-sm space-y-3 text-sm">
                   <p><span className="text-zinc-500">Service:</span> <span className="text-white">{SERVICE_OPTIONS.find((o) => o.id === form.serviceType)?.label ?? form.serviceType}</span></p>
                   {form.estimatedTotal && (
                     <p><span className="text-zinc-500">Est. total:</span> <span className="text-white">${form.estimatedTotal}</span></p>
@@ -463,13 +466,13 @@ function BookPageContent() {
 
         {/* Navigation — step 1 advances on service select */}
         {step > 1 && (
-        <div className="mt-12 flex justify-end">
+        <div className="mt-10 sm:mt-12 flex justify-end">
           {step < 5 ? (
             <button
               type="button"
               onClick={() => setStep((s) => s + 1)}
               disabled={!canProceed()}
-              className="btn-primary group justify-center sm:justify-end disabled:opacity-50 disabled:pointer-events-none"
+              className="btn-primary group min-h-[44px] justify-center sm:justify-end disabled:opacity-50 disabled:pointer-events-none"
             >
               Continue
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1" />
@@ -479,7 +482,7 @@ function BookPageContent() {
               type="button"
               onClick={handleSubmit}
               disabled={submitting || !form.name.trim() || form.phone.replace(/\D/g, "").length < 10}
-              className="btn-primary group justify-center sm:justify-end disabled:opacity-50 disabled:pointer-events-none"
+              className="btn-primary group min-h-[44px] justify-center sm:justify-end disabled:opacity-50 disabled:pointer-events-none"
             >
               {submitting ? "Sending…" : "Confirm booking"}
               <Check className="h-4 w-4" />

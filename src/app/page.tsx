@@ -24,17 +24,6 @@ const heroImages = [
   "/hero/hero-bays.png",
 ];
 
-const galleryImages = [
-  { src: siteImages.garageHero, alt: "Auto repair bay at Manny's Garage" },
-  { src: siteImages.diagnostics, alt: "Vehicle diagnostics and check engine service" },
-  { src: siteImages.brakeSuspension, alt: "Brake and suspension repair" },
-  { src: siteImages.handymanTv, alt: "TV mounting and handyman services" },
-  { src: siteImages.handymanFurniture, alt: "Furniture assembly" },
-  { src: siteImages.handymanCameras, alt: "Security camera installation" },
-  { src: siteImages.diyGarage, alt: "DIY garage bay rental" },
-  { src: siteImages.itConsultant, alt: "IT and tech consulting" },
-];
-
 const testimonials = [
   {
     text: "They found the electrical issue my dealer couldn't. Fast, honest, and the booking system is insanely easy.",
@@ -96,7 +85,28 @@ export default function Home() {
       {/* ─── HERO ─── */}
       <section className="relative flex min-h-[85vh] flex-col pb-14 sm:min-h-[88vh] sm:pb-16 lg:min-h-[88vh] lg:pb-8">
         <div className="hero-bg-gradient" aria-hidden />
-        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-10 sm:px-6 sm:py-16 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8 lg:py-20 xl:gap-20">
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pt-0 pb-10 sm:px-6 sm:pt-2 sm:pb-16 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8 lg:pt-4 lg:pb-20 xl:gap-20">
+          {/* Mobile: service links above hero image */}
+          <nav
+            className="order-0 flex flex-wrap items-center justify-center gap-2 pb-2 lg:hidden"
+            aria-label="Services"
+          >
+            {[
+              { label: "Auto", href: "/auto" },
+              { label: "Handyman", href: "/handyman" },
+              { label: "DIY", href: "/diy-garage" },
+              { label: "IT", href: "/it" },
+            ].map(({ label, href }) => (
+              <Link
+                key={label}
+                href={href}
+                className="rounded-full border border-white/20 bg-white/5 px-3.5 py-2 text-sm font-medium text-white/90 backdrop-blur-sm transition-colors hover:border-orange-400/40 hover:bg-orange-400/10 hover:text-orange-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+
           {/* Left: Copy */}
           <div className="order-2 mt-8 lg:order-1 lg:mt-0 lg:max-w-[32rem]">
             <motion.div
@@ -122,22 +132,6 @@ export default function Home() {
               <span className="mt-2 block text-white/92 sm:mt-2.5">
                 All your fixes. <span className="orange-glow-text">One spot.</span>
               </span>
-              <span className="mt-3 flex flex-wrap items-center justify-center gap-2 sm:mt-4 sm:gap-2.5" aria-label="Services: Auto, Handyman, DIY, IT">
-                {[
-                  { label: "Auto", href: "/auto" },
-                  { label: "Handyman", href: "/handyman" },
-                  { label: "DIY", href: "/diy-garage" },
-                  { label: "IT", href: "/it" },
-                ].map(({ label, href }) => (
-                  <Link
-                    key={label}
-                    href={href}
-                    className="rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-[0.8rem] font-medium text-white/80 backdrop-blur-sm transition-colors hover:border-orange-400/40 hover:bg-orange-400/10 hover:text-orange-300 sm:text-[0.85rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-                  >
-                    {label}
-                  </Link>
-                ))}
-              </span>
             </motion.h1>
 
             <motion.p
@@ -151,7 +145,7 @@ export default function Home() {
 
           </div>
 
-          {/* Right: Image carousel */}
+          {/* Right: Image carousel — below service links on mobile */}
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -271,36 +265,6 @@ export default function Home() {
             href="/it"
             delay={0.4}
           />
-        </div>
-      </section>
-
-      {/* ─── GALLERY ─── */}
-      <section className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <SectionHeading
-          badge="Gallery"
-          title="Our Facility & Work"
-          align="center"
-        />
-        <div className="mt-8 grid grid-cols-2 gap-2 sm:mt-12 sm:grid-cols-3 sm:gap-4">
-          {galleryImages.map((item, i) => (
-            <motion.div
-              key={item.src}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-black"
-            >
-              <Image
-                src={item.src}
-                alt={item.alt}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 640px) 50vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden />
-            </motion.div>
-          ))}
         </div>
       </section>
 

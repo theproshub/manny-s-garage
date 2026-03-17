@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang="en" className={plusJakarta.variable}>
       <body className="min-h-screen relative bg-[#030507]">
         <StickyHeader />
-        <div className="pt-[64px] sm:pt-[80px] md:pt-[100px] lg:pt-[120px] xl:pt-[140px]">{children}</div>
+        <div className="pt-0 lg:pt-[140px]">{children}</div>
         <Footer />
       </body>
     </html>

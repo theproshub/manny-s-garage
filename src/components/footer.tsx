@@ -11,15 +11,23 @@ export function Footer() {
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent to-black/20" aria-hidden />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 [padding-left:max(1rem,env(safe-area-inset-left))] [padding-right:max(1rem,env(safe-area-inset-right))]">
         <div className="grid gap-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-4 lg:gap-8">
-          {/* Brand Col */}
-          <div className="flex flex-col gap-6">
-            <Link href="/" className="inline-flex items-center">
+          {/* Brand Col — same clarity/glow as header */}
+          <div className="relative flex flex-col gap-6">
+            <div
+              className="logo-wrap-gradient absolute -left-2 -top-2 -right-2 h-32 rounded-2xl sm:h-40 lg:h-44"
+              aria-hidden
+            />
+            <Link
+              href="/"
+              className="relative z-10 inline-flex transition-transform duration-300 ease-out hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+            >
               <Image
                 src={siteImages.logo}
                 alt="Manny's Garage — Automotive, Handyman, IT & More"
-                width={180}
-                height={56}
-                className="h-20 w-auto object-contain object-left sm:h-[100px] md:h-[120px] lg:h-[140px] xl:h-[148px]"
+                width={340}
+                height={145}
+                className="logo-brand h-[180px] w-auto object-contain object-left sm:h-[200px] md:h-[220px] lg:h-[240px] xl:h-[248px]"
+                sizes="(max-width: 640px) 220px, (max-width: 768px) 260px, (max-width: 1024px) 300px, 340px"
               />
             </Link>
             <p className="text-sm leading-6 text-zinc-400">
