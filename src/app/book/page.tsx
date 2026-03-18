@@ -201,27 +201,29 @@ function BookPageContent() {
         </motion.div>
 
         {/* Step indicator */}
-        <div className="mt-6 sm:mt-8 flex items-center justify-between gap-2">
-          {STEPS.map((s, i) => (
-            <div key={s.id} className="flex flex-1 items-center">
-              <div
-                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-colors min-h-[44px] min-w-[44px] ${
-                  step >= s.id
-                    ? "bg-orange-500 text-black"
-                    : "border border-white/[0.2] text-zinc-500"
-                }`}
-              >
-                {step > s.id ? <Check className="h-4 w-4" /> : s.id}
-              </div>
-              {i < STEPS.length - 1 && (
+        <div className="mt-6 sm:mt-8 -mx-4 px-4 sm:mx-0 sm:px-0 overflow-x-auto">
+          <div className="flex items-center gap-2 min-w-[520px] sm:min-w-0">
+            {STEPS.map((s, i) => (
+              <div key={s.id} className="flex flex-1 items-center">
                 <div
-                  className={`h-0.5 flex-1 mx-1 rounded ${
-                    step > s.id ? "bg-orange-500/50" : "bg-white/[0.08]"
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-colors min-h-[44px] min-w-[44px] ${
+                    step >= s.id
+                      ? "bg-orange-500 text-black"
+                      : "border border-white/[0.2] text-zinc-500"
                   }`}
-                />
-              )}
-            </div>
-          ))}
+                >
+                  {step > s.id ? <Check className="h-4 w-4" /> : s.id}
+                </div>
+                {i < STEPS.length - 1 && (
+                  <div
+                    className={`h-0.5 flex-1 mx-1 rounded ${
+                      step > s.id ? "bg-orange-500/50" : "bg-white/[0.08]"
+                    }`}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Step content */}

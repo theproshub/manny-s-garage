@@ -78,7 +78,7 @@ export function AnimatedCard({
         <h3 className="text-base font-bold text-white transition-colors duration-300 group-hover:text-orange-300 sm:text-lg">
           {title}
         </h3>
-        <p className="mt-2 text-xs leading-[1.4] text-zinc-400 sm:mt-2.5 sm:text-sm sm:leading-relaxed">
+        <p className="mt-2 text-xs leading-[1.4] text-zinc-400 sm:mt-2.5 sm:text-sm sm:leading-relaxed min-h-[2.8em] sm:min-h-[3.1em] line-clamp-2">
           {description}
         </p>
       </div>

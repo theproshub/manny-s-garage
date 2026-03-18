@@ -10,8 +10,16 @@ import { BackToHome } from "@/components/back-to-home";
 
 const HANDYMAN_HERO_IMAGES = [
   "/hero/hero-handyman.png",
-  "/hero/hero-handyman-grid.png",
-  "/hero/hero-handyman-services.png",
+  "/images/AUTO/HANDYMAN/alexis-dreher-MfnLwbch9_o-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/benjamin-lehman-EJU7A__krX0-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/bermix-studio-iwz5tmhjl7o-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/brett-jordan-9s7lHNieFyU-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/clay-banks-Cf1G7WuutC8-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/francesca-tosolini-DmOhItSo49k-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/simone-impei-eZaKj3xAzTE-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.jpg",
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 

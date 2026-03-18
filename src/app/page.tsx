@@ -24,6 +24,51 @@ const heroImages = [
   "/hero/hero-bays.png",
 ];
 
+/** Automotive Service card slideshow — images from public/images/AUTO (root) */
+const autoCardSlides = [
+  "/images/AUTO/arteum-ro-SkKTh9ZyTxU-unsplash.jpg",
+  "/images/AUTO/brice-cooper-a3W_62jM0kg-unsplash.jpg",
+  "/images/AUTO/compagnons-TnEe6BdBC2M-unsplash.jpg",
+  "/images/AUTO/dextar-vision-gW34cv-Ojjs-unsplash.jpg",
+  "/images/AUTO/kishor-bidxPYPVdP0-unsplash.jpg",
+  "/images/AUTO/makayla-rainville-TExf4Ru5BOk-unsplash.jpg",
+  "/images/AUTO/michael-lock-xEPZKFzGrVw-unsplash.jpg",
+  "/images/AUTO/rktw-extend-y9Ij5HEzXI0-unsplash.jpg",
+  "/images/AUTO/toby-hall-ii4XEyJEm_I-unsplash.jpg",
+];
+
+/** Handyman Services card slideshow — images from public/images/AUTO/HANDYMAN */
+const handymanCardSlides = [
+  "/images/AUTO/HANDYMAN/alberto-rodriguez-santana-i_nIoSCdHv4-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/alexis-dreher-MfnLwbch9_o-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/benjamin-lehman-EJU7A__krX0-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/bermix-studio-iwz5tmhjl7o-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/brett-jordan-9s7lHNieFyU-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/clay-banks-Cf1G7WuutC8-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/david-trinks-HpdVUdvGZJ8-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/eagan-hsu-0hlBlVmKSyE-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/francesca-tosolini-DmOhItSo49k-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/simone-impei-eZaKj3xAzTE-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.jpg",
+];
+
+/** DIY Garage card slideshow — images from public/images/AUTO/DIY */
+const diyCardSlides = [
+  "/images/AUTO/DIY/avenir-visuals-Dp86PyoGtgM-unsplash.jpg",
+  "/images/AUTO/DIY/chris-liverani-HUJDz6CJEaM-unsplash.jpg",
+  "/images/AUTO/DIY/lorenzo-hamers-wtXnp09Q86w-unsplash.jpg",
+  "/images/AUTO/DIY/tahamie-farooqui-IU-mLTtrJgo-unsplash.jpg",
+  "/images/AUTO/DIY/vlad-deep-zkQ1eKKdyg0-unsplash.jpg",
+];
+
+/** I.T Consultant card slideshow — local AUTO/IT + existing stock image */
+const itCardSlides = [
+  "/images/AUTO/IT/ibrahim-yusuf-vWJtYRfE_rw-unsplash.jpg",
+  siteImages.itConsultant,
+];
+
 const testimonials = [
   {
     text: "They found the electrical issue my dealer couldn't. Fast, honest, and the booking system is insanely easy.",
@@ -220,12 +265,7 @@ export default function Home() {
             <AnimatedCard
               title="Automotive Service"
               description="Professional repair and maintenance for cars and light trucks."
-              imageSlides={[
-                siteImages.diagnostics,
-                siteImages.brakeSuspension,
-                siteImages.engineMaintenance,
-                siteImages.batteryCharging,
-              ]}
+              imageSlides={autoCardSlides}
               icon={<CarFront className="h-6 w-6" />}
               tag="AUTO"
               href="/auto"
@@ -233,12 +273,8 @@ export default function Home() {
             />
             <AnimatedCard
               title="Handyman Services"
-              description="Home installation services including TV mounting, security cameras, and furniture assembly."
-              imageSlides={[
-                siteImages.handymanTv,
-                siteImages.handymanFurniture,
-                siteImages.handymanCameras,
-              ]}
+              description="TV mounting, security cameras, and furniture assembly—fast home installs."
+              imageSlides={handymanCardSlides}
               icon={<Tv className="h-6 w-6" />}
               tag="HOME"
               href="/handyman"
@@ -247,7 +283,7 @@ export default function Home() {
             <AnimatedCard
               title="DIY Garage"
               description="Rent a fully equipped garage space and work on your own vehicle."
-              imageSlides={[siteImages.diyGarage]}
+              imageSlides={diyCardSlides}
               icon={<Hammer className="h-6 w-6" />}
               tag="RENTAL"
               href="/diy-garage"
@@ -256,7 +292,7 @@ export default function Home() {
             <AnimatedCard
               title="I.T Consultant"
               description="Network setup, PC builds, data recovery, and smart home integration."
-              imageSlides={[siteImages.itConsultant]}
+              imageSlides={itCardSlides}
               icon={<Cpu className="h-6 w-6" />}
               tag="I.T"
               href="/it"

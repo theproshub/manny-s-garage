@@ -1,16 +1,39 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Cctv, Check, Sofa, Tv } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
 import { RecalculateCalculatorLink } from "@/components/recalculate-calculator-link";
-import { siteImages } from "@/lib/site-images";
 
 const FURNITURE_PRICE = 50;
 const TV_PRICE_PER_INCH = 1.75;
 const CAMERA_PRICE = 120;
+
+const FURNITURE_SLIDES = [
+  "/images/AUTO/HANDYMAN/benjamin-lehman-EJU7A__krX0-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/brett-jordan-9s7lHNieFyU-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/clay-banks-Cf1G7WuutC8-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/simone-impei-eZaKj3xAzTE-unsplash.jpg",
+];
+const FURNITURE_SLIDE_DURATION_MS = 4500;
+
+const TV_SLIDES = [
+  "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/bermix-studio-iwz5tmhjl7o-unsplash.jpg",
+];
+const TV_SLIDE_DURATION_MS = 4500;
+
+const CAMERA_SLIDES = [
+  "/images/AUTO/HANDYMAN/eagan-hsu-0hlBlVmKSyE-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/alberto-rodriguez-santana-i_nIoSCdHv4-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/david-trinks-HpdVUdvGZJ8-unsplash.jpg",
+];
+const CAMERA_SLIDE_DURATION_MS = 4500;
 
 const furnitureIncludes = [
   "Beds, bed frames, and headboards",
@@ -42,6 +65,31 @@ const cameraIncludes = [
 ];
 
 export default function HandymanServicesPage() {
+  const [furnitureSlideIndex, setFurnitureSlideIndex] = useState(0);
+  const [tvSlideIndex, setTvSlideIndex] = useState(0);
+  const [cameraSlideIndex, setCameraSlideIndex] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setFurnitureSlideIndex((i) => (i + 1) % FURNITURE_SLIDES.length);
+    }, FURNITURE_SLIDE_DURATION_MS);
+    return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setTvSlideIndex((i) => (i + 1) % TV_SLIDES.length);
+    }, TV_SLIDE_DURATION_MS);
+    return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setCameraSlideIndex((i) => (i + 1) % CAMERA_SLIDES.length);
+    }, CAMERA_SLIDE_DURATION_MS);
+    return () => clearInterval(t);
+  }, []);
+
   return (
     <main className="relative min-h-screen overflow-x-hidden pt-10">
       <div className="noise-overlay" aria-hidden />
@@ -77,13 +125,24 @@ export default function HandymanServicesPage() {
             viewport={{ once: true }}
             className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-black/40"
           >
-            <Image
-              src={siteImages.handymanFurniture}
-              alt="Furniture assembly service"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={furnitureSlideIndex}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={FURNITURE_SLIDES[furnitureSlideIndex]}
+                  alt="Furniture assembly service"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </motion.div>
+            </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
             <div className="absolute bottom-4 left-4 flex items-center gap-3">
               <div className="rounded-xl bg-orange-500/20 p-2.5 text-orange-400 ring-1 ring-orange-400/30">
@@ -159,13 +218,24 @@ export default function HandymanServicesPage() {
               viewport={{ once: true }}
               className="relative order-1 lg:order-2 aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-black/40"
             >
-              <Image
-                src={siteImages.handymanTv}
-                alt="TV mounting service"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={tvSlideIndex}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={TV_SLIDES[tvSlideIndex]}
+                    alt="TV mounting service"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </motion.div>
+              </AnimatePresence>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 flex items-center gap-3">
                 <div className="rounded-xl bg-orange-500/20 p-2.5 text-orange-400 ring-1 ring-orange-400/30">
@@ -187,13 +257,24 @@ export default function HandymanServicesPage() {
             viewport={{ once: true }}
             className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-black/40"
           >
-            <Image
-              src={siteImages.handymanCameras}
-              alt="Security camera installation"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={cameraSlideIndex}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={CAMERA_SLIDES[cameraSlideIndex]}
+                  alt="Security camera installation"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </motion.div>
+            </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
             <div className="absolute bottom-4 left-4 flex items-center gap-3">
               <div className="rounded-xl bg-orange-500/20 p-2.5 text-orange-400 ring-1 ring-orange-400/30">

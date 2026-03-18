@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Bot, LoaderCircle, MessageSquare, RotateCcw, Send, X } from "lucide-react";
 import { bookingSchema, chatSteps, type BookingPayload } from "@/lib/booking";
 import { cn } from "@/lib/utils";
@@ -62,8 +62,35 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
   const [stepIndex, setStepIndex] = useState(0);
   const [booking, setBooking] = useState<Partial<BookingPayload>>({});
   const [submitting, setSubmitting] = useState(false);
+  const scrollRegionRef = useRef<HTMLDivElement | null>(null);
+  const endOfMessagesRef = useRef<HTMLDivElement | null>(null);
 
   const currentStep = useMemo(() => chatSteps[stepIndex], [stepIndex]);
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const region = scrollRegionRef.current;
+    const end = endOfMessagesRef.current;
+
+    if (!region || !end) {
+      return;
+    }
+
+    // Prefer smooth scroll unless user prefers reduced motion.
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+
+    requestAnimationFrame(() => {
+      end.scrollIntoView({
+        block: "end",
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
+    });
+  }, [open, messages.length, submitting]);
 
   function resetChat() {
     setMessages(initialMessages);
@@ -196,6 +223,15 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
 
   return (
     <>
+      <div
+        className={cn(
+          "fixed inset-0 z-30 bg-black/60 backdrop-blur-[2px] transition-opacity duration-300 ease-out sm:bg-black/50",
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
+        )}
+        aria-hidden
+        onClick={() => onOpenChange(false)}
+      />
+
       <button
         type="button"
         onClick={() => onOpenChange(!open)}
@@ -214,11 +250,14 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
 
       <div
         className={cn(
-          "panel-strong fixed z-40 flex max-h-[min(85dvh,26rem)] w-[calc(100vw-1.5rem)] max-w-sm flex-col overflow-hidden rounded-2xl shadow-2xl shadow-black/50 transition-all duration-300 ease-out sm:left-auto sm:right-6 sm:max-h-[min(28rem,80dvh)] sm:w-full sm:max-w-sm md:max-h-[32rem] [left:max(0.75rem,env(safe-area-inset-left))] [right:max(0.75rem,env(safe-area-inset-right))] [bottom:max(5.25rem,calc(env(safe-area-inset-bottom)+5rem))] sm:[bottom:max(6rem,calc(env(safe-area-inset-bottom)+5.5rem))]",
+          "panel-strong fixed z-40 flex w-[calc(100vw-1.5rem)] max-w-sm flex-col overflow-hidden rounded-2xl shadow-2xl shadow-black/50 transition-all duration-300 ease-out sm:left-auto sm:right-6 sm:top-auto sm:max-h-[min(28rem,80dvh)] sm:w-full sm:max-w-sm md:max-h-[32rem] md:max-w-md [left:max(0.75rem,env(safe-area-inset-left))] [right:max(0.75rem,env(safe-area-inset-right))] [bottom:max(5.25rem,calc(env(safe-area-inset-bottom)+5rem))] sm:[bottom:max(6rem,calc(env(safe-area-inset-bottom)+5.5rem))] [top:max(0.75rem,env(safe-area-inset-top))]",
           open
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none translate-y-4 opacity-0",
         )}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Chat with Manny"
       >
         <div className="shrink-0 border-b border-white/10 bg-gradient-to-r from-orange-500/15 via-transparent to-transparent px-3 py-3 sm:px-5 sm:py-4">
           <div className="flex items-center justify-between gap-2 sm:gap-3">
@@ -231,6 +270,14 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
                 <p className="hidden truncate text-xs text-zinc-400 sm:block">Shop owner — book auto, handyman, I.T, or DIY</p>
               </div>
             </div>
+            <button
+              type="button"
+              onClick={() => onOpenChange(false)}
+              aria-label="Close chat"
+              className="focus-ring min-touch flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-zinc-300 transition-colors hover:border-white/15 hover:bg-white/10 hover:text-white sm:hidden"
+            >
+              <X className="h-4 w-4" />
+            </button>
             <button
               type="button"
               onClick={resetChat}
@@ -261,7 +308,10 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
           </div>
         </div>
 
-        <div className="min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain px-3 py-3 sm:px-4 sm:py-4">
+        <div
+          ref={scrollRegionRef}
+          className="min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain px-3 py-3 sm:px-4 sm:py-4"
+        >
           {messages.map((message) => (
             <div
               key={message.id}
@@ -281,6 +331,7 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
               <span className="truncate">Sending your booking...</span>
             </div>
           ) : null}
+          <div ref={endOfMessagesRef} />
         </div>
 
         <div className="shrink-0 px-3 py-2.5 pb-[env(safe-area-inset-bottom)] sm:px-4 sm:py-4">
