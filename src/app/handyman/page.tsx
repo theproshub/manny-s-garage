@@ -1,12 +1,19 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Calculator } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { BackToHome } from "@/components/back-to-home";
+
+const HANDYMAN_HERO_IMAGES = [
+  "/hero/hero-handyman.png",
+  "/hero/hero-handyman-grid.png",
+  "/hero/hero-handyman-services.png",
+];
+const HERO_SLIDE_DURATION_MS = 4500;
 
 const CAMERA_PRICE = 120;
 const FURNITURE_PRICE_PER_ITEM = 50;
@@ -32,6 +39,14 @@ export default function HandymanPage() {
   const [tvOption, setTvOption] = useState(0); // inch value; 0 = None
   const [cameras, setCameras] = useState(0);
   const [furnitureItems, setFurnitureItems] = useState(0);
+  const [heroSlideIndex, setHeroSlideIndex] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setHeroSlideIndex((i) => (i + 1) % HANDYMAN_HERO_IMAGES.length);
+    }, HERO_SLIDE_DURATION_MS);
+    return () => clearInterval(t);
+  }, []);
 
   const estimate = useMemo(() => {
     const tvEntry = TV_OPTIONS.find((o) => o.value === tvOption);
@@ -70,7 +85,7 @@ export default function HandymanPage() {
                 TV, Cameras & <span className="orange-glow-text">Assembly</span>
               </h1>
               <p className="mt-2 text-sm text-zinc-400 max-w-md sm:text-base">
-                Fixed prices. TV mounting, security cameras, furniture assembly. Get a quote below.
+                Handyman services: TV mounting, security cameras, furniture assembly. Fixed prices—get a quote below.
               </p>
               <Link
                 href="#calculator"
@@ -81,14 +96,39 @@ export default function HandymanPage() {
               </Link>
             </div>
             <div className="relative w-full sm:w-72 lg:w-80 aspect-video sm:aspect-[4/3] overflow-hidden rounded-xl border border-white/[0.08] bg-black/40 shrink-0">
-              <Image
-                src="/hero/hero-handyman.png"
-                alt="Handyman services: TV mounting, security cameras, furniture assembly"
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 640px) 100vw, 320px"
-              />
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={heroSlideIndex}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={HANDYMAN_HERO_IMAGES[heroSlideIndex]}
+                    alt="Handyman services: TV mounting, security cameras, furniture assembly"
+                    fill
+                    className="object-cover"
+                    priority={heroSlideIndex === 0}
+                    sizes="(max-width: 640px) 100vw, 320px"
+                  />
+                </motion.div>
+              </AnimatePresence>
+              {/* Slide indicators */}
+              <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5 z-10">
+                {HANDYMAN_HERO_IMAGES.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setHeroSlideIndex(i)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      i === heroSlideIndex ? "w-5 bg-orange-400" : "w-1.5 bg-white/40 hover:bg-white/60"
+                    }`}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>

@@ -1,27 +1,38 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   ChevronDown,
   Gauge,
-  MessageSquare,
   ShieldCheck,
   Wrench,
   BatteryCharging,
   Star,
+  ThermometerSnowflake,
+  Cog,
+  Zap,
+  CircleDot,
+  Droplets,
+  Fuel,
+  ClipboardCheck,
+  Flame,
+  Wind,
+  Car,
+  Lightbulb,
+  RotateCw,
+  Filter,
+  Package,
+  CloudRain,
 } from "lucide-react";
 import { ChatAssistant } from "@/components/chat-assistant";
 import { SectionHeading } from "@/components/section-heading";
-import { BackToHome } from "@/components/back-to-home";
-import { siteImages } from "@/lib/site-images";
 
 const AUTO_SERVICES_BASE = "/auto/services";
 
-/** Most essential & common first: oil/maintenance, brakes, diagnostics, battery */
+/** Core services with detail pages; most essential first */
 const autoServices = [
   {
     id: "engine-maintenance",
@@ -61,6 +72,28 @@ const autoServices = [
   },
 ];
 
+/** Additional repair services we offer */
+const moreRepairServices = [
+  { title: "Tires & alignment", icon: CircleDot, short: "Rotation, balance, alignment, tire replacement." },
+  { title: "A/C & heating", icon: ThermometerSnowflake, short: "Recharge, leaks, cabin heat and defrost." },
+  { title: "Transmission", icon: Cog, short: "Fluid service, diagnostics, and repair." },
+  { title: "Electrical", icon: Zap, short: "Lighting, fuses, wiring, and accessory issues." },
+  { title: "Cooling system", icon: Droplets, short: "Radiator, hoses, thermostat, coolant flush." },
+  { title: "Exhaust & muffler", icon: Flame, short: "Exhaust repair, muffler, catalytic converter." },
+  { title: "Fuel system", icon: Fuel, short: "Fuel pump, injectors, tank, fuel lines." },
+  { title: "Fluid flushes", icon: Droplets, short: "Coolant, power steering, brake, transmission flush." },
+  { title: "Pre-purchase & state inspection", icon: ClipboardCheck, short: "Used car inspection, state safety/emissions." },
+  { title: "Engine repair", icon: Car, short: "Overheating, noise, performance, major repairs." },
+  { title: "Belts & hoses", icon: Wind, short: "Serpentine belt, timing belt, hose replacement." },
+  { title: "Steering & power steering", icon: RotateCw, short: "Power steering fluid, pump, tie rods, steering rack." },
+  { title: "Headlights & bulbs", icon: Lightbulb, short: "Headlight restoration, bulb replacement, LED upgrades." },
+  { title: "Wipers & blades", icon: CloudRain, short: "Wiper blade replacement, arm repair, fluid." },
+  { title: "Cabin & engine air filters", icon: Filter, short: "Replace cabin and engine air filters for clean air and performance." },
+  { title: "Differential & transfer case", icon: Package, short: "Fluid service and repair for differential and 4WD transfer case." },
+  { title: "Tire repair & flat fix", icon: CircleDot, short: "Puncture repair, plug, patch, and tire R&R." },
+  { title: "Oil leak diagnosis", icon: Droplets, short: "Find and fix oil leaks—gaskets, seals, and worn parts." },
+];
+
 const testimonials = [
   { text: "They found the electrical issue my dealer couldn't. Fast, honest, and the booking system is insanely easy.", author: "Mark R.", vehicle: "2019 F-150" },
   { text: "Best shop in Fargo. The diagnostic scan results were sent right to my phone before they did any work.", author: "Sarah T.", vehicle: "2021 Civic" },
@@ -80,144 +113,74 @@ export default function AutoPage() {
     <main className="relative overflow-x-hidden pt-6 sm:pt-10">
       <div className="noise-overlay" aria-hidden />
 
-      {/* ─── HERO ─── */}
-      <section id="auto-hero" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 lg:mb-16">
-        <div className="relative overflow-hidden rounded-2xl border border-white/[0.09] bg-black shadow-xl shadow-black/30 ring-1 ring-white/[0.06] sm:rounded-[1.5rem]">
-          <div className="absolute inset-0 hidden sm:block">
-            <Image
-              src={siteImages.garageHero}
-              alt="Manny's Garage — automotive service"
-              fill
-              className="object-cover opacity-50"
-              priority
-              sizes="(max-width: 1024px) 100vw, 1280px"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
-          </div>
-          <div className="absolute inset-0 bg-black/85 sm:hidden" aria-hidden />
-
-          <div className="relative z-10 px-4 py-5 sm:px-8 sm:py-7 lg:px-10 lg:py-8">
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="flex flex-col max-w-xl"
-            >
-              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                <BackToHome />
-                <span className="premium-badge badge-orange orbitron text-[10px] tracking-[0.15em]">
-                  AUTOMOTIVE
-                </span>
-              </div>
-              <h1 className="mt-3 sm:mt-4 text-2xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-                Expert <span className="orange-glow-text">Auto Care</span>
-              </h1>
-              <p className="mt-2 text-sm text-zinc-400 max-w-md sm:text-base">
-                Maintenance, diagnostics, and repairs. Book online or chat for a quick quote.
-              </p>
-              <div className="mt-4 sm:mt-5 flex flex-wrap items-center gap-2 sm:gap-3">
-                <Link
-                  href="/book?service=automotive"
-                  className="btn-primary group inline-flex h-10 min-w-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:h-11 sm:px-5 sm:py-2.5"
-                >
-                  Book
-                  <ArrowRight className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" aria-hidden />
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => setAssistantOpen(true)}
-                  className="inline-flex h-10 items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-300 transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:h-11 sm:px-5 sm:py-2.5"
-                >
-                  <MessageSquare className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden />
-                  Chat to book
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-
-        <a
-          href="#services"
-          className="mt-4 flex justify-center lg:justify-start hero-scroll-hint text-zinc-500 transition-colors hover:text-zinc-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded"
-          aria-label="Scroll to services"
-        >
-          <ChevronDown className="h-5 w-5 animate-bounce" />
-        </a>
-      </section>
-
-      {/* ─── ESSENTIAL SERVICES ─── */}
+      {/* ─── AUTO REPAIR SERVICES LIST ─── */}
       <section id="services" className="relative mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8 scroll-mt-28">
         <SectionHeading
-          badge="What we do"
-          title={<>Essential <span className="orange-glow-text">Auto Care</span></>}
-          description="Oil changes, brakes, check-engine light, and more. Select a service for details and pricing."
+          badge="What we offer"
+          title={<>Auto <span className="orange-glow-text">Repair Services</span></>}
+          description="Full list of automotive repair services we offer."
           align="center"
         />
 
-        <nav aria-label="Jump to service" className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
-          {autoServices.map((s) => (
-            <Link
-              key={s.id}
-              href={s.href}
-              className="rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-2.5 text-sm font-medium text-zinc-300 transition-colors hover:border-orange-400/40 hover:bg-orange-400/10 hover:text-orange-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-            >
-              {s.navLabel}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
-          {autoServices.map((service, i) => {
-            const Icon = service.icon;
+        {/* All repair services: two columns side by side */}
+        {(() => {
+          const allServices = [
+            ...autoServices.map((s) => ({ ...s, key: s.id, popular: s.popular })),
+            ...moreRepairServices.map((s) => ({ ...s, key: s.title, popular: false })),
+          ];
+          const mid = Math.ceil(allServices.length / 2);
+          const leftCol = allServices.slice(0, mid);
+          const rightCol = allServices.slice(mid);
+          const renderItem = (
+            item: typeof allServices[0],
+            i: number
+          ) => {
+            const Icon = item.icon;
             return (
               <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 12 }}
+                key={item.key}
+                initial={{ opacity: 0, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-24px" }}
-                transition={{ delay: i * 0.06, duration: 0.4 }}
+                transition={{ delay: i * 0.03, duration: 0.35 }}
+                className="flex items-start gap-4 rounded-xl border border-white/[0.06] bg-black/30 py-4 px-4 sm:py-4 sm:px-5"
               >
-                <Link
-                  href={service.href}
-                  className="group flex items-start gap-4 rounded-xl border border-white/[0.08] bg-black/40 p-4 sm:p-5 text-left transition-all duration-200 hover:border-orange-500/25 hover:bg-white/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-                >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-orange-500/15 text-orange-400 transition-colors group-hover:bg-orange-500/25">
-                    <Icon className="h-5 w-5" />
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-orange-500/15 text-orange-400">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <span className="flex flex-wrap items-center gap-2">
+                    <span className="font-semibold text-white">{item.title}</span>
+                    {item.popular && (
+                      <span className="rounded-full bg-orange-500/20 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-orange-300 ring-1 ring-orange-400/30">
+                        Popular
+                      </span>
+                    )}
                   </span>
-                  <span className="flex-1 min-w-0">
-                    <span className="flex items-center gap-2">
-                      <span className="font-semibold text-white group-hover:text-orange-400 transition-colors">{service.title}</span>
-                      {service.popular && (
-                        <span className="rounded bg-orange-500/20 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-orange-300 ring-1 ring-orange-400/30">
-                          Popular
-                        </span>
-                      )}
-                    </span>
-                    <span className="text-sm text-zinc-500 mt-1 block leading-snug">{service.short}</span>
-                    <span className="mt-2 inline-flex items-center text-sm font-medium text-orange-400 opacity-0 transition-opacity group-hover:opacity-100">
-                      View details
-                      <ArrowRight className="ml-1 h-3.5 w-3.5" />
-                    </span>
-                  </span>
-                </Link>
+                  <p className="text-sm text-zinc-500 mt-1 leading-snug">{item.short}</p>
+                </div>
               </motion.div>
             );
-          })}
-        </div>
+          };
+          return (
+            <div className="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2 lg:gap-x-12 lg:gap-y-6">
+              <div className="flex flex-col gap-5 lg:gap-6">
+                {leftCol.map((item, i) => renderItem(item, i))}
+              </div>
+              <div className="flex flex-col gap-5 lg:gap-6">
+                {rightCol.map((item, i) => renderItem(item, i + leftCol.length))}
+              </div>
+            </div>
+          );
+        })()}
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+        <div className="mt-10 sm:mt-12 flex justify-center">
           <Link
             href="/book?service=automotive"
-            className="btn-primary group min-h-[44px] inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+            className="btn-primary group inline-flex min-h-[48px] items-center gap-2 rounded-full px-6 py-3 text-base font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
           >
-            Book Automotive Service
+            Book now
             <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
-          </Link>
-          <Link
-            href={AUTO_SERVICES_BASE}
-            className="text-sm font-medium text-zinc-400 hover:text-orange-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded"
-          >
-            Full services & pricing →
           </Link>
         </div>
       </section>
