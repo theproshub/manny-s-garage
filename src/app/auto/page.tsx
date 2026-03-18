@@ -19,14 +19,11 @@ import { SectionHeading } from "@/components/section-heading";
 
 const AUTO_HERO_IMAGES = [
   "/hero/hero-bays.png",
-  "/images/AUTO/arteum-ro-SkKTh9ZyTxU-unsplash.jpg",
+  "/hero/hero-auto-slide-services.png",
+  "/hero/hero-auto-slide-diy.png",
   "/images/AUTO/brice-cooper-a3W_62jM0kg-unsplash.jpg",
   "/images/AUTO/compagnons-TnEe6BdBC2M-unsplash.jpg",
-  "/images/AUTO/dextar-vision-gW34cv-Ojjs-unsplash.jpg",
-  "/images/AUTO/kishor-bidxPYPVdP0-unsplash.jpg",
-  "/images/AUTO/makayla-rainville-TExf4Ru5BOk-unsplash.jpg",
   "/images/AUTO/michael-lock-xEPZKFzGrVw-unsplash.jpg",
-  "/images/AUTO/rktw-extend-y9Ij5HEzXI0-unsplash.jpg",
   "/images/AUTO/toby-hall-ii4XEyJEm_I-unsplash.jpg",
 ];
 const HERO_SLIDE_DURATION_MS = 4500;

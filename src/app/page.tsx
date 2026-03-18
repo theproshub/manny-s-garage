@@ -161,7 +161,7 @@ export default function Home() {
                 <span className="h-px w-8 shrink-0 bg-gradient-to-r from-orange-400/60 to-transparent sm:w-10" aria-hidden />
                 <span className="text-base font-medium tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
                   <span className="text-orange-300">Welcome in</span>
-                  <span className="text-white/90">—we&apos;re here to help.</span>
+                  <span className="text-white/90">—Fargo one stop shop.</span>
                 </span>
               </motion.span>
             </motion.h1>

@@ -10,6 +10,9 @@ import { BackToHome } from "@/components/back-to-home";
 const FURNITURE_PRICE = 50;
 const TV_PRICE_PER_INCH = 1.75;
 const CAMERA_PRICE = 120;
+const TV_MOUNTING_OPTIONS = [32, 43, 55, 65, 75, 85] as const;
+const FURNITURE_ITEM_OPTIONS = [1, 2, 3, 4, 5, 6] as const;
+const CAMERA_COUNT_OPTIONS = [1, 2, 3, 4, 5, 6] as const;
 
 const FURNITURE_SLIDES = [
   "/images/AUTO/HANDYMAN/benjamin-lehman-EJU7A__krX0-unsplash.jpg",
@@ -67,9 +70,6 @@ export default function HandymanServicesPage() {
   const [furnitureSlideIndex, setFurnitureSlideIndex] = useState(0);
   const [tvSlideIndex, setTvSlideIndex] = useState(0);
   const [cameraSlideIndex, setCameraSlideIndex] = useState(0);
-  const [furnitureItems, setFurnitureItems] = useState(1);
-  const [tvInches, setTvInches] = useState(55);
-  const [cameraCount, setCameraCount] = useState(1);
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -163,24 +163,25 @@ export default function HandymanServicesPage() {
               <p className="mt-2 text-3xl font-bold text-orange-400">${FURNITURE_PRICE} <span className="text-lg font-normal text-zinc-400">per item</span></p>
               <p className="mt-2 text-sm text-zinc-400">Multiple items in one visit: same rate per piece. Large or complex items may be quoted separately.</p>
               <div className="mt-4">
-                <label htmlFor="furniture-items" className="block text-sm font-medium text-zinc-300 mb-2">
-                  Number of items
-                </label>
-                <input
-                  id="furniture-items"
-                  type="number"
-                  min={0}
-                  max={20}
-                  value={furnitureItems}
-                  onChange={(e) => setFurnitureItems(Math.max(0, Math.min(20, parseInt(e.target.value, 10) || 0)))}
-                  className="focus-ring w-full max-w-[8rem] rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-colors focus:border-orange-400/50 min-h-[44px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                  aria-describedby="furniture-total-desc"
-                />
-                {furnitureItems > 0 && (
-                  <p id="furniture-total-desc" className="mt-2 text-sm font-semibold text-orange-400">
-                    Estimate: ${(furnitureItems * FURNITURE_PRICE).toFixed(2)}
-                  </p>
-                )}
+                <p className="text-sm font-medium text-zinc-300 mb-2">Select item count</p>
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                  {FURNITURE_ITEM_OPTIONS.map((count) => {
+                    const price = (count * FURNITURE_PRICE).toFixed(2);
+                    return (
+                      <Link
+                        key={count}
+                        href={`/book?service=handyman&estimate=${price}&notes=furniture+assembly+${count}+items`}
+                        className="min-h-[44px] rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                      >
+                        <p className="text-sm font-bold text-white">{count} {count === 1 ? "item" : "items"}</p>
+                        <p className="text-xs font-semibold text-orange-300">${price}</p>
+                      </Link>
+                    );
+                  })}
+                </div>
+                <p className="mt-3 text-xs text-zinc-500">
+                  Need more than 6 items? Book and add details in the notes—we&apos;ll confirm your exact quote.
+                </p>
               </div>
             </div>
             <ul className="mt-6 space-y-2 text-sm text-zinc-400">
@@ -192,7 +193,7 @@ export default function HandymanServicesPage() {
               ))}
             </ul>
             <Link
-              href={`/book?service=handyman&estimate=${(furnitureItems * FURNITURE_PRICE).toFixed(2)}&notes=furniture+assembly`}
+              href="/book?service=handyman&notes=furniture+assembly"
               className="btn-primary group mt-8 min-h-[44px] inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
             >
               Get quote / Book
@@ -216,26 +217,25 @@ export default function HandymanServicesPage() {
                 <p className="mt-2 text-3xl font-bold text-orange-400">${TV_PRICE_PER_INCH.toFixed(2)} <span className="text-lg font-normal text-zinc-400">per inch (diagonal)</span></p>
                 <p className="mt-2 text-sm text-zinc-400">Based on your TV&apos;s screen size. Example: 55&quot; = ${(55 * TV_PRICE_PER_INCH).toFixed(2)}. Mount hardware not included unless specified.</p>
                 <div className="mt-4">
-                  <label htmlFor="tv-inches" className="block text-sm font-medium text-zinc-300 mb-2">
-                    TV size (inches)
-                  </label>
-                  <input
-                    id="tv-inches"
-                    type="number"
-                    min={0}
-                    max={120}
-                    value={tvInches}
-                    onChange={(e) =>
-                      setTvInches(Math.max(0, Math.min(120, parseInt(e.target.value, 10) || 0)))
-                    }
-                    className="focus-ring w-full max-w-[10rem] rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-colors focus:border-orange-400/50 min-h-[44px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                    aria-describedby="tv-estimate-desc"
-                  />
-                  {tvInches > 0 && (
-                    <p id="tv-estimate-desc" className="mt-2 text-sm font-semibold text-orange-400">
-                      Estimate: ${(tvInches * TV_PRICE_PER_INCH).toFixed(2)}
-                    </p>
-                  )}
+                  <p className="text-sm font-medium text-zinc-300 mb-2">Select your TV size</p>
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                    {TV_MOUNTING_OPTIONS.map((size) => {
+                      const price = (size * TV_PRICE_PER_INCH).toFixed(2);
+                      return (
+                        <Link
+                          key={size}
+                          href={`/book?service=handyman&estimate=${price}&notes=TV+mounting+${size}in`}
+                          className="min-h-[44px] rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                        >
+                          <p className="text-sm font-bold text-white">{size}&quot;</p>
+                          <p className="text-xs font-semibold text-orange-300">${price}</p>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                  <p className="mt-3 text-xs text-zinc-500">
+                    Don&apos;t see your size? Book and add details in the notes—we&apos;ll confirm your exact quote.
+                  </p>
                 </div>
               </div>
               <ul className="mt-6 space-y-2 text-sm text-zinc-400">
@@ -247,7 +247,7 @@ export default function HandymanServicesPage() {
                 ))}
               </ul>
               <Link
-                href={`/book?service=handyman&estimate=${(tvInches * TV_PRICE_PER_INCH).toFixed(2)}&notes=TV+mounting`}
+                href="/book?service=handyman&notes=TV+mounting"
                 className="btn-primary group mt-8 min-h-[44px] inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
               >
                 Get quote / Book
@@ -335,26 +335,25 @@ export default function HandymanServicesPage() {
               <p className="mt-2 text-3xl font-bold text-orange-400">${CAMERA_PRICE} <span className="text-lg font-normal text-zinc-400">per camera</span></p>
               <p className="mt-2 text-sm text-zinc-400">Includes mounting, basic cable run, and app setup. Cameras and NVR/DVR supplied by you or quoted separately.</p>
               <div className="mt-4">
-                <label htmlFor="camera-count" className="block text-sm font-medium text-zinc-300 mb-2">
-                  Number of cameras
-                </label>
-                <input
-                  id="camera-count"
-                  type="number"
-                  min={0}
-                  max={20}
-                  value={cameraCount}
-                  onChange={(e) =>
-                    setCameraCount(Math.max(0, Math.min(20, parseInt(e.target.value, 10) || 0)))
-                  }
-                  className="focus-ring w-full max-w-[10rem] rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-colors focus:border-orange-400/50 min-h-[44px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                  aria-describedby="camera-estimate-desc"
-                />
-                {cameraCount > 0 && (
-                  <p id="camera-estimate-desc" className="mt-2 text-sm font-semibold text-orange-400">
-                    Estimate: ${(cameraCount * CAMERA_PRICE).toFixed(2)}
-                  </p>
-                )}
+                <p className="text-sm font-medium text-zinc-300 mb-2">Select camera count</p>
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                  {CAMERA_COUNT_OPTIONS.map((count) => {
+                    const price = (count * CAMERA_PRICE).toFixed(2);
+                    return (
+                      <Link
+                        key={count}
+                        href={`/book?service=handyman&estimate=${price}&notes=security+camera+installation+${count}+cameras`}
+                        className="min-h-[44px] rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                      >
+                        <p className="text-sm font-bold text-white">{count} {count === 1 ? "camera" : "cameras"}</p>
+                        <p className="text-xs font-semibold text-orange-300">${price}</p>
+                      </Link>
+                    );
+                  })}
+                </div>
+                <p className="mt-3 text-xs text-zinc-500">
+                  Need more than 6 cameras? Book and add details in the notes—we&apos;ll confirm your exact quote.
+                </p>
               </div>
             </div>
             <ul className="mt-6 space-y-2 text-sm text-zinc-400">
@@ -366,7 +365,7 @@ export default function HandymanServicesPage() {
               ))}
             </ul>
             <Link
-              href={`/book?service=handyman&estimate=${(cameraCount * CAMERA_PRICE).toFixed(2)}&notes=security+camera+installation`}
+              href="/book?service=handyman&notes=security+camera+installation"
               className="btn-primary group mt-8 min-h-[44px] inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
             >
               Get quote / Book
