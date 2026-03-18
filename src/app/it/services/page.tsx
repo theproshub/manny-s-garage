@@ -6,11 +6,12 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   Check,
+  ChevronDown,
   Cpu,
   Database,
   Globe,
+  MapPin,
   Server,
-  Terminal,
   Wifi,
 } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
@@ -81,53 +82,123 @@ const sections = [
 
 export default function ITServicesPage() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden pt-10">
+    <main className="relative min-h-screen overflow-x-hidden">
       <div className="noise-overlay" aria-hidden />
 
-      {/* Hero */}
-      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 lg:mb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            <BackToHome />
-            <span className="premium-badge orbitron text-[10px] tracking-[0.15em] border-cyan-500/50 bg-cyan-500/10 text-cyan-300">
-              I.T · SERVICES & PRICING
-            </span>
-          </div>
-          <h1 className="mt-3 sm:mt-4 text-2xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            I.T <span className="text-cyan-400">Services & Pricing</span>
-          </h1>
-          <p className="mt-2 text-sm text-zinc-400 max-w-xl sm:text-base">
-            Networks, PC builds, data recovery, smart home. We quote per project—book a consult to confirm scope and pricing.
-          </p>
-        </motion.div>
-      </section>
+      {/* ─── HERO (same layout as homepage) ─── */}
+      <section className="relative flex min-h-[85vh] flex-col pb-14 sm:min-h-[88vh] sm:pb-16 lg:min-h-[88vh] lg:pb-8">
+        <div className="hero-bg-gradient" aria-hidden />
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pt-0 pb-10 sm:px-6 sm:pt-2 sm:pb-16 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8 lg:pt-4 lg:pb-20 xl:gap-20">
+          {/* Left: Copy */}
+          <div className="order-2 mt-8 lg:order-1 lg:mt-0 lg:max-w-[36rem]">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-5 flex flex-wrap items-center gap-2 sm:mb-6"
+            >
+              <BackToHome />
+              <span className="premium-badge badge-orange flex items-center gap-1.5">
+                <MapPin className="h-3.5 w-3.5" aria-hidden />
+                Fargo, ND
+              </span>
+              <span className="premium-badge orbitron text-[10px] tracking-[0.15em] border-cyan-500/50 bg-cyan-500/10 text-cyan-300">
+                I.T · SERVICES & PRICING
+              </span>
+            </motion.div>
 
-      {/* Single hero image then sections */}
-      <section className="relative mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative aspect-[21/9] max-h-[280px] overflow-hidden rounded-2xl border border-white/10 bg-black/40"
-        >
-          <Image
-            src={siteImages.itConsultant}
-            alt="I.T and networking services"
-            fill
-            className="object-cover opacity-60"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-          <div className="absolute bottom-4 left-4 flex items-center gap-3">
-            <div className="rounded-xl bg-cyan-500/20 p-2.5 text-cyan-400 ring-1 ring-cyan-400/30">
-              <Terminal className="h-6 w-6" />
-            </div>
-            <span className="font-bold text-white text-lg">Infrastructure & Support</span>
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.06 }}
+              className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
+            >
+              <span className="metal-text block">I.T Services</span>
+              <motion.span
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                className="mt-4 flex items-center gap-3 sm:mt-5 sm:gap-4"
+              >
+                <span
+                  className="h-px w-8 shrink-0 bg-gradient-to-r from-cyan-400/60 to-transparent sm:w-10"
+                  aria-hidden
+                />
+                <span className="text-base font-medium tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
+                  <span className="text-cyan-300">Quote on request</span>
+                  <span className="text-white/90">—book a consult to confirm scope and pricing.</span>
+                </span>
+              </motion.span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.12 }}
+              className="mt-6 border-l-2 border-cyan-500/40 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
+            >
+              Networks, PC builds, data recovery, smart home. Pick a category below and we’ll quote before starting any work.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.18 }}
+              className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
+            >
+              <Link
+                href="/book?service=it"
+                className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-cyan-500 px-6 py-3 text-sm font-bold text-black shadow-lg shadow-cyan-950/25 transition-transform hover:-translate-y-0.5 hover:bg-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+              >
+                Book I.T consult
+                <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
+              </Link>
+              <Link
+                href="/it"
+                className="btn-outline min-h-[44px] inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-6 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-cyan-400/40 hover:bg-cyan-500/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+              >
+                Back to I.T
+              </Link>
+            </motion.div>
           </div>
+
+          {/* Right: Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="hero-image-wrap order-1 lg:order-2"
+          >
+            <div className="hero-glow" aria-hidden />
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-cyan-400/20 bg-black shadow-2xl shadow-black/40 ring-1 ring-white/[0.06] lg:aspect-[16/10]">
+              <Image
+                src={siteImages.itConsultant}
+                alt="I.T and networking services"
+                fill
+                className="object-cover opacity-90"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/35 to-cyan-950/25" aria-hidden />
+              <div className="img-side-overlay z-10" />
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+          className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 sm:bottom-6 lg:bottom-8"
+        >
+          <a
+            href="#network"
+            className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
+            aria-label="Scroll to services"
+          >
+            <span className="text-[10px] font-semibold uppercase tracking-widest">See services</span>
+            <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
+          </a>
         </motion.div>
       </section>
 

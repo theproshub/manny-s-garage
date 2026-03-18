@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, Suspense } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,14 +9,30 @@ import {
   ArrowRight,
   Check,
   CarFront,
+  ChevronDown,
   Tv,
   Hammer,
   Cpu,
   Calendar,
+  MapPin,
   User,
   FileCheck,
 } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
+
+const BOOK_HERO_IMAGES = [
+  "/hero/hero-bays.png",
+  "/hero/hero-handyman-grid.png",
+  "/hero/hero-auto-slide-services.png",
+  "/hero/hero-handyman-services.png",
+];
+const HERO_SLIDE_DURATION_MS = 4500;
+const bookHeroLabels = [
+  "Service bays",
+  "Handyman services",
+  "Automotive service",
+  "Service & booking",
+];
 
 const STEPS = [
   { id: 1, title: "Select service", icon: FileCheck },
@@ -77,6 +94,8 @@ function BookPageContent() {
   const [submitting, setSubmitting] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [heroSlideIndex, setHeroSlideIndex] = useState(0);
+  const [carouselPaused, setCarouselPaused] = useState(false);
 
   const updateForm = useCallback((updates: Partial<FormState>) => {
     setForm((prev) => ({ ...prev, ...updates }));
@@ -90,6 +109,14 @@ function BookPageContent() {
       setStep(2); // Skip to Review price estimate when arriving from a service page
     }
   }, [searchParams, updateForm]);
+
+  useEffect(() => {
+    if (carouselPaused) return;
+    const t = setInterval(() => {
+      setHeroSlideIndex((i) => (i + 1) % BOOK_HERO_IMAGES.length);
+    }, HERO_SLIDE_DURATION_MS);
+    return () => clearInterval(t);
+  }, [carouselPaused]);
 
   const canProceed = () => {
     if (step === 1) return form.serviceType != null;
@@ -177,29 +204,163 @@ function BookPageContent() {
   }
 
   return (
-    <main className="relative min-h-[90vh] overflow-x-hidden pt-6 sm:pt-10 px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8">
+    <main className="relative min-h-[90vh] overflow-x-hidden">
       <div className="noise-overlay" aria-hidden />
-      <div className="relative mx-auto max-w-2xl">
-        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-          <BackToHome />
-          <span className="premium-badge badge-orange orbitron text-[10px] tracking-[0.15em]">
-            BOOK A SERVICE
-          </span>
-        </div>
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="mt-3 sm:mt-4"
-        >
-          <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
-            Book Your <span className="orange-glow-text">Service</span>
-          </h1>
-          <p className="mt-2 text-sm text-zinc-400">
-            Follow the steps below. We&apos;ll confirm your appointment with you.
-          </p>
-        </motion.div>
+      {/* ─── HERO (same layout as homepage) ─── */}
+      <section className="relative flex min-h-[75vh] flex-col pb-14 sm:min-h-[78vh] sm:pb-16 lg:min-h-[78vh] lg:pb-8">
+        <div className="hero-bg-gradient" aria-hidden />
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pt-0 pb-10 sm:px-6 sm:pt-2 sm:pb-16 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8 lg:pt-4 lg:pb-20 xl:gap-20">
+          {/* Left: Copy */}
+          <div className="order-2 mt-8 lg:order-1 lg:mt-0 lg:max-w-[36rem]">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-5 flex flex-wrap items-center gap-2 sm:mb-6"
+            >
+              <BackToHome />
+              <span className="premium-badge badge-orange flex items-center gap-1.5">
+                <MapPin className="h-3.5 w-3.5" aria-hidden />
+                Fargo, ND
+              </span>
+              <span className="premium-badge badge-orange orbitron text-[10px] tracking-[0.15em]">
+                BOOK A SERVICE
+              </span>
+            </motion.div>
 
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.06 }}
+              className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
+            >
+              <span className="metal-text block">Book Your Service</span>
+              <motion.span
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                className="mt-4 flex items-center gap-3 sm:mt-5 sm:gap-4"
+              >
+                <span
+                  className="h-px w-8 shrink-0 bg-gradient-to-r from-orange-400/60 to-transparent sm:w-10"
+                  aria-hidden
+                />
+                <span className="text-base font-medium tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
+                  <span className="text-orange-300">Fast intake</span>
+                  <span className="text-white/90">—we’ll confirm your appointment with you.</span>
+                </span>
+              </motion.span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.12 }}
+              className="mt-6 border-l-2 border-orange-500/50 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
+            >
+              Pick a service, review your estimate (if available), and choose a preferred date and time. We’ll follow up to confirm.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.18 }}
+              className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
+            >
+              <a
+                href="#booking"
+                className="btn-primary inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+              >
+                Start booking
+                <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
+              </a>
+              <Link
+                href="/"
+                className="btn-outline min-h-[44px] inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-6 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+              >
+                Back to home
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Right: Carousel */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="hero-image-wrap order-1 lg:order-2"
+          >
+            <div className="hero-glow" aria-hidden />
+            <div
+              className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/[0.09] bg-black shadow-2xl shadow-black/40 ring-1 ring-white/[0.06] lg:aspect-[16/10]"
+              onMouseEnter={() => setCarouselPaused(true)}
+              onMouseLeave={() => setCarouselPaused(false)}
+              onFocus={() => setCarouselPaused(true)}
+              onBlur={() => setCarouselPaused(false)}
+            >
+              <div
+                aria-live="polite"
+                aria-label={`Slide ${heroSlideIndex + 1}: ${bookHeroLabels[heroSlideIndex] ?? "Booking"}`}
+                className="sr-only"
+              />
+              <AnimatePresence mode="popLayout">
+                <motion.div
+                  key={heroSlideIndex}
+                  initial={{ opacity: 0, scale: 1.04 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={BOOK_HERO_IMAGES[heroSlideIndex]}
+                    alt={`Book a service — ${bookHeroLabels[heroSlideIndex] ?? "Booking"}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority={heroSlideIndex === 0}
+                  />
+                </motion.div>
+              </AnimatePresence>
+              <div className="img-side-overlay z-10" />
+              <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center sm:bottom-5 sm:left-5 sm:right-5">
+                <div className="flex gap-2">
+                  {BOOK_HERO_IMAGES.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setHeroSlideIndex(idx)}
+                      className={`rounded-full transition-all duration-300 ${
+                        idx === heroSlideIndex ? "h-2 w-8 bg-orange-400" : "h-2 w-2 bg-white/35 hover:bg-white/55"
+                      }`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                      aria-current={idx === heroSlideIndex ? "true" : undefined}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+          className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 sm:bottom-6 lg:bottom-8"
+        >
+          <a
+            href="#booking"
+            className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
+            aria-label="Scroll to booking form"
+          >
+            <span className="text-[10px] font-semibold uppercase tracking-widest">Start</span>
+            <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
+          </a>
+        </motion.div>
+      </section>
+
+      {/* ─── BOOKING WIZARD ─── */}
+      <section id="booking" className="relative mx-auto max-w-2xl px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8 scroll-mt-28">
         {/* Step indicator */}
         <div className="mt-6 sm:mt-8 -mx-4 px-4 sm:mx-0 sm:px-0 overflow-x-auto">
           <div className="flex items-center gap-2 min-w-[520px] sm:min-w-0">
@@ -509,7 +670,7 @@ function BookPageContent() {
           )}
         </div>
         )}
-      </div>
+      </section>
     </main>
   );
 }

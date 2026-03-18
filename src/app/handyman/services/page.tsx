@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Cctv, Check, Sofa, Tv } from "lucide-react";
+import { ArrowRight, Cctv, Check, ChevronDown, MapPin, Sofa, Tv } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
 
 const FURNITURE_PRICE = 50;
@@ -66,10 +66,34 @@ const cameraIncludes = [
   "Per-camera pricing; multi-camera discounts on request",
 ];
 
+const HANDYMAN_SERVICES_HERO_IMAGES = [
+  "/images/AUTO/HANDYMAN/benjamin-lehman-EJU7A__krX0-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/eagan-hsu-0hlBlVmKSyE-unsplash.jpg",
+  "/hero/hero-handyman-services.png",
+];
+const HERO_SLIDE_DURATION_MS = 4500;
+const handymanServicesHeroLabels = [
+  "Furniture assembly",
+  "TV mounting",
+  "Security cameras",
+  "Handyman services",
+];
+
 export default function HandymanServicesPage() {
   const [furnitureSlideIndex, setFurnitureSlideIndex] = useState(0);
   const [tvSlideIndex, setTvSlideIndex] = useState(0);
   const [cameraSlideIndex, setCameraSlideIndex] = useState(0);
+  const [heroSlideIndex, setHeroSlideIndex] = useState(0);
+  const [carouselPaused, setCarouselPaused] = useState(false);
+
+  useEffect(() => {
+    if (carouselPaused) return;
+    const t = setInterval(() => {
+      setHeroSlideIndex((i) => (i + 1) % HANDYMAN_SERVICES_HERO_IMAGES.length);
+    }, HERO_SLIDE_DURATION_MS);
+    return () => clearInterval(t);
+  }, [carouselPaused]);
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -93,28 +117,159 @@ export default function HandymanServicesPage() {
   }, []);
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden pt-10">
+    <main className="relative min-h-screen overflow-x-hidden">
       <div className="noise-overlay" aria-hidden />
 
-      {/* Hero */}
-      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 lg:mb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            <BackToHome />
-            <span className="premium-badge badge-orange orbitron text-[10px] tracking-[0.15em]">
-              HANDYMAN · SERVICES & PRICING
-            </span>
+      {/* ─── HERO (same layout as homepage) ─── */}
+      <section className="relative flex min-h-[85vh] flex-col pb-14 sm:min-h-[88vh] sm:pb-16 lg:min-h-[88vh] lg:pb-8">
+        <div className="hero-bg-gradient" aria-hidden />
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pt-0 pb-10 sm:px-6 sm:pt-2 sm:pb-16 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8 lg:pt-4 lg:pb-20 xl:gap-20">
+          {/* Left: Copy */}
+          <div className="order-2 mt-8 lg:order-1 lg:mt-0 lg:max-w-[36rem]">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-5 flex flex-wrap items-center gap-2 sm:mb-6"
+            >
+              <BackToHome />
+              <span className="premium-badge badge-orange flex items-center gap-1.5">
+                <MapPin className="h-3.5 w-3.5" aria-hidden />
+                Fargo, ND
+              </span>
+              <span className="premium-badge badge-orange orbitron text-[10px] tracking-[0.15em]">
+                HANDYMAN · SERVICES & PRICING
+              </span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.06 }}
+              className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
+            >
+              <span className="metal-text block">Handyman Pricing</span>
+              <motion.span
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                className="mt-4 flex items-center gap-3 sm:mt-5 sm:gap-4"
+              >
+                <span
+                  className="h-px w-8 shrink-0 bg-gradient-to-r from-orange-400/60 to-transparent sm:w-10"
+                  aria-hidden
+                />
+                <span className="text-base font-medium tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
+                  <span className="text-orange-300">Fixed rates</span>
+                  <span className="text-white/90">—furniture, TV mounting, and security cameras.</span>
+                </span>
+              </motion.span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.12 }}
+              className="mt-6 border-l-2 border-orange-500/50 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
+            >
+              Pick your service below to see what’s included, select options, and book with your estimate.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.18 }}
+              className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
+            >
+              <Link
+                href="/book?service=handyman"
+                className="btn-primary inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+              >
+                Book handyman service
+                <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
+              </Link>
+              <Link
+                href="/handyman"
+                className="btn-outline min-h-[44px] inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-6 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+              >
+                Quote calculator
+              </Link>
+            </motion.div>
           </div>
-          <h1 className="mt-3 sm:mt-4 text-2xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Handyman <span className="orange-glow-text">Services & Pricing</span>
-          </h1>
-          <p className="mt-2 text-sm text-zinc-400 max-w-xl sm:text-base">
-            Furniture, TV mounting, security cameras. Fixed prices—get a quote and book below.
-          </p>
+
+          {/* Right: Image carousel */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="hero-image-wrap order-1 lg:order-2"
+          >
+            <div className="hero-glow" aria-hidden />
+            <div
+              className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/[0.09] bg-black shadow-2xl shadow-black/40 ring-1 ring-white/[0.06] lg:aspect-[16/10]"
+              onMouseEnter={() => setCarouselPaused(true)}
+              onMouseLeave={() => setCarouselPaused(false)}
+              onFocus={() => setCarouselPaused(true)}
+              onBlur={() => setCarouselPaused(false)}
+            >
+              <div
+                aria-live="polite"
+                aria-label={`Slide ${heroSlideIndex + 1}: ${handymanServicesHeroLabels[heroSlideIndex] ?? "Handyman pricing"}`}
+                className="sr-only"
+              />
+              <AnimatePresence mode="popLayout">
+                <motion.div
+                  key={heroSlideIndex}
+                  initial={{ opacity: 0, scale: 1.04 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={HANDYMAN_SERVICES_HERO_IMAGES[heroSlideIndex]}
+                    alt={`Handyman services & pricing — ${handymanServicesHeroLabels[heroSlideIndex] ?? "Handyman pricing"}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority={heroSlideIndex === 0}
+                  />
+                </motion.div>
+              </AnimatePresence>
+              <div className="img-side-overlay z-10" />
+              <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center sm:bottom-5 sm:left-5 sm:right-5">
+                <div className="flex gap-2">
+                  {HANDYMAN_SERVICES_HERO_IMAGES.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setHeroSlideIndex(idx)}
+                      className={`rounded-full transition-all duration-300 ${
+                        idx === heroSlideIndex ? "h-2 w-8 bg-orange-400" : "h-2 w-2 bg-white/35 hover:bg-white/55"
+                      }`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                      aria-current={idx === heroSlideIndex ? "true" : undefined}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+          className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 sm:bottom-6 lg:bottom-8"
+        >
+          <a
+            href="#furniture"
+            className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
+            aria-label="Scroll to services"
+          >
+            <span className="text-[10px] font-semibold uppercase tracking-widest">See services</span>
+            <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
+          </a>
         </motion.div>
       </section>
 

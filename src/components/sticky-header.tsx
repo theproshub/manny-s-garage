@@ -10,6 +10,7 @@ import { Menu, X, ArrowRight } from "lucide-react";
 import { siteImages } from "@/lib/site-images";
 
 const NAV_LINKS = [
+  { href: "/", label: "Home" },
   { href: "/auto", label: "Automotive Services" },
   { href: "/handyman", label: "Handyman Services" },
   { href: "/diy-garage", label: "DIY Garage" },
