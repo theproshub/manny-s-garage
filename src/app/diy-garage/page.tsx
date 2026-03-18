@@ -17,7 +17,6 @@ import {
 } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { BackToHome } from "@/components/back-to-home";
-import { RecalculateCalculatorLink } from "@/components/recalculate-calculator-link";
 import { siteImages } from "@/lib/site-images";
 
 const HOURLY_RATE = 20;
@@ -153,7 +152,6 @@ export default function DIYGaragePage() {
           <p className="mt-2 text-sm text-zinc-500">
             Optional professional mechanic assistance is available at $40 per hour when you need an extra set of hands or expert advice.
           </p>
-          <RecalculateCalculatorLink href="#calculator" className="mt-4" />
         </div>
       </section>
 

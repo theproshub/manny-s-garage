@@ -17,7 +17,6 @@ import {
   CarFront,
 } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
-import { RecalculateCalculatorLink } from "@/components/recalculate-calculator-link";
 import { siteImages } from "@/lib/site-images";
 
 const HOURLY_RATE = 20;
@@ -108,7 +107,6 @@ export default function DIYGarageServicesPage() {
               <p className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Pricing</p>
               <p className="mt-2 text-3xl font-bold text-orange-400">${HOURLY_RATE} <span className="text-lg font-normal text-zinc-400">per hour</span></p>
               <p className="mt-2 text-sm text-zinc-400">Minimum 1 hour. Max {MAX_HOURS} hours per session. All equipment included.</p>
-              <RecalculateCalculatorLink href="/diy-garage#calculator" className="mt-4" />
             </div>
             <ul className="mt-6 space-y-2 text-sm text-zinc-400">
               {bayIncludes.map((item, i) => (
@@ -142,7 +140,6 @@ export default function DIYGarageServicesPage() {
                 <p className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Pricing</p>
                 <p className="mt-2 text-3xl font-bold text-orange-400">${MECHANIC_RATE_PER_HOUR} <span className="text-lg font-normal text-zinc-400">per hour</span></p>
                 <p className="mt-2 text-sm text-zinc-400">Optional. Book your bay first, then add mechanic hours when you schedule or at the shop.</p>
-                <RecalculateCalculatorLink href="/diy-garage#calculator" className="mt-4" />
               </div>
               <ul className="mt-6 space-y-2 text-sm text-zinc-400">
                 {mechanicIncludes.map((item, i) => (

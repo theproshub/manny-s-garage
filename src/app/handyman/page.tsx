@@ -209,35 +209,33 @@ export default function HandymanPage() {
                   <label htmlFor="cameras-select" className="block text-sm font-medium text-zinc-300 mb-2">
                     Security cameras ($120 each)
                   </label>
-                  <select
+                  <input
                     id="cameras-select"
+                    type="number"
+                    min={0}
+                    max={20}
                     value={cameras}
-                    onChange={(e) => setCameras(Number(e.target.value))}
-                    className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-colors focus:border-orange-400/50 min-h-[44px]"
-                  >
-                    {[0, 1, 2, 3, 4].map((n) => (
-                      <option key={n} value={n} className="bg-[#0c1118] text-white">
-                        {n} {n === 1 ? "camera" : "cameras"} {n > 0 ? `— $${n * CAMERA_PRICE}` : ""}
-                      </option>
-                    ))}
-                  </select>
+                    onChange={(e) =>
+                      setCameras(Math.max(0, Math.min(20, parseInt(e.target.value, 10) || 0)))
+                    }
+                    className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-colors focus:border-orange-400/50 min-h-[44px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  />
                 </div>
                 <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 sm:p-5">
                   <label htmlFor="furniture-select" className="block text-sm font-medium text-zinc-300 mb-2">
                     Furniture assembly ($50 per item)
                   </label>
-                  <select
+                  <input
                     id="furniture-select"
+                    type="number"
+                    min={0}
+                    max={20}
                     value={furnitureItems}
-                    onChange={(e) => setFurnitureItems(Number(e.target.value))}
-                    className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-colors focus:border-orange-400/50 min-h-[44px]"
-                  >
-                    {[0, 1, 2, 3, 4].map((n) => (
-                      <option key={n} value={n} className="bg-[#0c1118] text-white">
-                        {n} {n === 1 ? "item" : "items"} {n > 0 ? `— $${n * FURNITURE_PRICE_PER_ITEM}` : ""}
-                      </option>
-                    ))}
-                  </select>
+                    onChange={(e) =>
+                      setFurnitureItems(Math.max(0, Math.min(20, parseInt(e.target.value, 10) || 0)))
+                    }
+                    className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-colors focus:border-orange-400/50 min-h-[44px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  />
                 </div>
               </motion.div>
             </div>
