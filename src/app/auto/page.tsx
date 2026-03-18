@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -12,8 +13,23 @@ import {
   BatteryCharging,
   Star,
 } from "lucide-react";
+import { BackToHome } from "@/components/back-to-home";
 import { ChatAssistant } from "@/components/chat-assistant";
 import { SectionHeading } from "@/components/section-heading";
+
+const AUTO_HERO_IMAGES = [
+  "/hero/hero-bays.png",
+  "/images/AUTO/arteum-ro-SkKTh9ZyTxU-unsplash.jpg",
+  "/images/AUTO/brice-cooper-a3W_62jM0kg-unsplash.jpg",
+  "/images/AUTO/compagnons-TnEe6BdBC2M-unsplash.jpg",
+  "/images/AUTO/dextar-vision-gW34cv-Ojjs-unsplash.jpg",
+  "/images/AUTO/kishor-bidxPYPVdP0-unsplash.jpg",
+  "/images/AUTO/makayla-rainville-TExf4Ru5BOk-unsplash.jpg",
+  "/images/AUTO/michael-lock-xEPZKFzGrVw-unsplash.jpg",
+  "/images/AUTO/rktw-extend-y9Ij5HEzXI0-unsplash.jpg",
+  "/images/AUTO/toby-hall-ii4XEyJEm_I-unsplash.jpg",
+];
+const HERO_SLIDE_DURATION_MS = 4500;
 
 /** Simple list: 4 main categories so users can quickly choose and book */
 const autoServices = [
@@ -37,10 +53,85 @@ const autoFaqs = [
 export default function AutoPage() {
   const [assistantOpen, setAssistantOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [heroSlideIndex, setHeroSlideIndex] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setHeroSlideIndex((i) => (i + 1) % AUTO_HERO_IMAGES.length);
+    }, HERO_SLIDE_DURATION_MS);
+    return () => clearInterval(t);
+  }, []);
 
   return (
-    <main className="relative overflow-x-hidden pt-6 sm:pt-10">
+    <main className="relative min-h-screen overflow-x-hidden pt-6 sm:pt-10">
       <div className="noise-overlay" aria-hidden />
+
+      {/* Hero */}
+      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 lg:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <BackToHome />
+            <span className="premium-badge badge-orange orbitron text-[10px] tracking-[0.15em]">
+              AUTO
+            </span>
+          </div>
+          <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-6">
+            <div className="min-w-0">
+              <h1 className="text-2xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+                Repair, <span className="orange-glow-text">Diagnostics</span> & Maintenance
+              </h1>
+              <p className="mt-2 text-sm text-zinc-400 max-w-md sm:text-base">
+                Oil changes, brakes, check engine light, battery, and more. Book online or get a quote—we work on most cars and light trucks.
+              </p>
+              <Link
+                href="#services"
+                className="mt-4 inline-flex h-10 items-center gap-2 rounded-full bg-orange-500 px-4 py-2 text-sm font-bold text-white shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:h-11 sm:px-5 sm:py-2.5"
+              >
+                Get quote
+                <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden />
+              </Link>
+            </div>
+            <div className="relative w-full sm:w-72 lg:w-80 aspect-video sm:aspect-[4/3] overflow-hidden rounded-xl border border-white/[0.08] bg-black/40 shrink-0">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={heroSlideIndex}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={AUTO_HERO_IMAGES[heroSlideIndex]}
+                    alt="Auto repair: diagnostics, maintenance, brakes, and service"
+                    fill
+                    className="object-cover"
+                    priority={heroSlideIndex === 0}
+                    sizes="(max-width: 640px) 100vw, 320px"
+                  />
+                </motion.div>
+              </AnimatePresence>
+              <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5 z-10">
+                {AUTO_HERO_IMAGES.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setHeroSlideIndex(i)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      i === heroSlideIndex ? "w-5 bg-orange-400" : "w-1.5 bg-white/40 hover:bg-white/60"
+                    }`}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
 
       {/* ─── AUTO REPAIR SERVICES (simple) ─── */}
       <section id="services" className="relative mx-auto max-w-2xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8 scroll-mt-28">
@@ -118,19 +209,6 @@ export default function AutoPage() {
           </div>
         </motion.div>
 
-        <p className="mt-4 text-center text-sm text-zinc-500">
-          We also do tires, A/C, transmission, electrical, and more.
-        </p>
-
-        <div className="mt-8 flex flex-col items-center gap-4">
-          <Link
-            href="/book?service=automotive"
-            className="btn-primary group inline-flex min-h-[48px] w-full max-w-xs items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-          >
-            Get quote / Book
-            <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
-          </Link>
-        </div>
       </section>
 
       {/* ─── REVIEWS / TRUST ─── */}
