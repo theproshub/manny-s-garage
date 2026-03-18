@@ -15,10 +15,14 @@ const FURNITURE_ITEM_OPTIONS = [1, 2, 3, 4, 5, 6] as const;
 const CAMERA_COUNT_OPTIONS = [1, 2, 3, 4, 5, 6] as const;
 
 const FURNITURE_SLIDES = [
-  "/images/AUTO/HANDYMAN/benjamin-lehman-EJU7A__krX0-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/brett-jordan-9s7lHNieFyU-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/clay-banks-Cf1G7WuutC8-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/simone-impei-eZaKj3xAzTE-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/handyman-furniture-1.jpeg",
+  "/images/AUTO/HANDYMAN/handyman-furniture-2.jpeg",
+  "/images/AUTO/HANDYMAN/handyman-furniture-3.jpeg",
+  "/images/AUTO/HANDYMAN/handyman-furniture-4.jpeg",
+  "/images/AUTO/HANDYMAN/handyman-furniture-5.jpeg",
+  "/images/AUTO/HANDYMAN/handyman-furniture-6.jpeg",
+  "/images/AUTO/HANDYMAN/handyman-furniture-7.jpeg",
+  "/images/AUTO/HANDYMAN/handyman-furniture-8.jpeg",
 ];
 const FURNITURE_SLIDE_DURATION_MS = 4500;
 
@@ -26,7 +30,7 @@ const TV_SLIDES = [
   "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.jpg",
   "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.jpg",
   "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/bermix-studio-iwz5tmhjl7o-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/WhatsApp Image 2026-03-17 at 23.49.40 (1).jpeg",
 ];
 const TV_SLIDE_DURATION_MS = 4500;
 
@@ -74,9 +78,9 @@ const HANDYMAN_SERVICES_HERO_IMAGES = [
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 const handymanServicesHeroLabels = [
-  "Furniture assembly",
-  "TV mounting",
-  "Security cameras",
+  "Furniture Assembly",
+  "TV Mounting",
+  "Security Cameras",
   "Handyman services",
 ];
 
@@ -161,7 +165,7 @@ export default function HandymanServicesPage() {
                 />
                 <span className="text-base font-medium tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
                   <span className="text-orange-300">Fixed rates</span>
-                  <span className="text-white/90">—furniture, TV mounting, and security cameras.</span>
+                  <span className="text-white/90">—Furniture, TV Mounting, and Security Cameras.</span>
                 </span>
               </motion.span>
             </motion.h1>

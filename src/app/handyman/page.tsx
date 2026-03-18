@@ -8,13 +8,20 @@ import { ArrowRight, Calculator, ChevronDown, MapPin } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { BackToHome } from "@/components/back-to-home";
 
+/** Handyman hero slides (new portfolio + stock), shuffled order */
 const HANDYMAN_HERO_IMAGES = [
-  "/hero/hero-handyman.png",
-  "/images/AUTO/HANDYMAN/alexis-dreher-MfnLwbch9_o-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/francesca-tosolini-DmOhItSo49k-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/handyman-hero-1.jpeg",
   "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/handyman-hero-2.jpeg",
+  "/images/AUTO/HANDYMAN/alexis-dreher-MfnLwbch9_o-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/handyman-hero-3.jpeg",
+  "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/handyman-hero-4.jpeg",
+  "/images/AUTO/HANDYMAN/francesca-tosolini-DmOhItSo49k-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/handyman-hero-5.jpeg",
+  "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/handyman-hero-6.jpeg",
+  "/hero/hero-handyman.png",
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 
@@ -39,16 +46,18 @@ const SERVICES_LIST = [
 ] as const;
 
 const handymanHeroSlideLabels = [
-  "Handyman service",
-  "TV mounting",
-  "Furniture assembly",
+  "TV & media",
+  "TV Mounting",
+  "Smart lighting",
   "Home installs",
-  "Security cameras",
-  "Professional tools",
-  "Install & cleanup",
-  "Trusted local service",
-  "Fixed pricing",
-  "Fast scheduling",
+  "Projector & screen",
+  "Security & cameras",
+  "Home theater",
+  "Furniture Assembly",
+  "Bedroom setup",
+  "Professional install",
+  "LED & mood lighting",
+  "Handyman service",
   "Fargo handyman",
 ];
 
@@ -125,8 +134,8 @@ export default function HandymanPage() {
                   aria-hidden
                 />
                 <span className="text-base font-medium tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
-                  <span className="text-orange-300">TV mounting</span>
-                  <span className="text-white/90">—cameras & furniture assembly with fixed pricing.</span>
+                  <span className="text-orange-300">TV Mounting</span>
+                  <span className="text-white/90">—Security Cameras & Furniture Assembly with fixed pricing.</span>
                 </span>
               </motion.span>
             </motion.h1>
@@ -287,7 +296,7 @@ export default function HandymanPage() {
               >
                 <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 sm:p-5">
                   <label htmlFor="tv-select" className="block text-sm font-medium text-zinc-300 mb-2">
-                    TV mounting (size)
+                    TV Mounting (size)
                   </label>
                   <select
                     id="tv-select"
@@ -304,7 +313,7 @@ export default function HandymanPage() {
                 </div>
                 <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 sm:p-5">
                   <label htmlFor="cameras-select" className="block text-sm font-medium text-zinc-300 mb-2">
-                    Security cameras ($120 each)
+                    Security Cameras ($120 each)
                   </label>
                   <select
                     id="cameras-select"
@@ -321,7 +330,7 @@ export default function HandymanPage() {
                 </div>
                 <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 sm:p-5">
                   <label htmlFor="furniture-select" className="block text-sm font-medium text-zinc-300 mb-2">
-                    Furniture assembly ($50 per item)
+                    Furniture Assembly ($50 per item)
                   </label>
                   <select
                     id="furniture-select"
@@ -353,7 +362,7 @@ export default function HandymanPage() {
                 <p className="mt-2 text-3xl font-black text-white sm:text-4xl">${estimate.total.toFixed(2)}</p>
                 <div className="mt-5 space-y-1.5 border-t border-white/10 pt-4 text-sm text-zinc-400">
                   {estimate.tvTotal > 0 && (
-                    <p className="flex justify-between"><span>TV mounting</span> <span>${estimate.tvTotal.toFixed(2)}</span></p>
+                    <p className="flex justify-between"><span>TV Mounting</span> <span>${estimate.tvTotal.toFixed(2)}</span></p>
                   )}
                   {estimate.cameraTotal > 0 && (
                     <p className="flex justify-between"><span>Cameras</span> <span>${estimate.cameraTotal}</span></p>

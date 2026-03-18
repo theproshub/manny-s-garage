@@ -35,12 +35,18 @@ const autoCardSlides = [
 ];
 
 const handymanCardSlides = [
-  "/hero/hero-handyman.png",
-  "/images/AUTO/HANDYMAN/alexis-dreher-MfnLwbch9_o-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/francesca-tosolini-DmOhItSo49k-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/handyman-hero-1.jpeg",
   "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/handyman-hero-2.jpeg",
+  "/images/AUTO/HANDYMAN/alexis-dreher-MfnLwbch9_o-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/handyman-hero-3.jpeg",
+  "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/handyman-hero-4.jpeg",
+  "/images/AUTO/HANDYMAN/francesca-tosolini-DmOhItSo49k-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/handyman-hero-5.jpeg",
+  "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/handyman-hero-6.jpeg",
+  "/hero/hero-handyman.png",
 ];
 
 const diyCardSlides = [siteImages.diyGarage];
@@ -76,7 +82,7 @@ const faqs = [
   },
   {
     q: "How does handyman pricing work?",
-    a: "Furniture assembly is $50 per item. TV mounting is $1.75 per inch of screen size. Security camera installation is $120 per camera. Use our quote calculator on the Handyman page for an estimate.",
+    a: "Furniture Assembly is $50 per item. TV Mounting is $1.75 per inch of screen size. Security Camera installation is $120 per camera. Use our Quote Calculator on the Handyman page for an estimate.",
   },
 ];
 
@@ -251,7 +257,7 @@ export default function Home() {
             />
             <AnimatedCard
               title="Handyman Services"
-              description="TV mounting, security cameras, and furniture assembly—fast home installs."
+              description="TV Mounting, Security Cameras, and Furniture Assembly—fast home installs."
               imageSlides={handymanCardSlides}
               icon={<Tv className="h-6 w-6" />}
               tag="HOME"
