@@ -10,65 +10,17 @@ import {
   ShieldCheck,
   Wrench,
   BatteryCharging,
-  CalendarCheck2,
-  MapPin,
-  Sparkles,
   Star,
 } from "lucide-react";
 import { ChatAssistant } from "@/components/chat-assistant";
-import { AnimatedCard } from "@/components/animated-card";
 import { SectionHeading } from "@/components/section-heading";
 
-/** 4 main categories—short labels so users can scan and choose */
+/** Simple list: 4 main categories so users can quickly choose and book */
 const autoServices = [
-  {
-    title: "Maintenance",
-    icon: Wrench,
-    short: "Oil, filters, tune-ups",
-    tag: undefined,
-    detailsHref: "/auto/services#engine-maintenance",
-    slides: [
-      "/images/AUTO/compagnons-TnEe6BdBC2M-unsplash.jpg",
-      "/images/AUTO/kishor-bidxPYPVdP0-unsplash.jpg",
-      "/images/AUTO/michael-lock-xEPZKFzGrVw-unsplash.jpg",
-    ],
-  },
-  {
-    title: "Brakes",
-    icon: ShieldCheck,
-    short: "Pads, rotors, fluid",
-    tag: undefined,
-    detailsHref: "/auto/services#brake-suspension",
-    slides: [
-      "/images/AUTO/brice-cooper-a3W_62jM0kg-unsplash.jpg",
-      "/images/AUTO/dextar-vision-gW34cv-Ojjs-unsplash.jpg",
-      "/images/AUTO/toby-hall-ii4XEyJEm_I-unsplash.jpg",
-    ],
-  },
-  {
-    title: "Diagnostics",
-    icon: Gauge,
-    short: "Check engine & codes",
-    tag: undefined,
-    detailsHref: "/auto/services#diagnostics",
-    slides: [
-      "/images/AUTO/arteum-ro-SkKTh9ZyTxU-unsplash.jpg",
-      "/images/AUTO/rktw-extend-y9Ij5HEzXI0-unsplash.jpg",
-      "/images/AUTO/makayla-rainville-TExf4Ru5BOk-unsplash.jpg",
-    ],
-  },
-  {
-    title: "Battery",
-    icon: BatteryCharging,
-    short: "Battery & charging",
-    tag: undefined,
-    detailsHref: "/auto/services#battery-charging",
-    slides: [
-      "/images/AUTO/michael-lock-xEPZKFzGrVw-unsplash.jpg",
-      "/images/AUTO/compagnons-TnEe6BdBC2M-unsplash.jpg",
-      "/images/AUTO/dextar-vision-gW34cv-Ojjs-unsplash.jpg",
-    ],
-  },
+  { title: "Oil & maintenance", icon: Wrench, short: "Oil changes, filters, tune-ups." },
+  { title: "Brakes & suspension", icon: ShieldCheck, short: "Pads, rotors, fluid, safe stopping." },
+  { title: "Check engine & diagnostics", icon: Gauge, short: "Fault codes and clear answers." },
+  { title: "Battery & charging", icon: BatteryCharging, short: "No-start, battery test, alternator." },
 ];
 
 const testimonials = [
@@ -81,258 +33,108 @@ const autoFaqs = [
   { q: "Do you work on my make and model?", a: "We work on most cars and light trucks. If you're unsure, use the diagnostic chat or call us—we'll confirm before you book." },
 ];
 
-const heroSlides = [
-  "/images/AUTO/arteum-ro-SkKTh9ZyTxU-unsplash.jpg",
-  "/images/AUTO/brice-cooper-a3W_62jM0kg-unsplash.jpg",
-  "/images/AUTO/compagnons-TnEe6BdBC2M-unsplash.jpg",
-  "/images/AUTO/dextar-vision-gW34cv-Ojjs-unsplash.jpg",
-  "/images/AUTO/kishor-bidxPYPVdP0-unsplash.jpg",
-];
-
 
 export default function AutoPage() {
   const [assistantOpen, setAssistantOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <main className="relative overflow-x-hidden">
+    <main className="relative overflow-x-hidden pt-6 sm:pt-10">
       <div className="noise-overlay" aria-hidden />
 
-      {/* ─── STICKY PAGE NAV ─── */}
-      <div className="sticky top-0 z-30 border-b border-white/[0.06] bg-black/35 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
-          <a
-            href="#services"
-            className="orbitron hidden text-[10px] font-bold uppercase tracking-[0.3em] text-orange-300 sm:inline"
-          >
-            AUTO
-          </a>
-          <nav className="flex flex-1 items-center justify-center gap-2 sm:justify-start sm:gap-3">
-            {[
-              { href: "#services", label: "Services" },
-              { href: "#reviews", label: "Reviews" },
-              { href: "#faq", label: "FAQ" },
-              { href: "#auto-cta", label: "Book" },
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="rounded-full border border-white/[0.10] bg-white/[0.03] px-3 py-1.5 text-xs font-semibold text-zinc-300 transition-colors hover:border-white/[0.18] hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-          <button
-            type="button"
-            onClick={() => setAssistantOpen(true)}
-            className="btn-primary inline-flex min-h-[36px] items-center justify-center gap-2 rounded-full px-3.5 py-2 text-xs font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-          >
-            Intake
-            <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />
-          </button>
-        </div>
-      </div>
+      {/* ─── AUTO REPAIR SERVICES (simple) ─── */}
+      <section id="services" className="relative mx-auto max-w-2xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8 scroll-mt-28">
+        <h2 className="text-center text-xl font-bold text-white sm:text-2xl">
+          Auto <span className="orange-glow-text">Repair Services</span>
+        </h2>
+        <p className="mt-2 text-center text-sm text-zinc-500">
+          Choose a service below or book and we’ll help you decide.
+        </p>
 
-      {/* ─── HERO ─── */}
-      <section className="relative pt-10 sm:pt-14 lg:pt-16">
-        <div className="hero-bg-gradient" aria-hidden />
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-4 pb-14 sm:px-6 sm:pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:px-8 lg:pb-20">
-          <div className="max-w-xl">
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="mb-5 flex flex-wrap items-center gap-2 sm:mb-6"
-            >
-              <span className="premium-badge badge-orange flex items-center gap-1.5">
-                <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                Automotive Service
-              </span>
-              <span className="premium-badge flex items-center gap-1.5 text-cyan-200/90">
-                <MapPin className="h-3.5 w-3.5" aria-hidden />
-                Fargo, ND
-              </span>
-            </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.45 }}
+          className="mt-8 overflow-hidden rounded-2xl border border-white/[0.08] bg-black/35 backdrop-blur-sm"
+        >
+          <div className="border-b border-white/[0.06] p-5 sm:p-6">
+            <p className="text-sm font-bold text-white">Common services</p>
+            <p className="mt-1 text-sm text-zinc-500">
+              Pick what sounds closest. If you’re not sure, book and we’ll route you correctly.
+            </p>
+          </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.05 }}
-              className="text-[2rem] font-bold leading-[1.15] tracking-tight sm:text-4xl lg:text-[3rem] xl:text-5xl"
-            >
-              <span className="metal-text block">Fast, honest repairs.</span>
-              <span className="mt-3 block text-white/95">
-                Diagnostics you can <span className="orange-glow-text">trust</span>.
-              </span>
-            </motion.h1>
+          <div className="grid gap-0 sm:grid-cols-2">
+            <div className="p-5 sm:p-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-zinc-500">Maintenance</p>
+              <ul className="mt-3 space-y-2 text-sm text-zinc-400">
+                <li>Oil changes, filters, and fluids</li>
+                <li>Tune-ups (spark plugs, coils, air filters)</li>
+                <li>Belts, hoses, and scheduled maintenance</li>
+                <li>Pre-trip and seasonal inspections</li>
+              </ul>
+            </div>
+            <div className="border-t border-white/[0.06] p-5 sm:border-t-0 sm:border-l sm:border-white/[0.06] sm:p-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-zinc-500">Diagnostics & repair</p>
+              <ul className="mt-3 space-y-2 text-sm text-zinc-400">
+                <li>Check engine light & fault code scanning</li>
+                <li>Brakes (pads, rotors, fluid)</li>
+                <li>Battery / alternator / no-start issues</li>
+                <li>A/C, electrical, tires, and more</li>
+              </ul>
+            </div>
+          </div>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.14 }}
-              className="mt-6 border-l-2 border-orange-500/50 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:text-base sm:leading-[1.65]"
-            >
-              Choose what sounds closest—or start the intake if you’re not sure. We’ll route you to the right service and get you scheduled.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center"
-            >
+          <div className="border-t border-white/[0.06] p-5 sm:p-6">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm text-zinc-500">
+                Want details? Here are the four main categories:
+                <span className="text-zinc-300"> </span>
+              </p>
               <Link
                 href="/book?service=automotive"
                 className="btn-primary group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book now
+                Get quote / Book
                 <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
               </Link>
-              <button
-                type="button"
-                onClick={() => setAssistantOpen(true)}
-                className="btn-outline inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-6 py-3 text-base font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-              >
-                Start diagnostic intake
-                <CalendarCheck2 className="h-4 w-4 shrink-0" aria-hidden />
-              </button>
-            </motion.div>
+            </div>
 
-            <div className="mt-7 grid gap-3 sm:mt-8 sm:grid-cols-3">
-              {[
-                { k: "Same/next‑day", v: "Slots when available" },
-                { k: "Clear estimates", v: "No surprises" },
-                { k: "Scan + verify", v: "Fix the right issue" },
-              ].map((item) => (
-                <div
-                  key={item.k}
-                  className="rounded-2xl border border-white/[0.08] bg-black/35 px-4 py-3 text-sm backdrop-blur-sm"
-                >
-                  <p className="font-semibold text-white">{item.k}</p>
-                  <p className="mt-0.5 text-xs text-zinc-500">{item.v}</p>
-                </div>
-              ))}
+            <div className="mt-4 flex flex-wrap gap-2">
+              {autoServices.map((service) => {
+                const Icon = service.icon;
+                return (
+                  <span
+                    key={service.title}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/[0.10] bg-white/[0.04] px-3 py-2 text-xs font-semibold text-zinc-300"
+                  >
+                    <Icon className="h-3.5 w-3.5 text-orange-300" aria-hidden />
+                    {service.title}
+                  </span>
+                );
+              })}
             </div>
           </div>
+        </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="hero-image-wrap"
+        <p className="mt-4 text-center text-sm text-zinc-500">
+          We also do tires, A/C, transmission, electrical, and more.
+        </p>
+
+        <div className="mt-8 flex flex-col items-center gap-4">
+          <Link
+            href="/book?service=automotive"
+            className="btn-primary group inline-flex min-h-[48px] w-full max-w-xs items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
           >
-            <div className="hero-glow" aria-hidden />
-            <div className="rounded-2xl border border-white/[0.09] bg-black/40 shadow-2xl shadow-black/40 ring-1 ring-white/[0.06]">
-              <AnimatedCard
-                title="Shop-ready diagnostics"
-                description="A quick intake gets you scheduled with the right service."
-                imageSlides={heroSlides}
-                icon={<Gauge className="h-6 w-6" />}
-                tag="AUTO"
-                href="#services"
-                delay={0.0}
-              />
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ─── SERVICES ─── */}
-      <section id="services" className="relative scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
-        <div className="mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6 sm:pb-24 sm:pt-10 lg:px-8">
-          <SectionHeading
-            badge="What We Fix"
-            title={<>Auto <span className="orange-glow-text">Repair Services</span></>}
-            description="Pick what sounds closest. If you’re not sure, start the intake and we’ll route you to the right service."
-            align="center"
-          />
-
-          <div className="mx-auto mt-6 flex max-w-5xl flex-col items-stretch justify-between gap-3 rounded-2xl border border-white/[0.08] bg-black/30 p-4 backdrop-blur-sm sm:mt-8 sm:flex-row sm:items-center sm:gap-4 sm:p-5">
-            <div className="min-w-0">
-              <p className="text-sm font-bold text-white">Not sure what to pick?</p>
-              <p className="mt-0.5 text-sm text-zinc-500">
-                Start the diagnostic intake. Manny will ask a few quick questions and route you to the right service.
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={() => setAssistantOpen(true)}
-              className="btn-primary inline-flex min-h-[44px] shrink-0 items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-            >
-              Start intake
-              <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
-            </button>
-          </div>
-
-          <div className="mx-auto mt-6 max-w-5xl">
-            <p className="text-center text-xs font-semibold uppercase tracking-widest text-zinc-500">
-              Quick picks
-            </p>
-            <div className="mt-3 flex flex-wrap justify-center gap-2">
-              {[
-                "Check engine light on",
-                "Car won’t start",
-                "Brakes squeaking/grinding",
-                "Oil change needed",
-                "Battery/alternator issues",
-                "Weird noise/vibration",
-              ].map((label) => (
-                <button
-                  key={label}
-                  type="button"
-                  onClick={() => setAssistantOpen(true)}
-                  className="rounded-full border border-white/[0.10] bg-white/[0.04] px-3.5 py-2 text-xs font-semibold text-zinc-300 backdrop-blur-sm transition-colors hover:border-white/[0.18] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-8 grid gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-6">
-            {autoServices.map((service, i) => {
-              const Icon = service.icon;
-              return (
-                <AnimatedCard
-                  key={service.title}
-                  title={service.title}
-                  description={service.short}
-                  imageSlides={service.slides}
-                  icon={<Icon className="h-6 w-6" />}
-                  tag={service.tag}
-                  href={service.detailsHref}
-                  delay={0.08 + i * 0.08}
-                />
-              );
-            })}
-          </div>
-
-          <p className="mt-6 text-center text-sm text-zinc-500">
-            We also do tires, A/C, transmission, electrical, and more.
-          </p>
-
-          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4">
-            <Link
-              href="/auto/services"
-              className="btn-outline min-h-[48px] w-full max-w-xs inline-flex items-center justify-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-6 py-3 text-base font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-            >
-              See services & details
-              <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
-            </Link>
-            <Link
-              href="/book?service=automotive"
-              className="btn-primary group inline-flex min-h-[48px] w-full max-w-xs items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-            >
-              Book automotive service
-              <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
-            </Link>
-          </div>
+            Get quote / Book
+            <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
+          </Link>
         </div>
       </section>
 
       {/* ─── REVIEWS / TRUST ─── */}
-      <section id="reviews" className="relative border-y border-white/[0.06] bg-black/30 py-16 sm:py-24 backdrop-blur-md scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
+      <section className="relative border-y border-white/[0.06] bg-black/30 py-16 sm:py-24 backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeading
             badge="Client Trust"
@@ -372,7 +174,7 @@ export default function AutoPage() {
       </section>
 
       {/* ─── FAQ ─── */}
-      <section id="faq" className="relative mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
+      <section className="relative mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <SectionHeading badge="FAQ" title="Auto Service Questions" align="center" />
         <div className="mt-8 space-y-2 sm:mt-10 sm:space-y-3">
           {autoFaqs.map((faq, i) => (
@@ -386,10 +188,7 @@ export default function AutoPage() {
             >
               <button
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="flex w-full min-h-[44px] items-center justify-between p-4 text-left sm:p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-                aria-expanded={openFaq === i}
-                aria-controls={`auto-faq-answer-${i}`}
-                id={`auto-faq-question-${i}`}
+                className="flex w-full min-h-[44px] items-center justify-between p-4 text-left sm:p-5"
               >
                 <span className="font-semibold text-white pr-4 text-sm sm:text-base">{faq.q}</span>
                 <ChevronDown
@@ -399,9 +198,6 @@ export default function AutoPage() {
               <AnimatePresence>
                 {openFaq === i && (
                   <motion.div
-                    id={`auto-faq-answer-${i}`}
-                    role="region"
-                    aria-labelledby={`auto-faq-question-${i}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
