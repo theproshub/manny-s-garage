@@ -106,7 +106,7 @@ function QuotePageInner() {
               <h2 id="tv-heading" className="text-lg font-semibold text-white sm:text-xl">
                 TV Wall Mount
               </h2>
-              <p className="mt-1 text-sm text-zinc-500">Fixed price by screen size; parts extra if we supply.</p>
+              <p className="mt-1 text-sm text-zinc-500">Fixed price by screen size · parts extra if we supply</p>
               <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {HANDYMAN_TV_PACKAGES.map((p) => (
                   <li key={p.label}>
@@ -126,7 +126,7 @@ function QuotePageInner() {
               <h2 id="cam-heading" className="text-lg font-semibold text-white sm:text-xl">
                 Security Cameras
               </h2>
-              <p className="mt-1 text-sm text-zinc-500">${HANDYMAN_CAMERA_EACH} installation</p>
+              <p className="mt-1 text-sm text-zinc-500">${HANDYMAN_CAMERA_EACH} · installation</p>
               <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                 {cameraOptions.map((o) => (
                   <li key={o.n}>
@@ -146,7 +146,7 @@ function QuotePageInner() {
               <h2 id="fur-heading" className="text-lg font-semibold text-white sm:text-xl">
                 Furniture Assembly
               </h2>
-              <p className="mt-1 text-sm text-zinc-500">${HANDYMAN_FURNITURE_EACH} per item, same visit</p>
+              <p className="mt-1 text-sm text-zinc-500">${HANDYMAN_FURNITURE_EACH} per item · same visit</p>
               <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                 {furnitureOptions.map((o) => (
                   <li key={o.n}>
