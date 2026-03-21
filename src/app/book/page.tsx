@@ -4,14 +4,9 @@ import { useState, useEffect, useCallback, Suspense, useRef } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowRight, Check, Calendar, MapPin } from "lucide-react";
+import { ArrowRight, Calendar, CarFront, Check, Cpu, Hammer, MapPin, Warehouse } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
-import {
-  getPreferredService,
-  setPreferredService,
-  isBookingServiceId,
-  type BookingServiceId,
-} from "@/lib/booking-preference";
+import { setPreferredService, isBookingServiceId, type BookingServiceId } from "@/lib/booking-preference";
 import {
   AUTO_FIXED_PACKAGES,
   DIY_PACKAGES,
@@ -22,11 +17,16 @@ import {
   HANDYMAN_WINDOW_TREATMENT,
 } from "@/lib/fixed-quote-options";
 
-const SERVICE_OPTIONS: { id: BookingServiceId; label: string }[] = [
-  { id: "automotive", label: "Auto" },
-  { id: "handyman", label: "Handyman" },
-  { id: "diy", label: "DIY bay" },
-  { id: "it", label: "I.T" },
+const SERVICE_OPTIONS: {
+  id: BookingServiceId;
+  label: string;
+  sub: string;
+  Icon: typeof CarFront;
+}[] = [
+  { id: "automotive", label: "Auto", sub: "Repairs, maintenance, diagnostics", Icon: CarFront },
+  { id: "handyman", label: "Handyman", sub: "TV mount, cameras, assembly & more", Icon: Hammer },
+  { id: "diy", label: "DIY bay", sub: "Lift, tools & workspace by the hour", Icon: Warehouse },
+  { id: "it", label: "I.T", sub: "Tech help & setup", Icon: Cpu },
 ];
 
 type FormState = {
@@ -73,6 +73,7 @@ function BookPageContent() {
   const searchParams = useSearchParams();
   const dateFieldRef = useRef<HTMLInputElement | null>(null);
   const [form, setForm] = useState<FormState>(defaultForm);
+  const [showBookingForm, setShowBookingForm] = useState(false);
   const [selectedQuoteId, setSelectedQuoteId] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
@@ -89,19 +90,41 @@ function BookPageContent() {
 
     if (fromUrl && isBookingServiceId(fromUrl)) {
       setPreferredService(fromUrl);
-      updateForm({
+      setShowBookingForm(true);
+      setForm((prev) => ({
+        ...prev,
         serviceType: fromUrl,
         estimatedTotal: estimate?.replace(/[^\d.]/g, "") ?? "",
         ...(notes ? { details: notes } : {}),
-      });
+      }));
       return;
     }
 
-    const saved = getPreferredService();
-    if (saved) {
-      updateForm({ serviceType: saved });
-    }
-  }, [searchParams, updateForm]);
+    setShowBookingForm(false);
+    setSelectedQuoteId(null);
+    setForm(defaultForm);
+  }, [searchParams]);
+
+  const chooseService = (id: BookingServiceId) => {
+    setPreferredService(id);
+    setSelectedQuoteId(null);
+    updateForm({
+      serviceType: id,
+      estimatedTotal: "",
+      details: "",
+    });
+    setShowBookingForm(true);
+  };
+
+  const goBackToServicePick = () => {
+    setShowBookingForm(false);
+    setSelectedQuoteId(null);
+    updateForm({
+      serviceType: null,
+      estimatedTotal: "",
+      details: "",
+    });
+  };
 
   const canSubmit = () => {
     if (form.serviceType == null) return false;
@@ -259,55 +282,115 @@ function BookPageContent() {
           </span>
         </div>
 
-        <h1 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">Book</h1>
+        <h1 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          {showBookingForm ? "Book" : "Book a visit"}
+        </h1>
         <p className="mt-2 text-sm text-zinc-400 sm:text-base">
-          Service, day, name &amp; phone—add time or details if you want. We confirm the rest.
+          {showBookingForm
+            ? "Service, day, name &amp; phone—add time or details if you want. We confirm the rest."
+            : "Start by choosing what you need. Then add your preferred time and contact info."}
         </p>
 
-        <motion.section
-          id="booking"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="mt-8 scroll-mt-28 rounded-2xl border border-white/[0.08] bg-black/40 p-5 shadow-lg shadow-black/20 backdrop-blur-sm sm:p-6"
-        >
-          <div className="flex items-center gap-2 text-zinc-300">
-            <Calendar className="h-4 w-4 shrink-0 text-orange-400" aria-hidden />
-            <span className="text-sm font-medium">Your request</span>
-          </div>
-
-          <div className="mt-5 space-y-5">
-            <div>
-              <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">Service</label>
-              <div className="flex flex-wrap gap-2">
-                {SERVICE_OPTIONS.map((opt) => {
-                  const on = form.serviceType === opt.id;
-                  return (
+        {!showBookingForm ? (
+          <motion.section
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="mt-8 rounded-2xl border border-white/[0.08] bg-black/40 p-5 shadow-lg shadow-black/20 backdrop-blur-sm sm:p-6"
+            aria-labelledby="pick-service-heading"
+          >
+            <h2 id="pick-service-heading" className="text-sm font-medium text-zinc-300">
+              Select a service
+            </h2>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+              {SERVICE_OPTIONS.map((opt) => {
+                const Icon = opt.Icon;
+                return (
+                  <li key={opt.id}>
                     <button
-                      key={opt.id}
                       type="button"
-                      onClick={() => {
-                        setPreferredService(opt.id);
-                        setSelectedQuoteId(null);
-                        updateForm({ serviceType: opt.id });
-                      }}
-                      className={`min-h-[44px] rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] ${
-                        on
-                          ? "border-orange-500 bg-orange-500 text-black"
-                          : "border-white/15 bg-white/[0.04] text-zinc-300 hover:border-white/25 hover:bg-white/[0.08]"
-                      }`}
+                      onClick={() => chooseService(opt.id)}
+                      className="flex min-h-[4.5rem] w-full items-start gap-3 rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-left transition-colors hover:border-orange-500/40 hover:bg-orange-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                     >
-                      {opt.label}
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-black/30">
+                        <Icon className="h-5 w-5 text-orange-400" aria-hidden />
+                      </span>
+                      <span className="min-w-0 pt-0.5">
+                        <span className="block font-semibold text-white">{opt.label}</span>
+                        <span className="mt-0.5 block text-xs leading-snug text-zinc-500">{opt.sub}</span>
+                      </span>
                     </button>
-                  );
-                })}
+                  </li>
+                );
+              })}
+            </ul>
+            <p className="mt-5 text-center text-sm text-zinc-500">
+              <Link href="/quote" className="text-orange-400 hover:underline">
+                See fixed pricing for common jobs →
+              </Link>
+            </p>
+            <p className="mt-2 text-center text-xs text-zinc-600">
+              <Link href="/#services" className="text-zinc-400 hover:text-orange-400/90 hover:underline">
+                Browse all services
+              </Link>
+            </p>
+          </motion.section>
+        ) : null}
+
+        {showBookingForm ? (
+          <motion.section
+            id="booking"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="mt-8 scroll-mt-28 rounded-2xl border border-white/[0.08] bg-black/40 p-5 shadow-lg shadow-black/20 backdrop-blur-sm sm:p-6"
+          >
+            <div className="flex flex-wrap items-center justify-between gap-2 text-zinc-300">
+              <div className="flex items-center gap-2">
+                <Calendar className="h-4 w-4 shrink-0 text-orange-400" aria-hidden />
+                <span className="text-sm font-medium">Your request</span>
               </div>
-              <p className="mt-2 text-xs text-zinc-600">
-                <Link href="/#services" className="text-orange-400/90 hover:underline">
-                  Not sure? See what we offer
-                </Link>
-              </p>
+              <button
+                type="button"
+                onClick={goBackToServicePick}
+                className="text-xs font-medium text-zinc-500 underline-offset-2 hover:text-orange-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+              >
+                Change service
+              </button>
             </div>
+
+            <div className="mt-5 space-y-5">
+              <div>
+                <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">Service</label>
+                <div className="flex flex-wrap gap-2">
+                  {SERVICE_OPTIONS.map((opt) => {
+                    const on = form.serviceType === opt.id;
+                    return (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        onClick={() => {
+                          setPreferredService(opt.id);
+                          setSelectedQuoteId(null);
+                          updateForm({ serviceType: opt.id });
+                        }}
+                        className={`min-h-[44px] rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] ${
+                          on
+                            ? "border-orange-500 bg-orange-500 text-black"
+                            : "border-white/15 bg-white/[0.04] text-zinc-300 hover:border-white/25 hover:bg-white/[0.08]"
+                        }`}
+                      >
+                        {opt.label}
+                      </button>
+                    );
+                  })}
+                </div>
+                <p className="mt-2 text-xs text-zinc-600">
+                  <Link href="/#services" className="text-orange-400/90 hover:underline">
+                    Not sure? See what we offer
+                  </Link>
+                </p>
+              </div>
 
             {form.estimatedTotal ? (
               <p className="rounded-lg border border-orange-500/25 bg-orange-500/10 px-3 py-2 text-sm text-zinc-200">
@@ -435,6 +518,7 @@ function BookPageContent() {
             {!submitting ? <ArrowRight className="h-4 w-4" aria-hidden /> : null}
           </button>
         </motion.section>
+        ) : null}
       </div>
     </main>
   );
