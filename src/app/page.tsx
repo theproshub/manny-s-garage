@@ -58,21 +58,21 @@ const diyCardSlides = [siteImages.diyGarage];
 
 const itCardSlides = [siteImages.itConsultant];
 
-const testimonials = [
+const trustPillars = [
   {
-    text: "Manny saw the electrical issue my dealer missed right away. He talked to me straight, fixed it quick, and kept me updated the whole time.",
-    author: "Mark R.",
-    context: "2019 F-150",
+    title: "You know the cost up front",
+    description:
+      "We go over pricing before any work starts, and nothing moves forward until you say yes.",
   },
   {
-    text: "Manny is solid for real. He sent me the diagnostics first, I approved the work, and the final price stayed exactly what he told me.",
-    author: "Sarah T.",
-    context: "2021 Civic",
+    title: "Updates that make sense",
+    description:
+      "If we find something, we explain it in plain language and share photos when helpful.",
   },
   {
-    text: "In the Liberian community here in Fargo, we trust Manny because he does clean work every time. He mounted my TV, installed my camera, and left the place neat.",
-    author: "James K.",
-    context: "Handyman Services",
+    title: "Help for different kinds of jobs",
+    description:
+      "Auto work, home installs, and DIY bay rental are all available in one place, so you don't need to juggle multiple shops.",
   },
 ];
 
@@ -154,7 +154,7 @@ export default function Home() {
                 <span className="hidden h-px w-8 shrink-0 bg-gradient-to-r from-orange-400/60 to-transparent sm:block sm:w-10" aria-hidden />
                 <span className="text-[0.95rem] font-medium leading-snug tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
                   <span className="text-orange-300">Welcome in</span>
-                  <span className="text-white/90"> — Fargo one stop shop.</span>
+                  <span className="text-white/90"> — Fargo one stop garage.</span>
                 </span>
               </motion.span>
             </motion.h1>
@@ -191,21 +191,23 @@ export default function Home() {
               className="mt-7 flex flex-col gap-4 sm:mt-8"
             >
               <div className="flex w-full min-w-0 flex-col gap-2.5 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-stretch sm:gap-3">
-                <Link
-                  href="/book"
-                  className="btn-primary inline-flex w-full shrink-0 items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[9rem]"
-                >
-                  <CalendarPlus className="h-4 w-4 shrink-0" aria-hidden />
-                  Book now
-                  <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                </Link>
-                <Link
-                  href="/quote"
-                  className="btn-outline inline-flex w-full shrink-0 items-center justify-center gap-1.5 rounded-full border-orange-500/35 bg-orange-500/10 text-orange-200 backdrop-blur-sm transition-colors hover:border-orange-400/50 hover:bg-orange-500/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[8.5rem]"
-                >
-                  <Tag className="h-4 w-4 shrink-0" aria-hidden />
-                  See pricing
-                </Link>
+                <div className="grid w-full min-w-0 grid-cols-2 gap-2.5 sm:flex sm:w-auto sm:gap-3">
+                  <Link
+                    href="/book"
+                    className="btn-primary inline-flex w-full min-w-0 items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[9rem]"
+                  >
+                    <CalendarPlus className="h-4 w-4 shrink-0" aria-hidden />
+                    Book now
+                    <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                  </Link>
+                  <Link
+                    href="/quote"
+                    className="btn-outline inline-flex w-full min-w-0 items-center justify-center gap-1.5 rounded-full border-orange-500/35 bg-orange-500/10 text-orange-200 backdrop-blur-sm transition-colors hover:border-orange-400/50 hover:bg-orange-500/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[8.5rem]"
+                  >
+                    <Tag className="h-4 w-4 shrink-0" aria-hidden />
+                    See pricing
+                  </Link>
+                </div>
                 <a
                   href="#services"
                   className="btn-outline inline-flex w-full shrink-0 items-center justify-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[9rem]"
@@ -248,7 +250,8 @@ export default function Home() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 1023px) 100vw, 50vw"
-                    priority
+                    quality={70}
+                    priority={currentSlide === 0}
                   />
                 </motion.div>
               </AnimatePresence>
@@ -342,16 +345,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── TESTIMONIALS ─── */}
+      {/* ─── WHY CHOOSE US ─── */}
       <section className="relative mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] py-14 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:py-24 lg:px-8">
         <SectionHeading
-          badge="Testimonials"
-          title="What Our Customers Say"
+          badge="Why Choose Us"
+          title="How We Work"
+          description="We keep things simple: clear pricing, honest updates, and work done the way we would want for our own family."
           align="center"
         />
         <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-6 sm:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <motion.blockquote
+          {trustPillars.map((pillar, i) => (
+            <motion.article
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -359,13 +363,9 @@ export default function Home() {
               transition={{ delay: i * 0.1, duration: 0.5 }}
               className="rounded-2xl border border-white/10 bg-black/40 p-6 backdrop-blur-sm"
             >
-              <p className="text-zinc-300 leading-relaxed">&ldquo;{t.text}&rdquo;</p>
-              <footer className="mt-4 flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-2">
-                <span className="font-semibold text-white">{t.author}</span>
-                <span className="hidden text-zinc-500 sm:inline">·</span>
-                <span className="text-sm text-zinc-500">{t.context}</span>
-              </footer>
-            </motion.blockquote>
+              <h3 className="text-base font-semibold text-white sm:text-lg">{pillar.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-300 sm:text-base">{pillar.description}</p>
+            </motion.article>
           ))}
         </div>
       </section>

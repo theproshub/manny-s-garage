@@ -8,7 +8,7 @@ import { ArrowRight, Cctv, Check, ChevronDown, MapPin, Sofa, Tv } from "lucide-r
 import { BackToHome } from "@/components/back-to-home";
 
 const FURNITURE_PRICE = 50;
-const TV_PRICE_PER_INCH = 1.75;
+const TV_PRICE_PER_INCH = 1.5;
 const CAMERA_PRICE = 120;
 const TV_MOUNTING_OPTIONS = [32, 43, 55, 65, 75, 85] as const;
 const FURNITURE_ITEM_OPTIONS = [1, 2, 3, 4, 5, 6] as const;
@@ -491,7 +491,7 @@ export default function HandymanServicesPage() {
             </p>
             <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-6">
               <p className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Pricing</p>
-              <p className="mt-2 text-3xl font-bold text-orange-400">${CAMERA_PRICE} <span className="text-lg font-normal text-zinc-400">per camera</span></p>
+              <p className="mt-2 text-3xl font-bold text-orange-400">${CAMERA_PRICE}</p>
               <p className="mt-2 text-sm text-zinc-400">Includes mounting, basic cable run, and app setup. Cameras and NVR/DVR supplied by you or quoted separately.</p>
               <div className="mt-4">
                 <p className="text-sm font-medium text-zinc-300 mb-2">Select camera count</p>

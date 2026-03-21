@@ -15,9 +15,11 @@ import {
 import {
   AUTO_FIXED_PACKAGES,
   DIY_PACKAGES,
+  HANDYMAN_BUNK_BED,
   HANDYMAN_CAMERA_EACH,
   HANDYMAN_FURNITURE_EACH,
   HANDYMAN_TV_PACKAGES,
+  HANDYMAN_WINDOW_TREATMENT,
 } from "@/lib/fixed-quote-options";
 
 const SERVICE_OPTIONS: { id: BookingServiceId; label: string }[] = [
@@ -143,7 +145,19 @@ function BookPageContent() {
         amount: String(n * HANDYMAN_FURNITURE_EACH),
         note: `Furniture assembly x${n}`,
       }));
-      return [...tv, ...cams, ...furniture];
+      const windowTreatment = {
+        id: "handyman-window-treatment",
+        label: "Window treatment installation (blinds & curtains)",
+        amount: String(HANDYMAN_WINDOW_TREATMENT),
+        note: "Window treatment installation",
+      };
+      const bunkBed = {
+        id: "handyman-bunk-bed",
+        label: "Bunk bed assembly",
+        amount: String(HANDYMAN_BUNK_BED),
+        note: "Bunk bed assembly",
+      };
+      return [...tv, ...cams, ...furniture, windowTreatment, bunkBed];
     }
     return [];
   })();
@@ -321,7 +335,9 @@ function BookPageContent() {
                         }`}
                       >
                         <span className="block text-sm font-medium text-zinc-200">{opt.label}</span>
-                        <span className="block text-sm font-semibold text-orange-400">${opt.amount}</span>
+                        <span className="block text-sm font-semibold text-orange-400">
+                          {opt.amount === "0" ? "Free" : `$${opt.amount}`}
+                        </span>
                       </button>
                     );
                   })}

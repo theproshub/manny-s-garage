@@ -8,12 +8,14 @@ import { ArrowRight, Check, MapPin, Tag } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
 import {
   AUTO_FIXED_PACKAGES,
+  HANDYMAN_BUNK_BED,
   DIY_HOURLY,
   DIY_MECHANIC_HOURLY,
   DIY_PACKAGES,
   HANDYMAN_CAMERA_EACH,
   HANDYMAN_FURNITURE_EACH,
   HANDYMAN_TV_PACKAGES,
+  HANDYMAN_WINDOW_TREATMENT,
   bookAutomotiveHref,
   bookDiyHref,
   bookHandymanHref,
@@ -122,7 +124,7 @@ function QuotePageInner() {
               <h2 id="cam-heading" className="text-lg font-semibold text-white sm:text-xl">
                 Security cameras
               </h2>
-              <p className="mt-1 text-sm text-zinc-500">${HANDYMAN_CAMERA_EACH} each · install &amp; basic setup</p>
+              <p className="mt-1 text-sm text-zinc-500">${HANDYMAN_CAMERA_EACH} · installation</p>
               <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                 {cameraOptions.map((o) => (
                   <li key={o.n}>
@@ -155,6 +157,42 @@ function QuotePageInner() {
                     </Link>
                   </li>
                 ))}
+              </ul>
+            </section>
+
+            <section aria-labelledby="window-heading">
+              <h2 id="window-heading" className="text-lg font-semibold text-white sm:text-xl">
+                Window treatment installation (blinds &amp; curtains)
+              </h2>
+              <p className="mt-1 text-sm text-zinc-500">Flat-rate installation</p>
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                <li>
+                  <Link
+                    href={bookHandymanHref(HANDYMAN_WINDOW_TREATMENT, "Window treatment installation")}
+                    className="flex min-h-[3.5rem] flex-col justify-center rounded-xl border border-white/[0.08] bg-black/40 px-3 py-2.5 transition-colors hover:border-orange-500/40 hover:bg-orange-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                  >
+                    <span className="text-sm font-medium text-zinc-200">Blinds or curtains install</span>
+                    <span className="text-xl font-bold text-orange-400">${HANDYMAN_WINDOW_TREATMENT}</span>
+                  </Link>
+                </li>
+              </ul>
+            </section>
+
+            <section aria-labelledby="bunk-bed-heading">
+              <h2 id="bunk-bed-heading" className="text-lg font-semibold text-white sm:text-xl">
+                Bunk bed assembly
+              </h2>
+              <p className="mt-1 text-sm text-zinc-500">Flat-rate assembly service</p>
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                <li>
+                  <Link
+                    href={bookHandymanHref(HANDYMAN_BUNK_BED, "Bunk bed assembly")}
+                    className="flex min-h-[3.5rem] flex-col justify-center rounded-xl border border-white/[0.08] bg-black/40 px-3 py-2.5 transition-colors hover:border-orange-500/40 hover:bg-orange-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                  >
+                    <span className="text-sm font-medium text-zinc-200">Bunk bed assembly</span>
+                    <span className="text-xl font-bold text-orange-400">${HANDYMAN_BUNK_BED}</span>
+                  </Link>
+                </li>
               </ul>
             </section>
 
@@ -226,7 +264,7 @@ function QuotePageInner() {
                         <span className="font-semibold text-white">{pkg.label}</span>
                         <p className="mt-0.5 text-xs text-zinc-500">{pkg.sub}</p>
                       </div>
-                      <span className="text-2xl font-bold text-orange-400">${pkg.price}</span>
+                      <span className="text-2xl font-bold text-orange-400">{pkg.price === 0 ? "Free" : `$${pkg.price}`}</span>
                     </div>
                   </Link>
                 </li>

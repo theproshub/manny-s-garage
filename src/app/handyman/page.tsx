@@ -28,8 +28,10 @@ const HERO_SLIDE_DURATION_MS = 4500;
 
 const SERVICES_LIST = [
   { title: "Furniture Assembly", price: "$50 per item", href: "/handyman/services#furniture" },
-  { title: "TV Mounting", price: "$1.75 per inch", href: "/handyman/services#tv-mounting" },
-  { title: "Security Camera Installation", price: "$120 per camera", href: "/handyman/services#security-cameras" },
+  { title: "TV Mounting", price: "$1.50 per inch", href: "/handyman/services#tv-mounting" },
+  { title: "Security Camera Installation", price: "$120", href: "/handyman/services#security-cameras" },
+  { title: "Window Treatment Installation", price: "$50", href: "/quote?for=handyman" },
+  { title: "Bunk Bed Assembly", price: "$100", href: "/quote?for=handyman" },
 ] as const;
 
 const handymanHeroSlideLabels = [
@@ -178,6 +180,7 @@ export default function HandymanPage() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
+                    quality={70}
                     priority={heroSlideIndex === 0}
                   />
                 </motion.div>

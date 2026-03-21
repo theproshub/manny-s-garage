@@ -6,15 +6,17 @@ export const DIY_MAX_HOURS = 8;
 
 export const HANDYMAN_CAMERA_EACH = 120;
 export const HANDYMAN_FURNITURE_EACH = 50;
+export const HANDYMAN_WINDOW_TREATMENT = 50;
+export const HANDYMAN_BUNK_BED = 100;
 
-/** TV wall mount — $1.75/inch at listed sizes */
+/** TV wall mount — $1.50/inch at listed sizes */
 export const HANDYMAN_TV_PACKAGES: { label: string; price: number }[] = [
-  { label: '32″ TV mount', price: 56 },
-  { label: '43″ TV mount', price: 75.25 },
-  { label: '55″ TV mount', price: 96.25 },
-  { label: '65″ TV mount', price: 113.75 },
-  { label: '75″ TV mount', price: 131.25 },
-  { label: '85″ TV mount', price: 148.75 },
+  { label: '32″ TV mount', price: 48 },
+  { label: '43″ TV mount', price: 64.5 },
+  { label: '55″ TV mount', price: 82.5 },
+  { label: '65″ TV mount', price: 97.5 },
+  { label: '75″ TV mount', price: 112.5 },
+  { label: '85″ TV mount', price: 127.5 },
 ];
 
 export type DiyPackage = {
@@ -112,33 +114,57 @@ export type AutoFixedPackage = {
 export const AUTO_FIXED_PACKAGES: AutoFixedPackage[] = [
   {
     id: "diag",
-    label: "Diagnostic scan & report",
-    sub: "Fault codes, live data, summary of findings",
-    price: 95,
+    label: "Automotive diagnostic (check engine light)",
+    sub: "Code scan and basic report",
+    price: 0,
   },
   {
     id: "oil-conv",
     label: "Conventional oil change",
     sub: "Up to 5 qts · standard filter",
-    price: 69,
+    price: 40,
   },
   {
     id: "oil-syn",
     label: "Full synthetic oil change",
     sub: "Up to 5 qts · premium filter",
-    price: 99,
+    price: 65,
   },
   {
-    id: "brake-axle",
-    label: "Brake pads — one axle",
-    sub: "Most cars & light trucks · pads & labor",
-    price: 275,
+    id: "engine-tuneup",
+    label: "Engine tuneup",
+    sub: "Starting at",
+    price: 180,
+  },
+  {
+    id: "brake-pads-pair",
+    label: "Brake pads replacement (pair)",
+    sub: "Pads and labor",
+    price: 180,
+  },
+  {
+    id: "brake-pads-rotors-pair",
+    label: "Brakes & rotors replacement (pair)",
+    sub: "Pads and rotors with labor",
+    price: 200,
+  },
+  {
+    id: "brake-complete-set",
+    label: "Complete brake set (pads & rotors)",
+    sub: "Front and rear set",
+    price: 350,
   },
   {
     id: "battery",
-    label: "Battery test & replacement",
-    sub: "Typical group sizes · install included",
-    price: 189,
+    label: "Battery replacement",
+    sub: "Installation labor",
+    price: 40,
+  },
+  {
+    id: "roadside",
+    label: "Emergency roadside assistance",
+    sub: "Lockout, flat tire, jumpstart, or towing",
+    price: 60,
   },
 ];
 
