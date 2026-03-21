@@ -19,12 +19,12 @@ import {
 import { AnimatedCard } from "@/components/animated-card";
 import { SectionHeading } from "@/components/section-heading";
 import { siteImages } from "@/lib/site-images";
-import { setPreferredService, type BookingServiceId } from "@/lib/booking-preference";
 
 const heroImages = [
   "/hero/hero-handyman.png",
   "/hero/hero-handyman-grid.png",
   "/hero/hero-handyman-services.png",
+  "/hero/hero-auto-slide-services.png",
   "/hero/hero-bays.png",
 ];
 
@@ -57,13 +57,6 @@ const handymanCardSlides = [
 const diyCardSlides = [siteImages.diyGarage];
 
 const itCardSlides = [siteImages.itConsultant];
-
-const quickBookServices: { id: BookingServiceId; label: string }[] = [
-  { id: "automotive", label: "Auto repair" },
-  { id: "handyman", label: "Handyman" },
-  { id: "diy", label: "DIY bay" },
-  { id: "it", label: "I.T help" },
-];
 
 const testimonials = [
   {
@@ -102,6 +95,7 @@ const heroSlideLabels = [
   "Handyman Services",
   "Handyman — assembly, TV, cameras & more",
   "Handyman & I.T services",
+  "Automotive, Handyman, and DIY storefront",
   "Our service bays",
 ];
 
@@ -220,23 +214,6 @@ export default function Home() {
                   <ChevronDown className="h-3.5 w-3.5 shrink-0" aria-hidden />
                 </a>
               </div>
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 sm:text-xs">
-                  Or jump straight in
-                </p>
-                <div className="mt-2.5 flex flex-wrap gap-2 sm:gap-2.5">
-                  {quickBookServices.map((s) => (
-                    <Link
-                      key={s.id}
-                      href={`/book?service=${s.id}`}
-                      onClick={() => setPreferredService(s.id)}
-                      className="inline-flex min-h-[44px] min-w-0 max-w-full items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.04] px-3 py-2 text-[11px] font-medium text-zinc-300 transition-colors hover:border-orange-500/35 hover:bg-orange-500/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] min-[380px]:px-3.5 min-[380px]:text-xs sm:min-h-[40px] sm:px-4 sm:text-sm"
-                    >
-                      {s.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
             </motion.div>
           </div>
 
@@ -267,7 +244,7 @@ export default function Home() {
                 >
                   <Image
                     src={heroImages[currentSlide]}
-                    alt={`Manny's Garage in Fargo, ND — ${heroSlideLabels[currentSlide]}`}
+                    alt={`Manny's Garage in Fargo, ND — Handyman & I.T services and more (${heroSlideLabels[currentSlide]})`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1023px) 100vw, 50vw"

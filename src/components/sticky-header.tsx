@@ -57,11 +57,11 @@ export function StickyHeader() {
             <Image
               src={siteImages.logo}
               alt="Manny's Garage — Automotive, Handyman, I.T & More"
-              width={180}
-              height={48}
-              className="h-11 w-auto object-contain object-left sm:h-12"
+              width={80}
+              height={80}
+              className="h-12 w-auto object-contain object-left sm:h-14"
               priority
-              sizes="180px"
+              sizes="(max-width: 640px) 48px, 56px"
             />
           </Link>
 

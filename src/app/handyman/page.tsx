@@ -22,6 +22,7 @@ const HANDYMAN_HERO_IMAGES = [
   "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.jpg",
   "/images/AUTO/HANDYMAN/handyman-hero-6.jpeg",
   "/hero/hero-handyman.png",
+  "/hero/hero-handyman-service-list.png",
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 
@@ -45,6 +46,7 @@ const handymanHeroSlideLabels = [
   "LED & mood lighting",
   "Handyman service",
   "Fargo handyman",
+  "Handyman service list",
 ];
 
 export default function HandymanPage() {

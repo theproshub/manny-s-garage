@@ -17,10 +17,10 @@ export function Footer() {
               <Image
                 src={siteImages.logo}
                 alt="Manny's Garage — Automotive, Handyman, I.T & More"
-                width={240}
-                height={64}
-                className="h-16 w-auto max-w-[240px] object-contain object-left sm:h-20"
-                sizes="(max-width: 640px) 160px, 200px"
+                width={112}
+                height={112}
+                className="h-20 w-auto max-w-[112px] object-contain object-left sm:h-24"
+                sizes="(max-width: 640px) 80px, 96px"
               />
             </Link>
             <p className="text-sm leading-6 text-zinc-400">
