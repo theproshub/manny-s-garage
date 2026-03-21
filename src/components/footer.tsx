@@ -24,7 +24,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm leading-6 text-zinc-400">
-              Premium auto repair, handyman services, I.T consulting, and DIY garage rentals. Fargo&apos;s most advanced service center.
+              Auto repair, handyman services, I.T support, and DIY garage rentals in one place. Local service you can trust in Fargo.
             </p>
           </div>
 
@@ -37,6 +37,7 @@ export function Footer() {
                 { label: "Handyman Services", href: "/handyman" },
                 { label: "DIY Garage", href: "/diy-garage" },
                 { label: "I.T Consultant", href: "/it" },
+                { label: "Fixed pricing", href: "/quote" },
                 { label: "Book Service", href: "/book" },
               ].map((link) => (
                 <li key={link.label}>

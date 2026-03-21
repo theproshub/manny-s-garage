@@ -16,13 +16,13 @@ export function SectionHeading({
   align = "left",
 }: SectionHeadingProps) {
   return (
-    <div className={`mb-12 sm:mb-16 ${align === "center" ? "mx-auto text-center" : "text-left"}`}>
+    <div className={`mb-8 max-w-full sm:mb-12 md:mb-16 ${align === "center" ? "mx-auto text-center" : "text-left"}`}>
       <motion.p
         initial={{ opacity: 0, y: 8 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="orbitron inline-block text-[10px] font-bold uppercase tracking-[0.3em] text-orange-400"
+        className="orbitron inline-block max-w-full text-[9px] font-bold uppercase tracking-[0.2em] text-orange-400 sm:text-[10px] sm:tracking-[0.28em] md:tracking-[0.3em]"
       >
         {badge}
       </motion.p>
@@ -31,7 +31,7 @@ export function SectionHeading({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-        className="mt-4 text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl"
+        className="mt-3 break-words text-2xl font-bold leading-[1.15] tracking-tight text-white sm:mt-4 sm:text-3xl sm:leading-tight md:text-4xl lg:text-5xl"
       >
         {title}
       </motion.h2>
@@ -50,8 +50,8 @@ export function SectionHeading({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className={`mt-6 text-base leading-relaxed text-zinc-400 sm:text-lg ${
-            align === "center" ? "mx-auto max-w-2xl" : "max-w-xl"
+          className={`mt-4 max-w-full text-[15px] leading-relaxed text-zinc-400 sm:mt-6 sm:text-base md:text-lg ${
+            align === "center" ? "mx-auto max-w-2xl px-0" : "max-w-xl"
           }`}
         >
           {description}

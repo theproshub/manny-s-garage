@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const serviceTypes = ["automotive", "handyman", "diy"] as const;
+export const serviceTypes = ["automotive", "handyman", "diy", "it"] as const;
 export type ServiceType = (typeof serviceTypes)[number];
 
 export const bookingSchema = z.object({

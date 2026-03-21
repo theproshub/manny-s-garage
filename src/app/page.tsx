@@ -2,19 +2,24 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
+  ArrowRight,
+  CalendarPlus,
   CarFront,
   ChevronDown,
   Cpu,
   Hammer,
   MapPin,
   PhoneCall,
+  Tag,
   Tv,
 } from "lucide-react";
 import { AnimatedCard } from "@/components/animated-card";
 import { SectionHeading } from "@/components/section-heading";
 import { siteImages } from "@/lib/site-images";
+import { setPreferredService, type BookingServiceId } from "@/lib/booking-preference";
 
 const heroImages = [
   "/hero/hero-handyman.png",
@@ -53,19 +58,26 @@ const diyCardSlides = [siteImages.diyGarage];
 
 const itCardSlides = [siteImages.itConsultant];
 
+const quickBookServices: { id: BookingServiceId; label: string }[] = [
+  { id: "automotive", label: "Auto repair" },
+  { id: "handyman", label: "Handyman" },
+  { id: "diy", label: "DIY bay" },
+  { id: "it", label: "I.T help" },
+];
+
 const testimonials = [
   {
-    text: "They found the electrical issue my dealer couldn't. Fast, honest, and the booking system is insanely easy.",
+    text: "Manny saw the electrical issue my dealer missed right away. He talked to me straight, fixed it quick, and kept me updated the whole time.",
     author: "Mark R.",
     context: "2019 F-150",
   },
   {
-    text: "Best shop in Fargo. The diagnostic scan results were sent right to my phone before they did any work.",
+    text: "Manny is solid for real. He sent me the diagnostics first, I approved the work, and the final price stayed exactly what he told me.",
     author: "Sarah T.",
     context: "2021 Civic",
   },
   {
-    text: "Had my TV mounted and a security camera installed in one visit. Professional and left everything spotless.",
+    text: "In the Liberian community here in Fargo, we trust Manny because he does clean work every time. He mounted my TV, installed my camera, and left the place neat.",
     author: "James K.",
     context: "Handyman Services",
   },
@@ -74,15 +86,15 @@ const testimonials = [
 const faqs = [
   {
     q: "Do I need an appointment for automotive service?",
-    a: "Yes. Book online or call us to schedule. We offer same-day and next-day slots when available.",
+    a: "Yes. Book online or call us to schedule a time that works for you. Same-day and next-day openings are often available.",
   },
   {
     q: "What's included in the DIY garage rental?",
-    a: "Full access to our bay with car lift, diagnostic scanner, oil change and tire tools, air compressor, power tools, workbench, and lighting. $20/hour, up to 8 hours per session.",
+    a: "You get full access to the bay, car lift, diagnostic scanner, oil and tire tools, air compressor, power tools, workbench, and lighting. It is $20/hour for up to 8 hours per session.",
   },
   {
     q: "How does handyman pricing work?",
-    a: "Furniture Assembly is $50 per item. TV Mounting is $1.75 per inch of screen size. Security Camera installation is $120 per camera. Use our Quote Calculator on the Handyman page for an estimate.",
+    a: "Furniture assembly is $50 per item. TV mounting is $1.75 per inch. Security camera installation is $120 per camera. Open the pricing page, pick your price, and book right away.",
   },
 ];
 
@@ -108,21 +120,24 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <main className="relative overflow-x-hidden">
+    <main className="relative w-full min-w-0 overflow-x-hidden">
       <div className="noise-overlay" aria-hidden />
 
       {/* ─── HERO ─── */}
-      <section className="relative flex min-h-[85vh] flex-col pb-14 sm:min-h-[88vh] sm:pb-16 lg:min-h-[88vh] lg:pb-8">
+      <section className="relative flex min-h-[min(100dvh,56rem)] flex-col pb-20 sm:min-h-[88vh] sm:pb-16 lg:min-h-[88vh] lg:pb-8">
         <div className="hero-bg-gradient" aria-hidden />
-        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pt-0 pb-10 sm:px-6 sm:pt-2 sm:pb-16 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8 lg:pt-4 lg:pb-20 xl:gap-20">
+        <div className="relative z-10 mx-auto flex w-full min-w-0 max-w-7xl flex-1 flex-col justify-center px-[max(1rem,env(safe-area-inset-left))] pt-0 pb-8 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-10 sm:pt-2 md:pb-16 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8 lg:pt-4 lg:pb-20 xl:gap-20">
           {/* Left: Copy */}
-          <div className="order-2 mt-8 lg:order-1 lg:mt-0 lg:max-w-[36rem]">
+          <div className="order-2 mt-6 min-w-0 max-w-full sm:mt-8 lg:order-1 lg:mt-0 lg:max-w-[36rem]">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="mb-5 flex flex-wrap items-center gap-2 sm:mb-6"
             >
+              <span className="premium-badge badge-orange orbitron text-[10px] tracking-[0.16em]">
+                SAME-DAY SLOTS
+              </span>
               <span className="premium-badge badge-orange flex items-center gap-1.5">
                 <MapPin className="h-3.5 w-3.5" aria-hidden />
                 Fargo, ND
@@ -133,19 +148,19 @@ export default function Home() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.06 }}
-              className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
+              className="break-words text-[1.65rem] font-bold leading-[1.18] tracking-tight min-[360px]:text-[2rem] min-[400px]:text-[2.25rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
             >
               <span className="metal-text block">Manny&apos;s Garage</span>
               <motion.span
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                className="mt-4 flex items-center gap-3 sm:mt-5 sm:gap-4"
+                className="mt-3 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:items-center sm:gap-4"
               >
-                <span className="h-px w-8 shrink-0 bg-gradient-to-r from-orange-400/60 to-transparent sm:w-10" aria-hidden />
-                <span className="text-base font-medium tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
+                <span className="hidden h-px w-8 shrink-0 bg-gradient-to-r from-orange-400/60 to-transparent sm:block sm:w-10" aria-hidden />
+                <span className="text-[0.95rem] font-medium leading-snug tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
                   <span className="text-orange-300">Welcome in</span>
-                  <span className="text-white/90">—Fargo one stop shop.</span>
+                  <span className="text-white/90"> — Fargo one stop shop.</span>
                 </span>
               </motion.span>
             </motion.h1>
@@ -154,11 +169,75 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.12 }}
-              className="mt-6 border-l-2 border-orange-500/50 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
+              className="mt-5 max-w-full border-l-2 border-orange-500/50 pl-3 text-[14px] leading-[1.55] text-zinc-400 sm:mt-7 sm:pl-4 sm:text-base sm:leading-[1.65]"
             >
               Fargo&apos;s go-to spot for car repairs, handyman work, equipped DIY bays—everything you need under one roof.
             </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.15 }}
+              className="mt-4 flex flex-wrap gap-2"
+            >
+              <span className="rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1.5 text-[11px] font-semibold text-orange-200">
+                Fast booking
+              </span>
+              <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-[11px] font-semibold text-cyan-200">
+                Fixed pricing
+              </span>
+              <span className="rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-[11px] font-semibold text-zinc-200">
+                One-stop service
+              </span>
+            </motion.div>
 
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.18 }}
+              className="mt-7 flex flex-col gap-4 sm:mt-8"
+            >
+              <div className="flex w-full min-w-0 flex-col gap-2.5 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-stretch sm:gap-3">
+                <Link
+                  href="/book"
+                  className="btn-primary inline-flex w-full shrink-0 items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[9rem]"
+                >
+                  <CalendarPlus className="h-4 w-4 shrink-0" aria-hidden />
+                  Book now
+                  <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                </Link>
+                <Link
+                  href="/quote"
+                  className="btn-outline inline-flex w-full shrink-0 items-center justify-center gap-1.5 rounded-full border-orange-500/35 bg-orange-500/10 text-orange-200 backdrop-blur-sm transition-colors hover:border-orange-400/50 hover:bg-orange-500/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[8.5rem]"
+                >
+                  <Tag className="h-4 w-4 shrink-0" aria-hidden />
+                  See pricing
+                </Link>
+                <a
+                  href="#services"
+                  className="btn-outline inline-flex w-full shrink-0 items-center justify-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[9rem]"
+                >
+                  Browse services
+                  <ChevronDown className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                </a>
+              </div>
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 sm:text-xs">
+                  Or jump straight in
+                </p>
+                <div className="mt-2.5 flex flex-wrap gap-2 sm:gap-2.5">
+                  {quickBookServices.map((s) => (
+                    <Link
+                      key={s.id}
+                      href={`/book?service=${s.id}`}
+                      onClick={() => setPreferredService(s.id)}
+                      className="inline-flex min-h-[44px] min-w-0 max-w-full items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.04] px-3 py-2 text-[11px] font-medium text-zinc-300 transition-colors hover:border-orange-500/35 hover:bg-orange-500/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] min-[380px]:px-3.5 min-[380px]:text-xs sm:min-h-[40px] sm:px-4 sm:text-sm"
+                    >
+                      {s.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           </div>
 
           {/* Right: Image carousel — below service links on mobile */}
@@ -166,11 +245,11 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="hero-image-wrap order-1 lg:order-2"
+            className="hero-image-wrap order-1 w-full min-w-0 max-w-full lg:order-2"
           >
             <div className="hero-glow" aria-hidden />
             <div
-              className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/[0.09] bg-black shadow-2xl shadow-black/40 ring-1 ring-white/[0.06] lg:aspect-[16/10]"
+              className="relative aspect-[16/11] w-full max-w-full min-w-0 overflow-hidden rounded-2xl border border-white/[0.09] bg-black shadow-2xl shadow-black/40 ring-1 ring-white/[0.06] min-[400px]:aspect-[4/3] lg:aspect-[16/10]"
               onMouseEnter={() => setCarouselPaused(true)}
               onMouseLeave={() => setCarouselPaused(false)}
               onFocus={() => setCarouselPaused(true)}
@@ -191,7 +270,7 @@ export default function Home() {
                     alt={`Manny's Garage in Fargo, ND — ${heroSlideLabels[currentSlide]}`}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    sizes="(max-width: 1023px) 100vw, 50vw"
                     priority
                   />
                 </motion.div>
@@ -222,11 +301,11 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.5 }}
-          className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 sm:bottom-6 lg:bottom-8"
+          className="absolute bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-10 -translate-x-1/2 pb-safe sm:bottom-6 lg:bottom-8"
         >
           <a
             href="#services"
-            className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
+            className="hero-scroll-hint flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-1 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
             aria-label="Scroll to services"
           >
             <span className="text-[10px] font-semibold uppercase tracking-widest">See services</span>
@@ -237,7 +316,7 @@ export default function Home() {
 
       {/* ─── SERVICE CARDS ─── */}
       <section id="services" className="relative scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
-        <div className="mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 sm:pb-24 sm:pt-14 lg:px-8">
+        <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pb-16 pt-8 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-24 sm:pt-14 lg:px-8">
           <SectionHeading
             badge="What We Offer"
             title={<>Choose Your <span className="orange-glow-text">Service</span></>}
@@ -245,7 +324,7 @@ export default function Home() {
             align="center"
           />
 
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 md:gap-5 lg:gap-6">
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-4 md:gap-4 lg:gap-5">
             <AnimatedCard
               title="Automotive Service"
               description="Maintenance for cars and light trucks."
@@ -287,7 +366,7 @@ export default function Home() {
       </section>
 
       {/* ─── TESTIMONIALS ─── */}
-      <section className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <section className="relative mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] py-14 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:py-24 lg:px-8">
         <SectionHeading
           badge="Testimonials"
           title="What Our Customers Say"
@@ -304,9 +383,9 @@ export default function Home() {
               className="rounded-2xl border border-white/10 bg-black/40 p-6 backdrop-blur-sm"
             >
               <p className="text-zinc-300 leading-relaxed">&ldquo;{t.text}&rdquo;</p>
-              <footer className="mt-4 flex items-center gap-2">
+              <footer className="mt-4 flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-2">
                 <span className="font-semibold text-white">{t.author}</span>
-                <span className="text-zinc-500">·</span>
+                <span className="hidden text-zinc-500 sm:inline">·</span>
                 <span className="text-sm text-zinc-500">{t.context}</span>
               </footer>
             </motion.blockquote>
@@ -315,7 +394,7 @@ export default function Home() {
       </section>
 
       {/* ─── FAQ ─── */}
-      <section id="faq" className="relative mx-auto max-w-3xl scroll-mt-24 px-4 py-16 sm:px-6 sm:py-24 sm:scroll-mt-28 lg:px-8 lg:scroll-mt-32">
+      <section id="faq" className="relative mx-auto max-w-3xl scroll-mt-24 px-[max(1rem,env(safe-area-inset-left))] py-14 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:py-24 sm:scroll-mt-28 lg:px-8 lg:scroll-mt-32">
         <SectionHeading badge="FAQ" title="Frequently Asked Questions" align="center" />
         <div className="mt-8 space-y-2 sm:mt-12 sm:space-y-3">
           {faqs.map((faq, i) => (
@@ -361,7 +440,7 @@ export default function Home() {
       </section>
 
       {/* ─── CONTACT ─── */}
-      <section id="contact" className="relative mx-auto max-w-7xl scroll-mt-24 px-4 pb-24 pt-16 sm:px-6 sm:pb-32 sm:pt-24 sm:scroll-mt-28 lg:px-8 lg:scroll-mt-32">
+      <section id="contact" className="relative mx-auto max-w-7xl scroll-mt-24 px-[max(1rem,env(safe-area-inset-left))] pb-[max(6rem,env(safe-area-inset-bottom))] pt-14 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-32 sm:pt-24 sm:scroll-mt-28 lg:px-8 lg:scroll-mt-32">
         <SectionHeading
           badge="Contact"
           title="Visit or Get in Touch"
@@ -375,20 +454,20 @@ export default function Home() {
             viewport={{ once: true }}
             className="rounded-2xl border border-white/10 bg-black/40 p-6 backdrop-blur-sm sm:p-8"
           >
-            <p className="text-lg font-semibold text-white sm:text-xl">
+            <p className="text-base font-semibold leading-snug text-white sm:text-lg md:text-xl">
               One tap to <span className="orange-glow-text">call</span>, <span className="text-cyan-400">email</span>, or <span className="text-orange-400">get directions</span>.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
               <a
                 href="tel:+17015550142"
-                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2.5 text-sm font-semibold text-cyan-300 transition-all hover:border-cyan-400/50 hover:bg-cyan-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2.5 text-sm font-semibold text-cyan-300 transition-all hover:border-cyan-400/50 hover:bg-cyan-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:min-h-[44px] sm:flex-none sm:justify-start"
               >
                 <PhoneCall className="h-4 w-4" />
                 Call
               </a>
               <a
                 href="mailto:service@mannysgarage.com"
-                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white/90 transition-all hover:border-white/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white/90 transition-all hover:border-white/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:min-h-[44px] sm:flex-none sm:justify-start"
               >
                 Email
               </a>
@@ -396,7 +475,7 @@ export default function Home() {
                 href="https://maps.apple.com/maps?q=1335+Main+Ave+S+Fargo+ND+58103"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-orange-500/30 bg-orange-500/10 px-4 py-2.5 text-sm font-semibold text-orange-300 transition-all hover:border-orange-400/50 hover:bg-orange-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl border border-orange-500/30 bg-orange-500/10 px-4 py-2.5 text-sm font-semibold text-orange-300 transition-all hover:border-orange-400/50 hover:bg-orange-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:min-h-[44px] sm:w-auto sm:justify-start"
               >
                 <MapPin className="h-4 w-4" />
                 Directions

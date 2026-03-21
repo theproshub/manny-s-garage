@@ -46,9 +46,9 @@ export function AnimatedCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[var(--surface-elevated)]/80 shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1.5 hover:border-orange-500/30 hover:shadow-xl hover:shadow-orange-950/15 cursor-pointer"
+      className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[var(--surface-elevated)]/80 shadow-md shadow-black/15 transition-all duration-300 hover:-translate-y-1 hover:border-orange-500/30 hover:shadow-lg hover:shadow-orange-950/10 cursor-pointer"
     >
-      <div className="relative h-40 w-full overflow-hidden sm:h-48 lg:h-44">
+      <div className="relative h-36 w-full overflow-hidden sm:h-42 lg:h-40">
         <AnimatePresence mode="wait" initial={false}>
           {currentSlide && (
             <motion.div
@@ -64,21 +64,21 @@ export function AnimatedCard({
         </AnimatePresence>
         <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent" />
         {tag && (
-          <div className="absolute left-3 top-3 sm:left-4 sm:top-4">
-            <span className="rounded-md bg-black/50 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-orange-300 ring-1 ring-white/10 backdrop-blur-sm sm:text-xs">
+          <div className="absolute left-3 top-3 sm:left-3.5 sm:top-3.5">
+            <span className="rounded-md bg-black/50 px-1.5 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wider text-orange-300 ring-1 ring-white/10 backdrop-blur-sm sm:text-[10px]">
               {tag}
             </span>
           </div>
         )}
-        <div className="absolute bottom-3 left-3 flex h-9 w-9 items-center justify-center rounded-xl bg-orange-500/25 ring-1 ring-orange-400/40 text-orange-300 backdrop-blur-sm transition-all duration-300 group-hover:bg-orange-500/35 group-hover:text-white sm:bottom-4 sm:left-4 sm:h-11 sm:w-11 [&>svg]:h-4 [&>svg]:w-4 sm:[&>svg]:h-5 sm:[&>svg]:w-5">
+        <div className="absolute bottom-3 left-3 flex h-8 w-8 items-center justify-center rounded-lg bg-orange-500/25 ring-1 ring-orange-400/40 text-orange-300 backdrop-blur-sm transition-all duration-300 group-hover:bg-orange-500/35 group-hover:text-white sm:h-9 sm:w-9 [&>svg]:h-3.5 [&>svg]:w-3.5 sm:[&>svg]:h-4 sm:[&>svg]:w-4">
           {icon}
         </div>
       </div>
-      <div className="relative z-10 border-t border-white/[0.06] p-4 sm:p-5">
-        <h3 className="text-base font-bold text-white transition-colors duration-300 group-hover:text-orange-300 sm:text-lg">
+      <div className="relative z-10 border-t border-white/[0.06] p-3.5 sm:p-4">
+        <h3 className="text-[0.95rem] font-semibold text-white transition-colors duration-300 group-hover:text-orange-300 sm:text-base">
           {title}
         </h3>
-        <p className="mt-2 text-xs leading-[1.4] text-zinc-400 sm:mt-2.5 sm:text-sm sm:leading-relaxed min-h-[2.8em] sm:min-h-[3.1em] line-clamp-2">
+        <p className="mt-1.5 text-[11px] leading-[1.4] text-zinc-400 sm:mt-2 sm:text-xs sm:leading-relaxed min-h-[2.6em] sm:min-h-[2.8em] line-clamp-2">
           {description}
         </p>
       </div>

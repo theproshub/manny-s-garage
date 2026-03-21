@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Calculator, ChevronDown, MapPin } from "lucide-react";
+import { ArrowRight, ChevronDown, MapPin, Tag } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { BackToHome } from "@/components/back-to-home";
 
@@ -24,20 +24,6 @@ const HANDYMAN_HERO_IMAGES = [
   "/hero/hero-handyman.png",
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
-
-const CAMERA_PRICE = 120;
-const FURNITURE_PRICE_PER_ITEM = 50;
-
-/** Fixed TV sizes and their price ($1.75 per inch) */
-const TV_OPTIONS = [
-  { value: 0, label: "None", price: 0 },
-  { value: 32, label: '32"', price: 56 },
-  { value: 43, label: '43"', price: 75.25 },
-  { value: 55, label: '55"', price: 96.25 },
-  { value: 65, label: '65"', price: 113.75 },
-  { value: 75, label: '75"', price: 131.25 },
-  { value: 85, label: '85"', price: 148.75 },
-] as const;
 
 const SERVICES_LIST = [
   { title: "Furniture Assembly", price: "$50 per item", href: "/handyman/services#furniture" },
@@ -62,9 +48,6 @@ const handymanHeroSlideLabels = [
 ];
 
 export default function HandymanPage() {
-  const [tvOption, setTvOption] = useState(0); // inch value; 0 = None
-  const [cameras, setCameras] = useState(0);
-  const [furnitureItems, setFurnitureItems] = useState(0);
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
   const [carouselPaused, setCarouselPaused] = useState(false);
 
@@ -75,20 +58,6 @@ export default function HandymanPage() {
     }, HERO_SLIDE_DURATION_MS);
     return () => clearInterval(t);
   }, [carouselPaused]);
-
-  const estimate = useMemo(() => {
-    const tvEntry = TV_OPTIONS.find((o) => o.value === tvOption);
-    const tvTotal = tvEntry?.price ?? 0;
-    const cameraTotal = cameras * CAMERA_PRICE;
-    const furnitureTotal = furnitureItems * FURNITURE_PRICE_PER_ITEM;
-    const total = tvTotal + cameraTotal + furnitureTotal;
-    return {
-      tvTotal,
-      cameraTotal,
-      furnitureTotal,
-      total,
-    };
-  }, [tvOption, cameras, furnitureItems]);
 
   return (
     <main className="relative min-h-screen overflow-x-hidden">
@@ -146,7 +115,7 @@ export default function HandymanPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-orange-500/50 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Get a fast estimate with the quote calculator, then book your install. Transparent pricing, clean work, and quick scheduling.
+              Fixed prices for TV mounting, cameras, and furniture-pick yours on the pricing page and book in one tap.
             </motion.p>
 
             <motion.div
@@ -156,15 +125,15 @@ export default function HandymanPage() {
               className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
             >
               <Link
-                href="#calculator"
-                className="btn-primary inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+                href="/quote?for=handyman"
+ className="btn-primary inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                <Calculator className="h-4 w-4 shrink-0" aria-hidden />
-                Get quote
+                <Tag className="h-4 w-4 shrink-0" aria-hidden />
+                See pricing
               </Link>
               <Link
                 href="/book?service=handyman"
-                className="btn-outline min-h-[44px] inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-6 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+ className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Book directly
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
@@ -237,14 +206,14 @@ export default function HandymanPage() {
           transition={{ delay: 0.8, duration: 0.5 }}
           className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 sm:bottom-6 lg:bottom-8"
         >
-          <a
-            href="#calculator"
+          <Link
+            href="/quote?for=handyman"
             className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
-            aria-label="Scroll to quote calculator"
+            aria-label="Get a fixed price quote"
           >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">Get quote</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest">See pricing</span>
             <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
-          </a>
+          </Link>
         </motion.div>
       </section>
 
@@ -253,7 +222,7 @@ export default function HandymanPage() {
         <SectionHeading
           badge="Services & Pricing"
           title="What We Offer"
-          description="Fixed prices below. Use the calculator to get your estimate."
+          description="Fixed prices below. Tap a package on the pricing page to book with that total."
           align="center"
         />
         <motion.div
@@ -278,120 +247,36 @@ export default function HandymanPage() {
         </motion.div>
       </section>
 
-      {/* Quote Calculator — fixed options only */}
+      {/* Fixed pricing — one page, tap a price */}
       <section id="calculator" className="relative border-y border-white/[0.06] bg-black/30 py-16 sm:py-20 backdrop-blur-sm">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[1fr_360px] lg:gap-14">
-            <div>
-              <SectionHeading
-                badge="Quote Calculator"
-                title="Get Your Price Estimate"
-                description="Select your options below. Prices are fixed."
-              />
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="mt-8 space-y-5 sm:space-y-6"
-              >
-                <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 sm:p-5">
-                  <label htmlFor="tv-select" className="block text-sm font-medium text-zinc-300 mb-2">
-                    TV Mounting (size)
-                  </label>
-                  <select
-                    id="tv-select"
-                    value={tvOption}
-                    onChange={(e) => setTvOption(Number(e.target.value))}
-                    className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-colors focus:border-orange-400/50 min-h-[44px]"
-                  >
-                    {TV_OPTIONS.map((opt) => (
-                      <option key={opt.value} value={opt.value} className="bg-[#0c1118] text-white">
-                        {opt.label} {opt.price > 0 ? `— $${opt.price.toFixed(2)}` : ""}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 sm:p-5">
-                  <label htmlFor="cameras-select" className="block text-sm font-medium text-zinc-300 mb-2">
-                    Security Cameras ($120 each)
-                  </label>
-                  <select
-                    id="cameras-select"
-                    value={cameras}
-                    onChange={(e) => setCameras(Number(e.target.value))}
-                    className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-colors focus:border-orange-400/50 min-h-[44px]"
-                  >
-                    {[0, 1, 2, 3, 4, 5, 6].map((n) => (
-                      <option key={n} value={n} className="bg-[#0c1118] text-white">
-                        {n} {n === 1 ? "camera" : "cameras"} {n > 0 ? `— $${n * CAMERA_PRICE}` : ""}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 sm:p-5">
-                  <label htmlFor="furniture-select" className="block text-sm font-medium text-zinc-300 mb-2">
-                    Furniture Assembly ($50 per item)
-                  </label>
-                  <select
-                    id="furniture-select"
-                    value={furnitureItems}
-                    onChange={(e) => setFurnitureItems(Number(e.target.value))}
-                    className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white transition-colors focus:border-orange-400/50 min-h-[44px]"
-                  >
-                    {[0, 1, 2, 3, 4, 5, 6].map((n) => (
-                      <option key={n} value={n} className="bg-[#0c1118] text-white">
-                        {n} {n === 1 ? "item" : "items"} {n > 0 ? `— $${n * FURNITURE_PRICE_PER_ITEM}` : ""}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </motion.div>
-            </div>
-
-            <div className="lg:pt-4">
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="panel-strong sticky top-28 rounded-2xl border border-white/[0.08] p-6 sm:p-8 shadow-xl shadow-black/30"
-              >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-orange-500/20 text-orange-400 ring-1 ring-orange-400/30">
-                  <Calculator className="h-6 w-6" />
-                </div>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Estimated Total</p>
-                <p className="mt-2 text-3xl font-black text-white sm:text-4xl">${estimate.total.toFixed(2)}</p>
-                <div className="mt-5 space-y-1.5 border-t border-white/10 pt-4 text-sm text-zinc-400">
-                  {estimate.tvTotal > 0 && (
-                    <p className="flex justify-between"><span>TV Mounting</span> <span>${estimate.tvTotal.toFixed(2)}</span></p>
-                  )}
-                  {estimate.cameraTotal > 0 && (
-                    <p className="flex justify-between"><span>Cameras</span> <span>${estimate.cameraTotal}</span></p>
-                  )}
-                  {estimate.furnitureTotal > 0 && (
-                    <p className="flex justify-between"><span>Furniture</span> <span>${estimate.furnitureTotal}</span></p>
-                  )}
-                </div>
-                <p className="mt-4 text-xs text-zinc-500">
-                  Final quote may vary. Parts not included unless specified.
-                </p>
-                <div className="mt-6 flex flex-col gap-3">
-                  <Link
-                    href={`/book?service=handyman&estimate=${encodeURIComponent(estimate.total.toFixed(2))}`}
-                    className="btn-primary group w-full min-h-[44px] justify-center inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
-                  >
-                    Book Service
-                    <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
-                  </Link>
-                  <Link
-                    href="/"
-                    className="btn-outline w-full min-h-[44px] justify-center inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-5 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
-                  >
-                    Back to Home
-                  </Link>
-                </div>
-              </motion.div>
-            </div>
-          </div>
+        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+          <SectionHeading
+            badge="Fixed prices"
+            title="Pick your package—then book"
+            description="No dropdowns or math. Choose the price that matches your job; booking opens with that total ready to go."
+            align="center"
+          />
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+          >
+            <Link
+              href="/quote?for=handyman"
+              className="btn-primary group inline-flex w-full max-w-xs items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto"
+            >
+              <Tag className="h-4 w-4 shrink-0" aria-hidden />
+              Open pricing page
+              <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
+            </Link>
+            <Link
+              href="/book?service=handyman"
+              className="btn-outline inline-flex w-full max-w-xs items-center justify-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto"
+            >
+              Book without a set price
+            </Link>
+          </motion.div>
         </div>
       </section>
     </main>

@@ -12,6 +12,9 @@ const AUTO_SERVICES_HERO_IMAGES = [
   "/hero/hero-auto-slide-services.png",
   "/images/AUTO/brice-cooper-a3W_62jM0kg-unsplash.jpg",
   "/images/AUTO/michael-lock-xEPZKFzGrVw-unsplash.jpg",
+  "/images/AUTO/WhatsApp Image 2026-03-18 at 11.29.17.jpeg",
+  "/images/AUTO/WhatsApp Image 2026-03-18 at 11.29.17 (1).jpeg",
+  "/images/AUTO/WhatsApp Image 2026-03-18 at 10.55.57 (3).jpeg",
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 const autoServicesHeroLabels = [
@@ -19,6 +22,9 @@ const autoServicesHeroLabels = [
   "Services overview",
   "Auto diagnostics",
   "Auto repair",
+  "Audio and trunk setup",
+  "Engine detail close-up",
+  "Oil service",
 ];
 
 const diagnosticsIncludes = [
@@ -162,17 +168,23 @@ export default function AutoServicesPage() {
               className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
             >
               <Link
-                href="/book?service=automotive"
-                className="btn-primary inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+                href="/quote?for=auto"
+ className="btn-primary inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book automotive service
+                Fixed auto prices
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </Link>
               <Link
-                href="/auto"
-                className="btn-outline min-h-[44px] inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-6 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+                href="/book?service=automotive"
+ className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Not sure? Start intake
+                Book (any job)
+              </Link>
+              <Link
+                href="/auto"
+ className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+              >
+                Auto overview
               </Link>
             </motion.div>
           </div>
@@ -293,14 +305,14 @@ export default function AutoServicesPage() {
                 <div className="mt-5 flex flex-col gap-2">
                   <Link
                     href={`/book?service=automotive&notes=${encodeURIComponent(section.title)}`}
-                    className="btn-primary group min-h-[44px] inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+ className="btn-primary group inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                   >
-                    Book / Get quote
+                    See pricing / Book
                     <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
                   </Link>
                   <Link
                     href="/auto"
-                    className="btn-outline min-h-[44px] inline-flex items-center justify-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+ className="btn-outline inline-flex items-center justify-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                   >
                     Start intake
                   </Link>
@@ -321,14 +333,14 @@ export default function AutoServicesPage() {
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link
               href="/book?service=automotive"
-              className="btn-primary group min-h-[44px] inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+ className="btn-primary group inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               Book Automotive Service
               <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
             </Link>
             <Link
               href="/auto"
-              className="btn-outline min-h-[44px] inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-5 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+ className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               Back to Automotive
             </Link>

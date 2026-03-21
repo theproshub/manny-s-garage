@@ -1,33 +1,14 @@
 "use client";
 
-import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Calculator, MapPin } from "lucide-react";
+import { ArrowRight, MapPin, Tag } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
 import { siteImages } from "@/lib/site-images";
-
-const HOURLY_RATE = 20;
-const MAX_HOURS = 8;
-const MECHANIC_RATE_PER_HOUR = 40;
+import { DIY_HOURLY, DIY_MECHANIC_HOURLY, DIY_MAX_HOURS } from "@/lib/fixed-quote-options";
 
 export default function DIYGaragePage() {
-  const [hours, setHours] = useState(2);
-  const [mechanicHours, setMechanicHours] = useState(0);
-
-  const estimate = useMemo(() => {
-    const validHours = Math.max(1, Math.min(MAX_HOURS, hours));
-    const garageTotal = validHours * HOURLY_RATE;
-    const mechanicTotal = mechanicHours * MECHANIC_RATE_PER_HOUR;
-    return {
-      garageTotal,
-      mechanicTotal,
-      total: garageTotal + mechanicTotal,
-      validHours,
-    };
-  }, [hours, mechanicHours]);
-
   return (
     <main className="relative min-h-screen overflow-x-hidden">
       <div className="noise-overlay" aria-hidden />
@@ -68,8 +49,8 @@ export default function DIYGaragePage() {
               >
                 <span className="h-px w-8 shrink-0 bg-gradient-to-r from-orange-400/60 to-transparent sm:w-10" aria-hidden />
                 <span className="text-base font-medium tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
-                  <span className="text-orange-300">$20/hr</span>
-                  <span className="text-white/90">—lift, tools, and bay. Optional mechanic add-on.</span>
+                  <span className="text-orange-300">{`$${DIY_HOURLY}/hr`}</span>
+                  <span className="text-white/90">{`—lift, tools, and bay. Optional mechanic $${DIY_MECHANIC_HOURLY}/hr.`}</span>
                 </span>
               </motion.span>
             </motion.h1>
@@ -80,7 +61,7 @@ export default function DIYGaragePage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-orange-500/50 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Rent a fully equipped bay by the hour. Lift, scanner, oil/tire tools, compressor, workbench included. Optional mechanic help: $40/hr.
+              Rent a fully equipped bay by the hour (up to {DIY_MAX_HOURS} hours per session). Choose a fixed bundle on the pricing page or book open-ended.
             </motion.p>
 
             <motion.div
@@ -89,16 +70,16 @@ export default function DIYGaragePage() {
               transition={{ duration: 0.5, delay: 0.18 }}
               className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
             >
-              <a
-                href="#quote"
-                className="btn-primary inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+              <Link
+                href="/quote?for=diy"
+ className="btn-primary inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                <Calculator className="h-4 w-4 shrink-0" aria-hidden />
-                Get quote
-              </a>
+                <Tag className="h-4 w-4 shrink-0" aria-hidden />
+                See pricing
+              </Link>
               <Link
                 href="/book?service=diy"
-                className="btn-outline min-h-[44px] inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-6 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+ className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Book directly
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
@@ -126,82 +107,22 @@ export default function DIYGaragePage() {
             </div>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 sm:bottom-6 lg:bottom-8"
-        >
-          <a
-            href="#quote"
-            className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
-            aria-label="Scroll to quote"
-          >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">Get quote</span>
-          </a>
-        </motion.div>
       </section>
 
-      {/* Pricing + Quote — single section */}
       <section id="quote" className="relative scroll-mt-28 border-t border-white/[0.06] bg-black/30 py-14 sm:py-20">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-xl font-bold text-white sm:text-2xl">
-            Pricing &amp; estimate
-          </h2>
-          <p className="mt-2 text-center text-sm text-zinc-500">
-            $20/hr bay · up to 8 hours. Optional mechanic: $40/hr.
+        <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="text-xl font-bold text-white sm:text-2xl">Fixed bay packages</h2>
+          <p className="mt-2 text-sm text-zinc-500">
+            {`$${DIY_HOURLY}/hr bay · $${DIY_MECHANIC_HOURLY}/hr mechanic · tap a total, then complete booking.`}
           </p>
-
-          <div className="mt-8 rounded-2xl border border-white/[0.08] bg-black/40 p-6 shadow-xl shadow-black/20 sm:p-8">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div>
-                <label htmlFor="hours" className="block text-sm font-medium text-zinc-300 mb-1.5">
-                  Hours (1–{MAX_HOURS})
-                </label>
-                <input
-                  id="hours"
-                  type="number"
-                  min={1}
-                  max={MAX_HOURS}
-                  value={hours}
-                  onChange={(e) =>
-                    setHours(Math.max(1, Math.min(MAX_HOURS, parseInt(e.target.value, 10) || 1)))
-                  }
-                  className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white min-h-[44px]"
-                />
-              </div>
-              <div>
-                <label htmlFor="mechanic" className="block text-sm font-medium text-zinc-300 mb-1.5">
-                  Mechanic add-on (hrs)
-                </label>
-                <input
-                  id="mechanic"
-                  type="number"
-                  min={0}
-                  max={MAX_HOURS}
-                  value={mechanicHours}
-                  onChange={(e) =>
-                    setMechanicHours(Math.max(0, Math.min(MAX_HOURS, parseInt(e.target.value, 10) || 0)))
-                  }
-                  className="focus-ring w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white min-h-[44px]"
-                />
-              </div>
-            </div>
-            <div className="mt-6 flex items-center justify-between rounded-xl border border-orange-400/30 bg-orange-500/10 px-5 py-4">
-              <span className="text-sm font-medium text-orange-200">Estimated total</span>
-              <span className="text-2xl font-bold text-white">${estimate.total}</span>
-            </div>
-            <Link
-              href={`/book?service=diy&estimate=${encodeURIComponent(estimate.total.toString())}&hours=${estimate.validHours}&mechanicHours=${mechanicHours}`}
-              className="btn-primary group mt-6 w-full min-h-[44px] justify-center inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
-            >
-              Book garage time
-              <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
-            </Link>
-          </div>
-
-          <p className="mt-6 text-center text-xs text-zinc-500">
+          <Link
+            href="/quote?for=diy"
+            className="btn-primary group mt-8 inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+          >
+            Choose your price
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+          </Link>
+          <p className="mt-6 text-xs text-zinc-500">
             <Link href="/diy-garage/services" className="text-orange-400 hover:underline">
               Full equipment list &amp; details
             </Link>

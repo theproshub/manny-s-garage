@@ -26,6 +26,9 @@ const AUTO_HERO_IMAGES = [
   "/images/AUTO/compagnons-TnEe6BdBC2M-unsplash.jpg",
   "/images/AUTO/michael-lock-xEPZKFzGrVw-unsplash.jpg",
   "/images/AUTO/toby-hall-ii4XEyJEm_I-unsplash.jpg",
+  "/images/AUTO/WhatsApp Image 2026-03-18 at 11.29.17.jpeg",
+  "/images/AUTO/WhatsApp Image 2026-03-18 at 11.29.17 (1).jpeg",
+  "/images/AUTO/WhatsApp Image 2026-03-18 at 10.55.57 (3).jpeg",
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 
@@ -37,6 +40,9 @@ const autoHeroSlideLabels = [
   "Professional service",
   "Trusted mechanics",
   "Fargo auto service",
+  "Audio and trunk setup",
+  "Engine detail close-up",
+  "Oil service",
 ];
 
 /** Simple list: 4 main categories so users can quickly choose and book */
@@ -48,13 +54,13 @@ const autoServices = [
 ];
 
 const testimonials = [
-  { text: "They found the electrical issue my dealer couldn't. Fast, honest, and the booking system is insanely easy.", author: "Mark R.", vehicle: "2019 F-150" },
-  { text: "Best shop in Fargo. The diagnostic scan results were sent right to my phone before they did any work.", author: "Sarah T.", vehicle: "2021 Civic" },
+  { text: "Manny found the electrical issue my dealer missed. He explained it straight, fixed it quick, and never tried to add extra stuff.", author: "Mark R.", vehicle: "2019 F-150" },
+  { text: "Manny is well known in Fargo, especially in the Liberian community. He sent diagnostics first, got my go-ahead, and the price stayed just how he quoted it.", author: "Sarah T.", vehicle: "2021 Civic" },
 ];
 
 const autoFaqs = [
-  { q: "Do I need an appointment for automotive service?", a: "Yes. Book online or chat with Manny to schedule. We offer same-day and next-day slots when available." },
-  { q: "Do you work on my make and model?", a: "We work on most cars and light trucks. If you're unsure, use the diagnostic chat or call us—we'll confirm before you book." },
+  { q: "Do I need an appointment for automotive service?", a: "Yes. Book online or call us and we will lock in a time that works for you. Same-day and next-day slots are often available." },
+  { q: "Do you work on my make and model?", a: "We service most cars and light trucks. If you are not sure, give us a quick call and we will confirm before you book." },
 ];
 
 
@@ -139,16 +145,22 @@ export default function AutoPage() {
               className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
             >
               <Link
-                href="/book?service=automotive"
-                className="btn-primary inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+                href="/quote?for=auto"
+                className="btn-primary inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Get quote / Book
+                Fixed prices
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
+              </Link>
+              <Link
+                href="/book?service=automotive"
+                className="btn-outline inline-flex items-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+              >
+                Book any job
               </Link>
               <button
                 type="button"
                 onClick={() => setAssistantOpen(true)}
-                className="btn-outline min-h-[44px] inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-6 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+                className="btn-outline inline-flex items-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Start diagnostic intake
               </button>
@@ -281,13 +293,21 @@ export default function AutoPage() {
                 Want details? Here are the four main categories:
                 <span className="text-zinc-300"> </span>
               </p>
-              <Link
-                href="/book?service=automotive"
-                className="btn-primary group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-              >
-                Get quote / Book
-                <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
-              </Link>
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                <Link
+                  href="/quote?for=auto"
+                  className="btn-primary group inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                >
+                  Fixed prices
+                  <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                </Link>
+                <Link
+                  href="/book?service=automotive"
+                  className="btn-outline inline-flex items-center justify-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                >
+                  Book any job
+                </Link>
+              </div>
             </div>
 
             <div className="mt-4 flex flex-wrap gap-2">
@@ -407,14 +427,14 @@ export default function AutoPage() {
               <button
                 type="button"
                 onClick={() => setAssistantOpen(true)}
-                className="btn-primary min-h-[44px] inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+                className="btn-primary inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Start Diagnostic Intake
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </button>
               <Link
                 href="/book?service=automotive"
-                className="btn-outline min-h-[44px] inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-5 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+                className="btn-outline inline-flex items-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Book directly
               </Link>

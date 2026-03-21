@@ -41,7 +41,7 @@ export default function AboutPage() {
               transition={{ duration: 0.5, delay: 0.06 }}
               className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
             >
-              <span className="metal-text block">A New Standard</span>
+              <span className="metal-text block">Built Around People</span>
               <motion.span
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -53,8 +53,8 @@ export default function AboutPage() {
                   aria-hidden
                 />
                 <span className="text-base font-medium tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
-                  <span className="text-orange-300">Transparency</span>
-                  <span className="text-white/90">—expertise, documentation, and clear pricing.</span>
+                  <span className="text-orange-300">Clear communication</span>
+                  <span className="text-white/90">—real answers, quality work, and fair pricing.</span>
                 </span>
               </motion.span>
             </motion.h1>
@@ -65,7 +65,7 @@ export default function AboutPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-orange-500/50 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Service shouldn&apos;t be a black box. We built Manny&apos;s Garage to make every job understandable, trackable, and fast to schedule.
+              Car and home service should feel simple and honest. We built Manny&apos;s Garage so you always know what&apos;s happening, what it costs, and what comes next.
             </motion.p>
 
             <motion.div
@@ -76,14 +76,14 @@ export default function AboutPage() {
             >
               <Link
                 href="/book"
-                className="btn-primary inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg shadow-orange-950/25 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+ className="btn-primary inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Schedule appointment
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </Link>
               <a
                 href="#facility"
-                className="btn-outline min-h-[44px] inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] px-6 py-3 text-sm font-semibold text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
+ className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Our story
               </a>
@@ -141,19 +141,19 @@ export default function AboutPage() {
           >
              <SectionHeading badge="Our Story" title="Built on Trust" />
              <p className="text-zinc-400 text-base sm:text-lg leading-relaxed">
-               For years, the service industry—whether it&apos;s auto repair or home I.T—has relied on information asymmetry. You break it, they fix it, and you get a bill with no context. We designed Manny&apos;s Garage to be different.
+               Too many shops leave people in the dark. You drop something off, wait, and hope the final bill makes sense. We started Manny&apos;s Garage to do it differently.
              </p>
              <p className="text-zinc-400 text-base sm:text-lg leading-relaxed">
-               Every service we perform, from a localized network drop to a full engine diagnostic, is documented, explained, and transparently priced. We leverage an AI intake system to speed up routing so our elite technicians spend their time working, not answering phones.
+               Every service we do, from network work to full engine diagnostics, is explained in plain language with clear pricing. You can book quickly online, then talk to a real person who makes sure the job is done right.
              </p>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
              {[
-               { title: "Elite Talent", text: "Vetted professionals who master their domain before they touch your property." },
-               { title: "Total Transparency", text: "Detailed reports and guaranteed quotes before work begins." },
-               { title: "Next-Gen Tech", text: "Booking engine to in-bay diagnostics—we invest in speed and accuracy." },
-               { title: "Direct Contact", text: "Automated updates and an open line to the owners." }
+               { title: "Skilled Team", text: "Experienced pros who treat your car and home with care and respect." },
+               { title: "Clear Pricing", text: "Straightforward quotes and updates before work begins." },
+               { title: "Dependable Process", text: "Fast booking, organized service, and quality work you can count on." },
+               { title: "Real Communication", text: "Direct contact with our team when you need answers." }
              ].map((v, i) => (
                <motion.div
                  key={v.title}
@@ -197,10 +197,13 @@ export default function AboutPage() {
 
       {/* ─── CTA ─── */}
       <section className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 text-center">
-         <h2 className="text-xl font-bold text-white sm:text-2xl mb-4">Experience the difference.</h2>
-         <Link href="/book" className="btn-primary inline-flex items-center gap-2 min-h-[44px] px-5 py-3 rounded-full text-sm font-bold">
-            Schedule Appointment <ArrowRight className="h-4 w-4" />
-         </Link>
+        <h2 className="mb-4 text-xl font-bold text-white sm:text-2xl">We&apos;re ready when you are.</h2>
+        <Link
+          href="/book"
+          className="btn-primary inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+        >
+          Schedule appointment <ArrowRight className="h-4 w-4" />
+        </Link>
       </section>
 
     </main>
