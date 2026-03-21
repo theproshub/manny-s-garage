@@ -7,8 +7,10 @@ import { motion } from "framer-motion";
 import { ArrowRight, Calendar, CarFront, Check, Cpu, Hammer, MapPin, Warehouse } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
 import { setPreferredService, isBookingServiceId, type BookingServiceId } from "@/lib/booking-preference";
+import { BOOK_SCHEDULE_FRAGMENT, BOOK_SCHEDULE_HASH } from "@/lib/booking-nav";
 import {
   AUTO_FIXED_PACKAGES,
+  AUTO_PRICING_PARTS_DISCLAIMER,
   DIY_PACKAGES,
   HANDYMAN_BUNK_BED,
   HANDYMAN_CAMERA_EACH,
@@ -44,6 +46,8 @@ type QuoteOption = {
   label: string;
   amount: string;
   note: string;
+  /** Extra line under the label (e.g. automotive package details). */
+  sub?: string;
 };
 
 const defaultForm: FormState = {
@@ -69,9 +73,21 @@ function BookPageFallback() {
   );
 }
 
+function scrollToScheduleSection(
+  scheduleEl: HTMLElement | null,
+  dateInput: HTMLInputElement | null,
+) {
+  scheduleEl?.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.setTimeout(() => {
+    dateInput?.focus({ preventScroll: true });
+  }, 380);
+}
+
 function BookPageContent() {
   const searchParams = useSearchParams();
   const dateFieldRef = useRef<HTMLInputElement | null>(null);
+  const bookingScheduleRef = useRef<HTMLDivElement | null>(null);
+  const didScrollForUrlEstimateRef = useRef(false);
   const [form, setForm] = useState<FormState>(defaultForm);
   const [showBookingForm, setShowBookingForm] = useState(false);
   const [selectedQuoteId, setSelectedQuoteId] = useState<string | null>(null);
@@ -104,6 +120,23 @@ function BookPageContent() {
     setSelectedQuoteId(null);
     setForm(defaultForm);
   }, [searchParams]);
+
+  useEffect(() => {
+    if (!showBookingForm) {
+      didScrollForUrlEstimateRef.current = false;
+      return;
+    }
+    const hasEstimate = Boolean(searchParams.get("estimate")?.trim());
+    const hasScheduleHash =
+      typeof window !== "undefined" && window.location.hash === BOOK_SCHEDULE_HASH;
+    if (!hasEstimate && !hasScheduleHash) return;
+    if (didScrollForUrlEstimateRef.current) return;
+    didScrollForUrlEstimateRef.current = true;
+    const t = window.setTimeout(() => {
+      scrollToScheduleSection(bookingScheduleRef.current, dateFieldRef.current);
+    }, 200);
+    return () => clearTimeout(t);
+  }, [showBookingForm, searchParams]);
 
   const chooseService = (id: BookingServiceId) => {
     setPreferredService(id);
@@ -138,7 +171,8 @@ function BookPageContent() {
         id: `auto-${pkg.id}`,
         label: pkg.label,
         amount: pkg.price.toString(),
-        note: `Auto: ${pkg.label}`,
+        sub: pkg.sub,
+        note: `Auto: ${pkg.label} · ${pkg.sub}`,
       }));
     }
     if (form.serviceType === "diy") {
@@ -192,8 +226,7 @@ function BookPageContent() {
       details: form.details.trim() ? form.details : opt.note,
     });
     requestAnimationFrame(() => {
-      dateFieldRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-      dateFieldRef.current?.focus();
+      scrollToScheduleSection(bookingScheduleRef.current, dateFieldRef.current);
     });
   };
 
@@ -403,6 +436,9 @@ function BookPageContent() {
                 <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                   Quote options
                 </label>
+                {form.serviceType === "automotive" ? (
+                  <p className="mb-2 text-xs text-zinc-500">{AUTO_PRICING_PARTS_DISCLAIMER}</p>
+                ) : null}
                 <div className="grid gap-2 sm:grid-cols-2">
                   {quoteOptions.map((opt) => {
                     const on = selectedQuoteId === opt.id;
@@ -418,6 +454,9 @@ function BookPageContent() {
                         }`}
                       >
                         <span className="block text-sm font-medium text-zinc-200">{opt.label}</span>
+                        {opt.sub ? (
+                          <span className="mt-0.5 block text-[11px] leading-snug text-zinc-500">{opt.sub}</span>
+                        ) : null}
                         <span className="block text-sm font-semibold text-orange-400">
                           {opt.amount === "0" ? "Free" : `$${opt.amount}`}
                         </span>
@@ -426,83 +465,91 @@ function BookPageContent() {
                   })}
                 </div>
                 <p className="mt-1 text-xs text-zinc-600">
-                  Picking an option pre-fills estimate and details. You can still edit both.
+                  Picking an option pre-fills estimate and details—scrolls to schedule below. You can still edit both.
                 </p>
               </div>
             ) : null}
 
-            <div>
-              <label htmlFor="date" className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">
-                Preferred day
-              </label>
-              <input
-                id="date"
-                ref={dateFieldRef}
-                type="date"
-                value={form.date}
-                onChange={(e) => updateForm({ date: e.target.value })}
-                min={new Date().toISOString().slice(0, 10)}
-                className="focus-ring min-h-[48px] w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white"
-              />
-            </div>
+            <div
+              ref={bookingScheduleRef}
+              id={BOOK_SCHEDULE_FRAGMENT}
+              className="scroll-mt-28 space-y-5 border-t border-white/[0.08] pt-5"
+            >
+              <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">Schedule &amp; contact</p>
 
-            <div>
-              <label htmlFor="time" className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">
-                Time <span className="font-normal normal-case text-zinc-600">(optional)</span>
-              </label>
-              <input
-                id="time"
-                type="time"
-                value={form.time}
-                onChange={(e) => updateForm({ time: e.target.value })}
-                className="focus-ring min-h-[48px] w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white"
-              />
-              <p className="mt-1 text-xs text-zinc-600">Leave blank and we&apos;ll use morning as a starting point.</p>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label htmlFor="name" className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">
-                  Name
+                <label htmlFor="date" className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+                  Preferred day
                 </label>
                 <input
-                  id="name"
-                  type="text"
-                  value={form.name}
-                  onChange={(e) => updateForm({ name: e.target.value })}
-                  placeholder="Your name"
-                  autoComplete="name"
-                  className="focus-ring min-h-[48px] w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white placeholder:text-zinc-600"
+                  id="date"
+                  ref={dateFieldRef}
+                  type="date"
+                  value={form.date}
+                  onChange={(e) => updateForm({ date: e.target.value })}
+                  min={new Date().toISOString().slice(0, 10)}
+                  className="focus-ring min-h-[48px] w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white"
                 />
               </div>
+
               <div>
-                <label htmlFor="phone" className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">
-                  Phone
+                <label htmlFor="time" className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+                  Time <span className="font-normal normal-case text-zinc-600">(optional)</span>
                 </label>
                 <input
-                  id="phone"
-                  type="tel"
-                  value={form.phone}
-                  onChange={(e) => updateForm({ phone: e.target.value })}
-                  placeholder="(701) 555-0142"
-                  autoComplete="tel"
-                  className="focus-ring min-h-[48px] w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white placeholder:text-zinc-600"
+                  id="time"
+                  type="time"
+                  value={form.time}
+                  onChange={(e) => updateForm({ time: e.target.value })}
+                  className="focus-ring min-h-[48px] w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white"
+                />
+                <p className="mt-1 text-xs text-zinc-600">Leave blank and we&apos;ll use morning as a starting point.</p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="name" className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    value={form.name}
+                    onChange={(e) => updateForm({ name: e.target.value })}
+                    placeholder="Your name"
+                    autoComplete="name"
+                    className="focus-ring min-h-[48px] w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white placeholder:text-zinc-600"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+                    Phone
+                  </label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    value={form.phone}
+                    onChange={(e) => updateForm({ phone: e.target.value })}
+                    placeholder="(701) 555-0142"
+                    autoComplete="tel"
+                    className="focus-ring min-h-[48px] w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white placeholder:text-zinc-600"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="details" className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">
+                  Details <span className="font-normal normal-case text-zinc-600">(optional)</span>
+                </label>
+                <textarea
+                  id="details"
+                  value={form.details}
+                  onChange={(e) => updateForm({ details: e.target.value })}
+                  placeholder="Car & problem, TV size, project idea…"
+                  rows={3}
+                  className="focus-ring min-h-[5.5rem] w-full resize-y rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-zinc-600"
                 />
               </div>
-            </div>
-
-            <div>
-              <label htmlFor="details" className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">
-                Details <span className="font-normal normal-case text-zinc-600">(optional)</span>
-              </label>
-              <textarea
-                id="details"
-                value={form.details}
-                onChange={(e) => updateForm({ details: e.target.value })}
-                placeholder="Car & problem, TV size, project idea…"
-                rows={3}
-                className="focus-ring min-h-[5.5rem] w-full resize-y rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-zinc-600"
-              />
             </div>
           </div>
 

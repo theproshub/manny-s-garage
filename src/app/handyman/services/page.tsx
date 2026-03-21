@@ -6,6 +6,8 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Cctv, Check, ChevronDown, MapPin, Sofa, Tv } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
+import { bookUrlWithSchedule } from "@/lib/booking-nav";
+import { ServiceStandardsSection } from "@/components/service-standards-section";
 
 const FURNITURE_PRICE = 50;
 const TV_PRICE_PER_INCH = 1.5;
@@ -71,14 +73,12 @@ const cameraIncludes = [
 ];
 
 const HANDYMAN_SERVICES_HERO_IMAGES = [
-  "/images/AUTO/HANDYMAN/benjamin-lehman-EJU7A__krX0-unsplash.jpg",
   "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.jpg",
   "/images/AUTO/HANDYMAN/eagan-hsu-0hlBlVmKSyE-unsplash.jpg",
   "/hero/hero-handyman-services.png",
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 const handymanServicesHeroLabels = [
-  "Furniture Assembly",
   "TV Mounting",
   "Security Cameras",
   "Handyman services",
@@ -186,7 +186,7 @@ export default function HandymanServicesPage() {
               className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
             >
               <Link
-                href="/book?service=handyman"
+                href={bookUrlWithSchedule("/book?service=handyman")}
                 className="btn-primary inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Book handyman service
@@ -271,7 +271,7 @@ export default function HandymanServicesPage() {
             className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
             aria-label="Scroll to services"
           >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See services</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest">See Services</span>
             <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
           </a>
         </motion.div>
@@ -329,7 +329,9 @@ export default function HandymanServicesPage() {
                     return (
                       <Link
                         key={count}
-                        href={`/book?service=handyman&estimate=${price}&notes=furniture+assembly+${count}+items`}
+                        href={bookUrlWithSchedule(
+                          `/book?service=handyman&estimate=${price}&notes=furniture+assembly+${count}+items`,
+                        )}
                         className="min-h-[44px] rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                       >
                         <p className="text-sm font-bold text-white">{count} {count === 1 ? "item" : "items"}</p>
@@ -352,10 +354,10 @@ export default function HandymanServicesPage() {
               ))}
             </ul>
             <Link
-              href="/book?service=handyman&notes=furniture+assembly"
+              href={bookUrlWithSchedule("/book?service=handyman&notes=furniture+assembly")}
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              See pricing / Book
+              See Pricing / Book
               <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
             </Link>
           </div>
@@ -383,7 +385,9 @@ export default function HandymanServicesPage() {
                       return (
                         <Link
                           key={size}
-                          href={`/book?service=handyman&estimate=${price}&notes=TV+mounting+${size}in`}
+                          href={bookUrlWithSchedule(
+                          `/book?service=handyman&estimate=${price}&notes=TV+mounting+${size}in`,
+                        )}
                           className="min-h-[44px] rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                         >
                           <p className="text-sm font-bold text-white">{size}&quot;</p>
@@ -406,10 +410,10 @@ export default function HandymanServicesPage() {
                 ))}
               </ul>
               <Link
-                href="/book?service=handyman&notes=TV+mounting"
+                href={bookUrlWithSchedule("/book?service=handyman&notes=TV+mounting")}
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                See pricing / Book
+                See Pricing / Book
                 <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
               </Link>
             </div>
@@ -501,7 +505,9 @@ export default function HandymanServicesPage() {
                     return (
                       <Link
                         key={count}
-                        href={`/book?service=handyman&estimate=${price}&notes=security+camera+installation+${count}+cameras`}
+                        href={bookUrlWithSchedule(
+                          `/book?service=handyman&estimate=${price}&notes=security+camera+installation+${count}+cameras`,
+                        )}
                         className="min-h-[44px] rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                       >
                         <p className="text-sm font-bold text-white">{count} {count === 1 ? "camera" : "cameras"}</p>
@@ -524,15 +530,17 @@ export default function HandymanServicesPage() {
               ))}
             </ul>
             <Link
-              href="/book?service=handyman&notes=security+camera+installation"
+              href={bookUrlWithSchedule("/book?service=handyman&notes=security+camera+installation")}
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              See pricing / Book
+              See Pricing / Book
               <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
             </Link>
           </div>
         </div>
       </section>
+
+      <ServiceStandardsSection variant="handyman" />
 
       {/* CTA */}
       <section className="relative mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
@@ -543,7 +551,7 @@ export default function HandymanServicesPage() {
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link
-              href="/book?service=handyman"
+              href={bookUrlWithSchedule("/book?service=handyman")}
  className="btn-primary group inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               Book Handyman Service

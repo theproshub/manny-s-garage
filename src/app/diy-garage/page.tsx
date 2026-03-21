@@ -5,7 +5,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, MapPin, Tag } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
+import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { siteImages } from "@/lib/site-images";
+import { bookUrlWithSchedule } from "@/lib/booking-nav";
 import { DIY_HOURLY, DIY_MECHANIC_HOURLY, DIY_MAX_HOURS } from "@/lib/fixed-quote-options";
 
 export default function DIYGaragePage() {
@@ -75,13 +77,13 @@ export default function DIYGaragePage() {
  className="btn-primary inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 <Tag className="h-4 w-4 shrink-0" aria-hidden />
-                See pricing
+                See Pricing
               </Link>
               <Link
-                href="/book?service=diy"
+                href={bookUrlWithSchedule("/book?service=diy")}
  className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book directly
+                Book Directly
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </Link>
             </motion.div>
@@ -111,7 +113,7 @@ export default function DIYGaragePage() {
 
       <section id="quote" className="relative scroll-mt-28 border-t border-white/[0.06] bg-black/30 py-14 sm:py-20">
         <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-white sm:text-2xl">Fixed bay packages</h2>
+          <h2 className="text-xl font-bold text-white sm:text-2xl">Fixed Bay Packages</h2>
           <p className="mt-2 text-sm text-zinc-500">
             {`$${DIY_HOURLY}/hr bay · $${DIY_MECHANIC_HOURLY}/hr mechanic · tap a total, then complete booking.`}
           </p>
@@ -119,7 +121,7 @@ export default function DIYGaragePage() {
             href="/quote?for=diy"
             className="btn-primary group mt-8 inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
           >
-            Choose your price
+            Choose Your Price
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
           </Link>
           <p className="mt-6 text-xs text-zinc-500">
@@ -129,6 +131,8 @@ export default function DIYGaragePage() {
           </p>
         </div>
       </section>
+
+      <ServiceStandardsSection variant="diy" />
     </main>
   );
 }

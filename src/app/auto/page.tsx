@@ -4,19 +4,14 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ArrowRight,
-  ChevronDown,
-  Gauge,
-  ShieldCheck,
-  Wrench,
-  BatteryCharging,
-  Star,
-  MapPin,
-} from "lucide-react";
+import { ArrowRight, ChevronDown, Gauge, ShieldCheck, Wrench, BatteryCharging, MapPin } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
 import { ChatAssistant } from "@/components/chat-assistant";
 import { SectionHeading } from "@/components/section-heading";
+import { AutoFixedPricingGrid } from "@/components/auto-fixed-pricing-grid";
+import { ServiceStandardsSection } from "@/components/service-standards-section";
+import { AUTO_PRICING_PARTS_DISCLAIMER } from "@/lib/fixed-quote-options";
+import { bookUrlWithSchedule } from "@/lib/booking-nav";
 
 const AUTO_HERO_IMAGES = [
   "/hero/hero-bays.png",
@@ -33,29 +28,24 @@ const AUTO_HERO_IMAGES = [
 const HERO_SLIDE_DURATION_MS = 4500;
 
 const autoHeroSlideLabels = [
-  "Service bays",
-  "Repair & maintenance",
-  "DIY bay option",
-  "Diagnostics & repair",
-  "Professional service",
-  "Trusted mechanics",
-  "Fargo auto service",
-  "Audio and trunk setup",
-  "Engine detail close-up",
-  "Oil service",
+  "Service Bays",
+  "Repair & Maintenance",
+  "DIY Bay Option",
+  "Diagnostics & Repair",
+  "Professional Service",
+  "Trusted Mechanics",
+  "Fargo Auto Service",
+  "Audio and Trunk Setup",
+  "Engine Detail Close-Up",
+  "Oil Service",
 ];
 
 /** Simple list: 4 main categories so users can quickly choose and book */
 const autoServices = [
-  { title: "Oil & maintenance", icon: Wrench, short: "Oil changes, filters, tune-ups." },
-  { title: "Brakes & suspension", icon: ShieldCheck, short: "Pads, rotors, fluid, safe stopping." },
-  { title: "Check engine & diagnostics", icon: Gauge, short: "Fault codes and clear answers." },
-  { title: "Battery & charging", icon: BatteryCharging, short: "No-start, battery test, alternator." },
-];
-
-const testimonials = [
-  { text: "Manny found the electrical issue my dealer missed. He explained it straight, fixed it quick, and never tried to add extra stuff.", author: "Mark R.", vehicle: "2019 F-150" },
-  { text: "Manny is well known in Fargo, especially in the Liberian community. He sent diagnostics first, got my go-ahead, and the price stayed just how he quoted it.", author: "Sarah T.", vehicle: "2021 Civic" },
+  { title: "Oil & Maintenance", icon: Wrench, short: "Oil Changes, Filters, Tune-Ups." },
+  { title: "Brakes & Suspension", icon: ShieldCheck, short: "Pads, Rotors, Fluid, Safe Stopping." },
+  { title: "Check Engine & Diagnostics", icon: Gauge, short: "Fault Codes and Clear Answers." },
+  { title: "Battery & Charging", icon: BatteryCharging, short: "No-Start, Battery Test, Alternator." },
 ];
 
 const autoFaqs = [
@@ -134,8 +124,8 @@ export default function AutoPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-orange-500/50 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Oil changes, brakes, check engine light, battery/charging, A/C, and more. Book online or start a quick intake and
-              we’ll route you to the right service.
+              Oil Changes, Brakes, Check Engine Light, Battery/Charging, A/C, and More. Book online or start a quick intake and
+              we’ll route you to the right service. {AUTO_PRICING_PARTS_DISCLAIMER}
             </motion.p>
 
             <motion.div
@@ -148,21 +138,21 @@ export default function AutoPage() {
                 href="/quote?for=auto"
                 className="btn-primary inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Fixed prices
+                Fixed Prices
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </Link>
               <Link
-                href="/book?service=automotive"
+                href={bookUrlWithSchedule("/book?service=automotive")}
                 className="btn-outline inline-flex items-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book any job
+                Book Any Job
               </Link>
               <button
                 type="button"
                 onClick={() => setAssistantOpen(true)}
                 className="btn-outline inline-flex items-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Start diagnostic intake
+                Start Diagnostic Intake
               </button>
             </motion.div>
           </div>
@@ -184,7 +174,7 @@ export default function AutoPage() {
             >
               <div
                 aria-live="polite"
-                aria-label={`Slide ${heroSlideIndex + 1}: ${autoHeroSlideLabels[heroSlideIndex] ?? "Auto service"}`}
+                aria-label={`Slide ${heroSlideIndex + 1}: ${autoHeroSlideLabels[heroSlideIndex] ?? "Auto Service"}`}
                 className="sr-only"
               />
               <AnimatePresence mode="popLayout">
@@ -198,7 +188,7 @@ export default function AutoPage() {
                 >
                   <Image
                     src={AUTO_HERO_IMAGES[heroSlideIndex]}
-                    alt={`Auto repair in Fargo, ND — ${autoHeroSlideLabels[heroSlideIndex] ?? "Auto service"}`}
+                    alt={`Auto repair in Fargo, ND — ${autoHeroSlideLabels[heroSlideIndex] ?? "Auto Service"}`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -237,7 +227,7 @@ export default function AutoPage() {
             className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
             aria-label="Scroll to services"
           >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See services</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest">See Services</span>
             <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
           </a>
         </motion.div>
@@ -248,9 +238,9 @@ export default function AutoPage() {
         <h2 className="text-center text-xl font-bold text-white sm:text-2xl">
           Auto <span className="orange-glow-text">Repair Services</span>
         </h2>
-        <p className="mt-2 text-center text-sm text-zinc-500">
-          Choose a service below or book and we’ll help you decide.
-        </p>
+            <p className="mt-2 text-center text-sm text-zinc-500">
+              Choose a service below or book and we’ll help you decide. {AUTO_PRICING_PARTS_DISCLAIMER}
+            </p>
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -260,7 +250,7 @@ export default function AutoPage() {
           className="mt-8 overflow-hidden rounded-2xl border border-white/[0.08] bg-black/35 backdrop-blur-sm"
         >
           <div className="border-b border-white/[0.06] p-5 sm:p-6">
-            <p className="text-sm font-bold text-white">Common services</p>
+            <p className="text-sm font-bold text-white">Common Services</p>
             <p className="mt-1 text-sm text-zinc-500">
               Pick what sounds closest. If you’re not sure, book and we’ll route you correctly.
             </p>
@@ -270,19 +260,19 @@ export default function AutoPage() {
             <div className="p-5 sm:p-6">
               <p className="text-xs font-semibold uppercase tracking-widest text-zinc-500">Maintenance</p>
               <ul className="mt-3 space-y-2 text-sm text-zinc-400">
-                <li>Oil changes, filters, and fluids</li>
-                <li>Tune-ups (spark plugs, coils, air filters)</li>
-                <li>Belts, hoses, and scheduled maintenance</li>
-                <li>Pre-trip and seasonal inspections</li>
+                <li>Oil Changes, Filters, and Fluids</li>
+                <li>Tune-Ups (Spark Plugs, Coils, Air Filters)</li>
+                <li>Belts, Hoses, and Scheduled Maintenance</li>
+                <li>Pre-Trip and Seasonal Inspections</li>
               </ul>
             </div>
             <div className="border-t border-white/[0.06] p-5 sm:border-t-0 sm:border-l sm:border-white/[0.06] sm:p-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-zinc-500">Diagnostics & repair</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-zinc-500">Diagnostics &amp; Repair</p>
               <ul className="mt-3 space-y-2 text-sm text-zinc-400">
-                <li>Check engine light & fault code scanning</li>
-                <li>Brakes (pads, rotors, fluid)</li>
-                <li>Battery / alternator / no-start issues</li>
-                <li>A/C, electrical, tires, and more</li>
+                <li>Check Engine Light &amp; Fault Code Scanning</li>
+                <li>Brakes (Pads, Rotors, Fluid)</li>
+                <li>Battery / Alternator / No-Start Issues</li>
+                <li>A/C, Electrical, Tires, and More</li>
               </ul>
             </div>
           </div>
@@ -298,14 +288,14 @@ export default function AutoPage() {
                   href="/quote?for=auto"
                   className="btn-primary group inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                 >
-                  Fixed prices
+                  Fixed Prices
                   <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
                 </Link>
                 <Link
-                  href="/book?service=automotive"
+                  href={bookUrlWithSchedule("/book?service=automotive")}
                   className="btn-outline inline-flex items-center justify-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                 >
-                  Book any job
+                  Book Any Job
                 </Link>
               </div>
             </div>
@@ -327,47 +317,27 @@ export default function AutoPage() {
           </div>
         </motion.div>
 
+        <section
+          id="fixed-pricing"
+          className="mt-12 scroll-mt-28 border-t border-white/[0.08] pt-12"
+          aria-labelledby="auto-fixed-pricing-heading"
+        >
+          <h2 id="auto-fixed-pricing-heading" className="text-center text-xl font-bold text-white sm:text-2xl">
+            Common <span className="orange-glow-text">Fixed Starting Prices</span>
+          </h2>
+          <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-zinc-500">
+            Starting prices for common jobs—we&apos;ll confirm your vehicle and any parts before work. {AUTO_PRICING_PARTS_DISCLAIMER}
+          </p>
+          <AutoFixedPricingGrid className="mx-auto mt-8 max-w-5xl" />
+          <p className="mt-6 text-center text-sm text-zinc-500">
+            <Link href="/quote?for=auto" className="text-orange-400 hover:underline">
+              Open full pricing page →
+            </Link>
+          </p>
+        </section>
       </section>
 
-      {/* ─── REVIEWS / TRUST ─── */}
-      <section className="relative border-y border-white/[0.06] bg-black/30 py-16 sm:py-24 backdrop-blur-md">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <SectionHeading
-            badge="Client Trust"
-            title="What Drivers Say"
-            description="Real feedback from Fargo drivers who trust us with their vehicles."
-            align="center"
-          />
-          <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-6 sm:grid-cols-2 lg:max-w-4xl mx-auto">
-            {testimonials.map((t, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-30px" }}
-                transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
-                className="panel-cyber rounded-2xl p-6 text-left sm:rounded-[2rem] sm:p-8"
-              >
-                <div className="flex gap-0.5 mb-3 sm:mb-4">
-                  {[1, 2, 3, 4, 5].map((s) => (
-                    <Star key={s} className="h-4 w-4 fill-orange-400 text-orange-400" />
-                  ))}
-                </div>
-                <p className="text-base sm:text-lg text-zinc-300 italic mb-4 sm:mb-6">&ldquo;{t.text}&rdquo;</p>
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-orange-500/80 to-amber-600/80 flex items-center justify-center font-bold text-white text-sm shadow-lg shadow-orange-900/30">
-                    {t.author.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-white">{t.author}</p>
-                    <p className="orbitron text-[10px] text-cyan-400 tracking-widest">{t.vehicle}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ServiceStandardsSection variant="auto" />
 
       {/* ─── FAQ ─── */}
       <section className="relative mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
@@ -433,10 +403,10 @@ export default function AutoPage() {
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </button>
               <Link
-                href="/book?service=automotive"
+                href={bookUrlWithSchedule("/book?service=automotive")}
                 className="btn-outline inline-flex items-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book directly
+                Book Directly
               </Link>
             </div>
           </div>

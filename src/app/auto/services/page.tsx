@@ -6,6 +6,10 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, BatteryCharging, Check, ChevronDown, Gauge, MapPin, ShieldCheck, Wrench } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
+import { ServiceStandardsSection } from "@/components/service-standards-section";
+import { AutoFixedPricingGrid } from "@/components/auto-fixed-pricing-grid";
+import { bookUrlWithSchedule } from "@/lib/booking-nav";
+import { AUTO_PRICING_PARTS_DISCLAIMER } from "@/lib/fixed-quote-options";
 
 const AUTO_SERVICES_HERO_IMAGES = [
   "/hero/hero-bays.png",
@@ -18,13 +22,13 @@ const AUTO_SERVICES_HERO_IMAGES = [
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 const autoServicesHeroLabels = [
-  "Service bays",
-  "Services overview",
-  "Auto diagnostics",
-  "Auto repair",
-  "Audio and trunk setup",
-  "Engine detail close-up",
-  "Oil service",
+  "Service Bays",
+  "Services Overview",
+  "Auto Diagnostics",
+  "Auto Repair",
+  "Audio and Trunk Setup",
+  "Engine Detail Close-Up",
+  "Oil Service",
 ];
 
 const diagnosticsIncludes = [
@@ -158,7 +162,8 @@ export default function AutoServicesPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-orange-500/50 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Pick what sounds closest below. If you’re not sure, book and we’ll route you correctly—no surprises, no pressure.
+              Pick what sounds closest below. If you’re not sure, book and we’ll route you correctly—no surprises, no pressure.{" "}
+              {AUTO_PRICING_PARTS_DISCLAIMER}
             </motion.p>
 
             <motion.div
@@ -175,7 +180,7 @@ export default function AutoServicesPage() {
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </Link>
               <Link
-                href="/book?service=automotive"
+                href={bookUrlWithSchedule("/book?service=automotive")}
  className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Book (any job)
@@ -259,7 +264,7 @@ export default function AutoServicesPage() {
             className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
             aria-label="Scroll to services"
           >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See services</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest">See Services</span>
             <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
           </a>
         </motion.div>
@@ -304,10 +309,12 @@ export default function AutoServicesPage() {
 
                 <div className="mt-5 flex flex-col gap-2">
                   <Link
-                    href={`/book?service=automotive&notes=${encodeURIComponent(section.title)}`}
+                    href={bookUrlWithSchedule(
+                    `/book?service=automotive&notes=${encodeURIComponent(section.title)}`,
+                  )}
  className="btn-primary group inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                   >
-                    See pricing / Book
+                    See Pricing / Book
                     <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
                   </Link>
                   <Link
@@ -323,6 +330,26 @@ export default function AutoServicesPage() {
         </div>
       </section>
 
+      <section
+        id="fixed-pricing"
+        className="relative mx-auto max-w-7xl scroll-mt-28 px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8"
+      >
+        <h2 className="text-center text-xl font-bold text-white sm:text-2xl">
+          Common <span className="orange-glow-text">Fixed Starting Prices</span>
+        </h2>
+        <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-zinc-500">
+          Starting prices for common jobs—we&apos;ll confirm your vehicle and any parts before work. {AUTO_PRICING_PARTS_DISCLAIMER}
+        </p>
+        <AutoFixedPricingGrid className="mx-auto mt-8 max-w-5xl" />
+        <p className="mt-6 text-center text-sm text-zinc-500">
+          <Link href="/quote?for=auto" className="text-orange-400 hover:underline">
+            Open full pricing page →
+          </Link>
+        </p>
+      </section>
+
+      <ServiceStandardsSection variant="auto" />
+
       {/* CTA */}
       <section className="relative mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-white/[0.08] bg-black/40 shadow-xl shadow-black/20 backdrop-blur-sm p-6 sm:p-8">
@@ -332,7 +359,7 @@ export default function AutoServicesPage() {
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link
-              href="/book?service=automotive"
+              href={bookUrlWithSchedule("/book?service=automotive")}
  className="btn-primary group inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               Book Automotive Service

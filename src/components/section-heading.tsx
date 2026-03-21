@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 interface SectionHeadingProps {
-  badge: string;
+  badge?: string;
   title: React.ReactNode;
   description?: string;
   align?: "left" | "center";
@@ -17,21 +17,25 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className={`mb-8 max-w-full sm:mb-12 md:mb-16 ${align === "center" ? "mx-auto text-center" : "text-left"}`}>
-      <motion.p
-        initial={{ opacity: 0, y: 8 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="orbitron inline-block max-w-full text-[9px] font-bold uppercase tracking-[0.2em] text-orange-400 sm:text-[10px] sm:tracking-[0.28em] md:tracking-[0.3em]"
-      >
-        {badge}
-      </motion.p>
+      {badge ? (
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="orbitron inline-block max-w-full text-[9px] font-bold uppercase tracking-[0.2em] text-orange-400 sm:text-[10px] sm:tracking-[0.28em] md:tracking-[0.3em]"
+        >
+          {badge}
+        </motion.p>
+      ) : null}
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-        className="mt-3 break-words text-2xl font-bold leading-[1.15] tracking-tight text-white sm:mt-4 sm:text-3xl sm:leading-tight md:text-4xl lg:text-5xl"
+        className={`break-words text-2xl font-bold leading-[1.15] tracking-tight text-white sm:text-3xl sm:leading-tight md:text-4xl lg:text-5xl ${
+          badge ? "mt-3 sm:mt-4" : "mt-0"
+        }`}
       >
         {title}
       </motion.h2>

@@ -6,7 +6,9 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronDown, MapPin, Tag } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
+import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { BackToHome } from "@/components/back-to-home";
+import { bookUrlWithSchedule } from "@/lib/booking-nav";
 
 /** Handyman hero slides (new portfolio + stock), shuffled order */
 const HANDYMAN_HERO_IMAGES = [
@@ -17,7 +19,6 @@ const HANDYMAN_HERO_IMAGES = [
   "/images/AUTO/HANDYMAN/handyman-hero-3.jpeg",
   "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.jpg",
   "/images/AUTO/HANDYMAN/handyman-hero-4.jpeg",
-  "/images/AUTO/HANDYMAN/francesca-tosolini-DmOhItSo49k-unsplash.jpg",
   "/images/AUTO/HANDYMAN/handyman-hero-5.jpeg",
   "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.jpg",
   "/images/AUTO/HANDYMAN/handyman-hero-6.jpeg",
@@ -35,20 +36,19 @@ const SERVICES_LIST = [
 ] as const;
 
 const handymanHeroSlideLabels = [
-  "TV & media",
+  "TV & Media",
   "TV Mounting",
-  "Smart lighting",
-  "Home installs",
-  "Projector & screen",
-  "Security & cameras",
-  "Home theater",
-  "Furniture Assembly",
-  "Bedroom setup",
-  "Professional install",
-  "LED & mood lighting",
-  "Handyman service",
-  "Fargo handyman",
-  "Handyman service list",
+  "Smart Lighting",
+  "Home Installs",
+  "Projector & Screen",
+  "Security & Cameras",
+  "Home Theater",
+  "Bedroom Setup",
+  "Professional Install",
+  "LED & Mood Lighting",
+  "Handyman Service",
+  "Fargo Handyman",
+  "Handyman Service List",
 ];
 
 export default function HandymanPage() {
@@ -133,13 +133,13 @@ export default function HandymanPage() {
  className="btn-primary inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 <Tag className="h-4 w-4 shrink-0" aria-hidden />
-                See pricing
+                See Pricing
               </Link>
               <Link
-                href="/book?service=handyman"
+                href={bookUrlWithSchedule("/book?service=handyman")}
  className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book directly
+                Book Directly
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </Link>
             </motion.div>
@@ -162,7 +162,7 @@ export default function HandymanPage() {
             >
               <div
                 aria-live="polite"
-                aria-label={`Slide ${heroSlideIndex + 1}: ${handymanHeroSlideLabels[heroSlideIndex] ?? "Handyman service"}`}
+                aria-label={`Slide ${heroSlideIndex + 1}: ${handymanHeroSlideLabels[heroSlideIndex] ?? "Handyman Service"}`}
                 className="sr-only"
               />
               <AnimatePresence mode="popLayout">
@@ -176,7 +176,7 @@ export default function HandymanPage() {
                 >
                   <Image
                     src={HANDYMAN_HERO_IMAGES[heroSlideIndex]}
-                    alt={`Handyman services in Fargo, ND — ${handymanHeroSlideLabels[heroSlideIndex] ?? "Handyman service"}`}
+                    alt={`Handyman services in Fargo, ND — ${handymanHeroSlideLabels[heroSlideIndex] ?? "Handyman Service"}`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -216,7 +216,7 @@ export default function HandymanPage() {
             className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
             aria-label="Get a fixed price quote"
           >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See pricing</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest">See Pricing</span>
             <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
           </Link>
         </motion.div>
@@ -257,7 +257,7 @@ export default function HandymanPage() {
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <SectionHeading
             badge="Fixed prices"
-            title="Pick your package—then book"
+            title="Pick Your Package—Then Book"
             description="No dropdowns or math. Choose the price that matches your job; booking opens with that total ready to go."
             align="center"
           />
@@ -272,18 +272,20 @@ export default function HandymanPage() {
               className="btn-primary group inline-flex w-full max-w-xs items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto"
             >
               <Tag className="h-4 w-4 shrink-0" aria-hidden />
-              Open pricing page
+              Open Pricing Page
               <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
             </Link>
             <Link
-              href="/book?service=handyman"
+              href={bookUrlWithSchedule("/book?service=handyman")}
               className="btn-outline inline-flex w-full max-w-xs items-center justify-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto"
             >
-              Book without a set price
+              Book Without a Set Price
             </Link>
           </motion.div>
         </div>
       </section>
+
+      <ServiceStandardsSection variant="handyman" />
     </main>
   );
 }

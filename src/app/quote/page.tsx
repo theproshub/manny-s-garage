@@ -6,8 +6,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, MapPin, Tag } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
+import { bookUrlWithSchedule } from "@/lib/booking-nav";
+import { AutoFixedPricingGrid } from "@/components/auto-fixed-pricing-grid";
 import {
-  AUTO_FIXED_PACKAGES,
+  AUTO_PRICING_PARTS_DISCLAIMER,
   HANDYMAN_BUNK_BED,
   DIY_HOURLY,
   DIY_MECHANIC_HOURLY,
@@ -16,7 +18,6 @@ import {
   HANDYMAN_FURNITURE_EACH,
   HANDYMAN_TV_PACKAGES,
   HANDYMAN_WINDOW_TREATMENT,
-  bookAutomotiveHref,
   bookDiyHref,
   bookHandymanHref,
 } from "@/lib/fixed-quote-options";
@@ -59,7 +60,7 @@ function QuotePageInner() {
 
         <div className="mt-5 flex items-center gap-2">
           <Tag className="h-6 w-6 text-orange-400" aria-hidden />
-          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">See fixed pricing</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">See Fixed Pricing</h1>
         </div>
         <p className="mt-2 max-w-xl text-sm text-zinc-400 sm:text-base">
           Tap a fixed price for the service you want. You&apos;ll go straight to booking with that total already filled in.
@@ -102,7 +103,7 @@ function QuotePageInner() {
           >
             <section aria-labelledby="tv-heading">
               <h2 id="tv-heading" className="text-lg font-semibold text-white sm:text-xl">
-                TV wall mount
+                TV Wall Mount
               </h2>
               <p className="mt-1 text-sm text-zinc-500">Fixed price by screen size · parts extra if we supply</p>
               <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -122,7 +123,7 @@ function QuotePageInner() {
 
             <section aria-labelledby="cam-heading">
               <h2 id="cam-heading" className="text-lg font-semibold text-white sm:text-xl">
-                Security cameras
+                Security Cameras
               </h2>
               <p className="mt-1 text-sm text-zinc-500">${HANDYMAN_CAMERA_EACH} · installation</p>
               <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
@@ -142,7 +143,7 @@ function QuotePageInner() {
 
             <section aria-labelledby="fur-heading">
               <h2 id="fur-heading" className="text-lg font-semibold text-white sm:text-xl">
-                Furniture assembly
+                Furniture Assembly
               </h2>
               <p className="mt-1 text-sm text-zinc-500">${HANDYMAN_FURNITURE_EACH} per item · same visit</p>
               <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
@@ -162,7 +163,7 @@ function QuotePageInner() {
 
             <section aria-labelledby="window-heading">
               <h2 id="window-heading" className="text-lg font-semibold text-white sm:text-xl">
-                Window treatment installation (blinds &amp; curtains)
+                Window Treatment Installation (Blinds &amp; Curtains)
               </h2>
               <p className="mt-1 text-sm text-zinc-500">Flat-rate installation</p>
               <ul className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -171,7 +172,7 @@ function QuotePageInner() {
                     href={bookHandymanHref(HANDYMAN_WINDOW_TREATMENT, "Window treatment installation")}
                     className="flex min-h-[3.5rem] flex-col justify-center rounded-xl border border-white/[0.08] bg-black/40 px-3 py-2.5 transition-colors hover:border-orange-500/40 hover:bg-orange-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                   >
-                    <span className="text-sm font-medium text-zinc-200">Blinds or curtains install</span>
+                    <span className="text-sm font-medium text-zinc-200">Blinds or Curtains Install</span>
                     <span className="text-xl font-bold text-orange-400">${HANDYMAN_WINDOW_TREATMENT}</span>
                   </Link>
                 </li>
@@ -180,7 +181,7 @@ function QuotePageInner() {
 
             <section aria-labelledby="bunk-bed-heading">
               <h2 id="bunk-bed-heading" className="text-lg font-semibold text-white sm:text-xl">
-                Bunk bed assembly
+                Bunk Bed Assembly
               </h2>
               <p className="mt-1 text-sm text-zinc-500">Flat-rate assembly service</p>
               <ul className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -250,26 +251,10 @@ function QuotePageInner() {
             className="mt-10"
           >
             <p className="text-sm text-zinc-500">
-              Starting prices for common jobs. We&apos;ll confirm your vehicle and any parts before work—no surprises.
+              Starting prices for common jobs. We&apos;ll confirm your vehicle and any parts before work—no surprises.{" "}
+              {AUTO_PRICING_PARTS_DISCLAIMER}
             </p>
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-              {AUTO_FIXED_PACKAGES.map((pkg) => (
-                <li key={pkg.id}>
-                  <Link
-                    href={bookAutomotiveHref(pkg.price, `Auto: ${pkg.label}`)}
-                    className="flex min-h-[4.5rem] flex-col justify-center rounded-xl border border-white/[0.08] bg-black/40 px-4 py-3 transition-colors hover:border-orange-500/40 hover:bg-orange-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <span className="font-semibold text-white">{pkg.label}</span>
-                        <p className="mt-0.5 text-xs text-zinc-500">{pkg.sub}</p>
-                      </div>
-                      <span className="text-2xl font-bold text-orange-400">{pkg.price === 0 ? "Free" : `$${pkg.price}`}</span>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <AutoFixedPricingGrid className="mt-6" />
             <p className="mt-6 text-center text-sm text-zinc-500">
               <Link href="/auto/services" className="text-orange-400 hover:underline">
                 Full auto services list →
@@ -288,17 +273,17 @@ function QuotePageInner() {
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 <Link
-                  href="/book?service=automotive"
+                  href={bookUrlWithSchedule("/book?service=automotive")}
                   className="inline-flex min-h-8 items-center gap-1 rounded-full border border-white/15 px-3 text-xs font-medium text-white hover:border-orange-500/40 hover:bg-orange-500/10 sm:text-sm"
                 >
-                  Book auto (open)
+                  Book Auto (Open)
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden />
                 </Link>
                 <Link
-                  href="/book?service=it"
+                  href={bookUrlWithSchedule("/book?service=it")}
                   className="inline-flex min-h-8 items-center gap-1 rounded-full border border-white/15 px-3 text-xs font-medium text-white hover:border-cyan-500/40 hover:bg-cyan-500/10 sm:text-sm"
                 >
-                  Book I.T
+                  Book I.T.
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden />
                 </Link>
               </div>

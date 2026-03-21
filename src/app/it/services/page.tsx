@@ -15,6 +15,8 @@ import {
   Wifi,
 } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
+import { ServiceStandardsSection } from "@/components/service-standards-section";
+import { bookUrlWithSchedule } from "@/lib/booking-nav";
 import { siteImages } from "@/lib/site-images";
 
 const networkIncludes = [
@@ -147,7 +149,7 @@ export default function ITServicesPage() {
               className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
             >
               <Link
-                href="/book?service=it"
+                href={bookUrlWithSchedule("/book?service=it")}
                 className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-cyan-500 px-6 py-3 text-sm font-bold text-black shadow-lg shadow-cyan-950/25 transition-transform hover:-translate-y-0.5 hover:bg-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
               >
                 Book I.T consult
@@ -196,7 +198,7 @@ export default function ITServicesPage() {
             className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
             aria-label="Scroll to services"
           >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See services</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest">See Services</span>
             <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
           </a>
         </motion.div>
@@ -237,10 +239,10 @@ export default function ITServicesPage() {
                   ))}
                 </ul>
                 <Link
-                  href={`/book?service=it&notes=${encodeURIComponent(section.title)}`}
+                  href={bookUrlWithSchedule(`/book?service=it&notes=${encodeURIComponent(section.title)}`)}
                   className="mt-8 inline-flex items-center gap-2 rounded-full border-2 border-cyan-400/50 bg-cyan-500/10 px-6 py-3 font-semibold text-cyan-300 transition-colors hover:bg-cyan-500/20 hover:border-cyan-400 group"
                 >
-                  See pricing / Book
+                  See Pricing / Book
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
@@ -255,16 +257,18 @@ export default function ITServicesPage() {
         );
       })}
 
+      <ServiceStandardsSection variant="it" />
+
       {/* CTA */}
       <section className="relative mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-white/[0.08] border-cyan-400/20 bg-black/40 shadow-xl shadow-black/20 backdrop-blur-sm p-6 sm:p-8">
           <div>
-            <h2 className="text-xl font-bold text-white">Need I.T support?</h2>
+            <h2 className="text-xl font-bold text-white">Need I.T. Support?</h2>
             <p className="mt-1 text-zinc-400">Book a consult and we’ll get back to you with a quote and next steps.</p>
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link
-              href="/book?service=it"
+              href={bookUrlWithSchedule("/book?service=it")}
               className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-cyan-500 px-5 py-3 text-sm font-bold text-black shadow-lg shadow-cyan-950/25 transition-transform hover:-translate-y-0.5 hover:bg-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base group"
             >
               Book I.T Service

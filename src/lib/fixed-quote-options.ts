@@ -1,4 +1,5 @@
 /** Shared fixed prices for the /quote picker (keep in sync with service pages). */
+import { bookUrlWithSchedule } from "@/lib/booking-nav";
 
 export const DIY_HOURLY = 20;
 export const DIY_MECHANIC_HOURLY = 40;
@@ -95,12 +96,16 @@ export const DIY_PACKAGES: DiyPackage[] = [
 ];
 
 export function bookHandymanHref(price: number, note: string): string {
-  return `/book?service=handyman&estimate=${encodeURIComponent(price.toFixed(2))}&notes=${encodeURIComponent(note)}`;
+  return bookUrlWithSchedule(
+    `/book?service=handyman&estimate=${encodeURIComponent(price.toFixed(2))}&notes=${encodeURIComponent(note)}`,
+  );
 }
 
 export function bookDiyHref(pkg: DiyPackage): string {
   const note = `DIY bay ${pkg.hours}h${pkg.mechanicHours ? ` + mechanic ${pkg.mechanicHours}h` : ''}`;
-  return `/book?service=diy&estimate=${encodeURIComponent(pkg.total.toString())}&hours=${pkg.hours}&mechanicHours=${pkg.mechanicHours}&notes=${encodeURIComponent(note)}`;
+  return bookUrlWithSchedule(
+    `/book?service=diy&estimate=${encodeURIComponent(pkg.total.toString())}&hours=${pkg.hours}&mechanicHours=${pkg.mechanicHours}&notes=${encodeURIComponent(note)}`,
+  );
 }
 
 /** Common starting prices — shop confirms for your vehicle at check-in */
@@ -111,63 +116,69 @@ export type AutoFixedPackage = {
   price: number;
 };
 
+/** Shown next to automotive fixed-price lists (quote, book, auto pages). */
+export const AUTO_PRICING_PARTS_DISCLAIMER =
+  "Listed price does not include parts unless otherwise noted—we confirm parts cost before work.";
+
 export const AUTO_FIXED_PACKAGES: AutoFixedPackage[] = [
   {
     id: "diag",
-    label: "Automotive diagnostic (check engine light)",
-    sub: "Code scan and basic report",
+    label: "Automotive Diagnostic (Check Engine Light)",
+    sub: "Code Scan and Basic Report · Listed Price Excludes Parts",
     price: 0,
   },
   {
     id: "oil-conv",
-    label: "Conventional oil change",
-    sub: "Up to 5 qts · standard filter",
+    label: "Conventional Oil Change",
+    sub: "Up to 5 Qts · Standard Filter · Listed Price Excludes Parts",
     price: 40,
   },
   {
     id: "oil-syn",
-    label: "Full synthetic oil change",
-    sub: "Up to 5 qts · premium filter",
+    label: "Full Synthetic Oil Change",
+    sub: "Up to 5 Qts · Premium Filter · Listed Price Excludes Parts",
     price: 65,
   },
   {
     id: "engine-tuneup",
-    label: "Engine tuneup",
-    sub: "Starting at",
+    label: "Engine Tuneup",
+    sub: "Starting At · Listed Price Excludes Parts",
     price: 180,
   },
   {
     id: "brake-pads-pair",
-    label: "Brake pads replacement (pair)",
-    sub: "Pads and labor",
+    label: "Brake Pads Replacement (Pair)",
+    sub: "Pads and Labor · Listed Price Excludes Parts",
     price: 180,
   },
   {
     id: "brake-pads-rotors-pair",
-    label: "Brakes & rotors replacement (pair)",
-    sub: "Pads and rotors with labor",
+    label: "Brakes & Rotors Replacement (Pair)",
+    sub: "Pads and Rotors with Labor · Listed Price Excludes Parts",
     price: 200,
   },
   {
     id: "brake-complete-set",
-    label: "Complete brake set (pads & rotors)",
-    sub: "Front and rear set",
+    label: "Complete Brake Set (Pads & Rotors)",
+    sub: "Front and Rear Set · Listed Price Excludes Parts",
     price: 350,
   },
   {
     id: "battery",
-    label: "Battery replacement",
-    sub: "Installation labor",
+    label: "Battery Replacement",
+    sub: "Installation Labor · Listed Price Excludes Parts",
     price: 40,
   },
   {
     id: "roadside",
-    label: "Emergency roadside assistance",
-    sub: "Lockout, flat tire, jumpstart, or towing",
+    label: "Emergency Roadside Assistance",
+    sub: "Lockout, Flat Tire, Jumpstart, or Towing · Listed Price Excludes Parts",
     price: 60,
   },
 ];
 
 export function bookAutomotiveHref(price: number, note: string): string {
-  return `/book?service=automotive&estimate=${encodeURIComponent(String(price))}&notes=${encodeURIComponent(note)}`;
+  return bookUrlWithSchedule(
+    `/book?service=automotive&estimate=${encodeURIComponent(String(price))}&notes=${encodeURIComponent(note)}`,
+  );
 }

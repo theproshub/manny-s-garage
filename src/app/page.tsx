@@ -18,7 +18,9 @@ import {
 } from "lucide-react";
 import { AnimatedCard } from "@/components/animated-card";
 import { SectionHeading } from "@/components/section-heading";
+import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { siteImages } from "@/lib/site-images";
+import { AUTO_PRICING_PARTS_DISCLAIMER } from "@/lib/fixed-quote-options";
 
 const heroImages = [
   "/hero/hero-handyman.png",
@@ -47,7 +49,6 @@ const handymanCardSlides = [
   "/images/AUTO/HANDYMAN/handyman-hero-3.jpeg",
   "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.jpg",
   "/images/AUTO/HANDYMAN/handyman-hero-4.jpeg",
-  "/images/AUTO/HANDYMAN/francesca-tosolini-DmOhItSo49k-unsplash.jpg",
   "/images/AUTO/HANDYMAN/handyman-hero-5.jpeg",
   "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.jpg",
   "/images/AUTO/HANDYMAN/handyman-hero-6.jpeg",
@@ -57,24 +58,6 @@ const handymanCardSlides = [
 const diyCardSlides = [siteImages.diyGarage];
 
 const itCardSlides = [siteImages.itConsultant];
-
-const trustPillars = [
-  {
-    title: "You know the cost up front",
-    description:
-      "We go over pricing before any work starts, and nothing moves forward until you say yes.",
-  },
-  {
-    title: "Updates that make sense",
-    description:
-      "If we find something, we explain it in plain language and share photos when helpful.",
-  },
-  {
-    title: "Help for different kinds of jobs",
-    description:
-      "Auto work, home installs, and DIY bay rental are all available in one place, so you don't need to juggle multiple shops.",
-  },
-];
 
 const faqs = [
   {
@@ -93,10 +76,10 @@ const faqs = [
 
 const heroSlideLabels = [
   "Handyman Services",
-  "Handyman — assembly, TV, cameras & more",
-  "Handyman & I.T services",
-  "Automotive, Handyman, and DIY storefront",
-  "Our service bays",
+  "Handyman — Assembly, TV, Cameras & More",
+  "Handyman & I.T. Services",
+  "Automotive, Handyman, and DIY Storefront",
+  "Our Service Bays",
 ];
 
 export default function Home() {
@@ -154,7 +137,7 @@ export default function Home() {
                 <span className="hidden h-px w-8 shrink-0 bg-gradient-to-r from-orange-400/60 to-transparent sm:block sm:w-10" aria-hidden />
                 <span className="text-[0.95rem] font-medium leading-snug tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
                   <span className="text-orange-300">Welcome in</span>
-                  <span className="text-white/90"> — Fargo one stop garage.</span>
+                  <span className="text-white/90"> — Fargo One Stop Garage.</span>
                 </span>
               </motion.span>
             </motion.h1>
@@ -174,13 +157,13 @@ export default function Home() {
               className="mt-4 flex flex-wrap gap-2"
             >
               <span className="rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1.5 text-[11px] font-semibold text-orange-200">
-                Fast booking
+                Fast Booking
               </span>
               <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-[11px] font-semibold text-cyan-200">
-                Fixed pricing
+                Fixed Pricing
               </span>
               <span className="rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-[11px] font-semibold text-zinc-200">
-                One-stop service
+                One-Stop Service
               </span>
             </motion.div>
 
@@ -197,7 +180,7 @@ export default function Home() {
                     className="btn-primary inline-flex w-full min-w-0 items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[9rem]"
                   >
                     <CalendarPlus className="h-4 w-4 shrink-0" aria-hidden />
-                    Book now
+                    Book Now
                     <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />
                   </Link>
                   <Link
@@ -205,14 +188,14 @@ export default function Home() {
                     className="btn-outline inline-flex w-full min-w-0 items-center justify-center gap-1.5 rounded-full border-orange-500/35 bg-orange-500/10 text-orange-200 backdrop-blur-sm transition-colors hover:border-orange-400/50 hover:bg-orange-500/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[8.5rem]"
                   >
                     <Tag className="h-4 w-4 shrink-0" aria-hidden />
-                    See pricing
+                    See Pricing
                   </Link>
                 </div>
                 <a
                   href="#services"
                   className="btn-outline inline-flex w-full shrink-0 items-center justify-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[9rem]"
                 >
-                  Browse services
+                  Browse Services
                   <ChevronDown className="h-3.5 w-3.5 shrink-0" aria-hidden />
                 </a>
               </div>
@@ -288,7 +271,7 @@ export default function Home() {
             className="hero-scroll-hint flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-1 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
             aria-label="Scroll to services"
           >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See services</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest">See Services</span>
             <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
           </a>
         </motion.div>
@@ -307,7 +290,7 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-4 md:gap-4 lg:gap-5">
             <AnimatedCard
               title="Automotive Service"
-              description="Maintenance for cars and light trucks."
+              description={`Maintenance for cars and light trucks. ${AUTO_PRICING_PARTS_DISCLAIMER}`}
               imageSlides={autoCardSlides}
               icon={<CarFront className="h-6 w-6" />}
               tag="AUTO"
@@ -345,30 +328,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── WHY CHOOSE US ─── */}
-      <section className="relative mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] py-14 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:py-24 lg:px-8">
-        <SectionHeading
-          badge="Why Choose Us"
-          title="How We Work"
-          description="We keep things simple: clear pricing, honest updates, and work done the way we would want for our own family."
-          align="center"
-        />
-        <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-6 sm:grid-cols-3">
-          {trustPillars.map((pillar, i) => (
-            <motion.article
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="rounded-2xl border border-white/10 bg-black/40 p-6 backdrop-blur-sm"
-            >
-              <h3 className="text-base font-semibold text-white sm:text-lg">{pillar.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-300 sm:text-base">{pillar.description}</p>
-            </motion.article>
-          ))}
-        </div>
-      </section>
+      <ServiceStandardsSection variant="home" />
 
       {/* ─── FAQ ─── */}
       <section id="faq" className="relative mx-auto max-w-3xl scroll-mt-24 px-[max(1rem,env(safe-area-inset-left))] py-14 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:py-24 sm:scroll-mt-28 lg:px-8 lg:scroll-mt-32">

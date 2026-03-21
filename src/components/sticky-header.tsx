@@ -129,7 +129,7 @@ export function StickyHeader() {
                           href="/quote"
                           className="flex min-h-[44px] items-center justify-center rounded-xl py-2.5 text-sm font-semibold text-zinc-300 transition-colors hover:bg-white/[0.06] hover:text-white"
                         >
-                          Fixed pricing
+                          Fixed Pricing
                         </Link>
                       </NavigationMenu.Link>
                       <NavigationMenu.Link asChild>
@@ -138,7 +138,7 @@ export function StickyHeader() {
                           className="flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-orange-500/15 py-2.5 text-sm font-bold text-orange-300 ring-1 ring-orange-500/25 transition-colors hover:bg-orange-500/25"
                         >
                           <CalendarPlus className="h-4 w-4" aria-hidden />
-                          Book a service
+                          Book a Service
                         </Link>
                       </NavigationMenu.Link>
                     </div>
@@ -204,13 +204,6 @@ export function StickyHeader() {
 
           {/* CTA / Actions */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <Link
-              href="/book"
-              aria-label="Book a service"
-              className="flex min-h-10 min-w-10 items-center justify-center rounded-full border border-orange-500/40 bg-orange-500/10 text-orange-300 transition-colors hover:bg-orange-500/20 sm:hidden"
-            >
-              <CalendarPlus className="h-4 w-4 shrink-0" aria-hidden />
-            </Link>
             <Link
               href="/book"
               className={`group hidden sm:inline-flex items-center justify-center gap-1.5 rounded-full text-sm font-semibold transition-all overflow-hidden relative ${

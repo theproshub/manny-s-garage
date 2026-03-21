@@ -16,7 +16,9 @@ import {
 } from "lucide-react";
 import { ChatAssistant } from "@/components/chat-assistant";
 import { SectionHeading } from "@/components/section-heading";
+import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { BackToHome } from "@/components/back-to-home";
+import { bookUrlWithSchedule } from "@/lib/booking-nav";
 import { siteImages } from "@/lib/site-images";
 
 const IT_SERVICES_BASE = "/it/services";
@@ -135,10 +137,10 @@ export default function ITPages() {
                 Consult
               </button>
               <Link
-                href="/book?service=it"
+                href={bookUrlWithSchedule("/book?service=it")}
  className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-cyan-400/40 hover:bg-cyan-500/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book directly
+                Book Directly
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </Link>
             </motion.div>
@@ -178,7 +180,7 @@ export default function ITPages() {
             className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
             aria-label="Scroll to services"
           >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See services</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest">See Services</span>
             <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
           </a>
         </motion.div>
@@ -227,7 +229,7 @@ export default function ITPages() {
                     <span className="font-semibold text-white block group-hover:text-cyan-400 transition-colors">{service.title}</span>
                     <span className="text-sm text-zinc-500 mt-1 block leading-snug">{service.short}</span>
                     <span className="mt-2 inline-flex items-center text-sm font-medium text-cyan-400 opacity-0 transition-opacity group-hover:opacity-100">
-                      View details
+                      View Details
                       <ArrowRight className="ml-1 h-3.5 w-3.5" />
                     </span>
                   </span>
@@ -247,17 +249,19 @@ export default function ITPages() {
             onClick={() => setAssistantOpen(true)}
             className="inline-flex h-10 items-center gap-2 rounded-full bg-cyan-500 px-4 py-2 text-sm font-bold text-black shadow-lg shadow-cyan-950/25 transition-transform hover:-translate-y-0.5 hover:bg-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:h-11 sm:px-5 sm:py-2.5"
           >
-            Get support
+            Get Support
             <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden />
           </button>
           <Link
-            href="/book?service=it"
+            href={bookUrlWithSchedule("/book?service=it")}
             className="text-sm font-medium text-zinc-400 hover:text-cyan-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded"
           >
-            Book directly →
+            Book Directly →
           </Link>
         </div>
       </section>
+
+      <ServiceStandardsSection variant="it" />
 
       <ChatAssistant open={assistantOpen} onOpenChange={setAssistantOpen} />
     </main>
