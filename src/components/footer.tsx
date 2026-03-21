@@ -16,7 +16,7 @@ export function Footer() {
             <Link href="/" className="inline-flex items-center">
               <Image
                 src={siteImages.logo}
-                alt="Manny's Garage — Automotive, Handyman, I.T & More"
+                alt="Manny's Garage — Automotive, Handyman, I.T. & More"
                 width={112}
                 height={112}
                 className="h-20 w-auto max-w-[112px] object-contain object-left sm:h-24"
@@ -24,7 +24,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm leading-6 text-zinc-400">
-              Auto repair, handyman services, I.T support, and DIY garage rentals in one place. Local service you can trust in Fargo.
+              Auto repair, handyman services, I.T. support, and DIY garage rentals in one place. Local service you can trust in Fargo.
             </p>
           </div>
 
@@ -36,8 +36,8 @@ export function Footer() {
                 { label: "Automotive Services", href: "/auto" },
                 { label: "Handyman Services", href: "/handyman" },
                 { label: "DIY Garage", href: "/diy-garage" },
-                { label: "I.T Consultant", href: "/it" },
-                { label: "Fixed pricing", href: "/quote" },
+                { label: "I.T. Consultant", href: "/it" },
+                { label: "Fixed Pricing", href: "/quote" },
                 { label: "Book Service", href: "/book" },
               ].map((link) => (
                 <li key={link.label}>

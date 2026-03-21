@@ -148,7 +148,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-5 max-w-full border-l-2 border-orange-500/50 pl-3 text-[14px] leading-[1.55] text-zinc-400 sm:mt-7 sm:pl-4 sm:text-base sm:leading-[1.65]"
             >
-              Fargo&apos;s go-to spot for car repairs, handyman work, equipped DIY bays—everything you need under one roof.
+              Fargo&apos;s go-to spot for car repairs, handyman work, and equipped DIY bays—everything you need under one roof.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 8 }}
@@ -229,7 +229,7 @@ export default function Home() {
                 >
                   <Image
                     src={heroImages[currentSlide]}
-                    alt={`Manny's Garage in Fargo, ND — Handyman & I.T services and more (${heroSlideLabels[currentSlide]})`}
+                    alt={`Manny's Garage in Fargo, ND — handyman and I.T. services and more (${heroSlideLabels[currentSlide]})`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1023px) 100vw, 50vw"
@@ -283,13 +283,13 @@ export default function Home() {
           <SectionHeading
             badge="What We Offer"
             title={<>Choose Your <span className="orange-glow-text">Service</span></>}
-            description="From full-service auto repair to handyman installations, I.T & networking, and DIY bay rental—all under one roof."
+            description="From full-service auto repair to handyman installations, I.T. and networking, and DIY bay rental—all under one roof."
             align="center"
           />
 
           <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-4 md:gap-4 lg:gap-5">
             <AnimatedCard
-              title="Automotive Service"
+              title="Automotive Services"
               description={`Maintenance for cars and light trucks. ${AUTO_PRICING_PARTS_DISCLAIMER}`}
               imageSlides={autoCardSlides}
               icon={<CarFront className="h-6 w-6" />}
@@ -316,7 +316,7 @@ export default function Home() {
               delay={0.3}
             />
             <AnimatedCard
-              title="I.T Consultant"
+              title="I.T. Consultant"
               description="Network setup, PC builds, data recovery, and smart home integration."
               imageSlides={itCardSlides}
               icon={<Cpu className="h-6 w-6" />}
@@ -381,7 +381,7 @@ export default function Home() {
         <SectionHeading
           badge="Contact"
           title="Visit or Get in Touch"
-          description="We're here to help. Call, email, or stop by our facility."
+          description="We&apos;re here to help. Call, email, or stop by our facility."
           align="center"
         />
         <div className="mt-8 grid gap-6 sm:mt-12 sm:gap-8 lg:grid-cols-2 lg:items-start">

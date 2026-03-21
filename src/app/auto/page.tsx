@@ -42,10 +42,10 @@ const autoHeroSlideLabels = [
 
 /** Simple list: 4 main categories so users can quickly choose and book */
 const autoServices = [
-  { title: "Oil & Maintenance", icon: Wrench, short: "Oil Changes, Filters, Tune-Ups." },
-  { title: "Brakes & Suspension", icon: ShieldCheck, short: "Pads, Rotors, Fluid, Safe Stopping." },
-  { title: "Check Engine & Diagnostics", icon: Gauge, short: "Fault Codes and Clear Answers." },
-  { title: "Battery & Charging", icon: BatteryCharging, short: "No-Start, Battery Test, Alternator." },
+  { title: "Oil & Maintenance", icon: Wrench, short: "Oil changes, filters, and tune-ups." },
+  { title: "Brakes & Suspension", icon: ShieldCheck, short: "Pads, rotors, fluid, and safe stopping." },
+  { title: "Check Engine & Diagnostics", icon: Gauge, short: "Fault codes and clear answers." },
+  { title: "Battery & Charging", icon: BatteryCharging, short: "No-start help, battery test, and alternator work." },
 ];
 
 const autoFaqs = [
@@ -113,7 +113,7 @@ export default function AutoPage() {
                 />
                 <span className="text-base font-medium tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
                   <span className="text-orange-300">Diagnostics</span>
-                  <span className="text-white/90">—repair & maintenance for cars and light trucks.</span>
+                  <span className="text-white/90">—Repair and maintenance for cars and light trucks.</span>
                 </span>
               </motion.span>
             </motion.h1>
@@ -124,8 +124,8 @@ export default function AutoPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-orange-500/50 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Oil Changes, Brakes, Check Engine Light, Battery/Charging, A/C, and More. Book online or start a quick intake and
-              we’ll route you to the right service. {AUTO_PRICING_PARTS_DISCLAIMER}
+              Oil changes, brakes, check engine light, battery/charging, A/C, and more. Book online or start a quick intake, and
+              we&apos;ll route you to the right service. {AUTO_PRICING_PARTS_DISCLAIMER}
             </motion.p>
 
             <motion.div
@@ -269,10 +269,10 @@ export default function AutoPage() {
             <div className="border-t border-white/[0.06] p-5 sm:border-t-0 sm:border-l sm:border-white/[0.06] sm:p-6">
               <p className="text-xs font-semibold uppercase tracking-widest text-zinc-500">Diagnostics &amp; Repair</p>
               <ul className="mt-3 space-y-2 text-sm text-zinc-400">
-                <li>Check Engine Light &amp; Fault Code Scanning</li>
-                <li>Brakes (Pads, Rotors, Fluid)</li>
-                <li>Battery / Alternator / No-Start Issues</li>
-                <li>A/C, Electrical, Tires, and More</li>
+                <li>Check engine light and fault code scanning</li>
+                <li>Brakes (pads, rotors, fluid)</li>
+                <li>Battery, alternator, and no-start issues</li>
+                <li>A/C, electrical, tires, and more</li>
               </ul>
             </div>
           </div>

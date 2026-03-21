@@ -13,7 +13,7 @@ const SERVICE_LINKS = [
   { href: "/auto", label: "Automotive Services" },
   { href: "/handyman", label: "Handyman Services" },
   { href: "/diy-garage", label: "DIY Garage" },
-  { href: "/it", label: "I.T Consultant" },
+  { href: "/it", label: "I.T. Consultant" },
 ] as const;
 
 function pathMatchesService(pathname: string) {
@@ -56,7 +56,7 @@ export function StickyHeader() {
           <Link href="/" className="group flex shrink-0 items-center" onClick={() => setMobileMenuOpen(false)}>
             <Image
               src={siteImages.logo}
-              alt="Manny's Garage — Automotive, Handyman, I.T & More"
+              alt="Manny's Garage — Automotive, Handyman, I.T. & More"
               width={80}
               height={80}
               className="h-12 w-auto object-contain object-left sm:h-14"

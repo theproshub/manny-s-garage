@@ -78,14 +78,14 @@ export default function AboutPage() {
                 href="/book"
  className="btn-primary inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Schedule appointment
+                Schedule Appointment
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </Link>
               <a
                 href="#facility"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Our story
+                Our Story
               </a>
             </motion.div>
           </div>
@@ -202,7 +202,7 @@ export default function AboutPage() {
           href="/book"
           className="btn-primary inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
         >
-          Schedule appointment <ArrowRight className="h-4 w-4" />
+          Schedule Appointment <ArrowRight className="h-4 w-4" />
         </Link>
       </section>
 

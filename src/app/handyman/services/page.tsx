@@ -81,7 +81,7 @@ const HERO_SLIDE_DURATION_MS = 4500;
 const handymanServicesHeroLabels = [
   "TV Mounting",
   "Security Cameras",
-  "Handyman services",
+  "Handyman Services",
 ];
 
 export default function HandymanServicesPage() {

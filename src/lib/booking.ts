@@ -56,7 +56,7 @@ export const chatSteps: Array<{
   },
   {
     key: "preferredDate",
-    label: "Preferred date",
+    label: "Preferred Date",
     prompt: "What day would you like me to take a look?",
     placeholder: "2026-03-20",
   },

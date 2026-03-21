@@ -95,7 +95,7 @@ export default function ITPages() {
               transition={{ duration: 0.5, delay: 0.06 }}
               className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
             >
-              <span className="metal-text block">I.T Support</span>
+              <span className="metal-text block">I.T. Support</span>
               <motion.span
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -157,7 +157,7 @@ export default function ITPages() {
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-cyan-400/20 bg-black shadow-2xl shadow-black/40 ring-1 ring-white/[0.06] lg:aspect-[16/10]">
               <Image
                 src={siteImages.itConsultant}
-                alt="I.T and networking consulting services"
+                alt="I.T. and networking consulting services"
                 fill
                 className="object-cover opacity-90"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -189,8 +189,8 @@ export default function ITPages() {
       {/* ─── SERVICES ─── */}
       <section id="services" className="relative mx-auto max-w-7xl scroll-mt-28 px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
         <SectionHeading
-          badge="What we do"
-          title={<>I.T & <span className="text-cyan-400">Support</span></>}
+          badge="What We Do"
+          title={<>I.T. & <span className="text-cyan-400">Support</span></>}
           description="Networks, PC builds, data recovery, smart home. Select a service for details and pricing."
           align="center"
         />

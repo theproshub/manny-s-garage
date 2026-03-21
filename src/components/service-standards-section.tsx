@@ -72,7 +72,7 @@ const VARIANT_CONFIG: Record<
   home: {
     title: "How We Work With You",
     description:
-      "Same approach whether it’s auto, a home install, a bay rental, or I.T—clear numbers, clear communication, and your OK before we move forward.",
+      "Same approach whether it’s auto, a home install, a bay rental, or I.T.—clear numbers, clear communication, and your OK before we move forward.",
     accent: "orange",
     items: [
       {
@@ -91,7 +91,7 @@ const VARIANT_CONFIG: Record<
         icon: Building2,
         title: "One Place, Many Jobs",
         description:
-          "Auto repair, handyman installs, DIY bays, and I.T support under one roof so you’re not juggling shops.",
+          "Auto repair, handyman installs, DIY bays, and I.T. support under one roof so you’re not juggling shops.",
       },
       {
         icon: MapPin,

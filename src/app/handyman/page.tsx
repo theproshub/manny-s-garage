@@ -119,7 +119,7 @@ export default function HandymanPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-orange-500/50 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Fixed prices for TV mounting, cameras, and furniture-pick yours on the pricing page and book in one tap.
+              Fixed prices for TV mounting, cameras, and furniture—pick yours on the pricing page and book in one tap.
             </motion.p>
 
             <motion.div
@@ -256,7 +256,7 @@ export default function HandymanPage() {
       <section id="calculator" className="relative border-y border-white/[0.06] bg-black/30 py-16 sm:py-20 backdrop-blur-sm">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <SectionHeading
-            badge="Fixed prices"
+            badge="Fixed Prices"
             title="Pick Your Package—Then Book"
             description="No dropdowns or math. Choose the price that matches your job; booking opens with that total ready to go."
             align="center"

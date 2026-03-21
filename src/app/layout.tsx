@@ -11,9 +11,9 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Manny's Garage — Auto, Handyman, DIY Bay & I.T | Fargo, ND",
+  title: "Manny's Garage — Auto, Handyman, DIY Bay & I.T. | Fargo, ND",
   description:
-    "Manny's Garage — auto repair, handyman, DIY bay, and I.T in Fargo, ND. Repair your ride, upgrade your home, rent a bay, or sort your tech. One shop—no runaround.",
+    "Manny's Garage — auto repair, handyman, DIY bay, and I.T. in Fargo, ND. Repair your ride, upgrade your home, rent a bay, or sort your tech. One shop—no runaround.",
 };
 
 export const viewport: Viewport = {

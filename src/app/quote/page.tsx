@@ -21,6 +21,7 @@ import {
   bookDiyHref,
   bookHandymanHref,
 } from "@/lib/fixed-quote-options";
+import { toTitleCase } from "@/lib/utils";
 
 type QuoteTab = "handyman" | "diy" | "auto";
 
@@ -37,13 +38,13 @@ function QuotePageInner() {
   const cameraOptions = [1, 2, 3, 4, 5, 6].map((n) => ({
     n,
     price: n * HANDYMAN_CAMERA_EACH,
-    label: `${n} camera${n > 1 ? "s" : ""}`,
+    label: toTitleCase(`${n} camera${n > 1 ? "s" : ""}`),
   }));
 
   const furnitureOptions = [1, 2, 3, 4, 5, 6].map((n) => ({
     n,
     price: n * HANDYMAN_FURNITURE_EACH,
-    label: `${n} item${n > 1 ? "s" : ""}`,
+    label: toTitleCase(`${n} item${n > 1 ? "s" : ""}`),
   }));
 
   return (
@@ -105,7 +106,7 @@ function QuotePageInner() {
               <h2 id="tv-heading" className="text-lg font-semibold text-white sm:text-xl">
                 TV Wall Mount
               </h2>
-              <p className="mt-1 text-sm text-zinc-500">Fixed price by screen size · parts extra if we supply</p>
+              <p className="mt-1 text-sm text-zinc-500">Fixed price by screen size; parts extra if we supply.</p>
               <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {HANDYMAN_TV_PACKAGES.map((p) => (
                   <li key={p.label}>
@@ -125,7 +126,7 @@ function QuotePageInner() {
               <h2 id="cam-heading" className="text-lg font-semibold text-white sm:text-xl">
                 Security Cameras
               </h2>
-              <p className="mt-1 text-sm text-zinc-500">${HANDYMAN_CAMERA_EACH} · installation</p>
+              <p className="mt-1 text-sm text-zinc-500">${HANDYMAN_CAMERA_EACH} installation</p>
               <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                 {cameraOptions.map((o) => (
                   <li key={o.n}>
@@ -145,7 +146,7 @@ function QuotePageInner() {
               <h2 id="fur-heading" className="text-lg font-semibold text-white sm:text-xl">
                 Furniture Assembly
               </h2>
-              <p className="mt-1 text-sm text-zinc-500">${HANDYMAN_FURNITURE_EACH} per item · same visit</p>
+              <p className="mt-1 text-sm text-zinc-500">${HANDYMAN_FURNITURE_EACH} per item, same visit</p>
               <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                 {furnitureOptions.map((o) => (
                   <li key={o.n}>
@@ -190,7 +191,7 @@ function QuotePageInner() {
                     href={bookHandymanHref(HANDYMAN_BUNK_BED, "Bunk bed assembly")}
                     className="flex min-h-[3.5rem] flex-col justify-center rounded-xl border border-white/[0.08] bg-black/40 px-3 py-2.5 transition-colors hover:border-orange-500/40 hover:bg-orange-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                   >
-                    <span className="text-sm font-medium text-zinc-200">Bunk bed assembly</span>
+                    <span className="text-sm font-medium text-zinc-200">Bunk Bed Assembly</span>
                     <span className="text-xl font-bold text-orange-400">${HANDYMAN_BUNK_BED}</span>
                   </Link>
                 </li>
@@ -269,7 +270,7 @@ function QuotePageInner() {
             <div>
               <p className="text-sm font-medium text-zinc-300">Something else?</p>
               <p className="mt-1 text-sm text-zinc-500">
-                Custom auto work or I.T projects—book and describe what you need; we&apos;ll quote before starting.
+                Custom auto work or I.T. projects—book and describe what you need; we&apos;ll quote before starting.
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 <Link

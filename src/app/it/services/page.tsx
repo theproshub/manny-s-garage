@@ -115,7 +115,7 @@ export default function ITServicesPage() {
               transition={{ duration: 0.5, delay: 0.06 }}
               className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
             >
-              <span className="metal-text block">I.T Services</span>
+              <span className="metal-text block">I.T. Services</span>
               <motion.span
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -139,7 +139,7 @@ export default function ITServicesPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-cyan-500/40 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Networks, PC builds, data recovery, smart home. Pick a category below and we’ll quote before starting any work.
+              Networks, PC builds, data recovery, and smart home. Pick a category below and we&apos;ll quote before starting any work.
             </motion.p>
 
             <motion.div
@@ -152,14 +152,14 @@ export default function ITServicesPage() {
                 href={bookUrlWithSchedule("/book?service=it")}
                 className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-cyan-500 px-6 py-3 text-sm font-bold text-black shadow-lg shadow-cyan-950/25 transition-transform hover:-translate-y-0.5 hover:bg-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
               >
-                Book I.T consult
+                Book I.T. Consult
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </Link>
               <Link
                 href="/it"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-cyan-400/40 hover:bg-cyan-500/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Back to I.T
+                Back to I.T.
               </Link>
             </motion.div>
           </div>
@@ -242,7 +242,7 @@ export default function ITServicesPage() {
                   href={bookUrlWithSchedule(`/book?service=it&notes=${encodeURIComponent(section.title)}`)}
                   className="mt-8 inline-flex items-center gap-2 rounded-full border-2 border-cyan-400/50 bg-cyan-500/10 px-6 py-3 font-semibold text-cyan-300 transition-colors hover:bg-cyan-500/20 hover:border-cyan-400 group"
                 >
-                  See Pricing / Book
+                  See Pricing or Book
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
@@ -271,14 +271,14 @@ export default function ITServicesPage() {
               href={bookUrlWithSchedule("/book?service=it")}
               className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-cyan-500 px-5 py-3 text-sm font-bold text-black shadow-lg shadow-cyan-950/25 transition-transform hover:-translate-y-0.5 hover:bg-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base group"
             >
-              Book I.T Service
+              Book I.T. Service
               <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
             </Link>
             <Link
               href="/it"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-cyan-400/40 hover:bg-cyan-500/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              Back to I.T
+              Back to I.T.
             </Link>
           </div>
         </div>

@@ -18,6 +18,7 @@ import {
   HANDYMAN_TV_PACKAGES,
   HANDYMAN_WINDOW_TREATMENT,
 } from "@/lib/fixed-quote-options";
+import { toTitleCase } from "@/lib/utils";
 
 const SERVICE_OPTIONS: {
   id: BookingServiceId;
@@ -25,10 +26,10 @@ const SERVICE_OPTIONS: {
   sub: string;
   Icon: typeof CarFront;
 }[] = [
-  { id: "automotive", label: "Auto", sub: "Repairs, maintenance, diagnostics", Icon: CarFront },
-  { id: "handyman", label: "Handyman", sub: "TV mount, cameras, assembly & more", Icon: Hammer },
-  { id: "diy", label: "DIY bay", sub: "Lift, tools & workspace by the hour", Icon: Warehouse },
-  { id: "it", label: "I.T", sub: "Tech help & setup", Icon: Cpu },
+  { id: "automotive", label: "Auto", sub: "Repairs, maintenance, and diagnostics", Icon: CarFront },
+  { id: "handyman", label: "Handyman", sub: "TV mounting, cameras, assembly, and more", Icon: Hammer },
+  { id: "diy", label: "DIY Bay", sub: "Lift, tools, and workspace by the hour", Icon: Warehouse },
+  { id: "it", label: "I.T.", sub: "Tech help and setup", Icon: Cpu },
 ];
 
 type FormState = {
@@ -192,25 +193,25 @@ function BookPageContent() {
       }));
       const cams = [1, 2, 3, 4].map((n) => ({
         id: `handyman-cam-${n}`,
-        label: `${n} camera${n > 1 ? "s" : ""}`,
+        label: toTitleCase(`${n} camera${n > 1 ? "s" : ""}`),
         amount: String(n * HANDYMAN_CAMERA_EACH),
         note: `Security cameras x${n}`,
       }));
       const furniture = [1, 2, 3, 4].map((n) => ({
         id: `handyman-furn-${n}`,
-        label: `${n} furniture item${n > 1 ? "s" : ""}`,
+        label: toTitleCase(`${n} furniture item${n > 1 ? "s" : ""}`),
         amount: String(n * HANDYMAN_FURNITURE_EACH),
         note: `Furniture assembly x${n}`,
       }));
       const windowTreatment = {
         id: "handyman-window-treatment",
-        label: "Window treatment installation (blinds & curtains)",
+        label: toTitleCase("Window treatment installation (blinds & curtains)"),
         amount: String(HANDYMAN_WINDOW_TREATMENT),
         note: "Window treatment installation",
       };
       const bunkBed = {
         id: "handyman-bunk-bed",
-        label: "Bunk bed assembly",
+        label: toTitleCase("Bunk bed assembly"),
         amount: String(HANDYMAN_BUNK_BED),
         note: "Bunk bed assembly",
       };
@@ -278,7 +279,7 @@ function BookPageContent() {
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20 text-green-400 ring-2 ring-green-400/30 sm:h-20 sm:w-20">
             <Check className="h-8 w-8 sm:h-10 sm:w-10" />
           </div>
-          <h1 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl">Request sent</h1>
+          <h1 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl">Request Sent</h1>
           <p className="mt-4 text-sm text-zinc-400 sm:text-base">
             We&apos;ll text or call you soon to confirm your time.
           </p>
@@ -294,7 +295,7 @@ function BookPageContent() {
               href="/book"
               className="btn-outline inline-flex items-center justify-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              Send another
+              Send Another
             </Link>
           </div>
         </motion.div>
@@ -316,11 +317,11 @@ function BookPageContent() {
         </div>
 
         <h1 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-          {showBookingForm ? "Book" : "Book a visit"}
+          {showBookingForm ? "Book" : "Book a Visit"}
         </h1>
         <p className="mt-2 text-sm text-zinc-400 sm:text-base">
           {showBookingForm
-            ? "Service, day, name &amp; phone—add time or details if you want. We confirm the rest."
+            ? "Service, day, name, and phone—add time or details if you want. We confirm the rest."
             : "Start by choosing what you need. Then add your preferred time and contact info."}
         </p>
 
@@ -333,7 +334,7 @@ function BookPageContent() {
             aria-labelledby="pick-service-heading"
           >
             <h2 id="pick-service-heading" className="text-sm font-medium text-zinc-300">
-              Select a service
+              Select a Service
             </h2>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
               {SERVICE_OPTIONS.map((opt) => {
@@ -381,14 +382,14 @@ function BookPageContent() {
             <div className="flex flex-wrap items-center justify-between gap-2 text-zinc-300">
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4 shrink-0 text-orange-400" aria-hidden />
-                <span className="text-sm font-medium">Your request</span>
+                <span className="text-sm font-medium">Your Request</span>
               </div>
               <button
                 type="button"
                 onClick={goBackToServicePick}
                 className="text-xs font-medium text-zinc-500 underline-offset-2 hover:text-orange-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Change service
+                Change Service
               </button>
             </div>
 
@@ -434,7 +435,7 @@ function BookPageContent() {
             {quoteOptions.length > 0 ? (
               <div>
                 <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">
-                  Quote options
+                  Quote Options
                 </label>
                 {form.serviceType === "automotive" ? (
                   <p className="mb-2 text-xs text-zinc-500">{AUTO_PRICING_PARTS_DISCLAIMER}</p>
@@ -475,11 +476,11 @@ function BookPageContent() {
               id={BOOK_SCHEDULE_FRAGMENT}
               className="scroll-mt-28 space-y-5 border-t border-white/[0.08] pt-5"
             >
-              <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">Schedule &amp; contact</p>
+              <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">Schedule &amp; Contact</p>
 
               <div>
                 <label htmlFor="date" className="mb-2 block text-xs font-medium uppercase tracking-wide text-zinc-500">
-                  Preferred day
+                  Preferred Day
                 </label>
                 <input
                   id="date"
