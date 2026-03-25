@@ -101,9 +101,9 @@ export default function Home() {
       <div className="noise-overlay" aria-hidden />
 
       {/* ─── HERO ─── */}
-      <section className="relative flex min-h-[min(100dvh,56rem)] flex-col pb-20 sm:min-h-[88vh] sm:pb-16 lg:min-h-[88vh] lg:pb-8">
+      <section className="relative flex min-h-[min(60dvh,36rem)] flex-col pb-8 sm:min-h-[65vh] sm:pb-8 lg:min-h-[75vh] lg:pb-8">
         <div className="hero-bg-gradient" aria-hidden />
-        <div className="relative z-10 mx-auto flex w-full min-w-0 max-w-7xl flex-1 flex-col justify-center px-[max(1rem,env(safe-area-inset-left))] pt-0 pb-8 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-10 sm:pt-2 md:pb-16 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8 lg:pt-4 lg:pb-20 xl:gap-20">
+        <div className="relative z-10 mx-auto flex w-full min-w-0 max-w-7xl flex-1 flex-col justify-center px-[max(1rem,env(safe-area-inset-left))] pt-0 pb-4 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-6 sm:pt-2 md:pb-8 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8 lg:pt-4 lg:pb-12 xl:gap-20">
           {/* Left: Copy */}
           <div className="order-2 mt-6 min-w-0 max-w-full sm:mt-8 lg:order-1 lg:mt-0 lg:max-w-[36rem]">
             <motion.div
@@ -279,7 +279,7 @@ export default function Home() {
 
       {/* ─── SERVICE CARDS ─── */}
       <section id="services" className="relative scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
-        <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pb-16 pt-8 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-24 sm:pt-14 lg:px-8">
+        <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pb-16 pt-6 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-24 sm:pt-10 lg:px-8">
           <SectionHeading
             badge="What We Offer"
             title={<>Choose Your <span className="orange-glow-text">Service</span></>}
