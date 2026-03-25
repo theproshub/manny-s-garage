@@ -153,7 +153,7 @@ export function StickyHeader() {
                         pathname === "/quote" ? "text-white" : "text-zinc-400 hover:text-white"
                       }`}
                     >
-                      <span className="relative z-10">Quote</span>
+                      <span className="relative z-10">Pricing</span>
                       {pathname === "/quote" && (
                         <motion.div
                           layoutId="nav-pill-quote"
@@ -308,7 +308,7 @@ export function StickyHeader() {
                         pathname === "/quote" ? "bg-white/10 text-white" : "text-zinc-400 hover:bg-white/5 hover:text-white"
                       }`}
                     >
-                      Quote
+                      Pricing
                       {pathname === "/quote" && <ArrowRight className="h-4 w-4 text-orange-400 shrink-0" />}
                     </Link>
                   </li>
@@ -337,7 +337,14 @@ export function StickyHeader() {
                     </Link>
                   </li>
                 </ul>
-                <div className="mt-4 border-t border-white/[0.06] pt-4">
+                <div className="mt-4 flex flex-col gap-2 border-t border-white/[0.06] pt-4">
+                  <Link
+                    href="/quote"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/[0.10] bg-white/[0.04] py-3 text-sm font-semibold text-zinc-300 transition-colors hover:bg-white/[0.08] hover:text-white"
+                  >
+                    See Prices
+                  </Link>
                   <Link
                     href="/book"
                     onClick={() => setMobileMenuOpen(false)}

@@ -8,8 +8,7 @@ import { ArrowRight, BatteryCharging, Check, ChevronDown, Gauge, MapPin, ShieldC
 import { BackToHome } from "@/components/back-to-home";
 import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { AutoFixedPricingGrid } from "@/components/auto-fixed-pricing-grid";
-import { bookUrlWithSchedule } from "@/lib/booking-nav";
-import { AUTO_PRICING_PARTS_DISCLAIMER } from "@/lib/fixed-quote-options";
+import { AUTO_PRICING_PARTS_DISCLAIMER, ARI_AUTOMOTIVE_BOOKING_URL } from "@/lib/fixed-quote-options";
 
 const AUTO_SERVICES_HERO_IMAGES = [
   "/hero/hero-bays.png",
@@ -180,7 +179,7 @@ export default function AutoServicesPage() {
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </Link>
               <Link
-                href={bookUrlWithSchedule("/book?service=automotive")}
+                href={ARI_AUTOMOTIVE_BOOKING_URL}
  className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Book (any job)
@@ -309,9 +308,7 @@ export default function AutoServicesPage() {
 
                 <div className="mt-5 flex flex-col gap-2">
                   <Link
-                    href={bookUrlWithSchedule(
-                    `/book?service=automotive&notes=${encodeURIComponent(section.title)}`,
-                  )}
+                    href={ARI_AUTOMOTIVE_BOOKING_URL}
  className="btn-primary group inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                   >
                     See Pricing / Book
@@ -359,7 +356,7 @@ export default function AutoServicesPage() {
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link
-              href={bookUrlWithSchedule("/book?service=automotive")}
+              href={ARI_AUTOMOTIVE_BOOKING_URL}
  className="btn-primary group inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               Book Automotive Service

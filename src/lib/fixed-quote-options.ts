@@ -177,8 +177,9 @@ export const AUTO_FIXED_PACKAGES: AutoFixedPackage[] = [
   },
 ];
 
-export function bookAutomotiveHref(price: number, note: string): string {
-  return bookUrlWithSchedule(
-    `/book?service=automotive&estimate=${encodeURIComponent(String(price))}&notes=${encodeURIComponent(note)}`,
-  );
+export const ARI_AUTOMOTIVE_BOOKING_URL =
+  "https://portal.ari.app/booking?FBProject=ARI&shopID=M0daA5VhFdf3dfayarNPWG3OIT43&version=v.15.8.20";
+
+export function bookAutomotiveHref(_price: number, _note: string): string {
+  return ARI_AUTOMOTIVE_BOOKING_URL;
 }

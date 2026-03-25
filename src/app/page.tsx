@@ -6,7 +6,6 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
-  CalendarPlus,
   CarFront,
   ChevronDown,
   Cpu,
@@ -101,9 +100,9 @@ export default function Home() {
       <div className="noise-overlay" aria-hidden />
 
       {/* ─── HERO ─── */}
-      <section className="relative flex min-h-[min(60dvh,36rem)] flex-col pb-8 sm:min-h-[65vh] sm:pb-8 lg:min-h-[75vh] lg:pb-8">
+      <section className="relative flex min-h-0 flex-col pb-2 sm:min-h-[70vh] sm:pb-10 lg:min-h-[78vh] lg:pb-8">
         <div className="hero-bg-gradient" aria-hidden />
-        <div className="relative z-10 mx-auto flex w-full min-w-0 max-w-7xl flex-1 flex-col justify-center px-[max(1rem,env(safe-area-inset-left))] pt-0 pb-4 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-6 sm:pt-2 md:pb-8 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8 lg:pt-4 lg:pb-12 xl:gap-20">
+        <div className="relative z-10 mx-auto flex w-full min-w-0 max-w-7xl flex-1 flex-col justify-center px-[max(1rem,env(safe-area-inset-left))] pt-0 pb-2 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-10 sm:pt-2 md:pb-16 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8 lg:pt-4 lg:pb-20 xl:gap-20">
           {/* Left: Copy */}
           <div className="order-2 mt-6 min-w-0 max-w-full sm:mt-8 lg:order-1 lg:mt-0 lg:max-w-[36rem]">
             <motion.div
@@ -174,23 +173,13 @@ export default function Home() {
               className="mt-7 flex flex-col gap-4 sm:mt-8"
             >
               <div className="flex w-full min-w-0 flex-col gap-2.5 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-stretch sm:gap-3">
-                <div className="grid w-full min-w-0 grid-cols-2 gap-2.5 sm:flex sm:w-auto sm:gap-3">
-                  <Link
-                    href="/book"
-                    className="btn-primary inline-flex w-full min-w-0 items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[9rem]"
-                  >
-                    <CalendarPlus className="h-4 w-4 shrink-0" aria-hidden />
-                    Book Now
-                    <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                  </Link>
-                  <Link
-                    href="/quote"
-                    className="btn-outline inline-flex w-full min-w-0 items-center justify-center gap-1.5 rounded-full border-orange-500/35 bg-orange-500/10 text-orange-200 backdrop-blur-sm transition-colors hover:border-orange-400/50 hover:bg-orange-500/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[8.5rem]"
-                  >
-                    <Tag className="h-4 w-4 shrink-0" aria-hidden />
-                    See Pricing
-                  </Link>
-                </div>
+                <Link
+                  href="/quote"
+                  className="btn-primary inline-flex w-full min-w-0 items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[8.5rem]"
+                >
+                  <Tag className="h-4 w-4 shrink-0" aria-hidden />
+                  See Pricing
+                </Link>
                 <a
                   href="#services"
                   className="btn-outline inline-flex w-full shrink-0 items-center justify-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[9rem]"
@@ -260,26 +249,11 @@ export default function Home() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          className="absolute bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-10 -translate-x-1/2 pb-safe sm:bottom-6 lg:bottom-8"
-        >
-          <a
-            href="#services"
-            className="hero-scroll-hint flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-1 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
-            aria-label="Scroll to services"
-          >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See Services</span>
-            <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
-          </a>
-        </motion.div>
       </section>
 
       {/* ─── SERVICE CARDS ─── */}
       <section id="services" className="relative scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
-        <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pb-16 pt-6 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-24 sm:pt-10 lg:px-8">
+        <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pb-16 pt-2 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-24 sm:pt-8 lg:px-8">
           <SectionHeading
             badge="What We Offer"
             title={<>Choose Your <span className="orange-glow-text">Service</span></>}

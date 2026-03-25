@@ -10,8 +10,7 @@ import { ChatAssistant } from "@/components/chat-assistant";
 import { SectionHeading } from "@/components/section-heading";
 import { AutoFixedPricingGrid } from "@/components/auto-fixed-pricing-grid";
 import { ServiceStandardsSection } from "@/components/service-standards-section";
-import { AUTO_PRICING_PARTS_DISCLAIMER } from "@/lib/fixed-quote-options";
-import { bookUrlWithSchedule } from "@/lib/booking-nav";
+import { AUTO_PRICING_PARTS_DISCLAIMER, ARI_AUTOMOTIVE_BOOKING_URL } from "@/lib/fixed-quote-options";
 
 const AUTO_HERO_IMAGES = [
   "/hero/hero-bays.png",
@@ -73,7 +72,7 @@ export default function AutoPage() {
       <div className="noise-overlay" aria-hidden />
 
       {/* ─── HERO (same layout as homepage) ─── */}
-      <section className="relative flex min-h-[85vh] flex-col pb-14 sm:min-h-[88vh] sm:pb-16 lg:min-h-[88vh] lg:pb-8">
+      <section className="relative flex min-h-0 flex-col pb-4 sm:min-h-[70vh] sm:pb-10 lg:min-h-[78vh] lg:pb-8">
         <div className="hero-bg-gradient" aria-hidden />
         <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pt-0 pb-10 sm:px-6 sm:pt-2 sm:pb-16 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-14 lg:px-8 lg:pt-4 lg:pb-20 xl:gap-20">
           {/* Left: Copy */}
@@ -142,7 +141,7 @@ export default function AutoPage() {
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </Link>
               <Link
-                href={bookUrlWithSchedule("/book?service=automotive")}
+                href={ARI_AUTOMOTIVE_BOOKING_URL}
                 className="btn-outline inline-flex items-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Book Any Job
@@ -155,6 +154,7 @@ export default function AutoPage() {
                 Start Diagnostic Intake
               </button>
             </motion.div>
+
           </div>
 
           {/* Right: Image carousel */}
@@ -216,110 +216,13 @@ export default function AutoPage() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 sm:bottom-6 lg:bottom-8"
-        >
-          <a
-            href="#services"
-            className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
-            aria-label="Scroll to services"
-          >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See Services</span>
-            <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
-          </a>
-        </motion.div>
       </section>
 
-      {/* ─── AUTO REPAIR SERVICES (simple) ─── */}
+      {/* ─── AUTO REPAIR SERVICES ─── */}
       <section id="services" className="relative mx-auto max-w-2xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8 scroll-mt-28">
-        <h2 className="text-center text-xl font-bold text-white sm:text-2xl">
-          Auto <span className="orange-glow-text">Repair Services</span>
-        </h2>
-            <p className="mt-2 text-center text-sm text-zinc-500">
-              Choose a service below or book and we’ll help you decide. {AUTO_PRICING_PARTS_DISCLAIMER}
-            </p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.45 }}
-          className="mt-8 overflow-hidden rounded-2xl border border-white/[0.08] bg-black/35 backdrop-blur-sm"
-        >
-          <div className="border-b border-white/[0.06] p-5 sm:p-6">
-            <p className="text-sm font-bold text-white">Common Services</p>
-            <p className="mt-1 text-sm text-zinc-500">
-              Pick what sounds closest. If you’re not sure, book and we’ll route you correctly.
-            </p>
-          </div>
-
-          <div className="grid gap-0 sm:grid-cols-2">
-            <div className="p-5 sm:p-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-zinc-500">Maintenance</p>
-              <ul className="mt-3 space-y-2 text-sm text-zinc-400">
-                <li>Oil Changes, Filters, and Fluids</li>
-                <li>Tune-Ups (Spark Plugs, Coils, Air Filters)</li>
-                <li>Belts, Hoses, and Scheduled Maintenance</li>
-                <li>Pre-Trip and Seasonal Inspections</li>
-              </ul>
-            </div>
-            <div className="border-t border-white/[0.06] p-5 sm:border-t-0 sm:border-l sm:border-white/[0.06] sm:p-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-zinc-500">Diagnostics &amp; Repair</p>
-              <ul className="mt-3 space-y-2 text-sm text-zinc-400">
-                <li>Check engine light and fault code scanning</li>
-                <li>Brakes (pads, rotors, fluid)</li>
-                <li>Battery, alternator, and no-start issues</li>
-                <li>A/C, electrical, tires, and more</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-white/[0.06] p-5 sm:p-6">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm text-zinc-500">
-                Want details? Here are the four main categories:
-                <span className="text-zinc-300"> </span>
-              </p>
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-                <Link
-                  href="/quote?for=auto"
-                  className="btn-primary group inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-                >
-                  Fixed Prices
-                  <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                </Link>
-                <Link
-                  href={bookUrlWithSchedule("/book?service=automotive")}
-                  className="btn-outline inline-flex items-center justify-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-                >
-                  Book Any Job
-                </Link>
-              </div>
-            </div>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              {autoServices.map((service) => {
-                const Icon = service.icon;
-                return (
-                  <span
-                    key={service.title}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/[0.10] bg-white/[0.04] px-3 py-2 text-xs font-semibold text-zinc-300"
-                  >
-                    <Icon className="h-3.5 w-3.5 text-orange-300" aria-hidden />
-                    {service.title}
-                  </span>
-                );
-              })}
-            </div>
-          </div>
-        </motion.div>
-
         <section
           id="fixed-pricing"
-          className="mt-12 scroll-mt-28 border-t border-white/[0.08] pt-12"
+          className="scroll-mt-28 pt-6 sm:pt-10"
           aria-labelledby="auto-fixed-pricing-heading"
         >
           <h2 id="auto-fixed-pricing-heading" className="text-center text-xl font-bold text-white sm:text-2xl">
@@ -403,7 +306,7 @@ export default function AutoPage() {
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </button>
               <Link
-                href={bookUrlWithSchedule("/book?service=automotive")}
+                href={ARI_AUTOMOTIVE_BOOKING_URL}
                 className="btn-outline inline-flex items-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Book Directly
