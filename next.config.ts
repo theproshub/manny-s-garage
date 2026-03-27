@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
     ],
   },
   turbopack: {
-    root: process.cwd(),
+    root: __dirname,
   },
 };
 

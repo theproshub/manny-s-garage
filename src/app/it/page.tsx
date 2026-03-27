@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   ChevronDown,
+  Code2,
   Cpu,
   Database,
   Globe,
@@ -25,40 +26,40 @@ const IT_SERVICES_BASE = "/it/services";
 
 const itServices = [
   {
+    id: "web-dev",
+    title: "Website & App Building",
+    navLabel: "Websites",
+    short: "Need a website or online store? We build it for you—fast, mobile-friendly, and easy to manage.",
+    icon: Code2,
+    href: `${IT_SERVICES_BASE}#web-dev`,
+  },
+  {
+    id: "database",
+    title: "Data & Reporting",
+    navLabel: "Data",
+    short: "We organize your business data so you can look things up, run reports, and stop using spreadsheets.",
+    icon: Database,
+    href: `${IT_SERVICES_BASE}#database`,
+  },
+  {
     id: "network",
-    title: "Network Infrastructure",
-    navLabel: "Networks",
-    short: "Wi‑Fi, ethernet, router setup. Fast, reliable coverage.",
+    title: "Wi-Fi & Internet Setup",
+    navLabel: "Wi-Fi",
+    short: "Bad signal? Slow connection? We get your internet working everywhere in your home or shop.",
     icon: Wifi,
     href: `${IT_SERVICES_BASE}#network`,
   },
   {
     id: "pc-builds",
-    title: "PC Builds & Repair",
-    navLabel: "PC Builds",
-    short: "Custom builds, gaming rigs, diagnostics and repair.",
+    title: "Computer Help & Repair",
+    navLabel: "Computers",
+    short: "Slow PC, broken laptop, or need a new computer built? We fix it or build one that fits your budget.",
     icon: Cpu,
     href: `${IT_SERVICES_BASE}#pc-builds`,
   },
-  {
-    id: "data-recovery",
-    title: "Data Recovery & Backup",
-    navLabel: "Data & Backup",
-    short: "Drive recovery, NAS and encrypted backups.",
-    icon: Database,
-    href: `${IT_SERVICES_BASE}#data-recovery`,
-  },
-  {
-    id: "smart-home",
-    title: "Smart Home & Automation",
-    navLabel: "Smart Home",
-    short: "Lights, locks, cameras—unified local control.",
-    icon: Globe,
-    href: `${IT_SERVICES_BASE}#smart-home`,
-  },
 ];
 
-const techNames = ["UniFi", "TrueNAS", "Home Assistant", "pfSense", "Proxmox"];
+const techNames = ["Websites", "Online Stores", "Business Apps", "Wi-Fi Setup", "PC Repair", "Data Reports"];
 
 export default function ITPages() {
   const [assistantOpen, setAssistantOpen] = useState(false);
@@ -107,8 +108,8 @@ export default function ITPages() {
                   aria-hidden
                 />
                 <span className="text-base font-medium tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
-                  <span className="text-cyan-300">Networks</span>
-                  <span className="text-white/90">—PC builds, data recovery, and smart home automation.</span>
+                  <span className="text-cyan-300">Tech help</span>
+                  <span className="text-white/90">—websites, computers, Wi-Fi, and more.</span>
                 </span>
               </motion.span>
             </motion.h1>
@@ -119,7 +120,7 @@ export default function ITPages() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-cyan-500/40 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Tell us what you’re trying to accomplish (coverage, reliability, backups, performance). We’ll scope it quickly and book a consult.
+              Not sure where to start? Just tell us what’s not working or what you’re trying to do. We’ll figure out the rest and give you a clear price before anything begins.
             </motion.p>
 
             <motion.div
@@ -191,7 +192,7 @@ export default function ITPages() {
         <SectionHeading
           badge="What We Do"
           title={<>I.T. & <span className="text-cyan-400">Support</span></>}
-          description="Networks, PC builds, data recovery, smart home. Select a service for details and pricing."
+          description="Websites, data, Wi-Fi, computers. Pick what you need and we'll walk you through it."
           align="center"
         />
 

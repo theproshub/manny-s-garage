@@ -12,7 +12,6 @@ import {
   Hammer,
   MapPin,
   PhoneCall,
-  Tag,
   Tv,
 } from "lucide-react";
 import { AnimatedCard } from "@/components/animated-card";
@@ -173,16 +172,9 @@ export default function Home() {
               className="mt-7 flex flex-col gap-4 sm:mt-8"
             >
               <div className="flex w-full min-w-0 flex-col gap-2.5 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-stretch sm:gap-3">
-                <Link
-                  href="/quote"
-                  className="btn-primary inline-flex w-full min-w-0 items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[8.5rem]"
-                >
-                  <Tag className="h-4 w-4 shrink-0" aria-hidden />
-                  See Pricing
-                </Link>
                 <a
                   href="#services"
-                  className="btn-outline inline-flex w-full shrink-0 items-center justify-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[9rem]"
+                  className="btn-primary inline-flex w-full min-w-0 items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto sm:min-w-[9rem]"
                 >
                   Browse Services
                   <ChevronDown className="h-3.5 w-3.5 shrink-0" aria-hidden />
