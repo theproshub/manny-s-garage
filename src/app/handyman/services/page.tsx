@@ -17,29 +17,29 @@ const FURNITURE_ITEM_OPTIONS = [1, 2, 3, 4, 5, 6] as const;
 const CAMERA_COUNT_OPTIONS = [1, 2, 3, 4, 5, 6] as const;
 
 const FURNITURE_SLIDES = [
-  "/images/AUTO/HANDYMAN/handyman-furniture-1.jpeg",
-  "/images/AUTO/HANDYMAN/handyman-furniture-2.jpeg",
-  "/images/AUTO/HANDYMAN/handyman-furniture-3.jpeg",
-  "/images/AUTO/HANDYMAN/handyman-furniture-4.jpeg",
-  "/images/AUTO/HANDYMAN/handyman-furniture-5.jpeg",
-  "/images/AUTO/HANDYMAN/handyman-furniture-6.jpeg",
-  "/images/AUTO/HANDYMAN/handyman-furniture-7.jpeg",
-  "/images/AUTO/HANDYMAN/handyman-furniture-8.jpeg",
+  "/images/AUTO/HANDYMAN/handyman-furniture-1.webp",
+  "/images/AUTO/HANDYMAN/handyman-furniture-2.webp",
+  "/images/AUTO/HANDYMAN/handyman-furniture-3.webp",
+  "/images/AUTO/HANDYMAN/handyman-furniture-4.webp",
+  "/images/AUTO/HANDYMAN/handyman-furniture-5.webp",
+  "/images/AUTO/HANDYMAN/handyman-furniture-6.webp",
+  "/images/AUTO/HANDYMAN/handyman-furniture-7.webp",
+  "/images/AUTO/HANDYMAN/handyman-furniture-8.webp",
 ];
 const FURNITURE_SLIDE_DURATION_MS = 4500;
 
 const TV_SLIDES = [
-  "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/WhatsApp Image 2026-03-17 at 23.49.40 (1).jpeg",
+  "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.webp",
+  "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.webp",
+  "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.webp",
+  "/images/AUTO/HANDYMAN/WhatsApp Image 2026-03-17 at 23.49.40 (1).webp",
 ];
 const TV_SLIDE_DURATION_MS = 4500;
 
 const CAMERA_SLIDES = [
-  "/images/AUTO/HANDYMAN/eagan-hsu-0hlBlVmKSyE-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/alberto-rodriguez-santana-i_nIoSCdHv4-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/david-trinks-HpdVUdvGZJ8-unsplash.jpg",
+  "/images/AUTO/HANDYMAN/eagan-hsu-0hlBlVmKSyE-unsplash.webp",
+  "/images/AUTO/HANDYMAN/alberto-rodriguez-santana-i_nIoSCdHv4-unsplash.webp",
+  "/images/AUTO/HANDYMAN/david-trinks-HpdVUdvGZJ8-unsplash.webp",
 ];
 const CAMERA_SLIDE_DURATION_MS = 4500;
 
@@ -73,9 +73,9 @@ const cameraIncludes = [
 ];
 
 const HANDYMAN_SERVICES_HERO_IMAGES = [
-  "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/eagan-hsu-0hlBlVmKSyE-unsplash.jpg",
-  "/hero/hero-handyman-services.png",
+  "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.webp",
+  "/images/AUTO/HANDYMAN/eagan-hsu-0hlBlVmKSyE-unsplash.webp",
+  "/hero/hero-handyman-services.webp",
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 const handymanServicesHeroLabels = [

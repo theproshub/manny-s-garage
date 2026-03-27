@@ -11,13 +11,13 @@ import { AutoFixedPricingGrid } from "@/components/auto-fixed-pricing-grid";
 import { AUTO_PRICING_PARTS_DISCLAIMER, ARI_AUTOMOTIVE_BOOKING_URL } from "@/lib/fixed-quote-options";
 
 const AUTO_SERVICES_HERO_IMAGES = [
-  "/hero/hero-bays.png",
-  "/hero/hero-auto-slide-services.png",
-  "/images/AUTO/brice-cooper-a3W_62jM0kg-unsplash.jpg",
-  "/images/AUTO/michael-lock-xEPZKFzGrVw-unsplash.jpg",
-  "/images/AUTO/WhatsApp Image 2026-03-18 at 11.29.17.jpeg",
-  "/images/AUTO/WhatsApp Image 2026-03-18 at 11.29.17 (1).jpeg",
-  "/images/AUTO/WhatsApp Image 2026-03-18 at 10.55.57 (3).jpeg",
+  "/hero/hero-bays.webp",
+  "/hero/hero-auto-slide-services.webp",
+  "/images/AUTO/brice-cooper-a3W_62jM0kg-unsplash.webp",
+  "/images/AUTO/michael-lock-xEPZKFzGrVw-unsplash.webp",
+  "/images/AUTO/WhatsApp Image 2026-03-18 at 11.29.17.webp",
+  "/images/AUTO/WhatsApp Image 2026-03-18 at 11.29.17 (1).webp",
+  "/images/AUTO/WhatsApp Image 2026-03-18 at 10.55.57 (3).webp",
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 const autoServicesHeroLabels = [

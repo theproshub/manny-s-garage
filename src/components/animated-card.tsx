@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface AnimatedCardProps {
@@ -57,9 +58,17 @@ export function AnimatedCard({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="absolute inset-0 h-full w-full bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-105"
-              style={{ backgroundImage: `url(${currentSlide})` }}
-            />
+              className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-105"
+            >
+              <Image
+                src={currentSlide}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                quality={75}
+              />
+            </motion.div>
           )}
         </AnimatePresence>
         <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent" />

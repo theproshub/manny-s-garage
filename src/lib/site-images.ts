@@ -8,15 +8,15 @@ const unsplash = (id: string) =>
 
 export const siteImages = {
   /** Site logo (transparent PNG) */
-  logo: "/logo-v2.png",
+  logo: "/logo-v2.webp",
 
   // —— Auto ——
   /** Garage hero - car in shop (Frankie Cordoba, Unsplash) */
   garageHero: unsplash("1646807284302-170c9505b2e7"),
   /** Engine bay - diagnostics / automotive service (Michael Lock, Unsplash) */
-  diagnostics: "/hero/auto-engine-bay.png",
+  diagnostics: "/hero/auto-engine-bay.webp",
   /** Brake rotor & caliper - brake/suspension (Toby Hall, Unsplash) */
-  brakeSuspension: "/hero/auto-brake-suspension.png",
+  brakeSuspension: "/hero/auto-brake-suspension.webp",
   /** Engine bay - tune-ups & maintenance (Unsplash) */
   engineMaintenance: unsplash("1486262715619-67b85e0b08d3"),
   /** Electrical / workshop - battery/charging (reuse diagnostics-style; Unsplash CDN uses numeric IDs only) */
@@ -26,13 +26,13 @@ export const siteImages = {
   /** TV on wall - TV mounting (BoliviaInteligente, Unsplash) */
   handymanTv: unsplash("1717295248380-9b10f252dbcb"),
   /** Living room / furniture assembly (Francesca Tosolini, Unsplash) */
-  handymanFurniture: "/hero/handyman-furniture.png",
+  handymanFurniture: "/hero/handyman-furniture.webp",
   /** Security camera installation (Alexis Dreher, Unsplash) */
-  handymanCameras: "/hero/handyman-security-camera.png",
+  handymanCameras: "/hero/handyman-security-camera.webp",
 
   // —— DIY garage ——
   /** Garage with car on lifts - DIY bay rental (Lorenzo Hamers, Unsplash) */
-  diyGarage: "/hero/diy-garage-bay.png",
+  diyGarage: "/hero/diy-garage-bay.webp",
 
   // —— I.T ——
   /** Laptop / tech workspace (Teodor Skrebnev, Unsplash) */

@@ -12,18 +12,18 @@ import { bookUrlWithSchedule } from "@/lib/booking-nav";
 
 /** Handyman hero slides (new portfolio + stock), shuffled order */
 const HANDYMAN_HERO_IMAGES = [
-  "/images/AUTO/HANDYMAN/handyman-hero-1.jpeg",
-  "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/handyman-hero-2.jpeg",
-  "/images/AUTO/HANDYMAN/alexis-dreher-MfnLwbch9_o-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/handyman-hero-3.jpeg",
-  "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/handyman-hero-4.jpeg",
-  "/images/AUTO/HANDYMAN/handyman-hero-5.jpeg",
-  "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/handyman-hero-6.jpeg",
-  "/hero/hero-handyman.png",
-  "/hero/hero-handyman-service-list.png",
+  "/images/AUTO/HANDYMAN/handyman-hero-1.webp",
+  "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.webp",
+  "/images/AUTO/HANDYMAN/handyman-hero-2.webp",
+  "/images/AUTO/HANDYMAN/alexis-dreher-MfnLwbch9_o-unsplash.webp",
+  "/images/AUTO/HANDYMAN/handyman-hero-3.webp",
+  "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.webp",
+  "/images/AUTO/HANDYMAN/handyman-hero-4.webp",
+  "/images/AUTO/HANDYMAN/handyman-hero-5.webp",
+  "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.webp",
+  "/images/AUTO/HANDYMAN/handyman-hero-6.webp",
+  "/hero/hero-handyman.webp",
+  "/hero/hero-handyman-service-list.webp",
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 

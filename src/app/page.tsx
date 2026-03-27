@@ -21,36 +21,36 @@ import { siteImages } from "@/lib/site-images";
 import { AUTO_PRICING_PARTS_DISCLAIMER } from "@/lib/fixed-quote-options";
 
 const heroImages = [
-  "/hero/hero-handyman.png",
-  "/hero/hero-handyman-grid.png",
-  "/hero/hero-handyman-services.png",
-  "/hero/hero-auto-slide-services.png",
-  "/hero/hero-bays.png",
+  "/hero/hero-handyman.webp",
+  "/hero/hero-handyman-grid.webp",
+  "/hero/hero-handyman-services.webp",
+  "/hero/hero-auto-slide-services.webp",
+  "/hero/hero-bays.webp",
 ];
 
 /** Service cards use same slides as their hero pages */
 const autoCardSlides = [
-  "/hero/hero-bays.png",
-  "/hero/hero-auto-slide-services.png",
-  "/hero/hero-auto-slide-diy.png",
-  "/images/AUTO/brice-cooper-a3W_62jM0kg-unsplash.jpg",
-  "/images/AUTO/compagnons-TnEe6BdBC2M-unsplash.jpg",
-  "/images/AUTO/michael-lock-xEPZKFzGrVw-unsplash.jpg",
-  "/images/AUTO/toby-hall-ii4XEyJEm_I-unsplash.jpg",
+  "/hero/hero-bays.webp",
+  "/hero/hero-auto-slide-services.webp",
+  "/hero/hero-auto-slide-diy.webp",
+  "/images/AUTO/brice-cooper-a3W_62jM0kg-unsplash.webp",
+  "/images/AUTO/compagnons-TnEe6BdBC2M-unsplash.webp",
+  "/images/AUTO/michael-lock-xEPZKFzGrVw-unsplash.webp",
+  "/images/AUTO/toby-hall-ii4XEyJEm_I-unsplash.webp",
 ];
 
 const handymanCardSlides = [
-  "/images/AUTO/HANDYMAN/handyman-hero-1.jpeg",
-  "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/handyman-hero-2.jpeg",
-  "/images/AUTO/HANDYMAN/alexis-dreher-MfnLwbch9_o-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/handyman-hero-3.jpeg",
-  "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/handyman-hero-4.jpeg",
-  "/images/AUTO/HANDYMAN/handyman-hero-5.jpeg",
-  "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.jpg",
-  "/images/AUTO/HANDYMAN/handyman-hero-6.jpeg",
-  "/hero/hero-handyman.png",
+  "/images/AUTO/HANDYMAN/handyman-hero-1.webp",
+  "/images/AUTO/HANDYMAN/thom-milkovic-uV1weWrJnRM-unsplash.webp",
+  "/images/AUTO/HANDYMAN/handyman-hero-2.webp",
+  "/images/AUTO/HANDYMAN/alexis-dreher-MfnLwbch9_o-unsplash.webp",
+  "/images/AUTO/HANDYMAN/handyman-hero-3.webp",
+  "/images/AUTO/HANDYMAN/boliviainteligente-8KJymJAC9sA-unsplash.webp",
+  "/images/AUTO/HANDYMAN/handyman-hero-4.webp",
+  "/images/AUTO/HANDYMAN/handyman-hero-5.webp",
+  "/images/AUTO/HANDYMAN/thibault-penin-SwKf1x2_hRo-unsplash.webp",
+  "/images/AUTO/HANDYMAN/handyman-hero-6.webp",
+  "/hero/hero-handyman.webp",
 ];
 
 const diyCardSlides = [siteImages.diyGarage];
