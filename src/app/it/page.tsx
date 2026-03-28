@@ -21,7 +21,7 @@ import { ChatAssistant } from "@/components/chat-assistant";
 import { SectionHeading } from "@/components/section-heading";
 import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { BackToHome } from "@/components/back-to-home";
-import { bookUrlWithSchedule } from "@/lib/booking-nav";
+const SETMORE_URL = "https://mannygarage.setmore.com";
 import { siteImages } from "@/lib/site-images";
 
 const IT_SERVICES_BASE = "/it/services";
@@ -141,7 +141,9 @@ export default function ITPages() {
                 Consult
               </button>
               <Link
-                href={bookUrlWithSchedule("/book?service=it")}
+                href={SETMORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-cyan-400/40 hover:bg-cyan-500/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Book Directly
@@ -257,7 +259,9 @@ export default function ITPages() {
             <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden />
           </button>
           <Link
-            href={bookUrlWithSchedule("/book?service=it")}
+            href={SETMORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
             className="text-sm font-medium text-zinc-400 hover:text-cyan-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded"
           >
             Book Directly →
