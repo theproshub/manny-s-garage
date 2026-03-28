@@ -7,11 +7,11 @@ const businessBase = {
   url: BASE_URL,
   logo: `${BASE_URL}/logo-v2.webp`,
   image: `${BASE_URL}/hero/hero-bays.webp`,
-  telephone: "+17015550142",
+  telephone: "+16094988246",
   email: "service@mannysgarage.com",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "1335 Main Ave S",
+    streetAddress: "1341 Main Ave S",
     addressLocality: "Fargo",
     addressRegion: "ND",
     postalCode: "58103",

@@ -179,7 +179,7 @@ export default function AboutPage() {
              <div className="flex flex-col items-center text-center p-5 sm:p-6 rounded-2xl border border-white/[0.08] bg-black/40">
                 <MapPin className="h-6 w-6 text-orange-400 mb-3" />
                 <h3 className="text-base font-bold text-white mb-1">Address</h3>
-                <p className="text-sm text-zinc-400">1335 Main Ave S<br/>Fargo, ND 58103</p>
+                <p className="text-sm text-zinc-400">1341 Main Ave S<br/>Fargo, ND 58103</p>
              </div>
              <div className="flex flex-col items-center text-center p-5 sm:p-6 rounded-2xl border border-white/[0.08] bg-black/40">
                 <Clock className="h-6 w-6 text-orange-400 mb-3" />
@@ -189,7 +189,7 @@ export default function AboutPage() {
              <div className="flex flex-col items-center text-center p-5 sm:p-6 rounded-2xl border border-white/[0.08] bg-black/40">
                 <PhoneCall className="h-6 w-6 text-orange-400 mb-3" />
                 <h3 className="text-base font-bold text-white mb-1">Contact</h3>
-                <p className="text-sm text-zinc-400">(701) 555-0142<br/><a href="mailto:service@mannysgarage.com" className="text-orange-400 hover:underline">service@mannysgarage.com</a></p>
+                <p className="text-sm text-zinc-400">(609) 498-8246<br/><a href="mailto:service@mannysgarage.com" className="text-orange-400 hover:underline">service@mannysgarage.com</a></p>
              </div>
            </div>
         </div>

@@ -72,12 +72,12 @@ export function Footer() {
             <ul className="flex flex-col gap-4 text-sm text-zinc-400">
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" />
-                <span>123 Mechanic Ave<br/>Fargo, ND 58103</span>
+                <span>1341 Main Ave S<br/>Fargo, ND 58103</span>
               </li>
               <li>
-                <a href="tel:+17015550142" className="flex items-center gap-3 transition-colors hover:text-white">
+                <a href="tel:+16094988246" className="flex items-center gap-3 transition-colors hover:text-white">
                   <PhoneCall className="h-4 w-4 shrink-0 text-cyan-400" />
-                  (701) 555-0142
+                  (609) 498-8246
                 </a>
               </li>
               <li>
