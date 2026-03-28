@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { JsonLd } from "@/components/json-ld";
+import { autoServiceSchema } from "@/lib/schema";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronDown, Gauge, ShieldCheck, Wrench, BatteryCharging, MapPin } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
@@ -69,6 +71,7 @@ export default function AutoPage() {
 
   return (
     <main className="relative min-h-screen overflow-x-hidden">
+      <JsonLd data={autoServiceSchema()} />
       <div className="noise-overlay" aria-hidden />
 
       {/* ─── HERO (same layout as homepage) ─── */}

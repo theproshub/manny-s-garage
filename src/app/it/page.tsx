@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { JsonLd } from "@/components/json-ld";
+import { itServiceSchema } from "@/lib/schema";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -66,6 +68,7 @@ export default function ITPages() {
 
   return (
     <main className="relative overflow-x-hidden">
+      <JsonLd data={itServiceSchema()} />
       <div className="noise-overlay" aria-hidden />
 
       {/* ─── HERO (same layout as homepage) ─── */}

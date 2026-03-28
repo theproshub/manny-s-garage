@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { JsonLd } from "@/components/json-ld";
+import { handymanServiceSchema } from "@/lib/schema";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronDown, MapPin, Tag } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
@@ -65,6 +67,7 @@ export default function HandymanPage() {
 
   return (
     <main className="relative min-h-screen overflow-x-hidden">
+      <JsonLd data={handymanServiceSchema()} />
       <div className="noise-overlay" aria-hidden />
 
       {/* ─── HERO (same layout as homepage) ─── */}

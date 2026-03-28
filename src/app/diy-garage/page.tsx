@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { JsonLd } from "@/components/json-ld";
+import { diyGarageSchema } from "@/lib/schema";
 import { ArrowRight, MapPin, Tag } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
 import { ServiceStandardsSection } from "@/components/service-standards-section";
@@ -13,6 +15,7 @@ import { DIY_HOURLY, DIY_MECHANIC_HOURLY, DIY_MAX_HOURS } from "@/lib/fixed-quot
 export default function DIYGaragePage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden">
+      <JsonLd data={diyGarageSchema()} />
       <div className="noise-overlay" aria-hidden />
 
       {/* Hero */}
