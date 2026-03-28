@@ -15,6 +15,7 @@ interface AnimatedCardProps {
   tag?: string;
   href?: string;
   delay?: number;
+  priority?: boolean;
 }
 
 const SLIDESHOW_INTERVAL_MS = 4500;
@@ -28,6 +29,7 @@ export function AnimatedCard({
   tag,
   href,
   delay = 0,
+  priority = false,
 }: AnimatedCardProps) {
   const slides = imageSlides?.length ? imageSlides : imageSrc ? [imageSrc] : [];
   const [slideIndex, setSlideIndex] = useState(0);
@@ -67,6 +69,7 @@ export function AnimatedCard({
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 quality={75}
+                priority={priority && slideIndex === 0}
               />
             </motion.div>
           )}

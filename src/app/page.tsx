@@ -215,7 +215,7 @@ export default function Home() {
                     className="object-cover"
                     sizes="(max-width: 1023px) 100vw, 50vw"
                     quality={70}
-                    priority={currentSlide === 0}
+                    priority
                   />
                 </motion.div>
               </AnimatePresence>
@@ -271,6 +271,7 @@ export default function Home() {
               tag="HOME"
               href="/handyman"
               delay={0.2}
+              priority
             />
             <AnimatedCard
               title="DIY Garage"
