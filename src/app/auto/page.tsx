@@ -91,9 +91,6 @@ export default function AutoPage() {
                 <MapPin className="h-3.5 w-3.5" aria-hidden />
                 Fargo, ND
               </span>
-              <span className="premium-badge badge-orange orbitron text-[10px] tracking-[0.15em]">
-                AUTO
-              </span>
             </motion.div>
 
             <motion.h1
@@ -103,31 +100,15 @@ export default function AutoPage() {
               className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
             >
               <span className="metal-text block">Auto Repair</span>
-              <motion.span
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                className="mt-4 flex items-center gap-3 sm:mt-5 sm:gap-4"
-              >
-                <span
-                  className="h-px w-8 shrink-0 bg-gradient-to-r from-orange-400/60 to-transparent sm:w-10"
-                  aria-hidden
-                />
-                <span className="text-base font-medium tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
-                  <span className="text-orange-300">Diagnostics</span>
-                  <span className="text-white/90">—Repair and maintenance for cars and light trucks.</span>
-                </span>
-              </motion.span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.12 }}
-              className="mt-6 border-l-2 border-orange-500/50 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
+              className="mt-5 text-[15px] leading-[1.6] text-zinc-300 sm:mt-6 sm:text-base sm:leading-[1.7]"
             >
-              Oil changes, brakes, check engine light, battery/charging, A/C, and more. Book online or start a quick intake, and
-              we&apos;ll route you to the right service. {AUTO_PRICING_PARTS_DISCLAIMER}
+              Oil changes, brakes, check engine light, A/C, battery, and more. Prices are listed — parts are not included unless we say so.
             </motion.p>
 
             <motion.div

@@ -88,9 +88,6 @@ export default function ITPages() {
                 <MapPin className="h-3.5 w-3.5" aria-hidden />
                 Fargo, ND
               </span>
-              <span className="premium-badge orbitron text-[10px] tracking-[0.15em] border-cyan-500/50 bg-cyan-500/10 text-cyan-300">
-                I.T & NETWORKING
-              </span>
             </motion.div>
 
             <motion.h1
@@ -99,31 +96,16 @@ export default function ITPages() {
               transition={{ duration: 0.5, delay: 0.06 }}
               className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
             >
-              <span className="metal-text block">I.T. Support</span>
-              <motion.span
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                className="mt-4 flex items-center gap-3 sm:mt-5 sm:gap-4"
-              >
-                <span
-                  className="h-px w-8 shrink-0 bg-gradient-to-r from-cyan-400/60 to-transparent sm:w-10"
-                  aria-hidden
-                />
-                <span className="text-base font-medium tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
-                  <span className="text-cyan-300">Tech help</span>
-                  <span className="text-white/90">—websites, computers, Wi-Fi, and more.</span>
-                </span>
-              </motion.span>
+              <span className="metal-text block">Tech Help</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.12 }}
-              className="mt-6 border-l-2 border-cyan-500/40 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
+              className="mt-5 text-[15px] leading-[1.6] text-zinc-300 sm:mt-6 sm:text-base sm:leading-[1.7]"
             >
-              Not sure where to start? Just tell us what’s not working or what you’re trying to do. We’ll figure out the rest and give you a clear price before anything begins.
+              Wi-Fi setup, computer repair, websites, and anything tech. Tell us what’s not working and we’ll sort it out.
             </motion.p>
 
             <motion.div
