@@ -5,7 +5,12 @@ const businessBase = {
   "@type": "AutoRepair",
   name: "Manny's Garage",
   url: BASE_URL,
-  logo: `${BASE_URL}/logo-v2.webp`,
+  logo: {
+    "@type": "ImageObject",
+    url: `${BASE_URL}/logo-v2.webp`,
+    width: 203,
+    height: 256,
+  },
   image: `${BASE_URL}/hero/hero-bays.webp`,
   telephone: "+16094988246",
   email: "service@mannysgarage.com",
