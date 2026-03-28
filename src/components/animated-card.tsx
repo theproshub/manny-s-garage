@@ -86,13 +86,16 @@ export function AnimatedCard({
           {icon}
         </div>
       </div>
-      <div className="relative z-10 border-t border-white/[0.06] p-3.5 sm:p-4">
-        <h3 className="text-[0.95rem] font-semibold text-white transition-colors duration-300 group-hover:text-orange-300 sm:text-base">
+      <div className="relative z-10 border-t border-white/[0.06] p-4 sm:p-5">
+        <h3 className="text-base font-semibold text-white transition-colors duration-300 group-hover:text-orange-300 sm:text-[1.05rem]">
           {title}
         </h3>
-        <p className="mt-1.5 text-[11px] leading-[1.4] text-zinc-400 sm:mt-2 sm:text-xs sm:leading-relaxed min-h-[2.6em] sm:min-h-[2.8em] line-clamp-2">
+        <p className="mt-2 text-[13px] leading-[1.55] text-zinc-400 sm:text-sm">
           {description}
         </p>
+        <span className="mt-3 inline-flex items-center gap-1 text-[12px] font-medium text-orange-400 transition-all duration-200 group-hover:gap-2 sm:text-[13px]">
+          Learn more <span aria-hidden>→</span>
+        </span>
       </div>
     </motion.article>
   );

@@ -248,15 +248,15 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pb-16 pt-2 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-24 sm:pt-8 lg:px-8">
           <SectionHeading
             badge="What We Offer"
-            title={<>Choose Your <span className="orange-glow-text">Service</span></>}
-            description="From full-service auto repair to handyman installations, I.T. and networking, and DIY bay rental—all under one roof."
+            title={<>Everything in <span className="orange-glow-text">One Place</span></>}
+            description="Pick what you need — we handle the rest."
             align="center"
           />
 
           <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-4 md:gap-4 lg:gap-5">
             <AnimatedCard
-              title="Automotive Services"
-              description={`Maintenance for cars and light trucks. ${AUTO_PRICING_PARTS_DISCLAIMER}`}
+              title="Auto Repair"
+              description="Oil changes, brakes, diagnostics, and more. Fixed prices, no surprises."
               imageSlides={autoCardSlides}
               icon={<CarFront className="h-6 w-6" />}
               tag="AUTO"
@@ -264,8 +264,8 @@ export default function Home() {
               delay={0.1}
             />
             <AnimatedCard
-              title="Handyman Services"
-              description="TV Mounting, Security Cameras, and Furniture Assembly—fast home installs."
+              title="Handyman"
+              description="TV mounting, security cameras, furniture assembly, and home installs."
               imageSlides={handymanCardSlides}
               icon={<Tv className="h-6 w-6" />}
               tag="HOME"
@@ -274,8 +274,8 @@ export default function Home() {
               priority
             />
             <AnimatedCard
-              title="DIY Garage"
-              description="Rent a fully equipped garage space and work on your own vehicle."
+              title="DIY Garage Bay"
+              description="Rent a lift and tools by the hour. Work on your own car with pro equipment."
               imageSlides={diyCardSlides}
               icon={<Hammer className="h-6 w-6" />}
               tag="RENTAL"
@@ -283,11 +283,11 @@ export default function Home() {
               delay={0.3}
             />
             <AnimatedCard
-              title="I.T. Consultant"
-              description="Network setup, PC builds, data recovery, and smart home integration."
+              title="Tech Help"
+              description="Wi-Fi setup, computer repair, websites, and anything tech in your home or business."
               imageSlides={itCardSlides}
               icon={<Cpu className="h-6 w-6" />}
-              tag="I.T"
+              tag="I.T."
               href="/it"
               delay={0.4}
             />
