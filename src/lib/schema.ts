@@ -1,4 +1,4 @@
-const BASE_URL = "https://manny-s-garage.vercel.app";
+const BASE_URL = "https://mannygarage.com";
 
 const businessBase = {
   "@context": "https://schema.org",

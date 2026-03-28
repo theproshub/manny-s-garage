@@ -15,12 +15,12 @@ export const metadata: Metadata = {
   title: "Manny's Garage — Auto, Handyman, DIY Bay & I.T. | Fargo, ND",
   description:
     "Manny's Garage — auto repair, handyman, DIY bay, and I.T. in Fargo, ND. Repair your ride, upgrade your home, rent a bay, or sort your tech. One shop—no runaround.",
-  metadataBase: new URL("https://manny-s-garage.vercel.app"),
+  metadataBase: new URL("https://mannygarage.com"),
   alternates: { canonical: "/" },
   openGraph: {
     title: "Manny's Garage — Fargo's One-Stop Shop",
     description: "Auto repair, handyman, DIY bay, and I.T. in Fargo, ND.",
-    url: "https://manny-s-garage.vercel.app",
+    url: "https://mannygarage.com",
     siteName: "Manny's Garage",
     locale: "en_US",
     type: "website",
