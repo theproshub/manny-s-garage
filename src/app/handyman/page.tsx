@@ -30,11 +30,11 @@ const HANDYMAN_HERO_IMAGES = [
 const HERO_SLIDE_DURATION_MS = 4500;
 
 const SERVICES_LIST = [
-  { title: "Furniture Assembly", price: "$50 per item", href: "#calculator" },
-  { title: "TV Mounting", price: "$1.50 per inch", href: "#calculator" },
-  { title: "Security Camera Installation", price: "$120", href: "#calculator" },
-  { title: "Window Treatment Installation", price: "$50", href: "#calculator" },
-  { title: "Bunk Bed Assembly", price: "$100", href: "#calculator" },
+  { title: "Furniture Assembly", price: "$50 per item", href: "/quote?for=handyman#fur-heading" },
+  { title: "TV Mounting", price: "$1.50 per inch", href: "/quote?for=handyman#tv-heading" },
+  { title: "Security Camera Installation", price: "$120", href: "/quote?for=handyman#cam-heading" },
+  { title: "Window Treatment Installation", price: "$50", href: "/quote?for=handyman#window-heading" },
+  { title: "Bunk Bed Assembly", price: "$100", href: "/quote?for=handyman#bunk-bed-heading" },
 ] as const;
 
 const handymanHeroSlideLabels = [
