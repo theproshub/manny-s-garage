@@ -10,7 +10,7 @@ import { ArrowRight, ChevronDown, MapPin, Tag } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { BackToHome } from "@/components/back-to-home";
-import { bookUrlWithSchedule } from "@/lib/booking-nav";
+const SETMORE_URL = "https://mannygarage.setmore.com";
 
 /** Handyman hero slides (new portfolio + stock), shuffled order */
 const HANDYMAN_HERO_IMAGES = [
@@ -139,7 +139,9 @@ export default function HandymanPage() {
                 See Pricing
               </Link>
               <Link
-                href={bookUrlWithSchedule("/book?service=handyman")}
+                href={SETMORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Book Directly
@@ -279,7 +281,9 @@ export default function HandymanPage() {
               <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
             </Link>
             <Link
-              href={bookUrlWithSchedule("/book?service=handyman")}
+              href={SETMORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-outline inline-flex w-full max-w-xs items-center justify-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto"
             >
               Book Without a Set Price
