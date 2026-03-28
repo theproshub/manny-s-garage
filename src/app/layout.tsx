@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     "Manny's Garage — auto repair, handyman, DIY bay, and I.T. in Fargo, ND. Repair your ride, upgrade your home, rent a bay, or sort your tech. One shop—no runaround.",
   metadataBase: new URL("https://mannygarage.com"),
   alternates: { canonical: "/" },
+  verification: { google: "google8b2e203404a03e46" },
   openGraph: {
     title: "Manny's Garage — Fargo's One-Stop Shop",
     description: "Auto repair, handyman, DIY bay, and I.T. in Fargo, ND.",
