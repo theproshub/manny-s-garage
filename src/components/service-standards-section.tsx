@@ -70,33 +70,34 @@ const VARIANT_CONFIG: Record<
     ],
   },
   home: {
-    title: "What to Expect",
-    description: "We keep it simple. No surprises, no runaround.",
+    title: "How We Work With You",
+    description:
+      "Same approach whether it’s auto, a home install, a bay rental, or I.T.—clear numbers, clear communication, and your OK before we move forward.",
     accent: "orange",
     items: [
       {
         icon: CircleDollarSign,
-        title: "Price first",
+        title: "You Know the Cost Up Front",
         description:
-          "You get the cost before anything starts. If something changes mid-job, we tell you before we do it.",
+          "We go over pricing before work starts, and nothing moves forward until you say yes.",
       },
       {
         icon: MessageSquare,
-        title: "Plain updates",
+        title: "Updates That Make Sense",
         description:
-          "We call or text when there’s something to know. No jargon, no guessing on your end.",
+          "If we find something new, we explain it in plain language—and share photos when it helps.",
       },
       {
         icon: Building2,
-        title: "All in one place",
+        title: "One Place, Many Jobs",
         description:
-          "Cars, home repairs, tech, and bay rentals. No need to call three different shops.",
+          "Auto repair, handyman installs, DIY bays, and I.T. support under one roof so you’re not juggling shops.",
       },
       {
         icon: MapPin,
-        title: "We’re in Fargo",
+        title: "Local and Accountable",
         description:
-          "Local shop, same faces. You can walk in, call us, or book online.",
+          "Fargo-based service with people you can come back to—not a distant call center.",
       },
     ],
   },

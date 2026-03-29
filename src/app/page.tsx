@@ -110,6 +110,9 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="mb-5 flex flex-wrap items-center gap-2 sm:mb-6"
             >
+              <span className="premium-badge badge-orange orbitron text-[10px] tracking-[0.16em]">
+                SAME-DAY SLOTS
+              </span>
               <span className="premium-badge badge-orange flex items-center gap-1.5">
                 <MapPin className="h-3.5 w-3.5" aria-hidden />
                 Fargo, ND
@@ -123,16 +126,44 @@ export default function Home() {
               className="break-words text-[1.65rem] font-bold leading-[1.18] tracking-tight min-[360px]:text-[2rem] min-[400px]:text-[2.25rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
             >
               <span className="metal-text block">Manny&apos;s Garage</span>
+              <motion.span
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                className="mt-3 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:items-center sm:gap-4"
+              >
+                <span className="hidden h-px w-8 shrink-0 bg-gradient-to-r from-orange-400/60 to-transparent sm:block sm:w-10" aria-hidden />
+                <span className="text-[0.95rem] font-medium leading-snug tracking-wide text-white/95 sm:text-lg sm:tracking-normal lg:text-xl">
+                  <span className="text-orange-300">Welcome in</span>
+                  <span className="text-white/90"> — Fargo One Stop Garage.</span>
+                </span>
+              </motion.span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.12 }}
-              className="mt-5 max-w-full text-[15px] leading-[1.6] text-zinc-300 sm:mt-6 sm:text-base sm:leading-[1.7]"
+              className="mt-5 max-w-full border-l-2 border-orange-500/50 pl-3 text-[14px] leading-[1.55] text-zinc-400 sm:mt-7 sm:pl-4 sm:text-base sm:leading-[1.65]"
             >
-              Car repairs, handyman installs, tech help, and DIY bay rentals in Fargo. Fixed prices — you always know the cost before we start.
+              Fargo&apos;s go-to spot for car repairs, handyman work, and equipped DIY bays—everything you need under one roof.
             </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.15 }}
+              className="mt-4 flex flex-wrap gap-2"
+            >
+              <span className="rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1.5 text-[11px] font-semibold text-orange-200">
+                Fast Booking
+              </span>
+              <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-[11px] font-semibold text-cyan-200">
+                Fixed Pricing
+              </span>
+              <span className="rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-[11px] font-semibold text-zinc-200">
+                One-Stop Service
+              </span>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -216,16 +247,16 @@ export default function Home() {
       <section id="services" className="relative scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
         <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pb-16 pt-2 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-24 sm:pt-8 lg:px-8">
           <SectionHeading
-            badge="Services"
-            title="What We Do"
-            description="Pick a service to see prices and book."
+            badge="What We Offer"
+            title={<>Choose Your <span className="orange-glow-text">Service</span></>}
+            description="From full-service auto repair to handyman installations, I.T. and networking, and DIY bay rental—all under one roof."
             align="center"
           />
 
           <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-4 md:gap-4 lg:gap-5">
             <AnimatedCard
-              title="Auto Repair"
-              description="Oil changes, brakes, diagnostics, and more. Fixed prices, no surprises."
+              title="Automotive Services"
+              description={`Maintenance for cars and light trucks. ${AUTO_PRICING_PARTS_DISCLAIMER}`}
               imageSlides={autoCardSlides}
               icon={<CarFront className="h-6 w-6" />}
               tag="AUTO"
@@ -233,8 +264,8 @@ export default function Home() {
               delay={0.1}
             />
             <AnimatedCard
-              title="Handyman"
-              description="TV mounting, security cameras, furniture assembly, and home installs."
+              title="Handyman Services"
+              description="TV Mounting, Security Cameras, and Furniture Assembly—fast home installs."
               imageSlides={handymanCardSlides}
               icon={<Tv className="h-6 w-6" />}
               tag="HOME"
@@ -243,8 +274,8 @@ export default function Home() {
               priority
             />
             <AnimatedCard
-              title="DIY Garage Bay"
-              description="Rent a lift and tools by the hour. Work on your own car with pro equipment."
+              title="DIY Garage"
+              description="Rent a fully equipped garage space and work on your own vehicle."
               imageSlides={diyCardSlides}
               icon={<Hammer className="h-6 w-6" />}
               tag="RENTAL"
@@ -252,11 +283,11 @@ export default function Home() {
               delay={0.3}
             />
             <AnimatedCard
-              title="Tech Help"
-              description="Wi-Fi setup, computer repair, websites, and anything tech in your home or business."
+              title="I.T. Consultant"
+              description="Network setup, PC builds, data recovery, and smart home integration."
               imageSlides={itCardSlides}
               icon={<Cpu className="h-6 w-6" />}
-              tag="I.T."
+              tag="I.T"
               href="/it"
               delay={0.4}
             />
