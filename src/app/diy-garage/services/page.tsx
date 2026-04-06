@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
 import { ServiceStandardsSection } from "@/components/service-standards-section";
-import { bookUrlWithSchedule } from "@/lib/booking-nav";
+import { SQUARE_BOOKING_URL } from "@/lib/fixed-quote-options";
 import { siteImages } from "@/lib/site-images";
 
 const HOURLY_RATE = 20;
@@ -118,7 +118,9 @@ export default function DIYGarageServicesPage() {
               className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
             >
               <Link
-                href={bookUrlWithSchedule("/book?service=diy")}
+                href={SQUARE_BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
  className="btn-primary inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Book DIY bay
@@ -215,9 +217,9 @@ export default function DIYGarageServicesPage() {
               ))}
             </ul>
             <Link
-              href={bookUrlWithSchedule(
-              `/book?service=diy&estimate=${HOURLY_RATE}&notes=bay+rental+1hr`,
-            )}
+              href={SQUARE_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               Book bay time
@@ -250,9 +252,9 @@ export default function DIYGarageServicesPage() {
                 ))}
               </ul>
               <Link
-                href={bookUrlWithSchedule(
-                `/book?service=diy&estimate=${HOURLY_RATE + MECHANIC_RATE_PER_HOUR}&notes=bay+1hr+mechanic+1hr`,
-              )}
+                href={SQUARE_BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Book bay + mechanic
@@ -301,7 +303,9 @@ export default function DIYGarageServicesPage() {
         </div>
         <div className="mt-10">
           <Link
-            href={bookUrlWithSchedule("/book?service=diy")}
+            href={SQUARE_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
           >
             Book DIY Bay
@@ -321,7 +325,9 @@ export default function DIYGarageServicesPage() {
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link
-              href={bookUrlWithSchedule("/book?service=diy")}
+              href={SQUARE_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
  className="btn-primary group inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               Book DIY Garage

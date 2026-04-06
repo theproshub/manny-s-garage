@@ -6,7 +6,6 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Cctv, Check, ChevronDown, MapPin, Sofa, Tv } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
-import { bookUrlWithSchedule } from "@/lib/booking-nav";
 import { ServiceStandardsSection } from "@/components/service-standards-section";
 
 const FURNITURE_PRICE = 50;
@@ -83,6 +82,8 @@ const handymanServicesHeroLabels = [
   "Security Cameras",
   "Handyman Services",
 ];
+const HANDYMAN_SQUARE_SERVICES_URL =
+  "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services";
 
 export default function HandymanServicesPage() {
   const [furnitureSlideIndex, setFurnitureSlideIndex] = useState(0);
@@ -176,7 +177,7 @@ export default function HandymanServicesPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-orange-500/50 pl-4 text-[15px] leading-[1.6] text-zinc-400 sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Pick your service below to see what’s included, then choose a fixed price on the pricing page or book directly.
+              Pick your service below to see what&apos;s included, then book from our live Square services list.
             </motion.p>
 
             <motion.div
@@ -186,17 +187,21 @@ export default function HandymanServicesPage() {
               className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
             >
               <Link
-                href={bookUrlWithSchedule("/book?service=handyman")}
+                href={HANDYMAN_SQUARE_SERVICES_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book handyman service
+                Book on Square
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </Link>
               <Link
-                href="/quote?for=handyman"
+                href={HANDYMAN_SQUARE_SERVICES_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-outline inline-flex items-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Fixed pricing
+                View services
               </Link>
             </motion.div>
           </div>
@@ -329,9 +334,9 @@ export default function HandymanServicesPage() {
                     return (
                       <Link
                         key={count}
-                        href={bookUrlWithSchedule(
-                          `/book?service=handyman&estimate=${price}&notes=furniture+assembly+${count}+items`,
-                        )}
+                        href={HANDYMAN_SQUARE_SERVICES_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="min-h-[44px] rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                       >
                         <p className="text-sm font-bold text-white">{count} {count === 1 ? "item" : "items"}</p>
@@ -354,10 +359,12 @@ export default function HandymanServicesPage() {
               ))}
             </ul>
             <Link
-              href={bookUrlWithSchedule("/book?service=handyman&notes=furniture+assembly")}
+              href={HANDYMAN_SQUARE_SERVICES_URL}
+              target="_blank"
+              rel="noopener noreferrer"
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              See Pricing / Book
+              Book on Square
               <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
             </Link>
           </div>
@@ -385,9 +392,9 @@ export default function HandymanServicesPage() {
                       return (
                         <Link
                           key={size}
-                          href={bookUrlWithSchedule(
-                          `/book?service=handyman&estimate=${price}&notes=TV+mounting+${size}in`,
-                        )}
+                          href={HANDYMAN_SQUARE_SERVICES_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="min-h-[44px] rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                         >
                           <p className="text-sm font-bold text-white">{size}&quot;</p>
@@ -410,10 +417,12 @@ export default function HandymanServicesPage() {
                 ))}
               </ul>
               <Link
-                href={bookUrlWithSchedule("/book?service=handyman&notes=TV+mounting")}
+                href={HANDYMAN_SQUARE_SERVICES_URL}
+                target="_blank"
+                rel="noopener noreferrer"
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                See Pricing / Book
+                Book on Square
                 <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
               </Link>
             </div>
@@ -505,9 +514,9 @@ export default function HandymanServicesPage() {
                     return (
                       <Link
                         key={count}
-                        href={bookUrlWithSchedule(
-                          `/book?service=handyman&estimate=${price}&notes=security+camera+installation+${count}+cameras`,
-                        )}
+                        href={HANDYMAN_SQUARE_SERVICES_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="min-h-[44px] rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                       >
                         <p className="text-sm font-bold text-white">{count} {count === 1 ? "camera" : "cameras"}</p>
@@ -530,10 +539,12 @@ export default function HandymanServicesPage() {
               ))}
             </ul>
             <Link
-              href={bookUrlWithSchedule("/book?service=handyman&notes=security+camera+installation")}
+              href={HANDYMAN_SQUARE_SERVICES_URL}
+              target="_blank"
+              rel="noopener noreferrer"
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              See Pricing / Book
+              Book on Square
               <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
             </Link>
           </div>
@@ -547,14 +558,16 @@ export default function HandymanServicesPage() {
         <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-white/[0.08] bg-black/40 shadow-xl shadow-black/20 backdrop-blur-sm p-6 sm:p-8">
           <div>
             <h2 className="text-xl font-bold text-white">Need a custom quote?</h2>
-            <p className="mt-1 text-zinc-400">Combine services or ask about items not listed. Book handyman and add details in the notes.</p>
+            <p className="mt-1 text-zinc-400">Combine services or ask about items not listed. Open Square and add your details when booking.</p>
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link
-              href={bookUrlWithSchedule("/book?service=handyman")}
+              href={HANDYMAN_SQUARE_SERVICES_URL}
+              target="_blank"
+              rel="noopener noreferrer"
  className="btn-primary group inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              Book Handyman Service
+              Book on Square
               <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
             </Link>
             <Link

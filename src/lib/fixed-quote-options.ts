@@ -9,6 +9,10 @@ export const HANDYMAN_CAMERA_EACH = 120;
 export const HANDYMAN_FURNITURE_EACH = 50;
 export const HANDYMAN_WINDOW_TREATMENT = 50;
 export const HANDYMAN_BUNK_BED = 100;
+export const SQUARE_BOOKING_URL =
+  "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services";
+export const HANDYMAN_SQUARE_BOOKING_URL =
+  SQUARE_BOOKING_URL;
 
 /** TV wall mount — $1.50/inch at listed sizes */
 export const HANDYMAN_TV_PACKAGES: { label: string; price: number }[] = [
@@ -96,16 +100,14 @@ export const DIY_PACKAGES: DiyPackage[] = [
 ];
 
 export function bookHandymanHref(price: number, note: string): string {
-  return bookUrlWithSchedule(
-    `/book?service=handyman&estimate=${encodeURIComponent(price.toFixed(2))}&notes=${encodeURIComponent(note)}`,
-  );
+  void price;
+  void note;
+  return HANDYMAN_SQUARE_BOOKING_URL;
 }
 
 export function bookDiyHref(pkg: DiyPackage): string {
-  const note = `DIY bay ${pkg.hours}h${pkg.mechanicHours ? ` + mechanic ${pkg.mechanicHours}h` : ''}`;
-  return bookUrlWithSchedule(
-    `/book?service=diy&estimate=${encodeURIComponent(pkg.total.toString())}&hours=${pkg.hours}&mechanicHours=${pkg.mechanicHours}&notes=${encodeURIComponent(note)}`,
-  );
+  void pkg;
+  return SQUARE_BOOKING_URL;
 }
 
 /** Common starting prices — shop confirms for your vehicle at check-in */

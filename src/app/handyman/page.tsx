@@ -10,7 +10,8 @@ import { ArrowRight, ChevronDown, MapPin, Tag } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { BackToHome } from "@/components/back-to-home";
-const SETMORE_URL = "https://mannygarage.setmore.com";
+const HANDYMAN_SQUARE_SERVICES_URL =
+  "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services";
 
 /** Handyman hero slides (new portfolio + stock), shuffled order */
 const HANDYMAN_HERO_IMAGES = [
@@ -30,11 +31,41 @@ const HANDYMAN_HERO_IMAGES = [
 const HERO_SLIDE_DURATION_MS = 4500;
 
 const SERVICES_LIST = [
-  { title: "Furniture Assembly", price: "$50 per item", href: "/quote?for=handyman#fur-heading" },
-  { title: "TV Mounting", price: "$1.50 per inch", href: "/quote?for=handyman#tv-heading" },
-  { title: "Security Camera Installation", price: "$120", href: "/quote?for=handyman#cam-heading" },
-  { title: "Window Treatment Installation", price: "$50", href: "/quote?for=handyman#window-heading" },
-  { title: "Bunk Bed Assembly", price: "$100", href: "/quote?for=handyman#bunk-bed-heading" },
+  {
+    title: "Furniture Assembly",
+    details: "Price varies ・ 1 hr 30 min+",
+    href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/PG7XPCFE4CPARQ6FUDEJW6RS",
+  },
+  {
+    title: "TV Mounting",
+    subtitle: "Full Motion, Fixed, Swivel, Tilting Mounts",
+    details: "Price varies ・ 1 hr",
+    href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/M2YUQDN2RI423A5BOIZ5ETNE",
+  },
+  {
+    title: "General Assembly",
+    subtitle: "Vanity Mirror, Shoe Rack, Computer Desk, TV Stand.",
+    details: "Price varies ・ 45 min+",
+    href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/LCVWYFYVCL6JMM3PJYKN5OOY",
+  },
+  {
+    title: "General Mounting",
+    subtitle: "Fire Place, Floating TV Stand, Shelves, Window Curtain, Picture Frames",
+    details: "Price varies ・ 30 min+",
+    href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/DFOYDSFKCJIUCFO55X6KPQT2",
+  },
+  {
+    title: "Security Camera Installation",
+    subtitle: "POE, Analog & Wired Cameras",
+    details: "Price varies ・ 1 hr 30 min+",
+    href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/HBHVTO4FFIR72Z7TXFQ35Y5Q",
+  },
+  {
+    title: "Office, Home & Entertainment",
+    subtitle: "Gaming Room, Home Office, LED Lights, & Home Entertainment",
+    details: "Price varies ・ 45 min+",
+    href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/KRXFADU6JYBDCUM5ZS6PJ3CC",
+  },
 ] as const;
 
 const handymanHeroSlideLabels = [
@@ -104,7 +135,8 @@ export default function HandymanPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-5 text-[15px] leading-[1.6] text-zinc-300 sm:mt-6 sm:text-base sm:leading-[1.7]"
             >
-              TV mounting, security cameras, furniture assembly, and more. Fixed prices on most jobs — pick yours and book.
+              TV mounting, security cameras, furniture assembly, and more. Browse live handyman services and book directly in
+              Square.
             </motion.p>
 
             <motion.div
@@ -114,19 +146,21 @@ export default function HandymanPage() {
               className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
             >
               <Link
-                href="/quote?for=handyman"
+                href={HANDYMAN_SQUARE_SERVICES_URL}
+                target="_blank"
+                rel="noopener noreferrer"
  className="btn-primary inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 <Tag className="h-4 w-4 shrink-0" aria-hidden />
-                See Pricing
+                View Services
               </Link>
               <Link
-                href={SETMORE_URL}
+                href={HANDYMAN_SQUARE_SERVICES_URL}
                 target="_blank"
                 rel="noopener noreferrer"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book Directly
+                Book on Square
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </Link>
             </motion.div>
@@ -199,11 +233,13 @@ export default function HandymanPage() {
           className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 sm:bottom-6 lg:bottom-8"
         >
           <Link
-            href="/quote?for=handyman"
+            href={HANDYMAN_SQUARE_SERVICES_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hero-scroll-hint flex flex-col items-center gap-1.5 text-zinc-500 transition-colors hover:text-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
-            aria-label="Get a fixed price quote"
+            aria-label="Open handyman services in Square"
           >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See Pricing</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest">See Services</span>
             <ChevronDown className="h-5 w-5 shrink-0 animate-bounce" aria-hidden />
           </Link>
         </motion.div>
@@ -214,7 +250,7 @@ export default function HandymanPage() {
         <SectionHeading
           badge="Services & Pricing"
           title="What We Offer"
-          description="Fixed prices below. Tap a package on the pricing page to book with that total."
+          description="Service list below reflects our handyman menu. Book directly in Square."
           align="center"
         />
         <motion.div
@@ -228,10 +264,15 @@ export default function HandymanPage() {
               <li key={service.title}>
                 <Link
                   href={service.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 sm:py-5 text-left transition-colors hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-inset"
                 >
-                  <span className="font-medium text-white">{service.title}</span>
-                  <span className="font-semibold text-orange-400">{service.price}</span>
+                  <span className="max-w-2xl">
+                    <span className="block font-medium text-white">{service.title}</span>
+                    {service.subtitle ? <span className="mt-0.5 block text-sm text-zinc-400">{service.subtitle}</span> : null}
+                  </span>
+                  <span className="font-semibold text-orange-400">{service.details}</span>
                 </Link>
               </li>
             ))}
@@ -244,8 +285,8 @@ export default function HandymanPage() {
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <SectionHeading
             badge="Fixed Prices"
-            title="Pick Your Package—Then Book"
-            description="No dropdowns or math. Choose the price that matches your job; booking opens with that total ready to go."
+            title="Book Handyman Services on Square"
+            description="Open the live Square service menu to pick the service and appointment time."
             align="center"
           />
           <motion.div
@@ -255,20 +296,22 @@ export default function HandymanPage() {
             className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
           >
             <Link
-              href="/quote?for=handyman"
+              href={HANDYMAN_SQUARE_SERVICES_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-primary group inline-flex w-full max-w-xs items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto"
             >
               <Tag className="h-4 w-4 shrink-0" aria-hidden />
-              Open Pricing Page
+              Open Square Services
               <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
             </Link>
             <Link
-              href={SETMORE_URL}
+              href={HANDYMAN_SQUARE_SERVICES_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline inline-flex w-full max-w-xs items-center justify-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto"
             >
-              Book Without a Set Price
+              Book on Square
             </Link>
           </motion.div>
         </div>

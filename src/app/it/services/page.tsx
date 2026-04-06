@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
 import { ServiceStandardsSection } from "@/components/service-standards-section";
-import { bookUrlWithSchedule } from "@/lib/booking-nav";
+import { SQUARE_BOOKING_URL } from "@/lib/fixed-quote-options";
 import { siteImages } from "@/lib/site-images";
 
 const networkIncludes = [
@@ -149,7 +149,9 @@ export default function ITServicesPage() {
               className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
             >
               <Link
-                href={bookUrlWithSchedule("/book?service=it")}
+                href={SQUARE_BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-cyan-500 px-6 py-3 text-sm font-bold text-black shadow-lg shadow-cyan-950/25 transition-transform hover:-translate-y-0.5 hover:bg-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
               >
                 Book I.T. Consult
@@ -239,7 +241,9 @@ export default function ITServicesPage() {
                   ))}
                 </ul>
                 <Link
-                  href={bookUrlWithSchedule(`/book?service=it&notes=${encodeURIComponent(section.title)}`)}
+                  href={SQUARE_BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-8 inline-flex items-center gap-2 rounded-full border-2 border-cyan-400/50 bg-cyan-500/10 px-6 py-3 font-semibold text-cyan-300 transition-colors hover:bg-cyan-500/20 hover:border-cyan-400 group"
                 >
                   See Pricing or Book
@@ -268,7 +272,9 @@ export default function ITServicesPage() {
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link
-              href={bookUrlWithSchedule("/book?service=it")}
+              href={SQUARE_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-cyan-500 px-5 py-3 text-sm font-bold text-black shadow-lg shadow-cyan-950/25 transition-transform hover:-translate-y-0.5 hover:bg-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base group"
             >
               Book I.T. Service

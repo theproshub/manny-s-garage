@@ -9,8 +9,7 @@ import { ArrowRight, MapPin, Tag } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
 import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { siteImages } from "@/lib/site-images";
-const SETMORE_URL = "https://mannygarage.setmore.com";
-import { DIY_HOURLY, DIY_MECHANIC_HOURLY, DIY_MAX_HOURS } from "@/lib/fixed-quote-options";
+import { DIY_HOURLY, DIY_MECHANIC_HOURLY, DIY_MAX_HOURS, SQUARE_BOOKING_URL } from "@/lib/fixed-quote-options";
 
 export default function DIYGaragePage() {
   return (
@@ -68,7 +67,7 @@ export default function DIYGaragePage() {
                 See Pricing
               </Link>
               <Link
-                href={SETMORE_URL}
+                href={SQUARE_BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"

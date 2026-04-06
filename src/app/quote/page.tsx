@@ -18,6 +18,7 @@ import {
   HANDYMAN_FURNITURE_EACH,
   HANDYMAN_TV_PACKAGES,
   HANDYMAN_WINDOW_TREATMENT,
+  SQUARE_BOOKING_URL,
   bookDiyHref,
   bookHandymanHref,
 } from "@/lib/fixed-quote-options";
@@ -64,7 +65,9 @@ function QuotePageInner() {
           <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">See Fixed Pricing</h1>
         </div>
         <p className="mt-2 max-w-xl text-sm text-zinc-400 sm:text-base">
-          Tap a fixed price for the service you want. You&apos;ll go straight to booking with that total already filled in.
+          {tab === "handyman"
+            ? "Tap a handyman service card to open booking on Square."
+            : "Tap a fixed price for the service you want. You&apos;ll go straight to booking with that total already filled in."}
         </p>
 
         <div
@@ -281,7 +284,9 @@ function QuotePageInner() {
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden />
                 </Link>
                 <Link
-                  href={bookUrlWithSchedule("/book?service=it")}
+                  href={SQUARE_BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex min-h-8 items-center gap-1 rounded-full border border-white/15 px-3 text-xs font-medium text-white hover:border-cyan-500/40 hover:bg-cyan-500/10 sm:text-sm"
                 >
                   Book I.T.
