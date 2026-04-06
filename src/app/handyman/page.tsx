@@ -30,7 +30,14 @@ const HANDYMAN_HERO_IMAGES = [
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 
-const SERVICES_LIST = [
+type HandymanServiceItem = {
+  title: string;
+  details: string;
+  href: string;
+  subtitle?: string;
+};
+
+const SERVICES_LIST: HandymanServiceItem[] = [
   {
     title: "Furniture Assembly",
     details: "Price varies ・ 1 hr 30 min+",
@@ -66,7 +73,7 @@ const SERVICES_LIST = [
     details: "Price varies ・ 45 min+",
     href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/KRXFADU6JYBDCUM5ZS6PJ3CC",
   },
-] as const;
+];
 
 const handymanHeroSlideLabels = [
   "TV & Media",
