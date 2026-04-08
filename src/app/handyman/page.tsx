@@ -32,6 +32,7 @@ const HERO_SLIDE_DURATION_MS = 4500;
 
 type HandymanServiceItem = {
   title: string;
+  /** Price and duration shown on the right (e.g. "$50 ・ 1 hr 30 min+"). */
   details: string;
   href: string;
   subtitle?: string;
@@ -40,37 +41,37 @@ type HandymanServiceItem = {
 const SERVICES_LIST: HandymanServiceItem[] = [
   {
     title: "Furniture Assembly",
-    details: "Price varies ・ 1 hr 30 min+",
+    details: "$50 ・ 1 hr 30 min+",
     href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/PG7XPCFE4CPARQ6FUDEJW6RS",
   },
   {
     title: "TV Mounting",
     subtitle: "Full Motion, Fixed, Swivel, Tilting Mounts",
-    details: "Price varies ・ 1 hr",
+    details: "$50 ・ 1 hr",
     href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/M2YUQDN2RI423A5BOIZ5ETNE",
   },
   {
     title: "General Assembly",
     subtitle: "Vanity Mirror, Shoe Rack, Computer Desk, TV Stand.",
-    details: "Price varies ・ 45 min+",
+    details: "$65 ・ 45 min+",
     href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/LCVWYFYVCL6JMM3PJYKN5OOY",
   },
   {
     title: "General Mounting",
     subtitle: "Fire Place, Floating TV Stand, Shelves, Window Curtain, Picture Frames",
-    details: "Price varies ・ 30 min+",
+    details: "$30 ・ 30 min+",
     href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/DFOYDSFKCJIUCFO55X6KPQT2",
   },
   {
     title: "Security Camera Installation",
     subtitle: "POE, Analog & Wired Cameras",
-    details: "Price varies ・ 1 hr 30 min+",
+    details: "$120 ・ 1 hr 30 min+",
     href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/HBHVTO4FFIR72Z7TXFQ35Y5Q",
   },
   {
     title: "Office, Home & Entertainment",
     subtitle: "Gaming Room, Home Office, LED Lights, & Home Entertainment",
-    details: "Price varies ・ 45 min+",
+    details: "$80 ・ 45 min+",
     href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/KRXFADU6JYBDCUM5ZS6PJ3CC",
   },
 ];
@@ -257,7 +258,7 @@ export default function HandymanPage() {
         <SectionHeading
           badge="Services & Pricing"
           title="What We Offer"
-          description="Service list below reflects our handyman menu. Book directly in Square."
+          description="Website handyman menu with starting prices below. Book directly in Square."
           align="center"
         />
         <motion.div

@@ -33,7 +33,7 @@ export const chatSteps: Array<{
   {
     key: "name",
     label: "Name",
-    prompt: "Let's get your name first.",
+    prompt: "What name should we use for your booking?",
     placeholder: "Manny Garcia",
   },
   {

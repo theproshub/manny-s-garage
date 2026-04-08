@@ -253,7 +253,7 @@ export default function ITPages() {
 
       <ServiceStandardsSection variant="it" />
 
-      <ChatAssistant open={assistantOpen} onOpenChange={setAssistantOpen} />
+      <ChatAssistant variant="it" open={assistantOpen} onOpenChange={setAssistantOpen} />
     </main>
   );
 }

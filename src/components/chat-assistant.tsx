@@ -3,27 +3,54 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Bot, LoaderCircle, MessageSquare, RotateCcw, Send, X } from "lucide-react";
 import { bookingSchema, chatSteps, type BookingPayload } from "@/lib/booking";
+import { ARI_AUTOMOTIVE_BOOKING_URL } from "@/lib/fixed-quote-options";
 import { cn } from "@/lib/utils";
 
 type ChatMessage = {
   id: string;
   role: "assistant" | "user";
   content: string;
+  /** Optional CTA (e.g. ARI automotive scheduler). */
+  link?: { href: string; label: string };
 };
 
-const initialMessages: ChatMessage[] = [
-  {
-    id: "intro-1",
-    role: "assistant",
-    content:
-      "Hi! I’m Manny, owner of Manny’s Garage. I’ll walk you through a few quick details so we can get you scheduled.",
-  },
-  {
-    id: "intro-2",
-    role: "assistant",
-    content: chatSteps[0].prompt,
-  },
-];
+function buildInitialMessages(variant: "auto" | "it"): ChatMessage[] {
+  if (variant === "auto") {
+    return [
+      {
+        id: "intro-1",
+        role: "assistant",
+        content:
+          "Hi — I'm Manny, owner of Manny's Garage. I can collect a few details here so we can follow up, or you can book automotive service right away using our shop calendar.",
+      },
+      {
+        id: "intro-ari",
+        role: "assistant",
+        content: "Fastest path for auto repairs and maintenance:",
+        link: { href: ARI_AUTOMOTIVE_BOOKING_URL, label: "Book with ARI (automotive) →" },
+      },
+      {
+        id: "intro-2",
+        role: "assistant",
+        content: chatSteps[0].prompt,
+      },
+    ];
+  }
+
+  return [
+    {
+      id: "intro-1",
+      role: "assistant",
+      content:
+        "Hi — I'm Manny, owner of Manny's Garage. I'll walk you through a few quick details so we can get you scheduled for I.T. help.",
+    },
+    {
+      id: "intro-2",
+      role: "assistant",
+      content: chatSteps[0].prompt,
+    },
+  ];
+}
 
 function validateStep(stepKey: keyof BookingPayload, value: string) {
   const trimmed = value.trim();
@@ -54,10 +81,12 @@ function validateStep(stepKey: keyof BookingPayload, value: string) {
 type ChatAssistantProps = {
   open: boolean;
   onOpenChange: (next: boolean) => void;
+  /** Automotive page: offer ARI direct booking. I.T. page: standard intro only. */
+  variant?: "auto" | "it";
 };
 
-export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
-  const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
+export function ChatAssistant({ open, onOpenChange, variant = "it" }: ChatAssistantProps) {
+  const [messages, setMessages] = useState<ChatMessage[]>(() => buildInitialMessages(variant));
   const [draft, setDraft] = useState("");
   const [stepIndex, setStepIndex] = useState(0);
   const [booking, setBooking] = useState<Partial<BookingPayload>>({});
@@ -93,7 +122,7 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
   }, [open, messages.length, submitting]);
 
   function resetChat() {
-    setMessages(initialMessages);
+    setMessages(buildInitialMessages(variant));
     setDraft("");
     setStepIndex(0);
     setBooking({});
@@ -187,11 +216,34 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
         body: JSON.stringify(parsed.data),
       });
 
-      const data = (await response.json()) as { message?: string };
+      const data = (await response.json()) as {
+        message?: string;
+        channels?: { smsSent?: boolean };
+      };
 
       if (!response.ok) {
-        throw new Error(data.message ?? "Booking request failed.");
+        setMessages((current) => [
+          ...current,
+          {
+            id: crypto.randomUUID(),
+            role: "assistant",
+            content:
+              data.message ??
+              "We couldn't send that just now. You can still book automotive service online.",
+            ...(variant === "auto"
+              ? {
+                  link: {
+                    href: ARI_AUTOMOTIVE_BOOKING_URL,
+                    label: "Book automotive with ARI →",
+                  },
+                }
+              : {}),
+          },
+        ]);
+        return;
       }
+
+      const smsSent = Boolean(data.channels?.smsSent);
 
       setMessages((current) => [
         ...current,
@@ -201,19 +253,32 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
           content:
             data.message ??
             "You're all set. I got your request and will follow up with you soon.",
+          ...(variant === "auto" && !smsSent
+            ? {
+                link: {
+                  href: ARI_AUTOMOTIVE_BOOKING_URL,
+                  label: "Pick a time — book automotive with ARI →",
+                },
+              }
+            : {}),
         },
       ]);
       setStepIndex(chatSteps.length);
-    } catch (error) {
+    } catch {
       setMessages((current) => [
         ...current,
         {
           id: crypto.randomUUID(),
           role: "assistant",
-          content:
-            error instanceof Error
-              ? error.message
-              : "Something went wrong while sending your request.",
+          content: "Something went wrong while sending your request. Please try again in a moment.",
+          ...(variant === "auto"
+            ? {
+                link: {
+                  href: ARI_AUTOMOTIVE_BOOKING_URL,
+                  label: "Book automotive with ARI instead →",
+                },
+              }
+            : {}),
         },
       ]);
     } finally {
@@ -323,6 +388,16 @@ export function ChatAssistant({ open, onOpenChange }: ChatAssistantProps) {
               )}
             >
               {message.content}
+              {message.link ? (
+                <a
+                  href={message.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 block text-sm font-semibold text-orange-400 underline-offset-2 hover:text-orange-300 hover:underline"
+                >
+                  {message.link.label}
+                </a>
+              ) : null}
             </div>
           ))}
           {submitting ? (

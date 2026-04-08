@@ -300,7 +300,7 @@ export default function AutoPage() {
         </motion.div>
       </section>
 
-      <ChatAssistant open={assistantOpen} onOpenChange={setAssistantOpen} />
+      <ChatAssistant variant="auto" open={assistantOpen} onOpenChange={setAssistantOpen} />
     </main>
   );
 }

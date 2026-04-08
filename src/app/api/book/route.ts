@@ -60,13 +60,13 @@ export async function POST(request: Request) {
       });
 
       if (error) {
-        warnings.push("Supabase insert failed.");
+        warnings.push(`Supabase insert failed: ${error.message}`);
         console.error("Supabase insert failed:", error);
       } else {
         savedToSupabase = true;
       }
     } else {
-      warnings.push("Supabase is not configured.");
+      warnings.push("Supabase is not configured (owner ops).");
       savedToDemo = await saveDemoBooking(booking);
     }
 
@@ -83,13 +83,10 @@ export async function POST(request: Request) {
       console.error("Twilio SMS failed:", error);
     }
 
+    /** Customer-facing copy only — setup and delivery details stay in `warnings` for ops. */
     const message = smsSent
       ? "Your booking request is in. Manny's Garage has been notified by text and will follow up soon."
-      : savedToSupabase
-        ? "Your booking request was saved. Configure Twilio to notify the owner by text automatically."
-        : savedToDemo
-          ? "Your booking request was saved locally. Add Supabase and Twilio env vars to enable database storage and SMS alerts."
-          : "Your booking request was received. Add Supabase and Twilio env vars to enable full delivery.";
+      : "Thanks — we received your request. We'll follow up with you soon.";
 
     return NextResponse.json({
       ok: true,
