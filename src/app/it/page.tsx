@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { JsonLd } from "@/components/json-ld";
 import { itServiceSchema } from "@/lib/schema";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   ChevronDown,
@@ -25,6 +25,14 @@ import { SQUARE_BOOKING_URL } from "@/lib/fixed-quote-options";
 import { siteImages } from "@/lib/site-images";
 
 const IT_SERVICES_BASE = "/it/services";
+const HERO_SLIDE_DURATION_MS = 4500;
+const IT_HERO_IMAGES = [
+  "/hero/hero-bays.webp",
+  "/hero/diy-garage-bay.webp",
+  "/hero/hero-auto-slide-services.webp",
+  "/hero/hero-handyman-grid.webp",
+] as const;
+const itHeroSlideLabels = ["Service bays", "DIY bay", "Auto services", "Home installs"] as const;
 
 const itServices = [
   {
@@ -65,6 +73,16 @@ const techNames = ["Websites", "Online Stores", "Business Apps", "Wi-Fi Setup", 
 
 export default function ITPages() {
   const [assistantOpen, setAssistantOpen] = useState(false);
+  const [heroSlideIndex, setHeroSlideIndex] = useState(0);
+  const [carouselPaused, setCarouselPaused] = useState(false);
+
+  useEffect(() => {
+    if (carouselPaused) return;
+    const t = setInterval(() => {
+      setHeroSlideIndex((i) => (i + 1) % IT_HERO_IMAGES.length);
+    }, HERO_SLIDE_DURATION_MS);
+    return () => clearInterval(t);
+  }, [carouselPaused]);
 
   return (
     <main className="relative overflow-x-hidden">
@@ -142,15 +160,37 @@ export default function ITPages() {
             className="hero-image-wrap order-1 lg:order-2"
           >
             <div className="hero-glow" aria-hidden />
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-cyan-400/20 bg-black shadow-2xl shadow-black/40 ring-1 ring-white/[0.06] lg:aspect-[16/10]">
-              <Image
-                src={siteImages.itConsultant}
-                alt="I.T. and networking consulting services"
-                fill
-                className="object-cover opacity-90"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
+            <div
+              className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-cyan-400/20 bg-black shadow-2xl shadow-black/40 ring-1 ring-white/[0.06] lg:aspect-[16/10]"
+              onMouseEnter={() => setCarouselPaused(true)}
+              onMouseLeave={() => setCarouselPaused(false)}
+              onFocus={() => setCarouselPaused(true)}
+              onBlur={() => setCarouselPaused(false)}
+            >
+              <div
+                aria-live="polite"
+                aria-label={`Slide ${heroSlideIndex + 1}: ${itHeroSlideLabels[heroSlideIndex] ?? "Tech help"}`}
+                className="sr-only"
               />
+              <AnimatePresence mode="popLayout">
+                <motion.div
+                  key={heroSlideIndex}
+                  initial={{ opacity: 0, scale: 1.04 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={IT_HERO_IMAGES[heroSlideIndex]}
+                    alt={`Tech help in Fargo, ND — ${itHeroSlideLabels[heroSlideIndex] ?? "Tech help"}`}
+                    fill
+                    className="object-cover opacity-90"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority={heroSlideIndex === 0}
+                  />
+                </motion.div>
+              </AnimatePresence>
               <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/35 to-cyan-950/25" aria-hidden />
               <div className="img-side-overlay z-10" />
             </div>

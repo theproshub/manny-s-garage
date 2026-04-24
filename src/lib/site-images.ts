@@ -35,8 +35,11 @@ export const siteImages = {
   diyGarage: "/hero/diy-garage-bay.webp",
 
   // —— I.T ——
-  /** Laptop / tech workspace (Teodor Skrebnev, Unsplash) */
-  itConsultant: unsplash("1715967635831-f5a1f9658880"),
+  /**
+   * Laptop / tech workspace.
+   * Local hero image to avoid remote fetch failures in restricted environments.
+   */
+  itConsultant: "/hero/hero-bays.webp",
 
   // —— About / team ——
   /** Team / workshop - about page (Unsplash) */

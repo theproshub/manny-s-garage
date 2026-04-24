@@ -7,6 +7,7 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
+  Code2,
   Cpu,
   Database,
   Globe,
@@ -24,6 +25,13 @@ const networkIncludes = [
   "Ethernet drops and cable runs",
   "Router and switch configuration",
   "Gigabit-ready and mesh support",
+];
+
+const webDevIncludes = [
+  "Fast, mobile-friendly design",
+  "One-page or multi-page sites",
+  "Contact form + basic SEO setup",
+  "Hosting/domain setup help (if needed)",
 ];
 
 const pcIncludes = [
@@ -48,6 +56,14 @@ const smartHomeIncludes = [
 ];
 
 const sections = [
+  {
+    id: "web-dev",
+    title: "Website & app building",
+    description: "Simple, modern sites for local businesses—fast, mobile-friendly, and easy to update.",
+    includes: webDevIncludes,
+    icon: Code2,
+    stat: "Website pricing",
+  },
   {
     id: "network",
     title: "Network Infrastructure",
@@ -225,13 +241,68 @@ export default function ITServicesPage() {
                 </div>
                 <h2 className="text-2xl font-bold text-white sm:text-3xl">{section.title}</h2>
                 <p className="mt-3 text-zinc-400 leading-relaxed">{section.description}</p>
-                <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-6">
-                  <p className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Pricing</p>
-                  <p className="mt-2 text-xl font-bold text-cyan-400">Quote on request</p>
-                  <p className="mt-2 text-sm text-zinc-400">
-                    Scope and price depend on your setup. Book I.T service and describe your needs—we’ll confirm a quote before starting.
-                  </p>
-                </div>
+                {section.id === "web-dev" ? (
+                  <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-6">
+                    <p className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Website pricing</p>
+                    <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                      <div className="rounded-xl border border-white/10 bg-black/30 p-4">
+                        <p className="text-sm font-semibold text-white">Starter site</p>
+                        <p className="mt-1 text-2xl font-bold text-cyan-400">$299</p>
+                        <p className="mt-1 text-xs text-zinc-500">Single page · contact form</p>
+                        <ul className="mt-3 space-y-1.5 text-xs text-zinc-400">
+                          <li>Mobile-friendly layout</li>
+                          <li>Click-to-call + map + hours</li>
+                          <li>Basic SEO setup (title/description)</li>
+                          <li>1 round of edits</li>
+                        </ul>
+                      </div>
+                      <div className="rounded-xl border border-white/10 bg-black/30 p-4">
+                        <p className="text-sm font-semibold text-white">Business site</p>
+                        <p className="mt-1 text-2xl font-bold text-cyan-400">$599</p>
+                        <p className="mt-1 text-xs text-zinc-500">Up to 5 pages · basic SEO</p>
+                        <ul className="mt-3 space-y-1.5 text-xs text-zinc-400">
+                          <li>Starter site features included</li>
+                          <li>Services + pricing pages</li>
+                          <li>Photo gallery section</li>
+                          <li>Google Analytics (optional)</li>
+                        </ul>
+                      </div>
+                      <div className="rounded-xl border border-white/10 bg-black/30 p-4">
+                        <p className="text-sm font-semibold text-white">Online store</p>
+                        <p className="mt-1 text-2xl font-bold text-cyan-400">$999+</p>
+                        <p className="mt-1 text-xs text-zinc-500">Products · payments · setup</p>
+                        <ul className="mt-3 space-y-1.5 text-xs text-zinc-400">
+                          <li>Store setup + checkout</li>
+                          <li>Shipping/tax configuration</li>
+                          <li>Product categories + collections</li>
+                          <li>Training on updates</li>
+                        </ul>
+                      </div>
+                      <div className="rounded-xl border border-white/10 bg-black/30 p-4">
+                        <p className="text-sm font-semibold text-white">Care plan</p>
+                        <p className="mt-1 text-2xl font-bold text-cyan-400">$49/mo</p>
+                        <p className="mt-1 text-xs text-zinc-500">Updates · small changes</p>
+                        <ul className="mt-3 space-y-1.5 text-xs text-zinc-400">
+                          <li>Content updates (text/photos)</li>
+                          <li>Minor layout changes</li>
+                          <li>Broken link + form checks</li>
+                          <li>Priority help</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <p className="mt-3 text-sm text-zinc-400">
+                      Hosting, domain, and paid tools are not included unless noted. We’ll confirm your exact scope and total before we start.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-6">
+                    <p className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Pricing</p>
+                    <p className="mt-2 text-xl font-bold text-cyan-400">Quote on request</p>
+                    <p className="mt-2 text-sm text-zinc-400">
+                      Scope and price depend on your setup. Book I.T service and describe your needs—we’ll confirm a quote before starting.
+                    </p>
+                  </div>
+                )}
                 <ul className="mt-6 space-y-2 text-sm text-zinc-400">
                   {section.includes.map((item, i) => (
                     <li key={i} className="flex items-start gap-2">
