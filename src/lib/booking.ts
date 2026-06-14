@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { SITE_PHONE_PLACEHOLDER } from "@/lib/contact";
 
 export const serviceTypes = ["automotive", "handyman", "diy", "it"] as const;
 export type ServiceType = (typeof serviceTypes)[number];
@@ -40,7 +41,7 @@ export const chatSteps: Array<{
     key: "phone",
     label: "Phone",
     prompt: "Best phone number to text or call you back?",
-    placeholder: "(701) 555-0142",
+    placeholder: SITE_PHONE_PLACEHOLDER,
   },
   {
     key: "vehicle",

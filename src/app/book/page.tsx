@@ -8,6 +8,7 @@ import { ArrowRight, Calendar, CarFront, Check, Cpu, Hammer, MapPin, Warehouse }
 import { BackToHome } from "@/components/back-to-home";
 import { setPreferredService, isBookingServiceId, type BookingServiceId } from "@/lib/booking-preference";
 import { BOOK_SCHEDULE_FRAGMENT, BOOK_SCHEDULE_HASH } from "@/lib/booking-nav";
+import { SITE_PHONE_PLACEHOLDER } from "@/lib/contact";
 import {
   AUTO_FIXED_PACKAGES,
   AUTO_PRICING_PARTS_DISCLAIMER,
@@ -531,7 +532,7 @@ function BookPageContent() {
                     type="tel"
                     value={form.phone}
                     onChange={(e) => updateForm({ phone: e.target.value })}
-                    placeholder="(701) 555-0142"
+                    placeholder={SITE_PHONE_PLACEHOLDER}
                     autoComplete="tel"
                     className="focus-ring min-h-[48px] w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white placeholder:text-zinc-600"
                   />

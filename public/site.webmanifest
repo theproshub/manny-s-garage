@@ -1,0 +1,21 @@
+{
+  "name": "Manny's Garage",
+  "short_name": "Manny's Garage",
+  "description": "Auto repair, handyman, DIY bay, and I.T. in Fargo, ND.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030507",
+  "theme_color": "#030507",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

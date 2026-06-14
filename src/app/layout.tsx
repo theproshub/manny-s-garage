@@ -18,6 +18,15 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://mannygarage.com"),
   alternates: { canonical: "/" },
   verification: { google: "google8b2e203404a03e46" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
     title: "Manny's Garage — Fargo's One-Stop Shop",
     description: "Auto repair, handyman, DIY bay, and I.T. in Fargo, ND.",
@@ -25,6 +34,7 @@ export const metadata: Metadata = {
     siteName: "Manny's Garage",
     locale: "en_US",
     type: "website",
+    images: [{ url: "/logo-v2.webp", width: 203, height: 256, alt: "Manny's Garage logo" }],
   },
 };
 

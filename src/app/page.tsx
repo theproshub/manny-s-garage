@@ -18,6 +18,7 @@ import { AnimatedCard } from "@/components/animated-card";
 import { SectionHeading } from "@/components/section-heading";
 import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { siteImages } from "@/lib/site-images";
+import { SITE_PHONE_DISPLAY, SITE_PHONE_TEL } from "@/lib/contact";
 import { AUTO_PRICING_PARTS_DISCLAIMER } from "@/lib/fixed-quote-options";
 
 const heroImages = [
@@ -363,7 +364,7 @@ export default function Home() {
             </p>
             <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
               <a
-                href="tel:+17015550142"
+                href={SITE_PHONE_TEL}
                 className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2.5 text-sm font-semibold text-cyan-300 transition-all hover:border-cyan-400/50 hover:bg-cyan-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:min-h-[44px] sm:flex-none sm:justify-start"
               >
                 <PhoneCall className="h-4 w-4" />
@@ -390,7 +391,7 @@ export default function Home() {
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" />
                 1335 Main Ave S, Fargo, ND 58103
               </p>
-              <p>(701) 555-0142 · Mon–Fri 8am–6pm, Sat 9am–3pm</p>
+              <p>{SITE_PHONE_DISPLAY} · Mon–Fri 8am–6pm, Sat 9am–3pm</p>
             </div>
           </motion.div>
           <motion.div

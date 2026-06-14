@@ -1,3 +1,5 @@
+import { SITE_PHONE_E164 } from "@/lib/contact";
+
 const BASE_URL = "https://mannygarage.com";
 
 const businessBase = {
@@ -12,7 +14,7 @@ const businessBase = {
     height: 256,
   },
   image: `${BASE_URL}/hero/hero-bays.webp`,
-  telephone: "+16094988246",
+  telephone: SITE_PHONE_E164,
   email: "service@mannysgarage.com",
   address: {
     "@type": "PostalAddress",

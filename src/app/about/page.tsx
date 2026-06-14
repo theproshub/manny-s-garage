@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/section-heading";
 import Link from "next/link";
 import { BackToHome } from "@/components/back-to-home";
 import { siteImages } from "@/lib/site-images";
+import { SITE_PHONE_DISPLAY, SITE_PHONE_TEL } from "@/lib/contact";
 
 export default function AboutPage() {
   return (
@@ -171,7 +172,11 @@ export default function AboutPage() {
              <div className="flex flex-col items-center text-center p-5 sm:p-6 rounded-2xl border border-white/[0.08] bg-black/40">
                 <PhoneCall className="h-6 w-6 text-orange-400 mb-3" />
                 <h3 className="text-base font-bold text-white mb-1">Contact</h3>
-                <p className="text-sm text-zinc-400">(609) 498-8246<br/><a href="mailto:service@mannysgarage.com" className="text-orange-400 hover:underline">service@mannysgarage.com</a></p>
+                <p className="text-sm text-zinc-400">
+                  <a href={SITE_PHONE_TEL} className="text-orange-400 hover:underline">{SITE_PHONE_DISPLAY}</a>
+                  <br/>
+                  <a href="mailto:service@mannysgarage.com" className="text-orange-400 hover:underline">service@mannysgarage.com</a>
+                </p>
              </div>
            </div>
         </div>

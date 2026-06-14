@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin, PhoneCall, Mail, ChevronRight } from "lucide-react";
 import { siteImages } from "@/lib/site-images";
+import { SITE_PHONE_DISPLAY, SITE_PHONE_TEL } from "@/lib/contact";
 
 export function Footer() {
   return (
@@ -75,9 +76,9 @@ export function Footer() {
                 <span>1341 Main Ave S<br/>Fargo, ND 58103</span>
               </li>
               <li>
-                <a href="tel:+16094988246" className="flex items-center gap-3 transition-colors hover:text-white">
+                <a href={SITE_PHONE_TEL} className="flex items-center gap-3 transition-colors hover:text-white">
                   <PhoneCall className="h-4 w-4 shrink-0 text-cyan-400" />
-                  (609) 498-8246
+                  {SITE_PHONE_DISPLAY}
                 </a>
               </li>
               <li>
