@@ -17,8 +17,23 @@ more consistent results than the alternative and is the tool to use:
 - steps: `8`
 - free ZeroGPU quota; HF PRO raises it to 25 min/day
 
-No Adobe tooling is installed in this environment. Canva is available if a
-different route is ever wanted.
+## Other tooling
+
+`adobe-for-creativity@claude-plugins-official` (by Adobe, v2.1.0) is installed
+and enabled. It talks to a hosted MCP server at `adobe-creativity.adobe.io/mcp`
+and will likely ask for an Adobe sign-in on first use.
+
+**It edits; it does not generate.** The only mention of Firefly in the package
+is in a list of accepted *input* formats, and there is no text-to-image skill,
+so it cannot produce the outstanding photographs. It is useful afterwards:
+
+- `adobe-batch-edit-photos` — grade the set consistently. The existing ten came
+  from two different models and it shows slightly.
+- `adobe-resize-photos-and-videos` — crop deliberately for the slide panel
+  rather than leaving the composition to `object-fit: cover`.
+- `adobe-retouch-portraits`, `adobe-create-social-variations`.
+
+Canva is also available if a different route is ever wanted.
 
 ## House style
 
