@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans, IBM_Plex_Sans_Condensed, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Letterhead } from "@/components/estimate/letterhead";
+import { IndexTabs } from "@/components/estimate/index-tabs";
 import { Footer } from "@/components/footer";
 import { localBusinessSchema } from "@/lib/schema";
 
@@ -74,8 +75,10 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen relative">
+        <a href="#content" className="skip-link">Skip to content</a>
         <Letterhead />
-        {children}
+        <IndexTabs />
+        <div id="content">{children}</div>
         <Footer />
       </body>
     </html>

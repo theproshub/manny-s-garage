@@ -135,6 +135,92 @@ button:not(:disabled) { cursor: pointer; }
   flex-shrink: 0;
 }
 
+/* ── Index tabs ──
+   Folder tabs from a job-file system. Sticky, because a long document needs
+   a running header even though its letterhead prints only once. */
+.tab-rail {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--paper);
+  border-bottom: 1.5px solid var(--ink);
+  padding-top: 0.5rem;
+}
+
+.tab-strip {
+  display: flex;
+  gap: 0.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 0;
+  margin-bottom: -1.5px;   /* active tab breaks through the rail's rule */
+}
+.tab-strip::-webkit-scrollbar { display: none; }
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  min-height: 44px;                       /* real tap target */
+  padding: 0.5rem 0.875rem;
+  border: 1.5px solid transparent;
+  border-bottom: 0;
+  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-size: 0.9375rem;                   /* 15px — was 12px, too small */
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+.tab:hover { color: var(--ink); background: color-mix(in srgb, var(--canary) 40%, transparent); }
+
+.tab-active {
+  background: var(--canary);
+  border-color: var(--ink);
+  color: var(--ink);
+  padding-bottom: calc(0.5rem + 1.5px);   /* sit proud of the rail */
+}
+
+.tab-mark {
+  display: grid;
+  place-items: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border: 1px solid currentColor;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.tab-active .tab-mark { color: var(--stamp); border-color: var(--stamp); }
+
+.tab-action {
+  min-height: 2.25rem;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 40rem) {
+  .tab-label { display: none; }           /* marks alone on narrow screens */
+  .tab { padding-inline: 0.75rem; }
+  .tab-mark { width: 1.625rem; height: 1.625rem; font-size: 0.875rem; }
+}
+
+/* Skip link — first stop for keyboard and screen-reader users. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 60;
+}
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+  background: var(--stamp);
+  color: #fff;
+  padding: 0.625rem 1rem;
+  font-weight: 600;
+}
+
 /* ── The canary band ──
    The price column is tinted like the customer's carbon copy. This is the
    signature: it runs down the right edge of every schedule on the site. */

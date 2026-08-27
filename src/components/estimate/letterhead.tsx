@@ -4,14 +4,6 @@ import { BUSINESS } from "@/lib/business";
 import { siteImages } from "@/lib/site-images";
 import { estimateNo, todayLong } from "@/lib/estimate-no";
 
-const NAV = [
-  { label: "Automotive", href: "/auto", mark: "A" },
-  { label: "Handyman", href: "/handyman", mark: "H" },
-  { label: "DIY Bay", href: "/diy-garage", mark: "D" },
-  { label: "I.T.", href: "/it", mark: "I" },
-  { label: "Pricing", href: "/quote", mark: "$" },
-];
-
 export function Letterhead() {
   return (
     <header className="bg-[var(--paper)]">
@@ -71,21 +63,6 @@ export function Letterhead() {
         </div>
       </div>
 
-      <nav aria-label="Services" className="rule-item mt-4">
-        <ul className="ledger flex flex-wrap gap-x-1 px-4 sm:px-6">
-          {NAV.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className="field-label min-touch inline-flex items-center gap-2 px-2 hover:text-[var(--stamp)]"
-              >
-                <span className="figure text-[var(--stamp)]">{item.mark}</span>
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
     </header>
   );
 }
