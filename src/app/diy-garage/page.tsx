@@ -8,13 +8,13 @@ export default function DiyGaragePage() {
     <ServicePage
       mark="D"
       title="Rent a bay by the hour"
-      intro="Your own vehicle, our lift and our tools. Book the bay by the hour and work on it yourself — or add a mechanic when you hit something you would rather not guess at."
+      intro="Your car, our lift, our tools. Book the bay by the hour and do the work yourself — or add a mechanic for the bits you would rather not guess at."
       items={DIY_ITEMS}
       quoteHref="/quote?for=diy"
       terms={[
-        `Sessions run up to ${RATES.diyMaxHours} hours.`,
-        "You are responsible for your own work on your own vehicle.",
-        "Equipment is returned in the condition it was provided.",
+        `You can book up to ${RATES.diyMaxHours} hours at a time.`,
+        "It is your car and your work, so the job is yours.",
+        "Leave the tools the way you found them.",
       ]}
     >
       <SpecList heading="What's in the bay" items={DIY_INVENTORY} />

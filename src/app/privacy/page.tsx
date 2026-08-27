@@ -14,31 +14,30 @@ export default function PrivacyPage() {
 
       <div className="measure mt-6 space-y-4">
         <p>
-          {BUSINESS.name}, {BUSINESS.address.oneLine}, collects personal
-          information only to schedule and carry out work you ask us to do.
+          We only ask for your details so we can book you in and do the work
+          you asked for. Nothing else.
         </p>
 
-        <h2 className="form-header text-lg">What we collect</h2>
+        <h2 className="form-header text-lg">What we ask for</h2>
         <p>
-          Your name, phone number, email address, and a description of the work
-          requested. If you book through Square, Square collects and processes
-          payment details under its own privacy policy; we do not store card
-          numbers.
+          Your name, phone number, email, and what you need doing. When you pay,
+          Square handles the card details under their own privacy policy — we
+          never see or keep your card number.
         </p>
 
-        <h2 className="form-header text-lg">How we use it</h2>
+        <h2 className="form-header text-lg">What we do with it</h2>
         <p>
-          To contact you about your booking, to quote and perform the work, and
-          to keep a record of work done on your vehicle or property. We do not
-          sell personal information, and we do not share it except with service
-          providers who help us operate the business.
+          We use it to reach you about your booking, to price and do the work,
+          and to keep a record of what we did on your car or in your home.
+          <strong> We never sell your details.</strong> The only people who see
+          them are the services we need to run the shop, like Square.
         </p>
 
-        <h2 className="form-header text-lg">Retention and access</h2>
+        <h2 className="form-header text-lg">How long we keep it</h2>
         <p>
-          We keep booking and service records for as long as needed to support
-          warranty and repeat work. To ask what we hold, or to have it deleted,
-          contact{" "}
+          We hold on to your job records so we can honour a warranty and know
+          the history next time you come in. Want to know what we have, or want
+          it deleted? Email{" "}
           <a href={mailtoUrl} className="figure underline underline-offset-4">
             {BUSINESS.email}
           </a>{" "}

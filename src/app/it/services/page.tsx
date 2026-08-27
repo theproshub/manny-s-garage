@@ -3,23 +3,23 @@ import { SpecList } from "@/components/estimate/spec-list";
 import { IT_ITEMS } from "@/lib/service-catalog";
 
 const DETAIL = [
-  "I-110 Wi-Fi and internet setup — routers, extenders, mesh, and getting signal into the rooms that never had it.",
-  "I-210 Computer help and repair — slow machines, failed startups, data recovery, migration to a new device.",
-  "I-310 Website and app building — scoped and quoted per project, built and handed over to you.",
-  "I-410 Data and reporting — spreadsheets, dashboards and reports for small businesses.",
+  "Wi-Fi and internet — routers, extenders and mesh, and getting a signal into the rooms that never had one.",
+  "Computer fixed — slow machines, ones that will not start, getting your files back, or moving you onto a new device.",
+  "A website or app — we agree the price first, build it, and hand it over to you.",
+  "Spreadsheets and reports — for small businesses that need their numbers in one place.",
 ];
 
 export default function ItServicesPage() {
   return (
     <ServicePage
       mark="I"
-      title="Tech help — service detail"
-      intro="Every I.T. job is scoped and quoted before work starts. Here is what each one covers."
+      title="What each tech job includes"
+      intro="We look at every tech job and give you a price before we start. Here is what each one covers."
       items={IT_ITEMS}
       quoteHref="/quote"
-      terms={["Quoted per job — the scope varies too much to publish a flat rate honestly."]}
+      terms={["Tech jobs are all different, so we cannot put one price on the page and mean it."]}
     >
-      <SpecList heading="What each job covers" items={DETAIL} />
+      <SpecList heading="What you get" items={DETAIL} />
     </ServicePage>
   );
 }

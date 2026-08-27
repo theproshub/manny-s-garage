@@ -5,23 +5,23 @@ export default function AboutPage() {
   return (
     <main>
       <section className="ledger tier-prose px-4 sm:px-6">
-        <p className="field-label">Particulars</p>
+        <p className="field-label">The basics</p>
         <h1 className="form-header mt-1 text-3xl sm:text-4xl">About the shop</h1>
         <p className="measure mt-3">
-          We opened Manny&apos;s Garage to make car and home work less of a
-          hassle: a straight price, a straight answer, and the job done. Four
-          trades under one roof, so you are not chasing three different people
-          to get one afternoon&apos;s work finished.
+          We started Manny&apos;s Garage to take the hassle out of car and
+          house jobs: a straight price, a straight answer, and the work done.
+          Four kinds of work in one place, so you are not calling three
+          different people to get one afternoon sorted.
         </p>
         <p className="measure mt-3">
-          Every price we can publish, we publish. The ones we cannot — the jobs
-          where the scope genuinely varies — we quote before we start, and you
-          approve the figure first.
+          If we can put a price on it, it is on this site. For the jobs that are
+          different every time, we look first and tell you the price before we
+          start. You decide from there.
         </p>
       </section>
 
       <section className="ledger tier-prose px-4 sm:px-6">
-        <h2 className="form-header text-xl">Details</h2>
+        <h2 className="form-header text-xl">Where to find us</h2>
         <dl className="measure mt-2">
           <div className="rule-item flex justify-between gap-4 py-2">
             <dt className="field-label">Address</dt>
@@ -53,7 +53,7 @@ export default function AboutPage() {
           ))}
           <div className="flex justify-between gap-4 py-2">
             <dt className="field-label">Booking</dt>
-            <dd className="text-right text-sm">Handled by Square</dd>
+            <dd className="text-right text-sm">Through Square</dd>
           </div>
         </dl>
       </section>

@@ -14,27 +14,27 @@ export default function TermsPage() {
       <h1 className="form-header mt-1 text-3xl">Terms of Service</h1>
 
       <div className="measure mt-6 space-y-4">
-        <h2 className="form-header text-lg">Estimates and prices</h2>
+        <h2 className="form-header text-lg">Prices</h2>
         <p>
-          Published prices are for the listed service at the listed unit.{" "}
-          {PARTS_DISCLAIMER} Work outside a published line item is quoted before
-          it starts, and we do not begin until you approve the figure.
+          The prices on this site are for the job listed, at the unit listed.{" "}
+          {PARTS_DISCLAIMER} If you need something that is not on the list, we
+          price it first and tell you. We do not start until you say yes.
         </p>
 
-        <h2 className="form-header text-lg">Booking and payment</h2>
+        <h2 className="form-header text-lg">Booking and paying</h2>
         <p>
-          Appointments are booked and paid through Square. Square&apos;s terms
-          govern the payment itself.
+          You book and pay through Square, so Square&apos;s own terms cover the
+          payment.
         </p>
 
-        <h2 className="form-header text-lg">DIY bay</h2>
+        <h2 className="form-header text-lg">Renting a bay</h2>
         <p>
-          Bay rental is charged per hour, in sessions up to {RATES.diyMaxHours}{" "}
-          hours. You are responsible for your own work on your own vehicle.
-          Equipment must be returned in the condition it was provided.
+          The bay is charged by the hour, up to {RATES.diyMaxHours} hours at a
+          time. It is your car and your work, so the job is yours. Please leave
+          the tools the way you found them.
         </p>
 
-        <h2 className="form-header text-lg">Contact</h2>
+        <h2 className="form-header text-lg">Getting hold of us</h2>
         <p>
           {BUSINESS.name}, {BUSINESS.address.oneLine}.{" "}
           <a href={mailtoUrl} className="figure underline underline-offset-4">

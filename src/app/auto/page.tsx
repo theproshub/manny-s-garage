@@ -6,13 +6,13 @@ export default function AutoPage() {
     <ServicePage
       mark="A"
       title="Automotive repair"
-      intro="Published prices for the work we do most. Anything not on this list is quoted before we start — you approve the figure first."
+      intro="These are the prices for the jobs we do most. If what you need is not on the list, we look at it and tell you the price before we start."
       items={AUTO_ITEMS}
       footnote={PARTS_DISCLAIMER}
       quoteHref="/quote?for=auto"
       terms={[
         PARTS_DISCLAIMER,
-        "Diagnostic scan is free when we carry out the repair.",
+        "Reading the check engine light is free if we do the repair.",
       ]}
     />
   );

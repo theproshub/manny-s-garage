@@ -4,27 +4,27 @@ import { DIY_ITEMS, DIY_INVENTORY } from "@/lib/service-catalog";
 import { RATES } from "@/lib/business";
 
 const HOW = [
-  "Book the hours you want. Sessions run up to " + RATES.diyMaxHours + " hours.",
-  `Bay with lift and tools is $${RATES.diyBayHourly.toFixed(2)} an hour.`,
-  `Need a hand? A mechanic is $${RATES.diyMechanicHourly.toFixed(2)} an hour on top, booked by the hour.`,
-  "Bring your own parts and fluids, or ask us to order them in.",
-  "Waste oil disposal is included.",
+  "Book the hours you want, up to " + RATES.diyMaxHours + " at a time.",
+  `The bay, the lift and the tools are $${RATES.diyBayHourly.toFixed(2)} an hour.`,
+  `Stuck? A mechanic is $${RATES.diyMechanicHourly.toFixed(2)} an hour on top.`,
+  "Bring your own parts and oil, or ask us to order them in.",
+  "We get rid of the old oil for you.",
 ];
 
 export default function DiyGarageServicesPage() {
   return (
     <ServicePage
       mark="D"
-      title="DIY bay — how it works"
-      intro="A professional bay, rented by the hour, for people who would rather do it themselves."
+      title="How renting a bay works"
+      intro="A proper workshop bay, rented by the hour, for people who would rather do it themselves."
       items={DIY_ITEMS}
       quoteHref="/quote?for=diy"
       terms={[
-        "You are responsible for your own work on your own vehicle.",
-        "Equipment is returned in the condition it was provided.",
+        "It is your car and your work, so the job is yours.",
+        "Leave the tools the way you found them.",
       ]}
     >
-      <SpecList heading="How a session works" items={HOW} />
+      <SpecList heading="How it works" items={HOW} />
       <SpecList heading="What's in the bay" items={DIY_INVENTORY} />
     </ServicePage>
   );

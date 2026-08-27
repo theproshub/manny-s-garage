@@ -7,12 +7,12 @@ export default function HandymanPage() {
     <ServicePage
       mark="H"
       title="Handyman work"
-      intro="Mounting, assembly and installation around the house, priced per item or per inch so you can work out the cost before you call."
+      intro="Putting things up, putting things together, around your house. Priced per item or per inch, so you can work out the cost before you call."
       items={HANDYMAN_ITEMS}
       quoteHref="/quote?for=handyman"
       terms={[
-        `TV mounting is charged per diagonal inch at $${RATES.tvMountPerInch.toFixed(2)}. A 55-inch set is $${(55 * RATES.tvMountPerInch).toFixed(2)}.`,
-        "Brackets and fixings are quoted separately if you need us to supply them.",
+        `We charge $${RATES.tvMountPerInch.toFixed(2)} for every inch across the screen. A 55-inch TV costs $${(55 * RATES.tvMountPerInch).toFixed(2)}.`,
+        "Need us to bring the bracket and screws? We will price those separately.",
       ]}
     />
   );

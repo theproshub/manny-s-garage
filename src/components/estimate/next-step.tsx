@@ -12,9 +12,9 @@ import { BUSINESS } from "@/lib/business";
  * Numbered because the order genuinely matters; it is a sequence, not a list.
  */
 const STEPS = [
-  "Book online or call and pick a time that suits you.",
-  "We confirm the price with you before any work starts.",
-  "You approve the figure, then we do the job.",
+  "Book online or call, and pick a time that works for you.",
+  "We tell you the price before we start any work.",
+  "You say yes, then we get it done.",
 ];
 
 export function NextStep({
@@ -26,8 +26,8 @@ export function NextStep({
 }) {
   return (
     <section className="ledger tier-prose px-4 sm:px-6" aria-labelledby="next-step">
-      <p className="field-label">Next step</p>
-      <h2 id="next-step" className="form-header mt-1 text-2xl">What happens if you go ahead</h2>
+      <p className="field-label">What happens next</p>
+      <h2 id="next-step" className="form-header mt-1 text-2xl">How booking works</h2>
 
       <ol className="measure mt-4">
         {STEPS.map((step, i) => (
@@ -46,7 +46,7 @@ export function NextStep({
       </div>
 
       <p className="mt-3 text-sm text-[var(--ink-muted)]">
-        Booking and payment are handled by Square.
+        You book and pay through Square.
       </p>
     </section>
   );

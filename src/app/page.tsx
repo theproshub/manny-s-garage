@@ -16,14 +16,14 @@ export default function Home() {
     <main>
       <section className="ledger tier-prose px-4 sm:px-6">
         <p className="field-label">
-          {BUSINESS.address.locality}, {BUSINESS.address.region} · Published price list
+          {BUSINESS.address.locality}, {BUSINESS.address.region} · Our prices
         </p>
         <h1 className="t-display mt-2 max-w-[18ch]">
           Car repairs, house jobs, a bay to rent, and tech help
         </h1>
         <p className="measure t-lead mt-4">
-          The name says garage, but we do four trades under one roof. Every
-          price below is published up front — what you see is what you pay.
+          The name says garage, but we do four kinds of work. Every price is
+          here on the page — what you see is what you pay.
         </p>
       </section>
 
@@ -33,26 +33,26 @@ export default function Home() {
         <Schedule
           mark="A"
           heading="Automotive"
-          caption="Repair and maintenance."
+          caption="Fixing and servicing cars."
           items={AUTO_ITEMS}
           footnote={PARTS_DISCLAIMER}
         />
         <Schedule
           mark="H"
           heading="Handyman"
-          caption="Home installation and assembly."
+          caption="Jobs around the house."
           items={HANDYMAN_ITEMS}
         />
         <Schedule
           mark="D"
           heading="DIY Bay"
-          caption={`Rent the bay by the hour. Includes: ${DIY_INVENTORY.join(", ").toLowerCase()}.`}
+          caption={`Rent the bay by the hour. You get: ${DIY_INVENTORY.join(", ").toLowerCase()}.`}
           items={DIY_ITEMS}
         />
         <Schedule
           mark="I"
           heading="I.T."
-          caption="Priced per job after we scope it."
+          caption="Every job is different, so we look first, then price it."
           items={IT_ITEMS}
         />
       </div>
@@ -62,7 +62,7 @@ export default function Home() {
       <div className="floor-edge" role="presentation" />
 
       <section id="contact" className="ledger tier-prose px-4 sm:px-6">
-        <p className="field-label">The premises</p>
+        <p className="field-label">Where we are</p>
         <h2 className="form-header mt-1 text-2xl">Find us</h2>
         <div className="mt-4 grid gap-6 md:grid-cols-2">
           <div>

@@ -19,8 +19,8 @@ type ServicePageProps = {
 };
 
 const SHARED_TERMS = [
-  "Work is by appointment. Same-day and next-day slots are often open.",
-  "Booking and payment are handled by Square.",
+  "We work by appointment. There is often a slot free today or tomorrow.",
+  "You book and pay through Square.",
 ];
 
 export function ServicePage({
@@ -46,18 +46,18 @@ export function ServicePage({
         <p className="measure t-lead mt-4">{intro}</p>
       </section>
 
-      <Schedule mark={mark} heading="Line items" items={items} footnote={footnote} />
+      <Schedule mark={mark} heading="What it costs" items={items} footnote={footnote} />
 
       {children}
 
       <section className="ledger tier-prose px-4 sm:px-6">
-        <h2 className="form-header text-xl">Terms</h2>
+        <h2 className="form-header text-xl">Good to know</h2>
         <ul className="measure mt-2">
           {allTerms.map((t) => (
             <li key={t} className="rule-item py-2 text-sm">{t}</li>
           ))}
           <li className="py-2 text-sm">
-            Questions before booking:{" "}
+            Not sure? Give us a call:{" "}
             <a href={BUSINESS.phone.tel} className="figure underline underline-offset-4">
               {BUSINESS.phone.display}
             </a>
