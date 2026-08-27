@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { Schedule } from "@/components/estimate/schedule";
 import { ServicePicker } from "@/components/estimate/service-picker";
-import { WhatsInThePrice } from "@/components/estimate/whats-in-the-price";
-import { TradeTiles } from "@/components/estimate/trade-tiles";
+import { PricePromise } from "@/components/estimate/price-promise";
 import { NextStep } from "@/components/estimate/next-step";
 import { BUSINESS, appleMapsUrl, mapsEmbedUrl, mailtoUrl } from "@/lib/business";
 import {
@@ -33,9 +32,8 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <WhatsInThePrice />
+          <PricePromise />
         </div>
-        <TradeTiles />
       </section>
 
       <section className="ledger px-4 pb-2 sm:px-6" aria-labelledby="examples">
