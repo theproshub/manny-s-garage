@@ -64,19 +64,3 @@ export function RouterMark({ className }: MarkProps) {
   );
 }
 
-/** Transport controls, drawn square rather than pulled from an icon set. */
-export function PauseMark({ className }: MarkProps) {
-  return (
-    <svg {...base} className={className}>
-      <path d="M9 5v14M15 5v14" strokeWidth={2} />
-    </svg>
-  );
-}
-
-export function PlayMark({ className }: MarkProps) {
-  return (
-    <svg {...base} className={className}>
-      <path d="M7 4.5 19 12 7 19.5Z" />
-    </svg>
-  );
-}
