@@ -17,7 +17,7 @@ import {
   Terminal,
   Wifi,
 } from "lucide-react";
-import { ChatAssistant } from "@/components/chat-assistant";
+import { BUSINESS } from "@/lib/business";
 import { SectionHeading } from "@/components/section-heading";
 import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { BackToHome } from "@/components/back-to-home";
@@ -72,7 +72,6 @@ const itServices = [
 const techNames = ["Websites", "Online Stores", "Business Apps", "Wi-Fi Setup", "PC Repair", "Data Reports"];
 
 export default function ITPages() {
-  const [assistantOpen, setAssistantOpen] = useState(false);
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
   const [carouselPaused, setCarouselPaused] = useState(false);
 
@@ -132,14 +131,13 @@ export default function ITPages() {
               transition={{ duration: 0.5, delay: 0.18 }}
               className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
             >
-              <button
-                type="button"
-                onClick={() => setAssistantOpen(true)}
+              <a
+                href={BUSINESS.phone.tel}
                 className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-cyan-500 px-6 py-3 text-sm font-bold text-black shadow-lg shadow-cyan-950/25 transition-transform hover:-translate-y-0.5 hover:bg-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
               >
                 <Terminal className="h-4 w-4 shrink-0" aria-hidden />
-                Consult
-              </button>
+                Call {BUSINESS.phone.display}
+              </a>
               <Link
                 href={SQUARE_BOOKING_URL}
                 target="_blank"
@@ -272,14 +270,13 @@ export default function ITPages() {
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-          <button
-            type="button"
-            onClick={() => setAssistantOpen(true)}
+          <a
+            href={BUSINESS.phone.tel}
             className="inline-flex h-10 items-center gap-2 rounded-full bg-cyan-500 px-4 py-2 text-sm font-bold text-black shadow-lg shadow-cyan-950/25 transition-transform hover:-translate-y-0.5 hover:bg-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:h-11 sm:px-5 sm:py-2.5"
           >
-            Get Support
+            Call {BUSINESS.phone.display}
             <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden />
-          </button>
+          </a>
           <Link
             href={SQUARE_BOOKING_URL}
                 target="_blank"
@@ -292,8 +289,6 @@ export default function ITPages() {
       </section>
 
       <ServiceStandardsSection variant="it" />
-
-      <ChatAssistant variant="it" open={assistantOpen} onOpenChange={setAssistantOpen} />
     </main>
   );
 }

@@ -8,7 +8,7 @@ import { autoServiceSchema } from "@/lib/schema";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronDown, Gauge, ShieldCheck, Wrench, BatteryCharging, MapPin } from "lucide-react";
 import { BackToHome } from "@/components/back-to-home";
-import { ChatAssistant } from "@/components/chat-assistant";
+import { BUSINESS } from "@/lib/business";
 import { SectionHeading } from "@/components/section-heading";
 import { AutoFixedPricingGrid } from "@/components/auto-fixed-pricing-grid";
 import { ServiceStandardsSection } from "@/components/service-standards-section";
@@ -56,7 +56,6 @@ const autoFaqs = [
 
 
 export default function AutoPage() {
-  const [assistantOpen, setAssistantOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
   const [carouselPaused, setCarouselPaused] = useState(false);
@@ -130,13 +129,12 @@ export default function AutoPage() {
               >
                 Book Any Job
               </Link>
-              <button
-                type="button"
-                onClick={() => setAssistantOpen(true)}
+              <a
+                href={BUSINESS.phone.tel}
                 className="btn-outline inline-flex items-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Start Diagnostic Intake
-              </button>
+                Call {BUSINESS.phone.display}
+              </a>
             </motion.div>
 
           </div>
@@ -281,14 +279,13 @@ export default function AutoPage() {
               Chat with Manny to describe your symptoms. We&apos;ll match you with the right service and get you scheduled.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-              <button
-                type="button"
-                onClick={() => setAssistantOpen(true)}
+              <a
+                href={BUSINESS.phone.tel}
                 className="btn-primary inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Start Diagnostic Intake
+                Call {BUSINESS.phone.display}
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
-              </button>
+              </a>
               <Link
                 href={ARI_AUTOMOTIVE_BOOKING_URL}
                 className="btn-outline inline-flex items-center gap-1.5 rounded-full border-white/[0.12] bg-white/[0.04] text-zinc-300 shadow-sm backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
@@ -299,8 +296,6 @@ export default function AutoPage() {
           </div>
         </motion.div>
       </section>
-
-      <ChatAssistant variant="auto" open={assistantOpen} onOpenChange={setAssistantOpen} />
     </main>
   );
 }
