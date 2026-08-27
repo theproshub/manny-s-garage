@@ -1,18 +1,24 @@
 # Pending service photography
 
-Three of the fourteen service slides have photographs. The remaining eleven are
-listed below with the exact prompt and settings to generate them.
+Ten of the fourteen service slides have photographs. Four remain, all in the
+Tech help group.
 
-Blocked on 2026-08-27 by the image account's daily cap:
-"You've reached the daily generation limit for your grace period."
-Nothing was generated on the second attempt — 0 of 11 submitted.
+Both image services were exhausted on 2026-08-27:
 
-## Settings
+- Higgsfield: "You've reached the daily generation limit for your grace period."
+- Hugging Face Z-Image Turbo: "You have exceeded your free ZeroGPU quota."
 
-- model: `soul_2`
-- aspect_ratio: `16:9`
-- quality: 2k (model default)
-- cost: ~0.12 credits each, ~1.3 credits for all eleven
+## Settings that worked
+
+Hugging Face **Z-Image Turbo** (`gr1_z_image_turbo_generate`) produced better,
+more consistent results than the alternative and is the tool to use:
+
+- resolution: `2048x1152 ( 16:9 )`
+- steps: `8`
+- free ZeroGPU quota; HF PRO raises it to 25 min/day
+
+No Adobe tooling is installed in this environment. Canva is available if a
+different route is ever wanted.
 
 ## House style
 
@@ -33,13 +39,6 @@ face to be visible.
 
 | Slide id | File to write | Prompt |
 | --- | --- | --- |
-| `brakes` | `public/services/brakes.webp` | A Black mechanic with dark brown skin in navy work overalls fitting a new brake pad into a brake caliper, car wheel removed and raised on a lift, clean modern repair bay |
-| `battery` | `public/services/battery.webp` | A Black mechanic with dark brown skin in navy work overalls lowering a new car battery into an open engine bay, hood raised, clean repair shop |
-| `roadside` | `public/services/roadside.webp` | A Black mechanic with dark brown skin in a work jacket clipping jumper cables onto a car battery at the roadside on an overcast day, a white service van parked behind |
-| `tv` | `public/services/tv.webp` | A Black handyman with dark brown skin in a work shirt and tool belt mounting a large flat screen television onto a living room wall, holding a spirit level against the bracket |
-| `furniture` | `public/services/furniture.webp` | A professional Black handyman with dark brown skin, in a work shirt, trousers and work boots, kneeling and assembling a flat pack wooden wardrobe in a living room, cordless drill in hand, full figure visible including face |
-| `blinds` | `public/services/blinds.webp` | A Black handyman with dark brown skin in a work shirt fitting window blinds above a bright living room window, cordless drill raised |
-| `bay` | `public/services/bay.webp` | A Black man with dark brown skin in casual clothes and gloves working on his own car raised on a two post hydraulic lift inside a clean rental garage bay, red tool trolley beside him |
 | `wifi` | `public/services/wifi.webp` | A Black technician with dark brown skin setting up a Wi-Fi router on a shelf in a home office, laptop open on the desk nearby |
 | `computer` | `public/services/computer.webp` | A Black computer technician with dark brown skin and dark brown hands repairing the inside of an opened laptop at a tidy workbench, small precision screwdriver in hand, face and upper body visible |
 | `website` | `public/services/website.webp` | A Black web developer with dark brown skin working at a desk with two monitors showing a plain website layout, small office |
