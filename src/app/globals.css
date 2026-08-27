@@ -10,6 +10,12 @@
   --stamp: #A8420A;
   --ink-muted: #55534B;
 
+  /* Shop-floor layer. Zoned, not blended: these appear only on painted
+     wayfinding markers, never in the document body. --paint is 1.53:1 on
+     paper, so it is a fill colour only — never text on the paper ground. */
+  --floor: #2B2B28;
+  --paint: #F2C230;
+
   /* Two measures, each meaning something: prose reads at 68ch, ledgers run
      wider. The width tells you which kind of content you're looking at. */
   --measure-prose: 68ch;
@@ -25,6 +31,8 @@
     --canary: #4A421F;
     --stamp: #F0873C;
     --ink-muted: #A7A296;
+    --floor: #12120F;
+    --paint: #F2C230;
   }
 }
 
@@ -184,14 +192,24 @@ button:not(:disabled) { cursor: pointer; }
 .tab-mark {
   display: grid;
   place-items: center;
-  width: 1.375rem;
-  height: 1.375rem;
+  min-width: 1.75rem;
+  padding: 0.125rem 0.25rem;
   border: 1px solid currentColor;
-  font-size: 0.75rem;
-  line-height: 1;
+  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
 }
 
-.tab-active .tab-mark { color: var(--stamp); border-color: var(--stamp); }
+/* A numbered tab is a bay on the floor: painted, not outlined. */
+.tab-bay {
+  background: var(--floor);
+  color: var(--paint);
+  border-color: var(--floor);
+}
+
+.tab-active .tab-mark:not(.tab-bay) { color: var(--stamp); border-color: var(--stamp); }
 
 .tab-action {
   min-height: 2.25rem;
@@ -467,3 +485,53 @@ button:not(:disabled) { cursor: pointer; }
 
 /* Nothing may push the viewport wider than itself. */
 .ledger, .sched-layout, .rate-grid, .form-box { max-width: 100%; }
+
+/* ══ Shop-floor wayfinding ══
+   The work order is the spine; this layer is the floor it refers to. Kept in
+   its own zones — painted markers and the premises boundary — so the two
+   worlds never blend inside one element. */
+
+/* Painted bay marker: stencilled numeral on asphalt. */
+.bay {
+  display: inline-grid;
+  place-items: center;
+  background: var(--floor);
+  color: var(--paint);
+  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 0.3125rem 0.5rem;
+  min-width: 2.5rem;
+  font-size: 1rem;
+  box-shadow: inset 0 0 0 1px var(--paint), inset 0 0 0 3px var(--floor);
+}
+
+.bay-mobile {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 2px var(--ink);
+  font-size: 0.8125rem;
+}
+
+.bay-lg { font-size: 1.375rem; padding: 0.4375rem 0.6875rem; min-width: 3rem; }
+
+.bay-note {
+  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+/* The premises boundary: floor striping marks where the paperwork ends and
+   the physical shop begins. Used once per page, and it divides something. */
+.floor-edge {
+  height: 0.75rem;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--floor) 0 0.6rem,
+    var(--paint) 0.6rem 1.2rem
+  );
+}

@@ -59,8 +59,11 @@ export default function Home() {
 
       <SignatureLine href="/quote" />
 
+      <div className="floor-edge" role="presentation" />
+
       <section id="contact" className="ledger tier-prose px-4 sm:px-6">
-        <h2 className="form-header text-xl">Find us</h2>
+        <p className="field-label">The premises</p>
+        <h2 className="form-header mt-1 text-2xl">Find us</h2>
         <div className="mt-4 grid gap-6 md:grid-cols-2">
           <div>
             <dl>

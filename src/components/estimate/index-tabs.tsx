@@ -13,11 +13,11 @@ import { BUSINESS } from "@/lib/business";
  * above it scrolls away, which is correct — a letterhead prints once.
  */
 const TABS = [
-  { mark: "A", label: "Automotive", href: "/auto" },
-  { mark: "H", label: "Handyman", href: "/handyman" },
-  { mark: "D", label: "DIY Bay", href: "/diy-garage" },
-  { mark: "I", label: "I.T.", href: "/it" },
-  { mark: "¤", label: "Pricing", href: "/quote" },
+  { mark: "A", label: "Automotive", href: "/auto", bay: "01" },
+  { mark: "H", label: "Handyman", href: "/handyman", bay: "MOB" },
+  { mark: "D", label: "DIY Bay", href: "/diy-garage", bay: "02" },
+  { mark: "I", label: "I.T.", href: "/it", bay: "MOB" },
+  { mark: "$", label: "Pricing", href: "/quote", bay: null },
 ];
 
 export function IndexTabs() {
@@ -37,7 +37,12 @@ export function IndexTabs() {
                     aria-current={active ? "page" : undefined}
                     className={`tab ${active ? "tab-active" : ""}`}
                   >
-                    <span className="figure tab-mark" aria-hidden>{tab.mark}</span>
+                    <span
+                      className={`tab-mark ${tab.bay && tab.bay !== "MOB" ? "tab-bay" : ""}`}
+                      aria-hidden
+                    >
+                      {tab.bay ?? tab.mark}
+                    </span>
                     <span className="tab-label">{tab.label}</span>
                   </Link>
                 </li>

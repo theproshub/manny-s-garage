@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { RATES } from "@/lib/business";
+import { BayMarker, BayNote } from "./bay-marker";
 
 /**
  * The rate schedule that opens a multi-part estimate: the headline figure for
@@ -23,11 +24,12 @@ export function RateSummary() {
       <div className="rate-grid">
         {RATES_SUMMARY.map((r) => (
           <Link key={r.mark} href={r.href} className="rate-cell">
-            <span className="rate-mark figure" aria-hidden>{r.mark}</span>
+            <span className="mb-2"><BayMarker mark={r.mark} /></span>
             <span className="field-label">{r.trade}</span>
             {r.lead ? <span className="rate-lead">{r.lead}</span> : null}
             <span className="rate-figure figure">{r.figure}</span>
             <span className="rate-unit">{r.unit}</span>
+            <span className="mt-1.5"><BayNote mark={r.mark} /></span>
           </Link>
         ))}
       </div>

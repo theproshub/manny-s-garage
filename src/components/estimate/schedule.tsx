@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { formatUsd, type LineItem } from "./line-item";
+import { BayMarker, BayNote } from "./bay-marker";
 
 type ScheduleProps = {
   /** Form section identifier — matches the job-code prefix on every row. */
@@ -21,6 +22,10 @@ export function Schedule({ mark, heading, caption, items, total, footnote }: Sch
           </span>
           <div className="min-w-0 pt-1 lg:pt-0">
             <p className="field-label">Schedule {mark}</p>
+            <p className="mt-1 flex items-center gap-2">
+              <BayMarker mark={mark} />
+              <BayNote mark={mark} />
+            </p>
             <h2 className="form-header text-2xl sm:text-3xl">{heading}</h2>
             {caption ? (
               <p className="mt-1 text-sm text-[var(--ink-muted)]">{caption}</p>
