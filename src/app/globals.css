@@ -16,6 +16,10 @@
   --floor: #2B2B28;
   --paint: #F2C230;
 
+  /* The surface the form lies on. The sheet is --paper; the desk is what
+     shows around its edges, so the document reads as a physical object. */
+  --desk: #DEDCD3;
+
   /* Two measures, each meaning something: prose reads at 68ch, ledgers run
      wider. The width tells you which kind of content you're looking at. */
   --measure-prose: 68ch;
@@ -33,6 +37,7 @@
     --ink-muted: #A7A296;
     --floor: #12120F;
     --paint: #F2C230;
+    --desk: #0E0E0C;
   }
 }
 
@@ -53,7 +58,7 @@ body {
   padding-left: env(safe-area-inset-left, 0);
   padding-right: env(safe-area-inset-right, 0);
   padding-bottom: env(safe-area-inset-bottom, 0);
-  background: var(--paper);
+  background: var(--desk);
   color: var(--ink);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: 1rem;
@@ -516,4 +521,85 @@ button:not(:disabled) { cursor: pointer; }
     var(--floor) 0 0.6rem,
     var(--paint) 0.6rem 1.2rem
   );
+}
+
+/* ══ The sheet ══
+   The whole document is one printed form lying on a desk. A heavy outer rule
+   bounds it, the desk shows at the edges, and the form is titled and coded
+   like a real template. */
+.sheet {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  max-width: 78rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 48rem) {
+  .sheet { margin: 1.5rem auto 2.5rem; }
+}
+
+/* Masthead band: the form's own title, reversed out like a printed header. */
+.sheet-masthead {
+  background: var(--ink);
+  color: var(--paper);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.25rem;
+  padding: 0.5rem 1rem;
+}
+
+@media (min-width: 40rem) {
+  .sheet-masthead { padding-inline: 1.5rem; }
+}
+
+.sheet-title {
+  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sheet-meta {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+/* Form code, printed small at the foot of the sheet as on any real template. */
+.sheet-code {
+  border-top: 1px solid var(--rule);
+  padding: 0.625rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+
+@media (min-width: 40rem) {
+  .sheet-code { padding-inline: 1.5rem; }
+}
+
+/* Reversed column band on every schedule — the clearest single tell that
+   this is a form and not a styled list. */
+.sched thead th {
+  background: var(--ink);
+  color: var(--paper);
+  border-top: 0;
+  border-bottom: 0;
+  padding-block: 0.5rem;
+}
+
+.sched thead th:first-child { padding-left: 0.625rem; }
+
+/* The price header keeps the canary band, so the column reads top to bottom. */
+.sched thead th.price-cell {
+  background: var(--canary);
+  color: var(--ink);
 }

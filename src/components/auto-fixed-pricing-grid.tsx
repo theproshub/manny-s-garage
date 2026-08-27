@@ -13,7 +13,7 @@ export function AutoFixedPricingGrid({ className, ...props }: ComponentPropsWith
         <li key={pkg.id}>
           <Link
             href={bookAutomotiveHref(pkg.price, `Auto: ${pkg.label} · ${pkg.sub}`)}
-            className="flex min-h-[4.5rem] flex-col justify-center rounded-xl border border-white/[0.08] bg-black/40 px-4 py-3 transition-colors hover:border-orange-500/40 hover:bg-orange-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+            className="flex min-h-[4.5rem] flex-col justify-center rounded-xl border border-white/[0.08] bg-black/40 px-4 py-3 transition-colors hover:border-orange-500/40 hover:bg-orange-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
           >
             <div className="flex items-start justify-between gap-3">
               <div>

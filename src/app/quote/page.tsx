@@ -68,7 +68,7 @@ function QuotePageInner() {
         </p>
 
         <div
-          className="mt-8 grid grid-cols-3 gap-1 rounded-full border border-[var(--rule)]] bg-transparent] p-1 sm:mt-10"
+          className="mt-8 grid grid-cols-3 gap-1 rounded-full border border-[var(--rule)] bg-transparent p-1 sm:mt-10"
           role="tablist"
           aria-label="Quote category"
         >
@@ -85,7 +85,7 @@ function QuotePageInner() {
               role="tab"
               aria-selected={tab === t.id}
               onClick={() => setTabAndUrl(t.id)}
-              className={`min-h-9 rounded-full px-2 py-1.5 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:px-3 sm:text-sm ${
+              className={`min-h-9 rounded-full px-2 py-1.5 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)] sm:px-3 sm:text-sm ${
                 tab === t.id ? "bg-[var(--stamp)] text-white" : "text-[var(--ink-muted)] hover:text-[var(--ink)]"
               }`}
             >
@@ -112,7 +112,7 @@ function QuotePageInner() {
                   <li key={p.label}>
                     <Link
                       href={bookHandymanHref(p.price, `TV mount ${p.label}`)}
-                      className="flex min-h-[3rem] flex-col justify-center rounded-none border border-[var(--rule)]] bg-transparent px-3 py-2.5 transition-colors hover:border-[var(--stamp)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                      className="flex min-h-[3rem] flex-col justify-center rounded-none border border-[var(--rule)] bg-transparent px-3 py-2.5 transition-colors hover:border-[var(--stamp)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
                     >
                       <span className="text-sm font-medium text-[var(--ink)]">{p.label}</span>
                       <span className="text-xl font-bold text-[var(--stamp)]">${p.price.toFixed(2)}</span>
@@ -132,7 +132,7 @@ function QuotePageInner() {
                   <li key={o.n}>
                     <Link
                       href={bookHandymanHref(o.price, `Security cameras x${o.n}`)}
-                      className="flex min-h-[3.5rem] flex-col items-center justify-center rounded-none border border-[var(--rule)]] bg-transparent px-2 py-2.5 text-center transition-colors hover:border-[var(--stamp)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                      className="flex min-h-[3.5rem] flex-col items-center justify-center rounded-none border border-[var(--rule)] bg-transparent px-2 py-2.5 text-center transition-colors hover:border-[var(--stamp)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
                     >
                       <span className="text-xs text-[var(--ink-muted)]">{o.label}</span>
                       <span className="text-lg font-bold text-[var(--ink)]">${o.price}</span>
@@ -152,7 +152,7 @@ function QuotePageInner() {
                   <li key={o.n}>
                     <Link
                       href={bookHandymanHref(o.price, `Furniture assembly x${o.n}`)}
-                      className="flex min-h-[3.5rem] flex-col items-center justify-center rounded-none border border-[var(--rule)]] bg-transparent px-2 py-2.5 text-center transition-colors hover:border-[var(--stamp)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                      className="flex min-h-[3.5rem] flex-col items-center justify-center rounded-none border border-[var(--rule)] bg-transparent px-2 py-2.5 text-center transition-colors hover:border-[var(--stamp)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
                     >
                       <span className="text-xs text-[var(--ink-muted)]">{o.label}</span>
                       <span className="text-lg font-bold text-[var(--ink)]">${o.price}</span>
@@ -171,7 +171,7 @@ function QuotePageInner() {
                 <li>
                   <Link
                     href={bookHandymanHref(HANDYMAN_WINDOW_TREATMENT, "Window treatment installation")}
-                    className="flex min-h-[3.5rem] flex-col justify-center rounded-none border border-[var(--rule)]] bg-transparent px-3 py-2.5 transition-colors hover:border-[var(--stamp)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                    className="flex min-h-[3.5rem] flex-col justify-center rounded-none border border-[var(--rule)] bg-transparent px-3 py-2.5 transition-colors hover:border-[var(--stamp)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
                   >
                     <span className="text-sm font-medium text-[var(--ink)]">Blinds or Curtains Install</span>
                     <span className="text-xl font-bold text-[var(--stamp)]">${HANDYMAN_WINDOW_TREATMENT}</span>
@@ -189,7 +189,7 @@ function QuotePageInner() {
                 <li>
                   <Link
                     href={bookHandymanHref(HANDYMAN_BUNK_BED, "Bunk bed assembly")}
-                    className="flex min-h-[3.5rem] flex-col justify-center rounded-none border border-[var(--rule)]] bg-transparent px-3 py-2.5 transition-colors hover:border-[var(--stamp)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                    className="flex min-h-[3.5rem] flex-col justify-center rounded-none border border-[var(--rule)] bg-transparent px-3 py-2.5 transition-colors hover:border-[var(--stamp)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
                   >
                     <span className="text-sm font-medium text-[var(--ink)]">Bunk Bed Assembly</span>
                     <span className="text-xl font-bold text-[var(--stamp)]">${HANDYMAN_BUNK_BED}</span>
@@ -222,7 +222,7 @@ function QuotePageInner() {
                 <li key={pkg.id}>
                   <Link
                     href={bookDiyHref(pkg)}
-                    className="flex min-h-[4.5rem] flex-col justify-center rounded-none border border-[var(--rule)]] bg-transparent px-4 py-3 transition-colors hover:border-[var(--stamp)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                    className="flex min-h-[4.5rem] flex-col justify-center rounded-none border border-[var(--rule)] bg-transparent px-4 py-3 transition-colors hover:border-[var(--stamp)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div>
@@ -264,7 +264,7 @@ function QuotePageInner() {
           </motion.div>
         )}
 
-        <div className="mt-14 rounded-none border border-[var(--rule)]] bg-transparent] p-5 sm:p-6">
+        <div className="mt-14 rounded-none border border-[var(--rule)] bg-transparent p-5 sm:p-6">
           <div className="flex gap-3">
             <Check className="mt-0.5 h-5 w-5 shrink-0 text-[var(--ink-muted)]" aria-hidden />
             <div>

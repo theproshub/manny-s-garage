@@ -3,6 +3,7 @@ import { IBM_Plex_Sans, IBM_Plex_Sans_Condensed, IBM_Plex_Mono } from "next/font
 import "./globals.css";
 import { Letterhead } from "@/components/estimate/letterhead";
 import { IndexTabs } from "@/components/estimate/index-tabs";
+import { Sheet } from "@/components/estimate/sheet";
 import { Footer } from "@/components/footer";
 import { localBusinessSchema } from "@/lib/schema";
 
@@ -76,10 +77,12 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen relative">
         <a href="#content" className="skip-link">Skip to content</a>
-        <Letterhead />
-        <IndexTabs />
-        <div id="content">{children}</div>
-        <Footer />
+        <Sheet>
+          <Letterhead />
+          <IndexTabs />
+          <div id="content">{children}</div>
+          <Footer />
+        </Sheet>
       </body>
     </html>
   );

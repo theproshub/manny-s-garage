@@ -271,7 +271,7 @@ function BookPageContent() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
-          className="relative z-10 w-full max-w-lg rounded-none border border-[var(--rule)]] bg-transparent p-8 text-center shadow-xl shadow-black/20 backdrop-blur-sm sm:p-10"
+          className="relative z-10 w-full max-w-lg rounded-none border border-[var(--rule)] bg-transparent p-8 text-center shadow-xl shadow-black/20 backdrop-blur-sm sm:p-10"
         >
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20 text-green-400 ring-2 ring-green-400/30 sm:h-20 sm:w-20">
             <Check className="h-8 w-8 sm:h-10 sm:w-10" />
@@ -283,14 +283,14 @@ function BookPageContent() {
           <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:justify-center">
             <Link
               href="/"
-              className="btn-primary group inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+              className="btn-primary group inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
             >
               Home
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1" />
             </Link>
             <Link
               href="/book"
-              className="btn-outline inline-flex items-center justify-center gap-1.5 rounded-full border-[var(--rule)]] bg-transparent] text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+              className="btn-outline inline-flex items-center justify-center gap-1.5 rounded-full border-[var(--rule)] bg-transparent text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
             >
               Send Another
             </Link>
@@ -325,7 +325,7 @@ function BookPageContent() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="mt-8 rounded-none border border-[var(--rule)]] bg-transparent p-5 shadow-lg shadow-black/20 backdrop-blur-sm sm:p-6"
+            className="mt-8 rounded-none border border-[var(--rule)] bg-transparent p-5 shadow-lg shadow-black/20 backdrop-blur-sm sm:p-6"
             aria-labelledby="pick-service-heading"
           >
             <h2 id="pick-service-heading" className="text-sm font-medium text-[var(--ink)]">
@@ -339,7 +339,7 @@ function BookPageContent() {
                     <button
                       type="button"
                       onClick={() => chooseService(opt.id)}
-                      className="flex min-h-[4.5rem] w-full items-start gap-3 rounded-none border border-[var(--rule)]] bg-transparent] px-4 py-3 text-left transition-colors hover:border-[var(--stamp)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                      className="flex min-h-[4.5rem] w-full items-start gap-3 rounded-none border border-[var(--rule)] bg-transparent px-4 py-3 text-left transition-colors hover:border-[var(--stamp)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
                     >
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-none border border-[var(--rule)] bg-transparent">
                         <Icon className="h-5 w-5 text-[var(--stamp)]" aria-hidden />
@@ -372,7 +372,7 @@ function BookPageContent() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="mt-8 scroll-mt-28 rounded-none border border-[var(--rule)]] bg-transparent p-5 shadow-lg shadow-black/20 backdrop-blur-sm sm:p-6"
+            className="mt-8 scroll-mt-28 rounded-none border border-[var(--rule)] bg-transparent p-5 shadow-lg shadow-black/20 backdrop-blur-sm sm:p-6"
           >
             <div className="flex flex-wrap items-center justify-between gap-2 text-[var(--ink)]">
               <div className="flex items-center gap-2">
@@ -382,7 +382,7 @@ function BookPageContent() {
               <button
                 type="button"
                 onClick={goBackToServicePick}
-                className="text-xs font-medium text-[var(--ink-muted)] underline-offset-2 hover:text-[var(--stamp)] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                className="text-xs font-medium text-[var(--ink-muted)] underline-offset-2 hover:text-[var(--stamp)] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
               >
                 Change Service
               </button>
@@ -403,10 +403,10 @@ function BookPageContent() {
                           setSelectedQuoteId(null);
                           updateForm({ serviceType: opt.id });
                         }}
-                        className={`min-h-[44px] rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] ${
+                        className={`min-h-[44px] rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)] ${
                           on
                             ? "border-[var(--stamp)] bg-[var(--stamp)] text-white"
-                            : "border-[var(--rule)] bg-transparent] text-[var(--ink)] hover:border-[var(--rule)] hover:bg-transparent]"
+                            : "border-[var(--rule)] bg-transparent text-[var(--ink)] hover:border-[var(--rule)] hover:bg-transparent"
                         }`}
                       >
                         {opt.label}
@@ -443,10 +443,10 @@ function BookPageContent() {
                         key={opt.id}
                         type="button"
                         onClick={() => selectQuote(opt)}
-                        className={`min-h-[46px] rounded-none border px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] ${
+                        className={`min-h-[46px] rounded-none border px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)] ${
                           on
                             ? "border-[var(--stamp)] bg-[var(--canary)]"
-                            : "border-[var(--rule)] bg-transparent] hover:border-[var(--rule)] hover:bg-transparent]"
+                            : "border-[var(--rule)] bg-transparent hover:border-[var(--rule)] hover:bg-transparent"
                         }`}
                       >
                         <span className="block text-sm font-medium text-[var(--ink)]">{opt.label}</span>
@@ -469,7 +469,7 @@ function BookPageContent() {
             <div
               ref={bookingScheduleRef}
               id={BOOK_SCHEDULE_FRAGMENT}
-              className="scroll-mt-28 space-y-5 border-t border-[var(--rule)]] pt-5"
+              className="scroll-mt-28 space-y-5 border-t border-[var(--rule)] pt-5"
             >
               <p className="text-xs font-medium uppercase tracking-wide text-[var(--ink-muted)]">Schedule &amp; Contact</p>
 
@@ -555,7 +555,7 @@ function BookPageContent() {
             type="button"
             onClick={handleSubmit}
             disabled={submitting || !canSubmit()}
-            className="btn-primary mt-6 flex w-full items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] disabled:pointer-events-none disabled:opacity-40"
+            className="btn-primary mt-6 flex w-full items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)] disabled:pointer-events-none disabled:opacity-40"
           >
             {submitting ? "Sending…" : "Send"}
             {!submitting ? <ArrowRight className="h-4 w-4" aria-hidden /> : null}
