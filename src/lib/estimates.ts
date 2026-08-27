@@ -1,4 +1,5 @@
 import { RATES } from "@/lib/business";
+import { SQUARE_BOOKING_URL, ARI_AUTOMOTIVE_BOOKING_URL } from "@/lib/fixed-quote-options";
 
 /**
  * Every service Manny's Garage offers, each costed to a total.
@@ -41,9 +42,9 @@ const partsLine = (what: string): EstimateLine => ({
   amount: null,
 });
 
-const AUTO_HREF = "/quote?for=auto";
-const HAND_HREF = "/quote?for=handyman";
-const DIY_HREF = "/quote?for=diy";
+const AUTO_HREF = ARI_AUTOMOTIVE_BOOKING_URL;
+const HAND_HREF = SQUARE_BOOKING_URL;
+const DIY_HREF = SQUARE_BOOKING_URL;
 
 /* ── Car repair ── */
 const AUTO: ServiceOption[] = [
@@ -180,7 +181,7 @@ const TECH: ServiceOption[] = [
   { id: "reports", service: "Spreadsheets and reports", summary: "Your numbers in one place, for a small business." },
 ].map((t) => ({
   ...t, mark: "I", group: "Tech help",
-  status: "quoted" as const, bookHref: "/quote",
+  status: "quoted" as const, bookHref: "/book",
   lines: [{ label: "Price", detail: "We look at the job first, then tell you", amount: null }],
 }));
 

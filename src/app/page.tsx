@@ -1,5 +1,4 @@
 import { Schedule } from "@/components/estimate/schedule";
-import { RateSummary } from "@/components/estimate/rate-summary";
 import { ServicePicker } from "@/components/estimate/service-picker";
 import { NextStep } from "@/components/estimate/next-step";
 import { BUSINESS, appleMapsUrl, mapsEmbedUrl, mailtoUrl } from "@/lib/business";
@@ -36,10 +35,6 @@ export default function Home() {
         <div className="mt-4"><ServicePicker /></div>
       </section>
 
-      <section className="ledger px-4 pt-8 sm:px-6" aria-labelledby="all-rates">
-        <h2 id="all-rates" className="form-header text-xl">Everything else, by the unit</h2>
-      </section>
-      <RateSummary />
 
       <div className="mt-4 divide-y divide-[var(--rule)]">
         <Schedule
