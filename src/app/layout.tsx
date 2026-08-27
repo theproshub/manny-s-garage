@@ -20,7 +20,7 @@ const archivo = Archivo({
   subsets: ["latin"],
   weight: "variable",
   axes: ["wdth"],
-  variable: "--font-sans",
+  variable: "--font-body",
   display: "swap",
 });
 

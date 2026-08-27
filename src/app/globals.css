@@ -59,7 +59,7 @@ body {
   padding-bottom: env(safe-area-inset-bottom, 0);
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -82,7 +82,7 @@ button:not(:disabled) { cursor: pointer; }
 
 /* ── Form headers and field labels ── */
 .field-label {
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-stretch: 92%;
   font-size: 0.75rem;
   font-weight: 600;
@@ -92,7 +92,7 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 .form-header {
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-stretch: 92%;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -164,7 +164,7 @@ button:not(:disabled) { cursor: pointer; }
   padding: 0.5rem 0.875rem;
   border: 1.5px solid transparent;
   border-bottom: 0;
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-stretch: 92%;
   font-size: 0.9375rem;                   /* 15px — was 12px, too small */
   font-weight: 600;
@@ -244,7 +244,7 @@ button:not(:disabled) { cursor: pointer; }
   }
   .sched tbody td::before {
     content: attr(data-label);
-    font-family: var(--font-sans), sans-serif;
+    font-family: var(--font-body), sans-serif;
   font-stretch: 92%;
     font-size: 0.75rem;
     font-weight: 600;
@@ -267,7 +267,7 @@ button:not(:disabled) { cursor: pointer; }
 /* ── Stamp ── */
 .stamp {
   color: var(--stamp);
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-stretch: 92%;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -283,7 +283,7 @@ button:not(:disabled) { cursor: pointer; }
   padding: 0.625rem 1.25rem;
   background: var(--stamp);
   color: #fff;               /* 6.09:1 on --stamp. Measured, not guessed. */
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-stretch: 92%;
   font-weight: 600;
   letter-spacing: 0.03em;
@@ -306,7 +306,7 @@ button:not(:disabled) { cursor: pointer; }
   background: transparent;
   color: var(--ink);
   border: 1px solid var(--ink);
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-stretch: 92%;
   font-weight: 600;
 }
@@ -332,7 +332,7 @@ button:not(:disabled) { cursor: pointer; }
    question a visitor actually has, which an estimate number never did. */
 .status-stamp {
   display: inline-block;
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-stretch: 92%;
   font-weight: 700;
   font-size: 1.0625rem;
@@ -351,7 +351,7 @@ button:not(:disabled) { cursor: pointer; }
    A document has dramatic scale contrast: large figures, small labels. The
    previous scale was timid and everything sat at one weight. */
 .t-display {
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-stretch: 92%;
   font-weight: 700;
   font-size: clamp(2.125rem, 6.5vw, 4rem);
@@ -419,7 +419,7 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 .bd-service {
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-stretch: 92%;
   font-weight: 700;
   font-size: clamp(1.375rem, 3vw, 1.75rem);
@@ -510,7 +510,7 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 .bd-total-label {
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-stretch: 92%;
   font-weight: 700;
   font-size: 0.8125rem;
@@ -536,7 +536,7 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 .bd-from {
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-stretch: 92%;
   font-size: 0.9375rem;
   font-weight: 600;
@@ -593,7 +593,7 @@ button:not(:disabled) { cursor: pointer; }
   background: transparent;
   border: 0;
   border-right: 1px solid var(--rule);
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-body), sans-serif;
   font-stretch: 92%;
   font-weight: 600;
   font-size: 0.9375rem;
