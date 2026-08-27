@@ -353,3 +353,117 @@ button:not(:disabled) { cursor: pointer; }
 
 .status-stamp.is-open { color: var(--stamp); }
 .status-stamp.is-shut { color: var(--ink-muted); }
+
+/* ── Type scale ──
+   A document has dramatic scale contrast: large figures, small labels. The
+   previous scale was timid and everything sat at one weight. */
+.t-display {
+  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.125rem, 6.5vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+}
+
+.t-lead {
+  font-size: clamp(1rem, 2.2vw, 1.1875rem);
+  line-height: 1.55;
+}
+
+/* ── Rate summary ──
+   Ruled cells of one schedule. No rounding, no hover-border, no blurbs —
+   each cell carries the trade's headline figure. */
+.rate-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1.5px solid var(--ink);
+}
+
+@media (min-width: 60rem) {
+  .rate-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.rate-cell {
+  display: grid;
+  gap: 0.125rem;
+  align-content: start;
+  padding: 1rem 1rem 1.125rem;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  min-width: 0;
+}
+
+/* Close the outer edges so the block reads as one ruled table. */
+.rate-cell:nth-child(2n) { border-right: 0; }
+.rate-cell:nth-last-child(-n + 2) { border-bottom: 0; }
+
+@media (min-width: 60rem) {
+  .rate-cell:nth-child(2n) { border-right: 1px solid var(--rule); }
+  .rate-cell:last-child { border-right: 0; }
+  .rate-cell { border-bottom: 0; }
+}
+
+.rate-cell:hover { background: var(--canary); }
+
+.rate-mark {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--stamp);
+  color: var(--stamp);
+  font-size: 0.8125rem;
+  margin-bottom: 0.375rem;
+}
+
+.rate-lead {
+  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+
+/* The figure is the loudest thing in the cell. Publishing prices is the
+   whole argument of this site; it should look like it. */
+.rate-figure {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.rate-unit {
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  color: var(--ink-muted);
+}
+
+/* ── Schedule: asymmetric on wide screens ──
+   Section identity sits in its own column so the ledger is not one long
+   centred stack. Creates rhythm between blocks instead of repetition. */
+@media (min-width: 64rem) {
+  .sched-layout {
+    display: grid;
+    grid-template-columns: 13rem minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .sched-layout > .sched-head { position: sticky; top: 5.5rem; }
+}
+
+/* Prices carry weight in the ledger too, not only in the summary. */
+.sched .price-cell { font-size: 1.0625rem; }
+@media (min-width: 40rem) {
+  .sched .price-cell { font-size: 1.125rem; }
+}
+
+/* Letterhead cells pair up on small screens; the last in each row must not
+   carry a right rule, and the final row must not carry a bottom rule. */
+@media (max-width: 40rem) {
+  .form-box > .form-cell:nth-child(2n) { border-right: 0; }
+  .form-box > .form-cell:last-child { border-bottom: 0; }
+}
+
+/* Nothing may push the viewport wider than itself. */
+.ledger, .sched-layout, .rate-grid, .form-box { max-width: 100%; }

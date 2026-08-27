@@ -14,22 +14,24 @@ type ScheduleProps = {
 export function Schedule({ mark, heading, caption, items, total, footnote }: ScheduleProps) {
   return (
     <section className="ledger tier-ledger w-full px-4 sm:px-6">
-      <div className="flex items-start gap-4">
-        <span className="schedule-mark" aria-hidden>
-          {mark}
-        </span>
-        <div className="min-w-0 pt-1">
-          <p className="field-label">Schedule {mark}</p>
-          <h2 className="form-header text-2xl sm:text-3xl">{heading}</h2>
-          {caption ? (
-            <p className="measure mt-1 text-sm text-[var(--ink-muted)]">{caption}</p>
-          ) : null}
+      <div className="sched-layout">
+        <div className="sched-head flex items-start gap-4 lg:block">
+          <span className="schedule-mark lg:mb-3" aria-hidden>
+            {mark}
+          </span>
+          <div className="min-w-0 pt-1 lg:pt-0">
+            <p className="field-label">Schedule {mark}</p>
+            <h2 className="form-header text-2xl sm:text-3xl">{heading}</h2>
+            {caption ? (
+              <p className="mt-1 text-sm text-[var(--ink-muted)]">{caption}</p>
+            ) : null}
+          </div>
         </div>
-      </div>
 
-      {/* Real table markup: tabular data reads correctly to screen readers as
+        <div className="min-w-0">
+        {/* Real table markup: tabular data reads correctly to screen readers as
           well as looking like the document it imitates. */}
-      <table className="sched mt-5 w-full border-collapse text-left">
+        <table className="sched mt-5 lg:mt-0 w-full border-collapse text-left">
         <caption className="sr-only">{heading} — itemized prices</caption>
         <thead>
           <tr>
@@ -83,11 +85,13 @@ export function Schedule({ mark, heading, caption, items, total, footnote }: Sch
             </tr>
           </tfoot>
         ) : null}
-      </table>
+        </table>
 
-      {footnote ? (
-        <p className="measure mt-3 text-sm text-[var(--ink-muted)]">{footnote}</p>
-      ) : null}
+          {footnote ? (
+            <p className="measure mt-3 text-sm text-[var(--ink-muted)]">{footnote}</p>
+          ) : null}
+        </div>
+      </div>
     </section>
   );
 }

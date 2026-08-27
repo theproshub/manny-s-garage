@@ -1,4 +1,5 @@
 import { Schedule } from "@/components/estimate/schedule";
+import { RateSummary } from "@/components/estimate/rate-summary";
 import { SignatureLine } from "@/components/estimate/signature-line";
 import { BUSINESS, appleMapsUrl, mapsEmbedUrl, mailtoUrl } from "@/lib/business";
 import {
@@ -17,16 +18,18 @@ export default function Home() {
         <p className="field-label">
           {BUSINESS.address.locality}, {BUSINESS.address.region} · Published price list
         </p>
-        <h1 className="form-header mt-1 text-3xl sm:text-4xl">
-          Car repairs, jobs around the house, a bay to rent, and tech help
+        <h1 className="t-display mt-2 max-w-[18ch]">
+          Car repairs, house jobs, a bay to rent, and tech help
         </h1>
-        <p className="measure mt-3">
+        <p className="measure t-lead mt-4">
           The name says garage, but we do four trades under one roof. Every
           price below is published up front — what you see is what you pay.
         </p>
       </section>
 
-      <div className="space-y-8">
+      <RateSummary />
+
+      <div className="mt-4 divide-y divide-[var(--rule)]">
         <Schedule
           mark="A"
           heading="Automotive"

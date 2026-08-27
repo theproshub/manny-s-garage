@@ -9,8 +9,8 @@ export function Letterhead() {
     <header className="bg-[var(--paper)]">
       <div className="ledger px-4 pt-5 sm:px-6">
         {/* A repair order opens with a ruled grid of identified fields. */}
-        <div className="form-box grid-cols-1 sm:grid-cols-[1fr_auto_auto]">
-          <div className="form-cell flex items-center gap-3">
+        <div className="form-box grid-cols-2 sm:grid-cols-[1fr_auto_auto]">
+          <div className="form-cell col-span-2 flex items-center gap-3 sm:col-span-1">
             <Link href="/" className="shrink-0">
               <Image
                 src={siteImages.logo}
@@ -42,7 +42,7 @@ export function Letterhead() {
             </p>
           </div>
 
-          <div className="form-cell sm:col-span-3 sm:border-b-0">
+          <div className="form-cell col-span-2 border-b-0 sm:col-span-3">
             <div className="flex flex-wrap items-baseline gap-x-8 gap-y-2">
               <div>
                 <span className="field-label">Tel </span>
