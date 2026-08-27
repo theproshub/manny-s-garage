@@ -809,60 +809,38 @@ button:not(:disabled) { cursor: pointer; }
   overflow: hidden;
 }
 
+/* The copy panel and the picture panel are separate cells. Nothing is laid
+   over the photograph, so it shows at full strength and the copy sits on a
+   solid ground instead of an unknown luminance. */
 .slides-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.slide-figure {
   position: relative;
-  isolation: isolate;
-  padding: 1.5rem 1.25rem 1.75rem;
+  margin: 0;
+  min-height: 0;
+  aspect-ratio: 16 / 10;
+  background: var(--rule);
+  order: -1;
 }
 
-@media (min-width: 40rem) {
-  .slides-stage { padding: 2rem 1.75rem 2.25rem; min-height: 21rem; }
+.slide-photo { object-fit: cover; }
+
+@media (min-width: 48rem) {
+  .slides-stage.has-photo { grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr); }
+  .slide-figure { aspect-ratio: auto; order: 0; }
+  .slides-stage { min-height: 22rem; }
 }
 
 
-.slide-photo {
-  object-fit: cover;
-  z-index: 0;
-}
-
-/* Heavy over the text, lighter over the far edge, so the photograph is
-   visible without the copy ever sitting on an unknown luminance. */
-.slide-scrim {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  /* Heavy only where the copy sits, then falls away fast so the photograph is
-     actually visible rather than a texture under a wash. The stops were set by
-     measuring the darkest-to-lightest pixel under the text, not by eye. */
-  /* Near-solid across the copy, then falls away. Below 62rem the card is too
-     narrow to split, so the wash stays heavy and the photograph reads as
-     texture; above it the copy gets its own column and the right-hand side of
-     the picture is left alone. */
-  background: linear-gradient(
-    96deg,
-    color-mix(in srgb, var(--ink) 94%, transparent) 0%,
-    color-mix(in srgb, var(--ink) 90%, transparent) 55%,
-    color-mix(in srgb, var(--ink) 72%, transparent) 100%
-  );
-}
-
-@media (min-width: 62rem) {
-  .slide-scrim {
-    background: linear-gradient(
-      96deg,
-      color-mix(in srgb, var(--ink) 95%, transparent) 0%,
-      color-mix(in srgb, var(--ink) 91%, transparent) 66%,
-      color-mix(in srgb, var(--ink) 26%, transparent) 88%,
-      color-mix(in srgb, var(--ink) 4%, transparent) 100%
-    );
-  }
-}
 
 .slide {
-  position: relative;
-  z-index: 2;
   color: var(--surface);
-  max-width: 30rem;
+  align-self: center;
+  padding: 1.5rem 1.25rem 1.75rem;
+  max-width: 34rem;
   animation: slide-in 320ms ease both;
 }
 
@@ -879,9 +857,8 @@ button:not(:disabled) { cursor: pointer; }
    decides. Placed earlier it was silently overridden and the copy column
    stayed full width, which is what pushed text onto the light part of the
    scrim. */
-@media (min-width: 62rem) {
-  .slide { max-width: 22rem; }
-  .slide-body { font-size: 0.9375rem; }
+@media (min-width: 40rem) {
+  .slide { padding: 2rem 1.75rem 2.25rem; }
 }
 
 .slide-headline {

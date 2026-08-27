@@ -160,19 +160,22 @@ export function ServiceSlides() {
       onFocusCapture={() => setHeld(true)}
       onBlurCapture={() => setHeld(false)}
     >
-      <div className="slides-stage" aria-live="polite">
+      <div
+        className={`slides-stage ${slide.image ? "has-photo" : ""}`}
+        aria-live="polite"
+      >
         {slide.image ? (
-          <Image
-            key={`${slide.id}-img`}
-            src={slide.image}
-            alt={slide.alt ?? ""}
-            fill
-            sizes="(max-width: 62rem) 100vw, 50vw"
-            className="slide-photo"
-            priority={index === 0}
-          />
+          <figure className="slide-figure" key={`${slide.id}-img`}>
+            <Image
+              src={slide.image}
+              alt={slide.alt ?? ""}
+              fill
+              sizes="(max-width: 62rem) 100vw, 34vw"
+              className="slide-photo"
+              priority={index === 0}
+            />
+          </figure>
         ) : null}
-        <div className="slide-scrim" aria-hidden />
 
         <div className="slide" key={slide.id}>
           <h2 className="slide-headline">{slide.headline}</h2>
