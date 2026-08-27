@@ -887,3 +887,24 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 .slide-cta { margin-top: 1.25rem; }
+
+/* ── Slides still awaiting photography ──
+   Four Tech help services have no picture yet. Rather than leave a card that
+   reads as a failed image load, the copy scales up to fill the panel on
+   purpose: a typographic slide, not a broken one. Card height stays constant
+   either way so the page never jumps between slides. */
+@media (min-width: 48rem) {
+  .slides-stage:not(.has-photo) .slide {
+    max-width: 46rem;
+    padding-block: 2.5rem 2.75rem;
+  }
+
+  .slides-stage:not(.has-photo) .slide-headline {
+    font-size: clamp(2rem, 4.4vw, 2.75rem);
+  }
+
+  .slides-stage:not(.has-photo) .slide-body {
+    font-size: 1.0625rem;
+    max-width: 48ch;
+  }
+}
