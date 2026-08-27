@@ -3,7 +3,7 @@ import { Schedule } from "./schedule";
 import { NextStep } from "./next-step";
 import { BUSINESS } from "@/lib/business";
 import type { LineItem } from "./line-item";
-import { BayMarker, BayNote } from "./bay-marker";
+import { WhereBadge } from "./where-badge";
 
 type ServicePageProps = {
   /** Form section identifier — matches the job-code prefix on every row. */
@@ -39,11 +39,8 @@ export function ServicePage({
     <main>
       <section className="ledger tier-prose px-4 sm:px-6">
         <h1 className="t-display mt-2 max-w-[18ch]">{title}</h1>
-        <p className="mt-4 flex items-center gap-2">
-          <BayMarker mark={mark} size="lg" />
-          <BayNote mark={mark} />
-        </p>
-        <p className="measure t-lead mt-4">{intro}</p>
+        <p className="mt-4"><WhereBadge mark={mark} detail /></p>
+                <p className="measure t-lead mt-4">{intro}</p>
       </section>
 
       <Schedule mark={mark} heading="What it costs" items={items} footnote={footnote} />

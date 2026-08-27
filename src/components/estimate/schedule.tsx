@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { formatUsd, type LineItem } from "./line-item";
-import { BayMarker, BayNote } from "./bay-marker";
+import { WhereBadge } from "./where-badge";
 
 type ScheduleProps = {
   /** Trade key — selects the bay marker. */
@@ -17,13 +17,8 @@ export function Schedule({ mark, heading, caption, items, total, footnote }: Sch
     <section className="ledger tier-ledger w-full px-4 sm:px-6">
       <div className="sched-layout">
         <div className="sched-head">
-          <div className="flex items-center gap-3">
-            <BayMarker mark={mark} size="lg" />
-            <div className="min-w-0">
-              <h2 className="form-header text-2xl sm:text-3xl">{heading}</h2>
-              <BayNote mark={mark} />
-            </div>
-          </div>
+          <h2 className="form-header text-2xl sm:text-3xl">{heading}</h2>
+          <p className="mt-1"><WhereBadge mark={mark} /></p>
           {caption ? (
             <p className="mt-2 text-sm text-[var(--ink-muted)]">{caption}</p>
           ) : null}

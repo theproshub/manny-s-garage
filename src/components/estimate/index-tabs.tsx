@@ -5,19 +5,18 @@ import { usePathname } from "next/navigation";
 import { BUSINESS } from "@/lib/business";
 
 /**
- * Index tabs — the folder tabs a shop's job-file system uses. The active tab
- * is pulled forward (canary fill, its bottom rule broken) exactly as a paper
- * tab sits proud of the file behind it.
+ * Section navigation. Sticky, because these pages are long and the letterhead
+ * above scrolls away.
  *
- * Sticky because a document this long needs a running header; the letterhead
- * above it scrolls away, which is correct — a letterhead prints once.
+ * Labels only — the bay numerals that used to sit here ("01", "MOB") were
+ * shop-internal codes that meant nothing to a visitor.
  */
 const TABS = [
-  { mark: "A", label: "Automotive", href: "/auto", bay: "01" },
-  { mark: "H", label: "Handyman", href: "/handyman", bay: "MOB" },
-  { mark: "D", label: "DIY Bay", href: "/diy-garage", bay: "02" },
-  { mark: "I", label: "I.T.", href: "/it", bay: "MOB" },
-  { mark: "$", label: "Pricing", href: "/quote", bay: null },
+  { label: "Automotive", href: "/auto" },
+  { label: "Handyman", href: "/handyman" },
+  { label: "DIY Bay", href: "/diy-garage" },
+  { label: "I.T.", href: "/it" },
+  { label: "Prices", href: "/quote" },
 ];
 
 export function IndexTabs() {
@@ -37,13 +36,7 @@ export function IndexTabs() {
                     aria-current={active ? "page" : undefined}
                     className={`tab ${active ? "tab-active" : ""}`}
                   >
-                    <span
-                      className={`tab-mark ${tab.bay && tab.bay !== "MOB" ? "tab-bay" : ""}`}
-                      aria-hidden
-                    >
-                      {tab.bay ?? tab.mark}
-                    </span>
-                    <span className="tab-label">{tab.label}</span>
+                    {tab.label}
                   </Link>
                 </li>
               );

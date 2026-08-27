@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { formatUsd } from "./line-item";
-import { BayMarker } from "./bay-marker";
+import { WhereBadge } from "./where-badge";
 import {
   SERVICE_GROUPS,
   optionsInGroup,
@@ -84,14 +84,10 @@ export function ServicePicker() {
 
         <article className="bd" aria-live="polite">
           <header className="bd-head">
-            <div className="flex items-start gap-3">
-              <BayMarker mark={selected.mark} />
-              <div className="min-w-0">
-                <p className="field-label">{selected.group}</p>
-                <h3 className="bd-service">{selected.service}</h3>
-              </div>
-            </div>
+            <p className="field-label">{selected.group}</p>
+            <h3 className="bd-service">{selected.service}</h3>
             <p className="bd-summary">{selected.summary}</p>
+            <p className="mt-3"><WhereBadge mark={selected.mark} detail /></p>
           </header>
 
           <dl className="bd-lines">
