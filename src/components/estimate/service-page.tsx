@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Schedule } from "./schedule";
-import { SignatureLine } from "./signature-line";
+import { NextStep } from "./next-step";
 import { BUSINESS } from "@/lib/business";
 import type { LineItem } from "./line-item";
 import { BayMarker, BayNote } from "./bay-marker";
@@ -38,7 +38,6 @@ export function ServicePage({
   return (
     <main>
       <section className="ledger tier-prose px-4 sm:px-6">
-        <p className="field-label">Schedule {mark}</p>
         <h1 className="t-display mt-2 max-w-[18ch]">{title}</h1>
         <p className="mt-4 flex items-center gap-2">
           <BayMarker mark={mark} size="lg" />
@@ -66,7 +65,7 @@ export function ServicePage({
         </ul>
       </section>
 
-      <SignatureLine href={quoteHref} />
+      <NextStep href="quoteHref" />
     </main>
   );
 }

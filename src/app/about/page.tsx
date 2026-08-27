@@ -1,4 +1,4 @@
-import { SignatureLine } from "@/components/estimate/signature-line";
+import { NextStep } from "@/components/estimate/next-step";
 import { BUSINESS, mailtoUrl } from "@/lib/business";
 
 export default function AboutPage() {
@@ -58,7 +58,7 @@ export default function AboutPage() {
         </dl>
       </section>
 
-      <SignatureLine href="/quote" />
+      <NextStep href="/quote" />
     </main>
   );
 }

@@ -2,9 +2,15 @@ import { RATES } from "@/lib/business";
 import type { LineItem } from "@/components/estimate/line-item";
 
 /**
- * Job codes: A- automotive, H- handyman, D- DIY bay, I- I.T.
- * Numbering leaves gaps so services can be added without renumbering.
- * These appear to customers — keep them stable once published.
+ * `code` is an internal stable key only — it is NOT rendered.
+ *
+ * It used to head the leftmost column of every price table, which spent the
+ * most-scanned position in the layout on shop-internal data no customer has a
+ * use for. The tables now lead with the service itself.
+ *
+ * Prefixes (A- automotive, H- handyman, D- DIY bay, I- I.T.) are kept as
+ * readable keys with gaps in the numbering so services can be added without
+ * renumbering.
  */
 
 export const AUTO_ITEMS: readonly LineItem[] = [

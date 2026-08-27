@@ -1,6 +1,6 @@
 import { Schedule } from "@/components/estimate/schedule";
 import { RateSummary } from "@/components/estimate/rate-summary";
-import { SignatureLine } from "@/components/estimate/signature-line";
+import { NextStep } from "@/components/estimate/next-step";
 import { BUSINESS, appleMapsUrl, mapsEmbedUrl, mailtoUrl } from "@/lib/business";
 import {
   AUTO_ITEMS,
@@ -57,7 +57,7 @@ export default function Home() {
         />
       </div>
 
-      <SignatureLine href="/quote" />
+      <NextStep href="/quote" />
 
       <div className="floor-edge" role="presentation" />
 

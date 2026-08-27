@@ -125,24 +125,6 @@ button:not(:disabled) { cursor: pointer; }
 
 .form-cell:last-child { border-right: 0; }
 
-/* ── Schedule marker ──
-   The big letter is the form's section identifier and matches the job-code
-   prefix on every row beneath it (A-110, H-210…). It carries information;
-   it is not a decorative numeral. */
-.schedule-mark {
-  font-family: var(--font-condensed), var(--font-sans), sans-serif;
-  font-weight: 700;
-  font-size: 2.5rem;
-  line-height: 1;
-  color: var(--stamp);
-  border: 1.5px solid var(--stamp);
-  width: 3rem;
-  height: 3rem;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-}
-
 /* ── Index tabs ──
    Folder tabs from a job-file system. Sticky, because a long document needs
    a running header even though its letterhead prints only once. */

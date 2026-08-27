@@ -1,5 +1,5 @@
 export type LineItem = {
-  /** Shop job code, e.g. "A-110". Appears to customers. */
+  /** Internal stable key, e.g. "A-110". Not rendered. */
   code: string;
   description: string;
   /** Unit or qualifier: "per axle", "per inch", "per hour". */
