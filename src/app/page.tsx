@@ -1,5 +1,7 @@
 import { Schedule } from "@/components/estimate/schedule";
 import { RateSummary } from "@/components/estimate/rate-summary";
+import { CostBreakdown } from "@/components/estimate/cost-breakdown";
+import { WORKED_ESTIMATES } from "@/lib/estimates";
 import { NextStep } from "@/components/estimate/next-step";
 import { BUSINESS, appleMapsUrl, mapsEmbedUrl, mailtoUrl } from "@/lib/business";
 import {
@@ -27,6 +29,21 @@ export default function Home() {
         </p>
       </section>
 
+      <section className="ledger px-4 pb-2 sm:px-6" aria-labelledby="examples">
+        <h2 id="examples" className="form-header text-xl">What a job actually costs</h2>
+        <p className="measure mt-1 text-sm text-[var(--ink-muted)]">
+          Three of the jobs we get asked about most, priced all the way to the total.
+        </p>
+        <div className="bd-grid mt-4">
+          {WORKED_ESTIMATES.map((e) => (
+            <CostBreakdown key={e.slug} estimate={e} />
+          ))}
+        </div>
+      </section>
+
+      <section className="ledger px-4 pt-8 sm:px-6" aria-labelledby="all-rates">
+        <h2 id="all-rates" className="form-header text-xl">Everything else, by the unit</h2>
+      </section>
       <RateSummary />
 
       <div className="mt-4 divide-y divide-[var(--rule)]">
@@ -58,8 +75,6 @@ export default function Home() {
       </div>
 
       <NextStep href="/quote" />
-
-      <div className="floor-edge" role="presentation" />
 
       <section id="contact" className="ledger tier-prose px-4 sm:px-6">
         <p className="field-label">Where we are</p>

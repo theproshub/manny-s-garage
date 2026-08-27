@@ -3,12 +3,14 @@
 :root {
   color-scheme: light dark;
 
-  --paper: #F5F5F2;
-  --ink: #1A1A18;
-  --rule: #D5D4CD;
-  --canary: #F7E9AE;
+  --paper: #F7F7F5;
+  --surface: #FFFFFF;
+  --ink: #16161A;
+  --rule: #E2E2DD;
+  --rule-strong: #C3C3BC;
+  --canary: #FBF3D4;
   --stamp: #A8420A;
-  --ink-muted: #55534B;
+  --ink-muted: #5A5A63;
 
   /* Shop-floor layer. Zoned, not blended: these appear only on painted
      wayfinding markers, never in the document body. --paint is 1.53:1 on
@@ -25,12 +27,14 @@
 /* Dark mode is the shop's file copy: dark card stock, same structure. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #1B1A17;
-    --ink: #EDEAE1;
-    --rule: #3A382F;
-    --canary: #4A421F;
+    --paper: #131316;
+    --surface: #1B1B1F;
+    --ink: #EDEDF0;
+    --rule: #2E2E33;
+    --rule-strong: #43434A;
+    --canary: #33301C;
     --stamp: #F0873C;
-    --ink-muted: #A7A296;
+    --ink-muted: #9C9CA6;
     --floor: #12120F;
     --paint: #F2C230;
   }
@@ -507,15 +511,188 @@ button:not(:disabled) { cursor: pointer; }
   color: var(--ink-muted);
 }
 
-/* The premises boundary: floor striping marks where the paperwork ends and
-   the physical shop begins. Used once per page, and it divides something. */
-.floor-edge {
-  height: 0.75rem;
-  background: repeating-linear-gradient(
-    -45deg,
-    var(--floor) 0 0.6rem,
-    var(--paint) 0.6rem 1.2rem
-  );
+
+
+
+/* ══ Cost breakdown ══
+   Receipt structure, modern surface. SERVICE → WORK → COST → TOTAL, in that
+   reading order, with amounts on one alignment so they compare at a glance. */
+.bd {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
 }
 
+.bd-head {
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--rule);
+}
 
+@media (min-width: 40rem) {
+  .bd-head { padding: 1.5rem 1.5rem 1.25rem; }
+}
+
+.bd-service {
+  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.375rem, 3vw, 1.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-top: 0.125rem;
+}
+
+.bd-summary {
+  margin-top: 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+.bd-lines { padding: 0.5rem 1.25rem; }
+.bd-sum { padding: 0.5rem 1.25rem 1rem; border-top: 1px solid var(--rule); }
+
+@media (min-width: 40rem) {
+  .bd-lines { padding-inline: 1.5rem; }
+  .bd-sum { padding-inline: 1.5rem; }
+}
+
+/* Every row is label+detail against a right-aligned amount. The amount column
+   never moves, on any screen size, so the eye can run down it. */
+.bd-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 0.8125rem;
+}
+
+.bd-lines .bd-row + .bd-row { border-top: 1px solid var(--rule); }
+
+.bd-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.bd-detail {
+  display: block;
+  margin-top: 0.125rem;
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+
+.bd-value { flex-shrink: 0; text-align: right; }
+
+.bd-amount {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.bd-included,
+.bd-pending {
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+.bd-subtotal { padding-block: 0.375rem; }
+
+/* The total is the strongest element on the card — by size and by its own
+   ground, not by decoration. */
+.bd-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  padding: 1.125rem 1.25rem;
+  background: var(--ink);
+  color: var(--surface);
+}
+
+@media (min-width: 40rem) {
+  .bd-total { padding-inline: 1.5rem; }
+}
+
+.bd-total.is-estimate {
+  background: var(--canary);
+  color: var(--ink);
+  border-block: 1px solid var(--rule-strong);
+}
+
+.bd-total-label {
+  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bd-total-note {
+  margin-top: 0.1875rem;
+  font-size: 0.8125rem;
+  opacity: 0.8;
+  line-height: 1.35;
+  max-width: 34ch;
+}
+
+.bd-total-figure {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: clamp(1.875rem, 6vw, 2.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-left: auto;
+}
+
+.bd-from {
+  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.bd-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.25rem;
+}
+
+@media (min-width: 40rem) {
+  .bd-foot { padding-inline: 1.5rem; }
+}
+
+/* Estimate vs fixed must never be mistaken for one another. */
+.bd-badge {
+  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid currentColor;
+}
+
+.bd-badge.is-fixed { color: var(--ink); }
+.bd-badge.is-estimate { color: var(--stamp); }
+
+/* Three across on desktop, stacked on mobile — hierarchy never reflows away. */
+.bd-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 62rem) {
+  .bd-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+}
