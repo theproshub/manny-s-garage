@@ -2,57 +2,115 @@
 
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { RotorMark, LevelMark, LiftMark, RouterMark } from "./service-marks";
 
 /**
- * The four services, one at a time, led by what you can actually get done
- * rather than by a price. Prices live in the picker further down; the hero's
- * job is to make it obvious there is something here for you.
+ * Every service the shop offers, one at a time, led by what you can get done
+ * rather than by a price. Prices live in the picker further down.
  *
- * There are no visible controls, by request. Advancing still stops on hover,
- * on keyboard focus anywhere inside the region, and entirely when the visitor
- * has asked for reduced motion — so it never pulls content away from someone
- * mid-read or mid-tab.
+ * `image` is optional on purpose. Photography is being added service by
+ * service; a slide without one still reads as a finished slide rather than a
+ * broken one, because the ground is the same either way and the picture is
+ * texture behind it, never the thing carrying the message.
+ *
+ * No visible controls, by request. Advancing stops on hover, on keyboard focus
+ * anywhere inside the region, and entirely under prefers-reduced-motion.
  */
-const SLIDES = [
+type Slide = {
+  id: string;
+  mark: typeof RotorMark;
+  headline: string;
+  body: string;
+  where: string;
+  href: string;
+  image?: string;
+  alt?: string;
+};
+
+const SHOP = "At our shop on Main Ave S";
+const YOURS = "We come to your address";
+
+const SLIDES: Slide[] = [
   {
-    id: "car",
-    mark: RotorMark,
-    headline: "Get your car fixed today.",
-    body: "Oil changes, brakes, batteries, and finding out what that warning light means.",
-    where: "At our shop on Main Ave S",
-    href: "/auto",
+    id: "oil", mark: RotorMark, href: "/auto", where: SHOP,
+    headline: "Get your oil changed today.",
+    body: "Full synthetic, a new filter, and we check your fluid levels while we are in there.",
+    image: "/services/oil-change.webp",
+    alt: "A mechanic draining engine oil from a car raised on a two-post lift",
   },
   {
-    id: "house",
-    mark: LevelMark,
+    id: "brakes", mark: RotorMark, href: "/auto", where: SHOP,
+    headline: "Get your brakes done today.",
+    body: "New pads on one axle, fitted and road tested, with the whole system checked over.",
+  },
+  {
+    id: "battery", mark: RotorMark, href: "/auto", where: SHOP,
+    headline: "Get a new battery today.",
+    body: "We test yours first. If it is still good, we say so and you keep it.",
+  },
+  {
+    id: "diag", mark: RotorMark, href: "/auto", where: SHOP,
+    headline: "Find out what that light means.",
+    body: "We read the fault and explain it in plain words. Free if we do the repair.",
+    image: "/services/check-engine.webp",
+    alt: "A technician reading a diagnostic scanner plugged into a car dashboard",
+  },
+  {
+    id: "roadside", mark: RotorMark, href: "/auto", where: YOURS,
+    headline: "Broken down? We will come out.",
+    body: "Jump start, tire change, or a tow back to the shop, anywhere in Fargo.",
+  },
+  {
+    id: "tv", mark: LevelMark, href: "/handyman", where: YOURS,
     headline: "Get your TV on the wall today.",
-    body: "TVs mounted, furniture built, blinds hung, security cameras set up.",
-    where: "We come to your address",
-    href: "/handyman",
+    body: "Measured, mounted and levelled, using the bracket that came with it.",
   },
   {
-    id: "bay",
-    mark: LiftMark,
+    id: "furniture", mark: LevelMark, href: "/handyman", where: YOURS,
+    headline: "Get it built today.",
+    body: "Flat-pack furniture and bunk beds put together, squared up, and put where you want them.",
+  },
+  {
+    id: "blinds", mark: LevelMark, href: "/handyman", where: YOURS,
+    headline: "Get your blinds up today.",
+    body: "Measured, drilled and hung straight, on as many windows as you need.",
+  },
+  {
+    id: "cameras", mark: LevelMark, href: "/handyman", where: YOURS,
+    headline: "Get your cameras up today.",
+    body: "Mounted, wired, and set up on your phone before we leave.",
+    image: "/services/cameras.webp",
+    alt: "A technician on a ladder fitting a security camera under the eaves of a house",
+  },
+  {
+    id: "bay", mark: LiftMark, href: "/diy-garage", where: SHOP,
     headline: "Work on it yourself today.",
     body: "Rent the bay, the lift and the tools by the hour. Add a mechanic if you get stuck.",
-    where: "At our shop on Main Ave S",
-    href: "/diy-garage",
   },
   {
-    id: "tech",
-    mark: RouterMark,
+    id: "wifi", mark: RouterMark, href: "/it", where: YOURS,
     headline: "Get your Wi-Fi working today.",
-    body: "Routers and dead spots, computers that will not start, websites and reports.",
-    where: "We come to your address",
-    href: "/it",
+    body: "Routers, extenders and mesh — a signal in the rooms that never had one.",
+  },
+  {
+    id: "computer", mark: RouterMark, href: "/it", where: YOURS,
+    headline: "Get your computer fixed.",
+    body: "Slow machines, ones that will not start, files recovered, or a move to a new device.",
+  },
+  {
+    id: "website", mark: RouterMark, href: "/it", where: YOURS,
+    headline: "Get your website built.",
+    body: "We agree the price first, build it, and hand it over to you.",
+  },
+  {
+    id: "reports", mark: RouterMark, href: "/it", where: YOURS,
+    headline: "Get your numbers in order.",
+    body: "Spreadsheets, dashboards and reports for a small business that needs them in one place.",
   },
 ];
 
 const INTERVAL = 6000;
-
-/* Reduced-motion is an external store, so it is read with the primitive meant
-   for one. Setting state from an effect on mount triggers a cascading render. */
 const REDUCED_QUERY = "(prefers-reduced-motion: reduce)";
 
 function subscribeReduced(onChange: () => void) {
@@ -92,6 +150,19 @@ export function ServiceSlides() {
       onBlurCapture={() => setHeld(false)}
     >
       <div className="slides-stage" aria-live="polite">
+        {slide.image ? (
+          <Image
+            key={`${slide.id}-img`}
+            src={slide.image}
+            alt={slide.alt ?? ""}
+            fill
+            sizes="(max-width: 62rem) 100vw, 50vw"
+            className="slide-photo"
+            priority={index === 0}
+          />
+        ) : null}
+        <div className="slide-scrim" aria-hidden />
+
         <div className="slide" key={slide.id}>
           <Mark className="slide-icon" />
           <h2 className="slide-headline">{slide.headline}</h2>
@@ -102,7 +173,6 @@ export function ServiceSlides() {
           </Link>
         </div>
       </div>
-
     </section>
   );
 }

@@ -796,23 +796,55 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 
+
+
+
 /* ── Service slides ──
-   Same surface, rules and palette as the rest of the page; only the content
-   rotates. Fixed minimum height so the layout does not jump between slides. */
+   One ground for every slide, so a service with photography and one without
+   read as the same component. The picture is texture behind the message, never
+   the thing carrying it. */
 .slides {
   border: 1px solid var(--rule);
-  background: var(--surface);
-  display: flex;
-  flex-direction: column;
+  background: var(--ink);
+  overflow: hidden;
 }
 
-.slides-stage { padding: 1.5rem 1.25rem 1.75rem; flex: 1; }
+.slides-stage {
+  position: relative;
+  isolation: isolate;
+  padding: 1.5rem 1.25rem 1.75rem;
+}
 
 @media (min-width: 40rem) {
-  .slides-stage { padding: 2rem 1.75rem 2.25rem; min-height: 20rem; }
+  .slides-stage { padding: 2rem 1.75rem 2.25rem; min-height: 21rem; }
 }
 
-.slide { animation: slide-in 320ms ease both; }
+.slide-photo {
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Heavy over the text, lighter over the far edge, so the photograph is
+   visible without the copy ever sitting on an unknown luminance. */
+.slide-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    color-mix(in srgb, var(--ink) 95%, transparent) 0%,
+    color-mix(in srgb, var(--ink) 88%, transparent) 46%,
+    color-mix(in srgb, var(--ink) 62%, transparent) 100%
+  );
+}
+
+.slide {
+  position: relative;
+  z-index: 2;
+  color: var(--surface);
+  max-width: 34rem;
+  animation: slide-in 320ms ease both;
+}
 
 @keyframes slide-in {
   from { opacity: 0; transform: translateY(0.5rem); }
@@ -829,21 +861,25 @@ button:not(:disabled) { cursor: pointer; }
   margin-top: 1rem;
   font-stretch: 92%;
   font-weight: 700;
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(1.5rem, 3.6vw, 2rem);
   line-height: 1.08;
   letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
-.slide-body { margin-top: 0.75rem; font-size: 1rem; line-height: 1.5; max-width: 44ch; }
+.slide-body {
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 44ch;
+  opacity: 0.92;
+}
 
 .slide-where {
   margin-top: 0.75rem;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--ink-muted);
+  opacity: 0.72;
 }
 
 .slide-cta { margin-top: 1.25rem; }
-
-
