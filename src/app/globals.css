@@ -796,102 +796,99 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 
-/* ── The four trades, on equal footing ──
-   A matrix, not a chart and not a card grid: every trade gets the same row,
-   the same columns and the same weight, because none of them is the main one. */
-.pp { margin: 0; border: 1px solid var(--rule); background: var(--surface); }
+/* ── Service slides ──
+   Same surface, rules and palette as the rest of the page; only the content
+   rotates. Fixed minimum height so the layout does not jump between slides. */
+.slides {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+}
 
-.pp-cap {
-  display: block;
-  padding: 0.875rem 1.125rem;
-  border-bottom: 1px solid var(--rule);
+.slides-stage { padding: 1.5rem 1.25rem 1.75rem; flex: 1; }
+
+@media (min-width: 40rem) {
+  .slides-stage { padding: 2rem 1.75rem 2.25rem; min-height: 20rem; }
+}
+
+.slide { animation: slide-in 320ms ease both; }
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(0.5rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide { animation: none; }
+}
+
+.slide-icon { width: 2rem; height: 2rem; color: var(--stamp); }
+
+.slide-headline {
+  margin-top: 1rem;
+  font-stretch: 92%;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.slide-body { margin-top: 0.75rem; font-size: 1rem; line-height: 1.5; max-width: 44ch; }
+
+.slide-where {
+  margin-top: 0.75rem;
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--ink-muted);
 }
 
-.pp-hrow { display: none; }
+.slide-cta { margin-top: 1.25rem; }
 
-.pp-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.25rem 1rem;
-  padding: 0.875rem 1.125rem;
-  align-items: baseline;
+.slides-controls {
+  display: flex;
+  align-items: stretch;
+  border-top: 1px solid var(--rule);
 }
 
-.pp-row + .pp-row { border-top: 1px solid var(--rule); }
-
-.pp-trade {
+.slides-tabs {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 600;
-  font-size: 0.9375rem;
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
   min-width: 0;
 }
+.slides-tabs::-webkit-scrollbar { display: none; }
 
-.pp-icon { width: 1.125rem; height: 1.125rem; color: var(--stamp); flex-shrink: 0; }
-
-.pp-from {
-  font-weight: 700;
-  font-size: 1.125rem;
-  white-space: nowrap;
-  text-align: right;
-}
-
-.pp-covers,
-.pp-excl {
-  grid-column: 1 / -1;
+.slides-tab {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 0.5rem 0.875rem;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--rule);
+  font-stretch: 92%;
+  font-weight: 600;
   font-size: 0.8125rem;
   color: var(--ink-muted);
-  line-height: 1.4;
+  white-space: nowrap;
 }
 
-.pp-excl::before {
-  content: "Not in it: ";
-  font-weight: 600;
-  color: var(--stamp);
-}
+.slides-tab:hover { background: var(--paper); color: var(--ink); }
+.slides-tab.is-on { background: var(--ink); color: var(--surface); }
 
-/* Wide enough for real columns: header row appears and cells line up. */
-@media (min-width: 46rem) {
-  .pp-hrow,
-  .pp-row {
-    display: grid;
-    grid-template-columns: 10.5rem minmax(0, 1.2fr) minmax(0, 1fr) 5.5rem;
-    gap: 1rem;
-    align-items: baseline;
-  }
-
-  .pp-hrow {
-    padding: 0.625rem 1.125rem;
-    border-bottom: 2px solid var(--ink);
-  }
-
-  .pp-h {
-    font-stretch: 92%;
-    font-weight: 700;
-    font-size: 0.6875rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-  }
-
-  .pp-right { text-align: right; }
-  .pp-covers, .pp-excl { grid-column: auto; }
-  .pp-excl::before { content: none; }
-}
-
-.pp-trade > .min-w-0 { display: block; }
-
-.pp-where {
-  display: block;
-  font-weight: 400;
-  font-size: 0.75rem;
+.slides-play {
+  flex-shrink: 0;
+  width: 2.75rem;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  border-left: 1px solid var(--rule);
   color: var(--ink-muted);
-  margin-top: 0.0625rem;
 }
 
-/* The matrix closes the hero; the next section needs air after it. */
-.hero { padding-bottom: 2.5rem; }
+.slides-play:hover { color: var(--ink); background: var(--paper); }
+.slides-play-icon { width: 1rem; height: 1rem; }
