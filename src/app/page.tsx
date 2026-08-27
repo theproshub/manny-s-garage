@@ -26,22 +26,26 @@ export default function Home() {
 
       <div className="space-y-8">
         <Schedule
+          mark="A"
           heading="Automotive"
           caption="Repair and maintenance."
           items={AUTO_ITEMS}
           footnote={PARTS_DISCLAIMER}
         />
         <Schedule
+          mark="H"
           heading="Handyman"
           caption="Home installation and assembly."
           items={HANDYMAN_ITEMS}
         />
         <Schedule
+          mark="D"
           heading="DIY Bay"
           caption={`Rent the bay by the hour. Includes: ${DIY_INVENTORY.join(", ").toLowerCase()}.`}
           items={DIY_ITEMS}
         />
         <Schedule
+          mark="I"
           heading="I.T."
           caption="Priced per job after we scope it."
           items={IT_ITEMS}

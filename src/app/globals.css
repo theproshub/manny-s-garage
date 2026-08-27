@@ -100,6 +100,92 @@ button:not(:disabled) { cursor: pointer; }
 .rule-item  { border-bottom: 1px solid var(--rule); }
 .rule-total { border-top: 2px solid var(--ink); }
 
+/* ── The form header box ──
+   A real repair order opens with a ruled grid of identified cells, not a
+   logo floating over whitespace. Each cell is a labelled field. */
+.form-box {
+  border: 1.5px solid var(--ink);
+  display: grid;
+}
+
+.form-cell {
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.625rem 0.875rem;
+  min-width: 0;
+}
+
+.form-cell:last-child { border-right: 0; }
+
+/* ── Schedule marker ──
+   The big letter is the form's section identifier and matches the job-code
+   prefix on every row beneath it (A-110, H-210…). It carries information;
+   it is not a decorative numeral. */
+.schedule-mark {
+  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--stamp);
+  border: 1.5px solid var(--stamp);
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+/* ── The canary band ──
+   The price column is tinted like the customer's carbon copy. This is the
+   signature: it runs down the right edge of every schedule on the site. */
+.sched .price-cell {
+  background: var(--canary);
+  border-left: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+}
+
+.sched thead th {
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.sched tbody td { border-bottom: 1px solid var(--rule); }
+
+/* Mobile: a form does not scroll sideways. Rows restack into labelled
+   fields and the canary band becomes the price field's fill. */
+@media (max-width: 40rem) {
+  .sched, .sched tbody, .sched tr, .sched td { display: block; width: 100%; }
+  .sched thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .sched tr {
+    border: 1px solid var(--rule);
+    margin-bottom: -1px;
+    padding: 0.25rem 0;
+  }
+  .sched tbody td {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 0.75rem;
+    border-bottom: 0;
+    padding: 0.375rem 0.875rem;
+  }
+  .sched tbody td::before {
+    content: attr(data-label);
+    font-family: var(--font-condensed), var(--font-sans), sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .sched .price-cell {
+    border: 0;
+    margin: 0.25rem 0.5rem 0.5rem;
+    padding: 0.5rem 0.375rem;
+    width: auto;
+  }
+  .sched td.is-empty { display: none; }
+}
+
 /* Perforation on the tear-off stub: marks the tear line. */
 .rule-perforated { border-top: 1px dashed var(--rule); }
 
