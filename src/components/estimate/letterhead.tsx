@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { BUSINESS } from "@/lib/business";
 import { siteImages } from "@/lib/site-images";
-import { estimateNo, todayLong } from "@/lib/estimate-no";
+import { OpenStatus } from "./open-status";
 
 export function Letterhead() {
   return (
@@ -30,13 +30,16 @@ export function Letterhead() {
           </div>
 
           <div className="form-cell">
-            <p className="field-label">Estimate no.</p>
-            <p className="figure text-lg">{estimateNo()}</p>
+            <OpenStatus />
           </div>
 
           <div className="form-cell">
-            <p className="field-label">Date</p>
-            <p className="figure text-lg">{todayLong()}</p>
+            <p className="field-label">What we do</p>
+            <p className="text-sm leading-snug">
+              Auto repair · Handyman
+              <br />
+              DIY bay · I.T.
+            </p>
           </div>
 
           <div className="form-cell sm:col-span-3 sm:border-b-0">

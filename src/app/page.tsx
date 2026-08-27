@@ -14,13 +14,15 @@ export default function Home() {
   return (
     <main>
       <section className="ledger tier-prose px-4 sm:px-6">
-        <p className="field-label">Estimate — prepared for</p>
+        <p className="field-label">
+          {BUSINESS.address.locality}, {BUSINESS.address.region} · Published price list
+        </p>
         <h1 className="form-header mt-1 text-3xl sm:text-4xl">
-          Anyone in {BUSINESS.address.locality} who needs a job done
+          Car repairs, jobs around the house, a bay to rent, and tech help
         </h1>
         <p className="measure mt-3">
-          Four kinds of work, one shop, prices published up front. Every figure
-          below is what you pay.
+          The name says garage, but we do four trades under one roof. Every
+          price below is published up front — what you see is what you pay.
         </p>
       </section>
 

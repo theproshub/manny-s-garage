@@ -58,8 +58,8 @@ button:not(:disabled) { cursor: pointer; }
 ::selection { background: var(--canary); color: var(--ink); }
 
 /* ── Figures ──
-   Every number on the site: prices, codes, hours, phone, estimate numbers.
-   Tabular so columns actually align. This is the signature. */
+   Every number on the site: prices, codes, hours, phone. Tabular so columns
+   actually align. Pairs with the canary band, which is the signature. */
 .figure {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-variant-numeric: tabular-nums;
@@ -334,3 +334,22 @@ button:not(:disabled) { cursor: pointer; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ── Status stamp ──
+   The sign on the shop door, rendered as a rubber stamp. Answers the first
+   question a visitor actually has, which an estimate number never did. */
+.status-stamp {
+  display: inline-block;
+  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.1875rem 0.5rem;
+  border: 2px solid currentColor;
+  outline: 1px solid currentColor;
+  outline-offset: 2px;
+}
+
+.status-stamp.is-open { color: var(--stamp); }
+.status-stamp.is-shut { color: var(--ink-muted); }
