@@ -168,9 +168,6 @@ export function ServicePicker() {
               <Link href={selected.bookHref} className="btn-primary">Ask about this</Link>
             )}
             <div className="bd-foot-meta">
-              <span className={`bd-badge ${isEstimate || isQuoted ? "is-estimate" : "is-fixed"}`}>
-                {isQuoted ? "Quoted" : isEstimate ? "Estimate" : "Fixed price"}
-              </span>
               {selected.bookHref.startsWith("http") ? (
                 <span className="bd-foot-note">
                   Opens {selected.mark === "A" ? "ARI" : "Square"} to pick a time

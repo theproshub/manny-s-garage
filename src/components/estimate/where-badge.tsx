@@ -10,7 +10,6 @@ export function WhereBadge({ mark, detail = false }: { mark: string; detail?: bo
 
   return (
     <span className="where">
-      <span className={`where-dot ${loc.kind === "mobile" ? "is-mobile" : ""}`} aria-hidden />
       <span className="where-label">{loc.label}</span>
       {detail ? <span className="where-detail">{loc.detail}</span> : null}
     </span>

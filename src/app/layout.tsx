@@ -1,29 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Sans, IBM_Plex_Sans_Condensed, IBM_Plex_Mono } from "next/font/google";
+import { Archivo } from "next/font/google";
 import "./globals.css";
 import { Letterhead } from "@/components/estimate/letterhead";
 import { IndexTabs } from "@/components/estimate/index-tabs";
 import { Footer } from "@/components/footer";
 import { localBusinessSchema } from "@/lib/schema";
 
-const sans = IBM_Plex_Sans({
+/**
+ * One family, differentiated by weight and width rather than by mixing three
+ * typefaces. Archivo is a grotesque drawn for high legibility at small sizes
+ * in print and on screen — sturdier and far less worn than the institutional
+ * default it replaces.
+ *
+ * There is no monospace. Money is set in Archivo with tabular figures, which
+ * is what financial interfaces actually do; monospaced prices are the paper
+ * receipt cliche the brief rules out.
+ */
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: "variable",
+  axes: ["wdth"],
   variable: "--font-sans",
-  display: "swap",
-});
-
-const condensed = IBM_Plex_Sans_Condensed({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-condensed",
-  display: "swap",
-});
-
-const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-mono",
   display: "swap",
 });
 
@@ -67,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${condensed.variable} ${mono.variable}`}>
+    <html lang="en" className={archivo.variable}>
       <head>
         <script
           type="application/ld+json"

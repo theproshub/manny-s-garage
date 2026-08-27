@@ -72,15 +72,18 @@ button:not(:disabled) { cursor: pointer; }
 /* ── Figures ──
    Every number on the site: prices, codes, hours, phone. Tabular so columns
    actually align. Pairs with the canary band, which is the signature. */
+/* Money and quantities. Tabular figures so columns align — set in the body
+   face, not a monospace: financial interfaces do this, paper receipts do not. */
 .figure {
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum" 1;
+  letter-spacing: -0.005em;
 }
 
 /* ── Form headers and field labels ── */
 .field-label {
-  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  font-stretch: 92%;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -89,7 +92,8 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 .form-header {
-  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  font-stretch: 92%;
   font-weight: 700;
   letter-spacing: 0.01em;
   line-height: 1.15;
@@ -160,7 +164,8 @@ button:not(:disabled) { cursor: pointer; }
   padding: 0.5rem 0.875rem;
   border: 1.5px solid transparent;
   border-bottom: 0;
-  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  font-stretch: 92%;
   font-size: 0.9375rem;                   /* 15px — was 12px, too small */
   font-weight: 600;
   color: var(--ink-muted);
@@ -168,11 +173,12 @@ button:not(:disabled) { cursor: pointer; }
 
 .tab:hover { color: var(--ink); background: color-mix(in srgb, var(--canary) 40%, transparent); }
 
+/* Filled, not a canary tab with a broken rule — solid reads instantly and
+   does not depend on a 1px detail surviving on a phone. */
 .tab-active {
-  background: var(--canary);
+  background: var(--ink);
+  color: var(--surface);
   border-color: var(--ink);
-  color: var(--ink);
-  padding-bottom: calc(0.5rem + 1.5px);   /* sit proud of the rail */
 }
 
 
@@ -238,7 +244,8 @@ button:not(:disabled) { cursor: pointer; }
   }
   .sched tbody td::before {
     content: attr(data-label);
-    font-family: var(--font-condensed), var(--font-sans), sans-serif;
+    font-family: var(--font-sans), sans-serif;
+  font-stretch: 92%;
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.04em;
@@ -260,7 +267,8 @@ button:not(:disabled) { cursor: pointer; }
 /* ── Stamp ── */
 .stamp {
   color: var(--stamp);
-  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  font-stretch: 92%;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -275,7 +283,8 @@ button:not(:disabled) { cursor: pointer; }
   padding: 0.625rem 1.25rem;
   background: var(--stamp);
   color: #fff;               /* 6.09:1 on --stamp. Measured, not guessed. */
-  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  font-stretch: 92%;
   font-weight: 600;
   letter-spacing: 0.03em;
   border: 1px solid var(--stamp);
@@ -297,7 +306,8 @@ button:not(:disabled) { cursor: pointer; }
   background: transparent;
   color: var(--ink);
   border: 1px solid var(--ink);
-  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  font-stretch: 92%;
   font-weight: 600;
 }
 
@@ -322,7 +332,8 @@ button:not(:disabled) { cursor: pointer; }
    question a visitor actually has, which an estimate number never did. */
 .status-stamp {
   display: inline-block;
-  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  font-stretch: 92%;
   font-weight: 700;
   font-size: 1.0625rem;
   letter-spacing: 0.08em;
@@ -340,7 +351,8 @@ button:not(:disabled) { cursor: pointer; }
    A document has dramatic scale contrast: large figures, small labels. The
    previous scale was timid and everything sat at one weight. */
 .t-display {
-  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  font-stretch: 92%;
   font-weight: 700;
   font-size: clamp(2.125rem, 6.5vw, 4rem);
   line-height: 0.98;
@@ -407,7 +419,8 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 .bd-service {
-  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  font-stretch: 92%;
   font-weight: 700;
   font-size: clamp(1.375rem, 3vw, 1.75rem);
   line-height: 1.1;
@@ -459,7 +472,6 @@ button:not(:disabled) { cursor: pointer; }
 .bd-value { flex-shrink: 0; text-align: right; }
 
 .bd-amount {
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-variant-numeric: tabular-nums;
   font-size: 1rem;
   font-weight: 600;
@@ -498,7 +510,8 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 .bd-total-label {
-  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  font-stretch: 92%;
   font-weight: 700;
   font-size: 0.8125rem;
   letter-spacing: 0.08em;
@@ -514,7 +527,6 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 .bd-total-figure {
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-variant-numeric: tabular-nums;
   font-weight: 600;
   font-size: clamp(1.875rem, 6vw, 2.5rem);
@@ -524,7 +536,8 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 .bd-from {
-  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  font-stretch: 92%;
   font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -545,19 +558,6 @@ button:not(:disabled) { cursor: pointer; }
   .bd-foot { padding-inline: 1.5rem; }
 }
 
-/* Estimate vs fixed must never be mistaken for one another. */
-.bd-badge {
-  font-family: var(--font-condensed), var(--font-sans), sans-serif;
-  font-weight: 700;
-  font-size: 0.6875rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.25rem 0.5rem;
-  border: 1px solid currentColor;
-}
-
-.bd-badge.is-fixed { color: var(--ink); }
-.bd-badge.is-estimate { color: var(--stamp); }
 
 /* Three across on desktop, stacked on mobile — hierarchy never reflows away. */
 .bd-grid {
@@ -584,23 +584,28 @@ button:not(:disabled) { cursor: pointer; }
 }
 .picker-groups::-webkit-scrollbar { display: none; }
 
+/* Solid segments rather than the underlined-tab default. The active one is
+   filled, so it is unmistakable at a glance and on a small screen. */
 .picker-group {
   flex: 0 0 auto;
   min-height: 46px;
-  padding: 0.625rem 1rem;
+  padding: 0.625rem 1.125rem;
   background: transparent;
   border: 0;
-  border-bottom: 2px solid transparent;
-  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  border-right: 1px solid var(--rule);
+  font-family: var(--font-sans), sans-serif;
+  font-stretch: 92%;
   font-weight: 600;
   font-size: 0.9375rem;
   color: var(--ink-muted);
   white-space: nowrap;
 }
 
+.picker-group:hover { color: var(--ink); background: var(--paper); }
+
 .picker-group.is-on {
-  color: var(--ink);
-  border-bottom-color: var(--stamp);
+  background: var(--ink);
+  color: var(--surface);
 }
 
 .picker-body { display: grid; grid-template-columns: minmax(0, 1fr); }
@@ -622,7 +627,6 @@ button:not(:disabled) { cursor: pointer; }
   padding: 0.75rem 1rem;
   background: transparent;
   border: 0;
-  border-left: 3px solid transparent;
   text-align: left;
 }
 
@@ -631,23 +635,21 @@ button:not(:disabled) { cursor: pointer; }
 
 .picker-item:hover { background: var(--paper); }
 
-.picker-item.is-on {
-  background: var(--paper);
-  border-left-color: var(--stamp);
-}
+/* Inverted, not a 3px left rule: the selected job should be obvious without
+   hunting for a coloured edge. */
+.picker-item.is-on { background: var(--ink); color: var(--surface); }
 
 .picker-item-name { font-size: 0.9375rem; font-weight: 500; min-width: 0; }
 
 .picker-item-price {
   flex-shrink: 0;
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-variant-numeric: tabular-nums;
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--ink-muted);
 }
 
-.picker-item.is-on .picker-item-price { color: var(--ink); }
+.picker-item.is-on .picker-item-price { color: var(--surface); opacity: 0.85; }
 
 /* The breakdown sits inside the picker, so it loses its own outer rule. */
 .picker-body .bd { border: 0; }
@@ -670,16 +672,6 @@ button:not(:disabled) { cursor: pointer; }
   font-size: 0.875rem;
 }
 
-.where-dot {
-  align-self: center;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--stamp);
-  flex-shrink: 0;
-}
-
-.where-dot.is-mobile { background: transparent; border: 2px solid var(--stamp); }
 
 .where-label { font-weight: 600; }
 .where-detail { color: var(--ink-muted); }
