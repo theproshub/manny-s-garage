@@ -1,13 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Sans_Condensed, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import { StickyHeader } from "@/components/sticky-header";
+import { Letterhead } from "@/components/estimate/letterhead";
 import { Footer } from "@/components/footer";
 import { localBusinessSchema } from "@/lib/schema";
 
-const plusJakarta = Plus_Jakarta_Sans({
+const sans = IBM_Plex_Sans({
   subsets: ["latin"],
-  variable: "--font-body",
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const condensed = IBM_Plex_Sans_Condensed({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-condensed",
+  display: "swap",
+});
+
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -51,18 +66,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={plusJakarta.variable}>
+    <html lang="en" className={`${sans.variable} ${condensed.variable} ${mono.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema()) }}
         />
       </head>
-      <body className="min-h-screen relative bg-[#030507]">
-        <StickyHeader />
-        <div className="pt-[72px] sm:pt-20 lg:pt-[140px] [padding-left:max(0px,env(safe-area-inset-left))] [padding-right:max(0px,env(safe-area-inset-right))]">
-          {children}
-        </div>
+      <body className="min-h-screen relative">
+        <Letterhead />
+        {children}
         <Footer />
       </body>
     </html>
