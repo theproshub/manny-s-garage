@@ -1,6 +1,6 @@
-import { SITE_PHONE_E164 } from "@/lib/contact";
+import { BUSINESS } from "@/lib/business";
 
-const BASE_URL = "https://mannygarage.com";
+const BASE_URL = BUSINESS.url;
 
 const businessBase = {
   "@context": "https://schema.org",
@@ -14,20 +14,20 @@ const businessBase = {
     height: 256,
   },
   image: `${BASE_URL}/hero/hero-bays.webp`,
-  telephone: SITE_PHONE_E164,
-  email: "service@mannysgarage.com",
+  telephone: BUSINESS.phone.e164,
+  email: BUSINESS.email,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "1341 Main Ave S",
-    addressLocality: "Fargo",
-    addressRegion: "ND",
-    postalCode: "58103",
-    addressCountry: "US",
+    streetAddress: BUSINESS.address.street,
+    addressLocality: BUSINESS.address.locality,
+    addressRegion: BUSINESS.address.region,
+    postalCode: BUSINESS.address.postalCode,
+    addressCountry: BUSINESS.address.country,
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 46.8772,
-    longitude: -96.7898,
+    latitude: BUSINESS.geo.latitude,
+    longitude: BUSINESS.geo.longitude,
   },
   openingHoursSpecification: [
     {

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { MapPin, PhoneCall, Mail, ChevronRight } from "lucide-react";
 import { siteImages } from "@/lib/site-images";
 import { SITE_PHONE_DISPLAY, SITE_PHONE_TEL } from "@/lib/contact";
+import { BUSINESS, mailtoUrl } from "@/lib/business";
 
 export function Footer() {
   return (
@@ -73,7 +74,7 @@ export function Footer() {
             <ul className="flex flex-col gap-4 text-sm text-zinc-400">
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" />
-                <span>1341 Main Ave S<br/>Fargo, ND 58103</span>
+                <span>{BUSINESS.address.street}<br/>{BUSINESS.address.locality}, {BUSINESS.address.region} {BUSINESS.address.postalCode}</span>
               </li>
               <li>
                 <a href={SITE_PHONE_TEL} className="flex items-center gap-3 transition-colors hover:text-white">
@@ -82,9 +83,9 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:service@mannysgarage.com" className="flex items-center gap-3 transition-colors hover:text-white">
+                <a href={mailtoUrl} className="flex items-center gap-3 transition-colors hover:text-white">
                   <Mail className="h-4 w-4 shrink-0 text-zinc-500" />
-                  service@mannysgarage.com
+                  {BUSINESS.email}
                 </a>
               </li>
             </ul>

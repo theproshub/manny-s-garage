@@ -8,6 +8,7 @@ import Link from "next/link";
 import { BackToHome } from "@/components/back-to-home";
 import { siteImages } from "@/lib/site-images";
 import { SITE_PHONE_DISPLAY, SITE_PHONE_TEL } from "@/lib/contact";
+import { BUSINESS, mailtoUrl } from "@/lib/business";
 
 export default function AboutPage() {
   return (
@@ -175,7 +176,7 @@ export default function AboutPage() {
                 <p className="text-sm text-zinc-400">
                   <a href={SITE_PHONE_TEL} className="text-orange-400 hover:underline">{SITE_PHONE_DISPLAY}</a>
                   <br/>
-                  <a href="mailto:service@mannysgarage.com" className="text-orange-400 hover:underline">service@mannysgarage.com</a>
+                  <a href={mailtoUrl} className="text-orange-400 hover:underline">{BUSINESS.email}</a>
                 </p>
              </div>
            </div>

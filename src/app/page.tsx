@@ -18,6 +18,7 @@ import { AnimatedCard } from "@/components/animated-card";
 import { SectionHeading } from "@/components/section-heading";
 import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { siteImages } from "@/lib/site-images";
+import { BUSINESS, appleMapsUrl, mapsEmbedUrl, mailtoUrl } from "@/lib/business";
 import { SITE_PHONE_DISPLAY, SITE_PHONE_TEL } from "@/lib/contact";
 import { AUTO_PRICING_PARTS_DISCLAIMER } from "@/lib/fixed-quote-options";
 
@@ -69,7 +70,7 @@ const faqs = [
   },
   {
     q: "How does handyman pricing work?",
-    a: "Furniture assembly is $50 per item. TV mounting is $1.75 per inch. Security camera installation is $120 per camera. Open the pricing page, pick your price, and book right away.",
+    a: "Furniture assembly is $50 per item. TV mounting is $1.50 per inch. Security camera installation is $120 per camera. Open the pricing page, pick your price, and book right away.",
   },
 ];
 
@@ -371,13 +372,13 @@ export default function Home() {
                 Call
               </a>
               <a
-                href="mailto:service@mannysgarage.com"
+                href={mailtoUrl}
                 className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white/90 transition-all hover:border-white/35 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:min-h-[44px] sm:flex-none sm:justify-start"
               >
                 Email
               </a>
               <a
-                href="https://maps.apple.com/maps?q=1335+Main+Ave+S+Fargo+ND+58103"
+                href={appleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl border border-orange-500/30 bg-orange-500/10 px-4 py-2.5 text-sm font-semibold text-orange-300 transition-all hover:border-orange-400/50 hover:bg-orange-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:min-h-[44px] sm:w-auto sm:justify-start"
@@ -389,7 +390,7 @@ export default function Home() {
             <div className="mt-6 space-y-3 border-t border-white/10 pt-6 text-sm text-zinc-400">
               <p className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-orange-400" />
-                1335 Main Ave S, Fargo, ND 58103
+                {BUSINESS.address.oneLine}
               </p>
               <p>{SITE_PHONE_DISPLAY} · Mon–Fri 8am–6pm, Sat 9am–3pm</p>
             </div>
@@ -402,7 +403,7 @@ export default function Home() {
           >
             <iframe
               title="Manny's Garage location"
-              src="https://www.google.com/maps?q=1335+Main+Ave+S+Fargo+ND+58103&output=embed"
+              src={mapsEmbedUrl}
               className="absolute inset-0 h-full w-full border-0"
               allowFullScreen
               loading="lazy"

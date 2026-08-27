@@ -8,7 +8,8 @@
     "dev:turbo": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "check:facts": "node scripts/check-facts.mjs"
   },
   "keywords": [
     "nextjs",
