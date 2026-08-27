@@ -819,6 +819,7 @@ button:not(:disabled) { cursor: pointer; }
   .slides-stage { padding: 2rem 1.75rem 2.25rem; min-height: 21rem; }
 }
 
+
 .slide-photo {
   object-fit: cover;
   z-index: 0;
@@ -830,19 +831,38 @@ button:not(:disabled) { cursor: pointer; }
   position: absolute;
   inset: 0;
   z-index: 1;
+  /* Heavy only where the copy sits, then falls away fast so the photograph is
+     actually visible rather than a texture under a wash. The stops were set by
+     measuring the darkest-to-lightest pixel under the text, not by eye. */
+  /* Near-solid across the copy, then falls away. Below 62rem the card is too
+     narrow to split, so the wash stays heavy and the photograph reads as
+     texture; above it the copy gets its own column and the right-hand side of
+     the picture is left alone. */
   background: linear-gradient(
-    100deg,
-    color-mix(in srgb, var(--ink) 95%, transparent) 0%,
-    color-mix(in srgb, var(--ink) 88%, transparent) 46%,
-    color-mix(in srgb, var(--ink) 62%, transparent) 100%
+    96deg,
+    color-mix(in srgb, var(--ink) 94%, transparent) 0%,
+    color-mix(in srgb, var(--ink) 90%, transparent) 55%,
+    color-mix(in srgb, var(--ink) 72%, transparent) 100%
   );
+}
+
+@media (min-width: 62rem) {
+  .slide-scrim {
+    background: linear-gradient(
+      96deg,
+      color-mix(in srgb, var(--ink) 95%, transparent) 0%,
+      color-mix(in srgb, var(--ink) 91%, transparent) 66%,
+      color-mix(in srgb, var(--ink) 26%, transparent) 88%,
+      color-mix(in srgb, var(--ink) 4%, transparent) 100%
+    );
+  }
 }
 
 .slide {
   position: relative;
   z-index: 2;
   color: var(--surface);
-  max-width: 34rem;
+  max-width: 30rem;
   animation: slide-in 320ms ease both;
 }
 
@@ -855,10 +875,17 @@ button:not(:disabled) { cursor: pointer; }
   .slide { animation: none; }
 }
 
-.slide-icon { width: 2rem; height: 2rem; color: var(--stamp); }
+/* Must come after the base .slide rule: same specificity, so source order
+   decides. Placed earlier it was silently overridden and the copy column
+   stayed full width, which is what pushed text onto the light part of the
+   scrim. */
+@media (min-width: 62rem) {
+  .slide { max-width: 22rem; }
+  .slide-body { font-size: 0.9375rem; }
+}
 
 .slide-headline {
-  margin-top: 1rem;
+  margin-top: 0;
   font-stretch: 92%;
   font-weight: 700;
   font-size: clamp(1.5rem, 3.6vw, 2rem);

@@ -3,23 +3,21 @@
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { RotorMark, LevelMark, LiftMark, RouterMark } from "./service-marks";
 
 /**
  * Every service the shop offers, one at a time, led by what you can get done
  * rather than by a price. Prices live in the picker further down.
  *
- * `image` is optional on purpose. Photography is being added service by
- * service; a slide without one still reads as a finished slide rather than a
- * broken one, because the ground is the same either way and the picture is
- * texture behind it, never the thing carrying the message.
+ * `image` is optional. Photography is being added service by service; a slide
+ * without one still reads as finished, because the ground is the same either
+ * way. Where a photograph exists it does the illustrating, which is why there
+ * is no icon — the two were saying the same thing twice.
  *
  * No visible controls, by request. Advancing stops on hover, on keyboard focus
  * anywhere inside the region, and entirely under prefers-reduced-motion.
  */
 type Slide = {
   id: string;
-  mark: typeof RotorMark;
   headline: string;
   body: string;
   where: string;
@@ -33,92 +31,92 @@ const YOURS = "We come to your address";
 
 const SLIDES: Slide[] = [
   {
-    id: "oil", mark: RotorMark, href: "/auto", where: SHOP,
+    id: "oil", href: "/auto", where: SHOP,
     headline: "Get your oil changed today.",
     body: "Full synthetic, a new filter, and we check your fluid levels while we are in there.",
     image: "/services/oil-change.webp",
     alt: "A mechanic draining engine oil from a car raised on a two-post lift",
   },
   {
-    id: "brakes", mark: RotorMark, href: "/auto", where: SHOP,
+    id: "brakes", href: "/auto", where: SHOP,
     headline: "Get your brakes done today.",
     body: "New pads on one axle, fitted and road tested, with the whole system checked over.",
     image: "/services/brakes.webp",
     alt: "A mechanic fitting a new brake pad with the wheel removed and the car on a lift",
   },
   {
-    id: "battery", mark: RotorMark, href: "/auto", where: SHOP,
+    id: "battery", href: "/auto", where: SHOP,
     headline: "Get a new battery today.",
     body: "We test yours first. If it is still good, we say so and you keep it.",
     image: "/services/battery.webp",
     alt: "A mechanic lowering a new battery into an open engine bay",
   },
   {
-    id: "diag", mark: RotorMark, href: "/auto", where: SHOP,
+    id: "diag", href: "/auto", where: SHOP,
     headline: "Find out what that light means.",
     body: "We read the fault and explain it in plain words. Free if we do the repair.",
     image: "/services/check-engine.webp",
     alt: "A technician reading a diagnostic scanner plugged into a car dashboard",
   },
   {
-    id: "roadside", mark: RotorMark, href: "/auto", where: YOURS,
+    id: "roadside", href: "/auto", where: YOURS,
     headline: "Broken down? We will come out.",
     body: "Jump start, tire change, or a tow back to the shop, anywhere in Fargo.",
     image: "/services/roadside.webp",
     alt: "A mechanic clipping jumper cables onto a car battery at the roadside beside a service van",
   },
   {
-    id: "tv", mark: LevelMark, href: "/handyman", where: YOURS,
+    id: "tv", href: "/handyman", where: YOURS,
     headline: "Get your TV on the wall today.",
     body: "Measured, mounted and levelled, using the bracket that came with it.",
     image: "/services/tv.webp",
     alt: "A handyman holding a spirit level against a wall-mounted television",
   },
   {
-    id: "furniture", mark: LevelMark, href: "/handyman", where: YOURS,
+    id: "furniture", href: "/handyman", where: YOURS,
     headline: "Get it built today.",
     body: "Flat-pack furniture and bunk beds put together, squared up, and put where you want them.",
     image: "/services/furniture.webp",
     alt: "A handyman kneeling on a living room floor assembling a flat-pack wardrobe with a drill",
   },
   {
-    id: "blinds", mark: LevelMark, href: "/handyman", where: YOURS,
+    id: "blinds", href: "/handyman", where: YOURS,
     headline: "Get your blinds up today.",
     body: "Measured, drilled and hung straight, on as many windows as you need.",
     image: "/services/blinds.webp",
     alt: "Two handymen fitting a window blind, one drilling the bracket while the other holds it level",
   },
   {
-    id: "cameras", mark: LevelMark, href: "/handyman", where: YOURS,
+    id: "cameras", href: "/handyman", where: YOURS,
     headline: "Get your cameras up today.",
     body: "Mounted, wired, and set up on your phone before we leave.",
     image: "/services/cameras.webp",
     alt: "A technician on a ladder fitting a security camera under the eaves of a house",
   },
   {
-    id: "bay", mark: LiftMark, href: "/diy-garage", where: SHOP,
+    id: "bay", href: "/diy-garage", where: SHOP,
     headline: "Work on it yourself today.",
     body: "Rent the bay, the lift and the tools by the hour. Add a mechanic if you get stuck.",
     image: "/services/bay.webp",
     alt: "A man working underneath his own car raised on a two-post lift in a rental bay",
   },
   {
-    id: "wifi", mark: RouterMark, href: "/it", where: YOURS,
+    id: "wifi", href: "/it", where: YOURS,
     headline: "Get your Wi-Fi working today.",
     body: "Routers, extenders and mesh — a signal in the rooms that never had one.",
   },
   {
-    id: "computer", mark: RouterMark, href: "/it", where: YOURS,
+    id: "computer", href: "/it", where: YOURS,
     headline: "Get your computer fixed.",
     body: "Slow machines, ones that will not start, files recovered, or a move to a new device.",
   },
   {
-    id: "website", mark: RouterMark, href: "/it", where: YOURS,
+    id: "website", href: "/it", where: YOURS,
     headline: "Get your website built.",
     body: "We agree the price first, build it, and hand it over to you.",
   },
   {
-    id: "reports", mark: RouterMark, href: "/it", where: YOURS,
+    id: "reports", href: "/it", where: YOURS,
     headline: "Get your numbers in order.",
     body: "Spreadsheets, dashboards and reports for a small business that needs them in one place.",
   },
@@ -151,7 +149,6 @@ export function ServiceSlides() {
   }, [running, next]);
 
   const slide = SLIDES[index];
-  const Mark = slide.mark;
 
   return (
     <section
@@ -178,7 +175,6 @@ export function ServiceSlides() {
         <div className="slide-scrim" aria-hidden />
 
         <div className="slide" key={slide.id}>
-          <Mark className="slide-icon" />
           <h2 className="slide-headline">{slide.headline}</h2>
           <p className="slide-body">{slide.body}</p>
           <p className="slide-where">{slide.where}</p>
