@@ -696,3 +696,85 @@ button:not(:disabled) { cursor: pointer; }
 @media (min-width: 62rem) {
   .bd-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
 }
+
+/* ══ Service picker ══
+   The full list of what the shop does, next to the cost of whatever is
+   selected. List left, breakdown right on desktop; list then breakdown on
+   mobile, so SERVICE -> BREAKDOWN -> TOTAL survives the reflow. */
+.picker { border: 1px solid var(--rule); background: var(--surface); }
+
+.picker-groups {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--rule);
+}
+.picker-groups::-webkit-scrollbar { display: none; }
+
+.picker-group {
+  flex: 0 0 auto;
+  min-height: 46px;
+  padding: 0.625rem 1rem;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  font-family: var(--font-condensed), var(--font-sans), sans-serif;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+.picker-group.is-on {
+  color: var(--ink);
+  border-bottom-color: var(--stamp);
+}
+
+.picker-body { display: grid; grid-template-columns: minmax(0, 1fr); }
+
+@media (min-width: 60rem) {
+  .picker-body { grid-template-columns: 20rem minmax(0, 1fr); }
+  .picker-list { border-right: 1px solid var(--rule); border-bottom: 0; }
+}
+
+.picker-list { border-bottom: 1px solid var(--rule); }
+
+.picker-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: 0;
+  border-left: 3px solid transparent;
+  text-align: left;
+}
+
+.picker-item + .picker-item { border-top: 1px solid var(--rule); }
+.picker-list li + li .picker-item { border-top: 1px solid var(--rule); }
+
+.picker-item:hover { background: var(--paper); }
+
+.picker-item.is-on {
+  background: var(--paper);
+  border-left-color: var(--stamp);
+}
+
+.picker-item-name { font-size: 0.9375rem; font-weight: 500; min-width: 0; }
+
+.picker-item-price {
+  flex-shrink: 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+.picker-item.is-on .picker-item-price { color: var(--ink); }
+
+/* The breakdown sits inside the picker, so it loses its own outer rule. */
+.picker-body .bd { border: 0; }
