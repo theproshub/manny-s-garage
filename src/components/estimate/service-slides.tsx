@@ -2,7 +2,14 @@
 
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { CarFront, Hammer, Warehouse, Wifi, Pause, Play } from "lucide-react";
+import {
+  RotorMark,
+  LevelMark,
+  LiftMark,
+  RouterMark,
+  PauseMark,
+  PlayMark,
+} from "./service-marks";
 
 /**
  * The four services, one at a time, led by what you can actually get done
@@ -16,7 +23,7 @@ import { CarFront, Hammer, Warehouse, Wifi, Pause, Play } from "lucide-react";
 const SLIDES = [
   {
     id: "car",
-    icon: CarFront,
+    mark: RotorMark,
     tab: "Car repair",
     headline: "Get your car fixed today.",
     body: "Oil changes, brakes, batteries, and finding out what that warning light means.",
@@ -25,7 +32,7 @@ const SLIDES = [
   },
   {
     id: "house",
-    icon: Hammer,
+    mark: LevelMark,
     tab: "House jobs",
     headline: "Get your TV on the wall today.",
     body: "TVs mounted, furniture built, blinds hung, security cameras set up.",
@@ -34,7 +41,7 @@ const SLIDES = [
   },
   {
     id: "bay",
-    icon: Warehouse,
+    mark: LiftMark,
     tab: "Rent a bay",
     headline: "Work on it yourself today.",
     body: "Rent the bay, the lift and the tools by the hour. Add a mechanic if you get stuck.",
@@ -43,7 +50,7 @@ const SLIDES = [
   },
   {
     id: "tech",
-    icon: Wifi,
+    mark: RouterMark,
     tab: "Tech help",
     headline: "Get your Wi-Fi working today.",
     body: "Routers and dead spots, computers that will not start, websites and reports.",
@@ -83,7 +90,7 @@ export function ServiceSlides() {
   }, [running, next]);
 
   const slide = SLIDES[index];
-  const Icon = slide.icon;
+  const Mark = slide.mark;
 
   return (
     <section
@@ -97,7 +104,7 @@ export function ServiceSlides() {
     >
       <div className="slides-stage" aria-live="polite">
         <div className="slide" key={slide.id}>
-          <Icon className="slide-icon" strokeWidth={1.5} aria-hidden />
+          <Mark className="slide-icon" />
           <h2 className="slide-headline">{slide.headline}</h2>
           <p className="slide-body">{slide.body}</p>
           <p className="slide-where">{slide.where}</p>
@@ -108,19 +115,29 @@ export function ServiceSlides() {
       </div>
 
       <div className="slides-controls">
-        <div role="tablist" aria-label="Choose a service" className="slides-tabs">
+        {/* A progress rail, not a second row of service names: the picker
+            directly below already lists them. Each segment is still a named
+            button for assistive tech; the name is simply not drawn twice. */}
+        <div role="tablist" aria-label="Choose a service" className="slides-rail">
           {SLIDES.map((s, i) => (
             <button
               key={s.id}
               role="tab"
               aria-selected={i === index}
+              aria-label={s.tab}
               onClick={() => {
                 setIndex(i);
                 setPlaying(false);
               }}
-              className={`slides-tab ${i === index ? "is-on" : ""}`}
+              className={`slides-seg ${i === index ? "is-on" : ""} ${i < index ? "is-done" : ""}`}
             >
-              {s.tab}
+              <span className="slides-seg-track">
+                <span
+                  className="slides-seg-fill"
+                  key={`${s.id}-${index}-${running}`}
+                  data-running={i === index && running ? "true" : "false"}
+                />
+              </span>
             </button>
           ))}
         </div>
@@ -131,7 +148,7 @@ export function ServiceSlides() {
           disabled={reduced}
           aria-label={running ? "Stop changing automatically" : "Change automatically"}
         >
-          {running ? <Pause className="slides-play-icon" aria-hidden /> : <Play className="slides-play-icon" aria-hidden />}
+          {running ? <PauseMark className="slides-play-icon" /> : <PlayMark className="slides-play-icon" />}
         </button>
       </div>
     </section>
