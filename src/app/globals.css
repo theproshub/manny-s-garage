@@ -785,73 +785,6 @@ button:not(:disabled) { cursor: pointer; }
 
 .hero-cta { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
-/* ── The price chart ── */
-.anatomy {
-  margin: 0;
-  border: 1px solid var(--rule);
-  background: var(--surface);
-}
-
-.anatomy-cap {
-  display: block;
-  padding: 0.875rem 1.125rem;
-  border-bottom: 1px solid var(--rule);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--ink-muted);
-}
-
-.anatomy-rows { padding: 0.5rem 1.125rem; }
-
-.anatomy-row {
-  display: grid;
-  grid-template-columns: 7.5rem minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 0.875rem;
-  padding-block: 0.75rem;
-}
-
-.anatomy-row + .anatomy-row { border-top: 1px solid var(--rule); }
-
-.anatomy-key { font-size: 0.9375rem; font-weight: 500; }
-
-.anatomy-track {
-  height: 0.625rem;
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  min-width: 0;
-}
-
-.anatomy-bar { display: block; height: 100%; background: var(--stamp); }
-.anatomy-bar.is-none { width: 0; }
-
-.anatomy-val { font-size: 0.9375rem; font-weight: 600; white-space: nowrap; }
-.anatomy-val-muted { color: var(--ink-muted); font-weight: 500; font-size: 0.8125rem; }
-
-.anatomy-total {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 1.125rem;
-  background: var(--ink);
-  color: var(--surface);
-}
-
-.anatomy-total-key {
-  font-stretch: 92%;
-  font-weight: 700;
-  font-size: 0.8125rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.anatomy-total-val {
-  font-weight: 700;
-  font-size: clamp(1.75rem, 5.5vw, 2.375rem);
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
 
 /* ── Trade tiles ── */
 .tiles {
@@ -882,10 +815,6 @@ button:not(:disabled) { cursor: pointer; }
 .tile-label { font-weight: 600; font-size: 0.9375rem; }
 .tile-note { font-size: 0.8125rem; color: var(--ink-muted); }
 
-@media (max-width: 30rem) {
-  .anatomy-row { grid-template-columns: 6rem minmax(0, 1fr) auto; gap: 0.625rem; }
-  .anatomy-key { font-size: 0.875rem; }
-}
 
 /* Tiles close the hero; the next section needs air after them. */
 .tiles { margin-bottom: 2.5rem; }
@@ -894,4 +823,78 @@ button:not(:disabled) { cursor: pointer; }
   /* Two stacked buttons of different widths read as an accident. */
   .hero-cta { display: grid; gap: 0.625rem; }
   .hero-cta > * { width: 100%; }
+}
+
+/* ── What the price covers ──
+   Two columns, not a chart. The second column is the point: it is nearly
+   empty, and the one thing in it is disclosed rather than buried. */
+.wip { margin: 0; border: 1px solid var(--rule); background: var(--surface); }
+
+.wip-cap {
+  display: block;
+  padding: 0.875rem 1.125rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+.wip-cols { display: grid; grid-template-columns: minmax(0, 1fr); }
+
+@media (min-width: 30rem) {
+  .wip-cols { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+  .wip-col-out { border-left: 1px solid var(--rule); border-top: 0 !important; }
+}
+
+.wip-col { padding: 1rem 1.125rem 1.125rem; min-width: 0; }
+.wip-col-out { border-top: 1px solid var(--rule); background: var(--paper); }
+
+.wip-head {
+  font-stretch: 92%;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 0.625rem;
+}
+
+.wip-col-out .wip-head { border-bottom-color: var(--stamp); color: var(--stamp); }
+
+.wip-list { font-size: 0.9375rem; line-height: 1.45; }
+.wip-list > li { padding-block: 0.4375rem; }
+.wip-list > li + li { border-top: 1px solid var(--rule); }
+
+.wip-note {
+  display: block;
+  margin-top: 0.1875rem;
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+}
+
+.wip-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.125rem;
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.wip-total-key {
+  font-stretch: 92%;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.wip-total-val {
+  font-weight: 700;
+  font-size: clamp(1.75rem, 5.5vw, 2.375rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
