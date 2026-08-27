@@ -45,7 +45,6 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 [id] { scroll-margin-top: 6rem; }
@@ -53,7 +52,6 @@ html {
 body {
   margin: 0;
   min-height: 100dvh;
-  overflow-x: hidden;
   padding-left: env(safe-area-inset-left, 0);
   padding-right: env(safe-area-inset-right, 0);
   padding-bottom: env(safe-area-inset-bottom, 0);
@@ -675,3 +673,81 @@ button:not(:disabled) { cursor: pointer; }
 
 .where-label { font-weight: 600; }
 .where-detail { color: var(--ink-muted); }
+
+/* ══ Small-screen corrections ══
+   Verified by screenshot at 360px, where the amount column was rendering
+   entirely off-screen — the one thing the page exists to show. */
+
+/* Flex and grid children default to min-width:auto, which refuses to shrink
+   below their content and pushes the whole page wide. */
+.picker,
+.picker-body,
+.picker-list,
+.bd,
+.tab-rail > .ledger,
+.sched-layout > * { min-width: 0; }
+
+.picker-item-name,
+.bd-label,
+.bd-detail,
+.where { overflow-wrap: anywhere; }
+
+@media (max-width: 40rem) {
+  /* The amount moves under its label rather than off the edge. */
+  .bd-row {
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+  }
+  .bd-row > dt { flex: 1 1 100%; }
+  .bd-row > dd { flex: 1 1 100%; text-align: left; }
+  .bd-amount { font-size: 1.0625rem; }
+
+  /* Job list: name over price, both fully visible. */
+  .picker-item { flex-wrap: wrap; gap: 0.125rem 0.75rem; }
+  .picker-item-name { flex: 1 1 100%; }
+  .picker-item-price { flex: 1 1 100%; }
+
+  /* Total stacks; the figure stays the largest thing on screen. */
+  .bd-total { gap: 0.75rem; }
+  .bd-total-figure { margin-left: 0; }
+
+  /* Letterhead cells hold long strings without pushing the page. */
+  .form-cell { padding: 0.5rem 0.625rem; }
+  .form-cell .figure { font-size: 0.8125rem; }
+}
+
+/* The nav rail and its actions must never force the page wider: the tabs
+   scroll inside their own strip, the buttons keep their size. */
+.tab-rail > .ledger { flex-wrap: nowrap; }
+.tab-rail nav { min-width: 0; }
+
+@media (max-width: 30rem) {
+  .tab-action { padding-inline: 0.625rem; font-size: 0.8125rem; }
+  .t-display { font-size: clamp(1.875rem, 8vw, 2.5rem); }
+}
+
+/* ══ Horizontal scroll affordance ══
+   Verified at 360px: the tab strip and the segment row both scroll, but the
+   cut-off edge read as a rendering fault rather than "there is more". A fade
+   at the trailing edge says it is scrollable. */
+.tab-strip,
+.picker-groups {
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  mask-image: linear-gradient(to right, #000 calc(100% - 1.75rem), transparent 100%);
+}
+
+.tab-strip > li,
+.picker-group { scroll-snap-align: start; }
+
+/* Once everything fits there is nothing to scroll, so drop the fade. */
+@media (min-width: 48rem) {
+  .tab-strip, .picker-groups { mask-image: none; }
+}
+
+@media (max-width: 30rem) {
+  /* Give the tabs room: the actions shrink first, they are two short words. */
+  .tab-rail > .ledger { gap: 0.5rem; }
+  .tab-action { padding-inline: 0.5rem; }
+  .tab { padding-inline: 0.625rem; }
+}

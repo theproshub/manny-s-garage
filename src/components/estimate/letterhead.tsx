@@ -35,11 +35,12 @@ export function Letterhead() {
 
           <div className="form-cell">
             <p className="field-label">What we do</p>
-            <p className="text-sm leading-snug">
-              Auto repair · Handyman
-              <br />
-              DIY bay · I.T.
-            </p>
+            <ul className="text-sm leading-snug">
+              <li>Auto repair</li>
+              <li>Handyman</li>
+              <li>DIY bay rental</li>
+              <li>Tech help</li>
+            </ul>
           </div>
 
           <div className="form-cell col-span-2 border-b-0 sm:col-span-3">
