@@ -1,5 +1,8 @@
+import Link from "next/link";
 import { Schedule } from "@/components/estimate/schedule";
 import { ServicePicker } from "@/components/estimate/service-picker";
+import { PriceAnatomy } from "@/components/estimate/price-anatomy";
+import { TradeTiles } from "@/components/estimate/trade-tiles";
 import { NextStep } from "@/components/estimate/next-step";
 import { BUSINESS, appleMapsUrl, mapsEmbedUrl, mailtoUrl } from "@/lib/business";
 import {
@@ -14,17 +17,25 @@ import {
 export default function Home() {
   return (
     <main>
-      <section className="ledger tier-prose px-4 sm:px-6">
-        <p className="field-label">
-          {BUSINESS.address.locality}, {BUSINESS.address.region} · Our prices
-        </p>
-        <h1 className="t-display mt-2 max-w-[18ch]">
-          Car repairs, house jobs, a bay to rent, and tech help
-        </h1>
-        <p className="measure t-lead mt-4">
-          The name says garage, but we do four kinds of work. Every price is
-          here on the page — what you see is what you pay.
-        </p>
+      <section className="ledger px-4 sm:px-6">
+        <div className="hero">
+          <div>
+            <h1 className="hero-claim">See the price before you call.</h1>
+            <p className="hero-said">
+              Car repairs, jobs around the house, a bay you can rent, and tech
+              help. Every price is on this site, broken down, with nothing
+              waiting to be added at the end.
+            </p>
+            <div className="hero-cta">
+              <Link href="/quote" className="btn-primary">See what your job costs</Link>
+              <a href={BUSINESS.phone.tel} className="btn-outline">
+                Call {BUSINESS.phone.display}
+              </a>
+            </div>
+          </div>
+          <PriceAnatomy />
+        </div>
+        <TradeTiles />
       </section>
 
       <section className="ledger px-4 pb-2 sm:px-6" aria-labelledby="examples">

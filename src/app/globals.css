@@ -751,3 +751,147 @@ button:not(:disabled) { cursor: pointer; }
   .tab-action { padding-inline: 0.5rem; }
   .tab { padding-inline: 0.625rem; }
 }
+
+/* ══ Hero ══
+   Deliberately not the eyebrow -> heading -> paragraph stack: the statement
+   sits beside a chart of a real price, so the premise is demonstrated rather
+   than claimed. */
+.hero {
+  display: grid;
+  gap: 1.75rem;
+  align-items: center;
+  padding-block: 2rem 1.5rem;
+}
+
+@media (min-width: 62rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: 3rem;
+    padding-block: 3rem 2rem;
+  }
+}
+
+.hero-claim {
+  font-family: var(--font-body), sans-serif;
+  font-stretch: 92%;
+  font-weight: 700;
+  font-size: clamp(2rem, 6.2vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.hero-said { margin-top: 1rem; font-size: 1.0625rem; line-height: 1.55; max-width: 42ch; }
+
+.hero-cta { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+/* ── The price chart ── */
+.anatomy {
+  margin: 0;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+}
+
+.anatomy-cap {
+  display: block;
+  padding: 0.875rem 1.125rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+.anatomy-rows { padding: 0.5rem 1.125rem; }
+
+.anatomy-row {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.875rem;
+  padding-block: 0.75rem;
+}
+
+.anatomy-row + .anatomy-row { border-top: 1px solid var(--rule); }
+
+.anatomy-key { font-size: 0.9375rem; font-weight: 500; }
+
+.anatomy-track {
+  height: 0.625rem;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  min-width: 0;
+}
+
+.anatomy-bar { display: block; height: 100%; background: var(--stamp); }
+.anatomy-bar.is-none { width: 0; }
+
+.anatomy-val { font-size: 0.9375rem; font-weight: 600; white-space: nowrap; }
+.anatomy-val-muted { color: var(--ink-muted); font-weight: 500; font-size: 0.8125rem; }
+
+.anatomy-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.125rem;
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.anatomy-total-key {
+  font-stretch: 92%;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.anatomy-total-val {
+  font-weight: 700;
+  font-size: clamp(1.75rem, 5.5vw, 2.375rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* ── Trade tiles ── */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--rule);
+  border-right: 0;
+  border-bottom: 0;
+}
+
+@media (min-width: 48rem) {
+  .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.tile {
+  display: grid;
+  gap: 0.1875rem;
+  align-content: start;
+  padding: 1rem 0.875rem 1.125rem;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  min-height: 100%;
+}
+
+.tile:hover { background: var(--canary); }
+
+.tile-icon { width: 1.75rem; height: 1.75rem; color: var(--stamp); margin-bottom: 0.5rem; }
+.tile-label { font-weight: 600; font-size: 0.9375rem; }
+.tile-note { font-size: 0.8125rem; color: var(--ink-muted); }
+
+@media (max-width: 30rem) {
+  .anatomy-row { grid-template-columns: 6rem minmax(0, 1fr) auto; gap: 0.625rem; }
+  .anatomy-key { font-size: 0.875rem; }
+}
+
+/* Tiles close the hero; the next section needs air after them. */
+.tiles { margin-bottom: 2.5rem; }
+
+@media (max-width: 30rem) {
+  /* Two stacked buttons of different widths read as an accident. */
+  .hero-cta { display: grid; gap: 0.625rem; }
+  .hero-cta > * { width: 100%; }
+}
