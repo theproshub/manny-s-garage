@@ -16,3 +16,5 @@ yarn-error.log*
 *.tsbuildinfo
 .claude/worktrees/
 .superpowers/
+.vercel
+.env*
