@@ -1,24 +1,37 @@
 # Service photography
 
-The home page slideshow runs **five real photographs**, all Unsplash, served
-from `public/hero/`:
+The home page slideshow runs **nine real photographs**, all Unsplash, cut from
+their full-resolution masters in `references/job-photos/` to
+`public/services/*.webp` at **1872×1170** — the panel's 16:10 aspect, with
+enough resolution to clear DPR 3.
 
-| Slide | File | Photographer |
+| Slide | Photographer | Master |
 | --- | --- | --- |
-| `brakes` | `auto-brake-suspension.webp` | Toby Hall |
-| `diag` | `auto-engine-bay.webp` | Michael Lock |
-| `bay` | `diy-garage-bay.webp` | Lorenzo Hamers |
-| `furniture` | `handyman-furniture.webp` | Francesca Tosolini |
-| `cameras` | `handyman-security-camera.webp` | Alexis Dreher |
+| `brakes` | Toby Hall | `toby-hall-ii4XEyJEm_I` (6048×4024) |
+| `engine` | Michael Lock | `michael-lock-xEPZKFzGrVw` (3500×2333) |
+| `diag` | Compagnons | `compagnons-TnEe6BdBC2M` (3776×2764) |
+| `bay` | Lorenzo Hamers | none — see below |
+| `assembly` | Simone Impei | `simone-impei-eZaKj3xAzTE` (7360×4912) |
+| `tools` | Benjamin Lehman | `benjamin-lehman-EJU7A__krX0` (5760×3840) |
+| `tv` | Thom Milkovic | `thom-milkovic-uV1weWrJnRM` (7793×5189) |
+| `furniture` | Francesca Tosolini | `francesca-tosolini-DmOhItSo49k` (5472×3648) |
+| `cameras` | Alexis Dreher | `alexis-dreher-MfnLwbch9_o` (2956×1971) |
 
-They are 1024×682. The panel wants 1671×1044 at DPR 3, so they are soft on a
-3× phone — see "Resolution". Replacing them with larger files is the first
-improvement available here.
+`bay` is the exception: no master survives, only the 1024×682 copy that was in
+`public/hero/`. It is exported at **1024×640**, its true ceiling, rather than
+stretched to match the others — an upscale would add bytes and no detail.
 
-**Two gaps to close.** These frames are objects and rooms, not people at work,
-which is a colder register than the site wants. And **I.T. has no photograph**:
-the four trades are equal peers everywhere else on this site, and the slideshow
-currently shows two Automotive, two Handyman, one DIY and no Tech help.
+## Two open gaps
+
+**I.T. has no photograph.** Three Automotive, five Handyman, one DIY, nothing
+for Tech help. The four trades are equal peers everywhere else on this site, so
+this is a debt, not a decision. The only tech frames in the library are a TV
+showing the Netflix logo and another showing Spotify — both carry a third
+party's brand mark and should not ship on a commercial site.
+
+**Only `assembly` shows a person working.** The rest are objects and rooms,
+which reads colder than a service business wants. New photography should put
+people in the frame.
 
 ## The generated set was pulled
 

@@ -1042,44 +1042,35 @@ button:not(:disabled) { cursor: pointer; }
 
 .slide-photo { object-fit: cover; }
 
-/* ── Next control ──
-   One square block on the right edge of the photograph, centred on it, forward
-   only. Not a floating circular chevron: this site has no rounded pills
-   anywhere, and a square of ink over the picture reads as a stamp pressed onto
-   the print. Sized at 44px so it clears a fingertip without becoming furniture
-   on the image. */
-.slides { position: relative; }
-
-.slide-next {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  border: 0;
-  padding: 0;
-  /* Fixed values, not theme tokens. This plate sits on a photograph, and a
-     photograph does not restyle itself in dark mode. Built from --paper on
-     --floor it inverted with the theme and came out near-black on near-black:
-     1.01:1, an invisible control. Light glyph on a dark plate, both themes. */
-  color: #F7F7F5;
-  background: rgb(18 18 15 / 0.82);
-  transition: background-color 140ms ease;
+/* ── Dragging ──
+   The forward arrow is gone; the photograph is dragged. `pan-y` hands the
+   vertical axis back to the page so the reader can still scroll with a finger
+   that starts on the picture, while the horizontal axis belongs to the
+   slideshow. `user-select` and the image's own `draggable={false}` stop a
+   desktop drag from turning into a text selection or a ghost image. */
+.slides-stage {
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: grab;
 }
 
-.slide-next svg { width: 20px; height: 20px; }
+.slides-stage.is-dragging { cursor: grabbing; }
 
-.slide-next:hover { background: rgb(18 18 15 / 0.95); }
+/* The figure follows the finger, then springs back or hands over to the next
+   photograph. No transition while dragging, or it would lag behind the
+   pointer by the duration of the ease. */
+.slide-figure { transition: transform 200ms ease; }
 
-.slide-next:focus-visible {
-  outline: 2px solid #F7F7F5;
-  outline-offset: -4px;
+.slides-stage.is-dragging .slide-figure { transition: none; }
+
+/* The region is focusable so the arrow keys have somewhere to land. */
+.slides:focus-visible {
+  outline: 2px solid var(--stamp);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .slide-next { transition: none; }
+  .slide-figure { transition: none; }
 }
 

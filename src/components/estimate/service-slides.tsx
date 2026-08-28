@@ -1,6 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import Image from "next/image";
 
 /**
@@ -16,20 +23,28 @@ import Image from "next/image";
  * a close look found invented text on them — a bottle label reading "ZΠOUZ", a
  * diagnostic screen of gibberish under a keypad of nonsense glyphs. Anything
  * that betrays itself as generated costs the site the exact thing this design
- * exists to buy, so the whole set came out and these five Unsplash photographs
- * went in. Credits are recorded in `docs/service-photography.md`.
+ * exists to buy, so the whole set came out and nine Unsplash photographs went
+ * in, cut from their full-resolution masters. Credits are recorded in
+ * `docs/service-photography.md`.
  *
- * Two consequences, both real and both worth knowing before extending this:
- * these frames are objects and rooms rather than people at work, and **I.T.
- * has no photograph at all** — the library had nothing for it. Four slides for
- * four equal trades is the shape to get back to.
+ * **I.T. still has no photograph.** The four trades are equal peers everywhere
+ * else on this site; here it is three Automotive, five Handyman, one DIY and
+ * nothing for Tech help, because the library holds nothing for it that is not
+ * stamped with someone else's brand. That imbalance is a known debt, not a
+ * decision — see `docs/service-photography.md`.
  *
- * One control, forward only. There is no progress rail and no counter: the
- * order is shuffled per visit, so "03/05" would be counting a sequence the
- * reader has no way to navigate back through and no reason to complete.
+ * No progress rail and no counter: the order is shuffled per visit, so "03/05"
+ * would be counting a sequence the reader has no reason to complete.
  *
- * Advancing stops on hover, on keyboard focus anywhere inside the region, and
- * entirely under prefers-reduced-motion.
+ * **The arrow is gone; the photograph is dragged instead.** Removing the only
+ * button would have left anyone not on a touchscreen with no control at all,
+ * so this is Pointer Events rather than touch handlers — one code path that
+ * covers finger, mouse drag and pen — with Left/Right arrow keys for the
+ * keyboard. `touch-action: pan-y` keeps the page scrolling vertically while
+ * the horizontal axis belongs to the slideshow.
+ *
+ * Advancing stops on hover, on keyboard focus anywhere inside the region,
+ * while a drag is in progress, and entirely under prefers-reduced-motion.
  */
 type Slide = {
   id: string;
@@ -40,32 +55,55 @@ type Slide = {
 const SLIDES: Slide[] = [
   {
     id: "brakes",
-    image: "/hero/auto-brake-suspension.webp",
+    image: "/services/brakes.webp",
     alt: "A brake disc, caliper and hub assembly",
   },
   {
-    id: "diag",
-    image: "/hero/auto-engine-bay.webp",
+    id: "engine",
+    image: "/services/engine.webp",
     alt: "The engine bay of a car with the hood raised",
   },
   {
+    id: "diag",
+    image: "/services/diag.webp",
+    alt: "A check engine light lit on a car's instrument panel",
+  },
+  {
     id: "bay",
-    image: "/hero/diy-garage-bay.webp",
+    image: "/services/bay.webp",
     alt: "A car raised on lifts in a workshop bay",
   },
   {
+    id: "assembly",
+    image: "/services/assembly.webp",
+    alt: "A handyman drilling into a white timber frame",
+  },
+  {
+    id: "tools",
+    image: "/services/tools.webp",
+    alt: "A cordless drill, hammer, bits and screws laid out on a workbench",
+  },
+  {
+    id: "tv",
+    image: "/services/tv.webp",
+    alt: "A living room with a television mounted on the wall above a sideboard",
+  },
+  {
     id: "furniture",
-    image: "/hero/handyman-furniture.webp",
+    image: "/services/furniture.webp",
     alt: "A living room with an assembled sofa, coffee table and dining set",
   },
   {
     id: "cameras",
-    image: "/hero/handyman-security-camera.webp",
+    image: "/services/cameras.webp",
     alt: "A security camera mounted high on a brick wall",
   },
 ];
 
 const INTERVAL = 6000;
+
+/** How far a drag must travel to count as a swipe rather than a stray tap. */
+const SWIPE_THRESHOLD = 44;
 const REDUCED_QUERY = "(prefers-reduced-motion: reduce)";
 
 function subscribeReduced(onChange: () => void) {
@@ -97,8 +135,11 @@ function shuffled(length: number): number[] {
 export function ServiceSlides() {
   const [index, setIndex] = useState(0);
   const [held, setHeld] = useState(false);
+  const [dragging, setDragging] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const startX = useRef<number | null>(null);
   const reduced = useSyncExternalStore(subscribeReduced, getReduced, getReducedOnServer);
-  const running = !held && !reduced;
+  const running = !held && !dragging && !reduced;
 
   /**
    * Catalog order while server-rendering and through hydration, shuffled once
@@ -115,13 +156,54 @@ export function ServiceSlides() {
     [hydrated],
   );
 
-  const next = useCallback(() => setIndex((i) => (i + 1) % SLIDES.length), []);
+  const go = useCallback(
+    (step: number) => setIndex((i) => (i + step + SLIDES.length) % SLIDES.length),
+    [],
+  );
+  const next = useCallback(() => go(1), [go]);
 
   useEffect(() => {
     if (!running) return;
     const id = setInterval(next, INTERVAL);
     return () => clearInterval(id);
   }, [running, next]);
+
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    /* Ignore secondary mouse buttons; a right-click is not a swipe. */
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    startX.current = e.clientX;
+    setDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (startX.current === null) return;
+    setOffset(e.clientX - startX.current);
+  };
+
+  /**
+   * Also bound to pointercancel: the browser takes the pointer away when it
+   * decides the gesture is a page scroll, and without this the photograph
+   * would stay parked wherever the finger left it.
+   */
+  const onPointerEnd = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (startX.current === null) return;
+    const travelled = e.clientX - startX.current;
+    startX.current = null;
+    setOffset(0);
+    setDragging(false);
+    if (Math.abs(travelled) >= SWIPE_THRESHOLD) go(travelled < 0 ? 1 : -1);
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      go(1);
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      go(-1);
+    }
+  };
 
   const slide = SLIDES[order[index]];
 
@@ -130,14 +212,20 @@ export function ServiceSlides() {
       className="slides"
       aria-roledescription="carousel"
       aria-label="What we can do for you"
+      tabIndex={0}
+      onKeyDown={onKeyDown}
       onMouseEnter={() => setHeld(true)}
       onMouseLeave={() => setHeld(false)}
       onFocusCapture={() => setHeld(true)}
       onBlurCapture={() => setHeld(false)}
     >
       <div
-        className="slides-stage"
+        className={`slides-stage${dragging ? " is-dragging" : ""}`}
         aria-live="polite"
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerEnd}
+        onPointerCancel={onPointerEnd}
       >
         {/*
           `sizes` is measured, not guessed. The panel is the 1.05fr half of a
@@ -149,7 +237,11 @@ export function ServiceSlides() {
           column stops growing at 557px.
         */}
         {slide.image ? (
-          <figure className="slide-figure" key={`${slide.id}-img`}>
+          <figure
+            className="slide-figure"
+            key={`${slide.id}-img`}
+            style={offset ? { transform: `translateX(${offset}px)` } : undefined}
+          >
             <Image
               src={slide.image}
               alt={slide.alt ?? ""}
@@ -157,23 +249,11 @@ export function ServiceSlides() {
               sizes="(max-width: 62rem) 100vw, (max-width: 74rem) 48vw, 560px"
               className="slide-photo"
               priority={index === 0}
+              draggable={false}
             />
           </figure>
         ) : null}
       </div>
-
-      <button type="button" className="slide-next" onClick={next}>
-        <span className="sr-only">Next photograph</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path
-            d="M4 12h15M13 6l6 6-6 6"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="square"
-          />
-        </svg>
-      </button>
     </section>
   );
 }
