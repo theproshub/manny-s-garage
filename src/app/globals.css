@@ -97,9 +97,97 @@ button:not(:disabled) { cursor: pointer; }
   line-height: 1.15;
 }
 
+/* ── The press layer ──
+   A printed form carries two voices: what the press stamped onto the blank,
+   and what someone wrote into it. Archivo ships a width axis and the site was
+   loading it but parking everything at 92%, one notch off default — which is
+   exactly why the page had no typographic voice.
+
+   The press layer runs hard condensed and heavy. Entries, prices and prose
+   stay at normal width. The contrast is the whole point: two widths of one
+   family does the work three families would otherwise be hired for. */
+.press {
+  font-family: var(--font-body), sans-serif;
+  font-stretch: 58%;
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: 0.004em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.press-xl { font-size: clamp(2.5rem, 8.5vw, 5rem); }
+.press-lg { font-size: clamp(1.75rem, 4.4vw, 2.875rem); }
+
+/* ── Opening schedule ──
+   The page opens as the summary block of the estimate: the four trades as
+   four real lines, each with where the work happens and what it starts at.
+   It replaced a headline, two buttons and a rotating card — an opening that
+   said nothing a hundred other sites do not say. This one answers what we do,
+   where, and how much, in the document's own language. */
+.trade-lines { border-top: 1.5px solid var(--ink); }
+
+/* Small screens only, by request. On desktop the four full schedules sit just
+   below the fold with the same trades and their complete prices, so the
+   summary repeats work the reader is about to see anyway. On a phone those
+   schedules are a long scroll away, which is where the summary earns its
+   place. Hidden at the width the opening becomes two columns. */
+@media (min-width: 62rem) {
+  .trade-lines { display: none; }
+}
+
+/* The price column is a fixed width, not shrink-wrapped to its contents.
+   A canary band whose left edge moves with the length of each figure reads as
+   an accident; a straight one reads as a ruled column, which is the point. */
+.trade-line {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 8.5rem;
+  align-items: baseline;
+  column-gap: 1rem;
+  border-bottom: 1px solid var(--rule);
+  padding: 0.875rem 0;
+}
+
+.trade-line:hover { background: color-mix(in srgb, var(--canary) 26%, transparent); }
+
+.trade-line-name {
+  font-family: var(--font-body), sans-serif;
+  font-stretch: 76%;
+  font-weight: 700;
+  font-size: 1.375rem;
+  letter-spacing: 0.006em;
+  text-transform: uppercase;
+}
+
+.trade-line-where {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  font-stretch: 100%;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-muted);
+}
+
+.trade-line-price {
+  background: var(--canary);
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 0.75rem;
+  margin: -0.875rem 0;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 /* ── Measures ── */
 .measure { max-width: var(--measure-prose); }
-.ledger  { max-width: var(--measure-ledger); margin-inline: auto; }
+/* min() so the measure and the overflow guard are one declaration. Written as
+   two rules they were split across the file, the later one won on source order,
+   and the 74rem measure was silently dead: every section ran the full width of
+   the viewport on desktop. */
+.ledger  { max-width: min(var(--measure-ledger), 100%); margin-inline: auto; }
 
 /* ── Density tiers ──
    Three tiers assigned by content type, not one uniform rhythm everywhere.
@@ -184,7 +272,7 @@ button:not(:disabled) { cursor: pointer; }
 .tab-action {
   min-height: 2.25rem;
   padding: 0.375rem 0.875rem;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
 }
 
 @media (max-width: 40rem) {
@@ -214,6 +302,11 @@ button:not(:disabled) { cursor: pointer; }
   background: var(--canary);
   border-left: 1px solid var(--rule);
   border-right: 1px solid var(--rule);
+  /* Fixed, not sized to its contents. Left to itself each schedule sized this
+     column to its own longest figure, so the band stepped sideways between
+     Automotive and Handyman and stopped reading as one continuous column —
+     which is the whole signature. One width makes it one column down the page. */
+  width: 10.5rem;
 }
 
 .sched thead th {
@@ -259,6 +352,52 @@ button:not(:disabled) { cursor: pointer; }
   .sched td.is-empty { display: none; }
 }
 
+/* ── Quoted-work band ──
+   Closes a schedule that carries no fixed prices. Same canary as the price
+   column, spanning the full width instead of a narrow column, because one
+   pricing decision covers every line above it rather than each line holding
+   its own figure. */
+/* With no price column, the Unit column takes the rightmost slot and is given
+   the price column's exact width, so the page keeps one column grid from top
+   to bottom: a figure where there is one, the unit where there is not.
+
+   Table layout only. Below 40rem the rows restack into labelled blocks, and
+   left unscoped this rule squeezed "per project" into a 10.5rem right-aligned
+   box and wrapped it mid-phrase. */
+@media (min-width: 40.0625rem) {
+  .sched--quoted th:last-child,
+  .sched--quoted tbody td:last-child {
+    width: 10.5rem;
+    text-align: right;
+    padding-right: 0.75rem;
+  }
+}
+
+.sched-quote-cell { padding: 0; }
+
+.sched-quote {
+  background: var(--canary);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.125rem;
+}
+
+.sched-quote-said {
+  display: block;
+  margin-top: 0.25rem;
+  max-width: 46ch;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 40rem) {
+  .sched-quote { align-items: stretch; }
+  .sched-quote .btn-primary { width: 100%; text-align: center; justify-content: center; }
+}
+
 /* Perforation on the tear-off stub: marks the tear line. */
 .rule-perforated { border-top: 1px dashed var(--rule); }
 
@@ -272,19 +411,50 @@ button:not(:disabled) { cursor: pointer; }
   text-transform: uppercase;
 }
 
-.btn-primary {
+/* ── Actions ──
+   The buttons were the one part of this site that was never sourced: a solid
+   accent rectangle beside an outlined twin of the same size, hovering with
+   `filter: brightness()`. That pair is on every site on the internet and said
+   nothing about a repair shop.
+
+   A button here is the form itself — two parts, white original over canary
+   second copy. The copy sits offset beneath the original with its own ruled
+   edge; hovering fans the sheets apart, pressing registers them back together
+   and drops the original into the copy's place.
+
+   The offset is drawn with `box-shadow` rather than a pseudo-element on
+   purpose. A negative-z `::after` paints *above* its parent's own background,
+   so the copy would cover the button it is supposed to sit under; an outer
+   box-shadow is the one thing that paints behind. Two layers: canary fill at
+   spread 0 over ink at spread 1px, which leaves a hairline showing as the
+   copy's cut edge. Without that rule it reads as a drop shadow, which is a
+   different — and much more fashionable — idea than a sheet of paper. */
+.btn-primary,
+.btn-outline {
+  --copy: 4px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   min-height: 2.75rem;
   padding: 0.625rem 1.25rem;
-  background: var(--stamp);
-  color: #fff;               /* 6.09:1 on --stamp. Measured, not guessed. */
   font-family: var(--font-body), sans-serif;
   font-stretch: 92%;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow:
+    var(--copy) var(--copy) 0 0 var(--canary),
+    var(--copy) var(--copy) 0 1px var(--ink);
+  transition:
+    box-shadow 120ms ease,
+    transform 120ms ease;
+}
+
+.btn-primary {
+  background: var(--stamp);
+  color: #fff;               /* 6.09:1 on --stamp. Measured, not guessed. */
   border: 1px solid var(--stamp);
 }
 
@@ -292,24 +462,49 @@ button:not(:disabled) { cursor: pointer; }
   .btn-primary { color: #1B1A17; }
 }
 
-.btn-primary:hover { filter: brightness(1.08); }
-
 .btn-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 2.75rem;
-  padding: 0.625rem 1.25rem;
-  background: transparent;
+  background: var(--surface);
   color: var(--ink);
   border: 1px solid var(--ink);
-  font-family: var(--font-body), sans-serif;
-  font-stretch: 92%;
-  font-weight: 600;
 }
 
-.btn-outline:hover { background: var(--canary); }
+/* The sheets fan apart. */
+.btn-primary:hover,
+.btn-outline:hover { --copy: 7px; }
+
+/* And register. The original travels exactly the distance the copy sat at, so
+   it lands where the copy was rather than merely shrinking towards it. */
+.btn-primary:active,
+.btn-outline:active {
+  --copy: 0px;
+  transform: translate(4px, 4px);
+}
+
+.btn-primary:focus-visible,
+.btn-outline:focus-visible { outline-offset: 3px; }
+
+/* Call and Book in the index bar: same construction, thinner copy. They sit in
+   a tight row against the right edge where a 4px sheet crowds the margin, and
+   they are navigation rather than the page's committing action.
+   These must stay below `.btn-*` — the two carry equal specificity, so at the
+   top of the file where `.tab-action` is otherwise defined the button rules
+   would simply win and the header would fan by 7px like everything else. */
+.tab-action { --copy: 2px; }
+.tab-action:hover { --copy: 4px; }
+.tab-action:active { transform: translate(2px, 2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-action:active { transform: none; }
+}
+
+/* The offset is structure, not decoration, so it stays. Only the travel goes. */
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary,
+  .btn-outline { transition: none; }
+
+  .btn-primary:active,
+  .btn-outline:active { transform: none; }
+}
 
 :where(a, button, [role="button"], input, textarea, select):focus-visible {
   outline: 2px solid var(--stamp);
@@ -344,6 +539,33 @@ button:not(:disabled) { cursor: pointer; }
 
 .status-stamp.is-open { color: var(--stamp); }
 .status-stamp.is-shut { color: var(--ink-muted); }
+
+/* The same double-ruled stamp, applied to a submitted request. A booking that
+   went through is a copy the shop has marked as received — the letterhead
+   already stamps OPEN/CLOSED this way, so the confirmation borrows a mark the
+   reader has seen rather than introducing a green tick from another system. */
+.stamp-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  width: fit-content;
+  color: var(--stamp);
+  font-family: var(--font-body), sans-serif;
+  font-stretch: 92%;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.1875rem 0.625rem;
+  border: 2px solid currentColor;
+  outline: 1px solid currentColor;
+  outline-offset: 2px;
+  transform: rotate(-1.5deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp-mark { transform: none; }
+}
 
 /* ── Type scale ──
    A document has dramatic scale contrast: large figures, small labels. The
@@ -389,8 +611,10 @@ button:not(:disabled) { cursor: pointer; }
   .form-box > .form-cell:last-child { border-bottom: 0; }
 }
 
-/* Nothing may push the viewport wider than itself. */
-.ledger, .sched-layout, .picker, .form-box { max-width: 100%; }
+/* Nothing may push the viewport wider than itself. `.ledger` is deliberately
+   absent: it carries its own measure via min(), and listing it here overrode
+   that measure from further down the file. */
+.sched-layout, .picker, .form-box { max-width: 100%; }
 
 
 
@@ -752,14 +976,15 @@ button:not(:disabled) { cursor: pointer; }
   .tab { padding-inline: 0.625rem; }
 }
 
-/* ══ Hero ══
-   Deliberately not the eyebrow -> heading -> paragraph stack: the statement
-   sits beside a chart of a real price, so the premise is demonstrated rather
-   than claimed. */
+/* ══ Opening ══
+   Not the eyebrow -> heading -> buttons stack. The claim is followed
+   immediately by the four trades as priced lines, so the promise ("every
+   price is on this site") is demonstrated in the same breath it is made
+   rather than asserted above a decorative picture. */
 .hero {
   display: grid;
   gap: 1.75rem;
-  align-items: center;
+  align-items: start;
   padding-block: 2rem 1.5rem;
 }
 
@@ -769,16 +994,6 @@ button:not(:disabled) { cursor: pointer; }
     gap: 3rem;
     padding-block: 3rem 2rem;
   }
-}
-
-.hero-claim {
-  font-family: var(--font-body), sans-serif;
-  font-stretch: 92%;
-  font-weight: 700;
-  font-size: clamp(2rem, 6.2vw, 3.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.02em;
-  text-wrap: balance;
 }
 
 .hero-said { margin-top: 1rem; font-size: 1.0625rem; line-height: 1.55; max-width: 42ch; }
@@ -809,9 +1024,9 @@ button:not(:disabled) { cursor: pointer; }
   overflow: hidden;
 }
 
-/* The copy panel and the picture panel are separate cells. Nothing is laid
-   over the photograph, so it shows at full strength and the copy sits on a
-   solid ground instead of an unknown luminance. */
+/* One cell: the photograph is the whole card. This used to be two columns,
+   picture beside a copy panel; with the copy removed the second column stayed
+   behind as an empty black rectangle next to the image. */
 .slides-stage {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -823,88 +1038,48 @@ button:not(:disabled) { cursor: pointer; }
   min-height: 0;
   aspect-ratio: 16 / 10;
   background: var(--rule);
-  order: -1;
 }
 
 .slide-photo { object-fit: cover; }
 
-@media (min-width: 48rem) {
-  .slides-stage.has-photo { grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr); }
-  .slide-figure { aspect-ratio: auto; order: 0; }
-  .slides-stage { min-height: 22rem; }
+/* ── Next control ──
+   One square block on the right edge of the photograph, centred on it, forward
+   only. Not a floating circular chevron: this site has no rounded pills
+   anywhere, and a square of ink over the picture reads as a stamp pressed onto
+   the print. Sized at 44px so it clears a fingertip without becoming furniture
+   on the image. */
+.slides { position: relative; }
+
+.slide-next {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  /* Fixed values, not theme tokens. This plate sits on a photograph, and a
+     photograph does not restyle itself in dark mode. Built from --paper on
+     --floor it inverted with the theme and came out near-black on near-black:
+     1.01:1, an invisible control. Light glyph on a dark plate, both themes. */
+  color: #F7F7F5;
+  background: rgb(18 18 15 / 0.82);
+  transition: background-color 140ms ease;
 }
 
+.slide-next svg { width: 20px; height: 20px; }
 
+.slide-next:hover { background: rgb(18 18 15 / 0.95); }
 
-.slide {
-  color: var(--surface);
-  align-self: center;
-  padding: 1.5rem 1.25rem 1.75rem;
-  max-width: 34rem;
-  animation: slide-in 320ms ease both;
-}
-
-@keyframes slide-in {
-  from { opacity: 0; transform: translateY(0.5rem); }
-  to   { opacity: 1; transform: none; }
+.slide-next:focus-visible {
+  outline: 2px solid #F7F7F5;
+  outline-offset: -4px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .slide { animation: none; }
+  .slide-next { transition: none; }
 }
 
-/* Must come after the base .slide rule: same specificity, so source order
-   decides. Placed earlier it was silently overridden and the copy column
-   stayed full width, which is what pushed text onto the light part of the
-   scrim. */
-@media (min-width: 40rem) {
-  .slide { padding: 2rem 1.75rem 2.25rem; }
-}
-
-.slide-headline {
-  margin-top: 0;
-  font-stretch: 92%;
-  font-weight: 700;
-  font-size: clamp(1.5rem, 3.6vw, 2rem);
-  line-height: 1.08;
-  letter-spacing: -0.015em;
-  text-wrap: balance;
-}
-
-.slide-body {
-  margin-top: 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  max-width: 44ch;
-  opacity: 0.92;
-}
-
-.slide-where {
-  margin-top: 0.75rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  opacity: 0.72;
-}
-
-.slide-cta { margin-top: 1.25rem; }
-
-/* ── Slides still awaiting photography ──
-   Four Tech help services have no picture yet. Rather than leave a card that
-   reads as a failed image load, the copy scales up to fill the panel on
-   purpose: a typographic slide, not a broken one. Card height stays constant
-   either way so the page never jumps between slides. */
-@media (min-width: 48rem) {
-  .slides-stage:not(.has-photo) .slide {
-    max-width: 46rem;
-    padding-block: 2.5rem 2.75rem;
-  }
-
-  .slides-stage:not(.has-photo) .slide-headline {
-    font-size: clamp(2rem, 4.4vw, 2.75rem);
-  }
-
-  .slides-stage:not(.has-photo) .slide-body {
-    font-size: 1.0625rem;
-    max-width: 48ch;
-  }
-}

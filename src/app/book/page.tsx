@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, Suspense, useRef } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, CarFront, Check, Cpu, Hammer, MapPin, Warehouse } from "lucide-react";
+import { Calendar, CarFront, Check, Cpu, Hammer, MapPin, Warehouse } from "lucide-react";
 import { setPreferredService, isBookingServiceId, type BookingServiceId } from "@/lib/booking-preference";
 import { BOOK_SCHEDULE_FRAGMENT, BOOK_SCHEDULE_HASH } from "@/lib/booking-nav";
 import { SITE_PHONE_PLACEHOLDER } from "@/lib/contact";
@@ -271,26 +271,32 @@ function BookPageContent() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
-          className="relative z-10 w-full max-w-lg rounded-none border border-[var(--rule)] bg-transparent p-8 text-center shadow-xl shadow-black/20 backdrop-blur-sm sm:p-10"
+          className="relative z-10 w-full max-w-lg rounded-none border border-[var(--rule)] bg-transparent p-8 text-center sm:p-10"
         >
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20 text-green-400 ring-2 ring-green-400/30 sm:h-20 sm:w-20">
-            <Check className="h-8 w-8 sm:h-10 sm:w-10" />
-          </div>
-          <h1 className="text-2xl font-bold text-[var(--ink)] sm:text-3xl md:text-4xl">Request Sent</h1>
+          {/* A received request is a stamped copy, not a green tick in a
+              circle. The tick was `text-green-400` on `bg-green-500/20`, which
+              measures 1.38:1 against paper — an invisible confirmation at the
+              one moment the reader needs to be sure the form went through.
+              The stamp colour is already the palette's mark for "we did
+              something to this document". */}
+          <p className="stamp-mark mx-auto mb-6">
+            <Check className="h-4 w-4" aria-hidden />
+            Received
+          </p>
+          <h1 className="press press-lg text-[var(--ink)]">Request Sent</h1>
           <p className="mt-4 text-sm text-[var(--ink-muted)] sm:text-base">
             We&apos;ll text or call you soon to confirm your time.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:justify-center">
             <Link
               href="/"
-              className="btn-primary group inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
+              className="btn-primary inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
             >
               Home
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1" />
             </Link>
             <Link
               href="/book"
-              className="btn-outline inline-flex items-center justify-center gap-1.5 rounded-full border-[var(--rule)] bg-transparent text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
+              className="btn-outline inline-flex items-center justify-center gap-1.5 border-[var(--rule)] bg-transparent text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
             >
               Send Another
             </Link>
@@ -311,7 +317,7 @@ function BookPageContent() {
           </span>
         </div>
 
-        <h1 className="mt-5 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-4xl">
+        <h1 className="press press-lg mt-5 text-[var(--ink)]">
           {showBookingForm ? "Book" : "Book a Visit"}
         </h1>
         <p className="mt-2 text-sm text-[var(--ink-muted)] sm:text-base">
@@ -325,11 +331,11 @@ function BookPageContent() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="mt-8 rounded-none border border-[var(--rule)] bg-transparent p-5 shadow-lg shadow-black/20 backdrop-blur-sm sm:p-6"
+            className="mt-8 rounded-none border border-[var(--rule)] bg-transparent p-5 sm:p-6"
             aria-labelledby="pick-service-heading"
           >
-            <h2 id="pick-service-heading" className="text-sm font-medium text-[var(--ink)]">
-              Select a Service
+            <h2 id="pick-service-heading" className="field-label">
+              Select a service
             </h2>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
               {SERVICE_OPTIONS.map((opt) => {
@@ -355,7 +361,7 @@ function BookPageContent() {
             </ul>
             <p className="mt-5 text-center text-sm text-[var(--ink-muted)]">
               <Link href="/quote" className="text-[var(--stamp)] hover:underline">
-                See fixed pricing for common jobs →
+                See fixed pricing for common jobs
               </Link>
             </p>
             <p className="mt-2 text-center text-xs text-[var(--ink-muted)]">
@@ -372,7 +378,7 @@ function BookPageContent() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="mt-8 scroll-mt-28 rounded-none border border-[var(--rule)] bg-transparent p-5 shadow-lg shadow-black/20 backdrop-blur-sm sm:p-6"
+            className="mt-8 scroll-mt-28 rounded-none border border-[var(--rule)] bg-transparent p-5 sm:p-6"
           >
             <div className="flex flex-wrap items-center justify-between gap-2 text-[var(--ink)]">
               <div className="flex items-center gap-2">
@@ -403,7 +409,7 @@ function BookPageContent() {
                           setSelectedQuoteId(null);
                           updateForm({ serviceType: opt.id });
                         }}
-                        className={`min-h-[44px] rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)] ${
+                        className={`min-h-[44px] border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)] ${
                           on
                             ? "border-[var(--stamp)] bg-[var(--stamp)] text-white"
                             : "border-[var(--rule)] bg-transparent text-[var(--ink)] hover:border-[var(--rule)] hover:bg-transparent"
@@ -549,16 +555,26 @@ function BookPageContent() {
             </div>
           </div>
 
-          {error ? <p className="mt-4 text-sm text-red-400">{error}</p> : null}
+          {/* `text-red-400` measured 2.58:1 on paper — the one message that has
+              to be read was the least readable thing on the page. Stamped in
+              the margin instead, in the palette's own mark colour (5.68:1
+              light, 7.27:1 dark). */}
+          {error ? (
+            <p
+              role="alert"
+              className="mt-4 border-l-2 border-[var(--stamp)] py-1 pl-3 text-sm font-semibold text-[var(--stamp)]"
+            >
+              {error}
+            </p>
+          ) : null}
 
           <button
             type="button"
             onClick={handleSubmit}
             disabled={submitting || !canSubmit()}
-            className="btn-primary mt-6 flex w-full items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)] disabled:pointer-events-none disabled:opacity-40"
+            className="btn-primary mt-6 flex w-full items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)] disabled:pointer-events-none disabled:opacity-40"
           >
             {submitting ? "Sending…" : "Send"}
-            {!submitting ? <ArrowRight className="h-4 w-4" aria-hidden /> : null}
           </button>
         </motion.section>
         ) : null}

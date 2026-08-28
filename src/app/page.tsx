@@ -12,6 +12,21 @@ import {
   DIY_INVENTORY,
   PARTS_DISCLAIMER,
 } from "@/lib/service-catalog";
+import { formatUsd } from "@/components/estimate/line-item";
+import { TRADE_LOCATION } from "@/lib/trade-location";
+import { startsAt } from "@/lib/starts-at";
+
+const OPENING_TRADES = [
+  { name: "Automotive", mark: "A", href: "/auto", items: AUTO_ITEMS },
+  { name: "Handyman", mark: "H", href: "/handyman", items: HANDYMAN_ITEMS },
+  { name: "DIY Bay", mark: "D", href: "/diy-garage", items: DIY_ITEMS },
+  { name: "I.T.", mark: "I", href: "/it", items: IT_ITEMS },
+].map((trade) => ({
+  name: trade.name,
+  href: trade.href,
+  where: TRADE_LOCATION[trade.mark].detail,
+  from: startsAt(trade.items),
+}));
 
 export default function Home() {
   return (
@@ -19,12 +34,37 @@ export default function Home() {
       <section className="ledger px-4 sm:px-6">
         <div className="hero">
           <div>
-            <h1 className="hero-claim">See the price before you call.</h1>
+            {/* Not "what we do" — the letterhead directly above already says
+                that and lists all four services. This label only has to carry
+                the half that is new. */}
+            <p className="field-label">What it costs</p>
+            <h1 className="press press-xl mt-2">
+              Four kinds of work. Every price up front.
+            </h1>
             <p className="hero-said">
-              Car repairs, jobs around the house, a bay you can rent, and tech
-              help. Every price is on this site, broken down, with nothing
-              waiting to be added at the end.
+              See what your job costs before you call. Nothing gets added at
+              the end.
             </p>
+
+            {/* The four trades as four real estimate lines. This is the summary
+                block of the form doing an actual job for the reader: what we
+                do, where it happens, what it starts at — in one scan. */}
+            <ul className="trade-lines mt-6">
+              {OPENING_TRADES.map((trade) => (
+                <li key={trade.href}>
+                  <Link href={trade.href} className="trade-line">
+                    <span className="trade-line-name">
+                      {trade.name}
+                      <span className="trade-line-where">{trade.where}</span>
+                    </span>
+                    <span className="trade-line-price figure">
+                      {trade.from === null ? "Quoted" : `from ${formatUsd(trade.from)}`}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
             <div className="hero-cta">
               <Link href="/quote" className="btn-primary">See what your job costs</Link>
               <a href={BUSINESS.phone.tel} className="btn-outline">

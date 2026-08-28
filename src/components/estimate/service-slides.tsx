@@ -1,124 +1,67 @@
 "use client";
 
-import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
-import Link from "next/link";
+import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 
 /**
- * Every service the shop offers, one at a time, led by what you can get done
- * rather than by a price. Prices live in the picker further down.
+ * The work, one photograph at a time. Pictures only, by request: each slide
+ * used to carry a headline, a sentence, a location and a button, and that copy
+ * was removed rather than restyled. The opening beside it already names all
+ * four trades and prices them, so the panel was saying it a second time.
  *
- * `image` is optional. Photography is being added service by service; a slide
- * without one still reads as finished, because the ground is the same either
- * way. Where a photograph exists it does the illustrating, which is why there
- * is no icon — the two were saying the same thing twice.
+ * The pictures therefore have to carry themselves, which is why `alt` is the
+ * one piece of text left: it is the only description a screen reader gets.
  *
- * No visible controls, by request. Advancing stops on hover, on keyboard focus
- * anywhere inside the region, and entirely under prefers-reduced-motion.
+ * **These are real photographs.** The set was fourteen generated images until
+ * a close look found invented text on them — a bottle label reading "ZΠOUZ", a
+ * diagnostic screen of gibberish under a keypad of nonsense glyphs. Anything
+ * that betrays itself as generated costs the site the exact thing this design
+ * exists to buy, so the whole set came out and these five Unsplash photographs
+ * went in. Credits are recorded in `docs/service-photography.md`.
+ *
+ * Two consequences, both real and both worth knowing before extending this:
+ * these frames are objects and rooms rather than people at work, and **I.T.
+ * has no photograph at all** — the library had nothing for it. Four slides for
+ * four equal trades is the shape to get back to.
+ *
+ * One control, forward only. There is no progress rail and no counter: the
+ * order is shuffled per visit, so "03/05" would be counting a sequence the
+ * reader has no way to navigate back through and no reason to complete.
+ *
+ * Advancing stops on hover, on keyboard focus anywhere inside the region, and
+ * entirely under prefers-reduced-motion.
  */
 type Slide = {
   id: string;
-  headline: string;
-  body: string;
-  where: string;
-  href: string;
   image?: string;
   alt?: string;
 };
 
-const SHOP = "At our shop on Main Ave S";
-const YOURS = "We come to your address";
-
 const SLIDES: Slide[] = [
   {
-    id: "oil", href: "/auto", where: SHOP,
-    headline: "Get your oil changed today.",
-    body: "Full synthetic, a new filter, and we check your fluid levels while we are in there.",
-    image: "/services/oil-change.webp",
-    alt: "A mechanic draining engine oil from a car raised on a two-post lift",
+    id: "brakes",
+    image: "/hero/auto-brake-suspension.webp",
+    alt: "A brake disc, caliper and hub assembly",
   },
   {
-    id: "brakes", href: "/auto", where: SHOP,
-    headline: "Get your brakes done today.",
-    body: "New pads on one axle, fitted and road tested, with the whole system checked over.",
-    image: "/services/brakes.webp",
-    alt: "A mechanic fitting a new brake pad with the wheel removed and the car on a lift",
+    id: "diag",
+    image: "/hero/auto-engine-bay.webp",
+    alt: "The engine bay of a car with the hood raised",
   },
   {
-    id: "battery", href: "/auto", where: SHOP,
-    headline: "Get a new battery today.",
-    body: "We test yours first. If it is still good, we say so and you keep it.",
-    image: "/services/battery.webp",
-    alt: "A mechanic lowering a new battery into an open engine bay",
+    id: "bay",
+    image: "/hero/diy-garage-bay.webp",
+    alt: "A car raised on lifts in a workshop bay",
   },
   {
-    id: "diag", href: "/auto", where: SHOP,
-    headline: "Find out what that light means.",
-    body: "We read the fault and explain it in plain words. Free if we do the repair.",
-    image: "/services/check-engine.webp",
-    alt: "A technician reading a diagnostic scanner plugged into a car dashboard",
+    id: "furniture",
+    image: "/hero/handyman-furniture.webp",
+    alt: "A living room with an assembled sofa, coffee table and dining set",
   },
   {
-    id: "roadside", href: "/auto", where: YOURS,
-    headline: "Broken down? We will come out.",
-    body: "Jump start, tire change, or a tow back to the shop, anywhere in Fargo.",
-    image: "/services/roadside.webp",
-    alt: "A mechanic clipping jumper cables onto a car battery at the roadside beside a service van",
-  },
-  {
-    id: "tv", href: "/handyman", where: YOURS,
-    headline: "Get your TV on the wall today.",
-    body: "Measured, mounted and levelled, using the bracket that came with it.",
-    image: "/services/tv.webp",
-    alt: "A handyman holding a spirit level against a wall-mounted television",
-  },
-  {
-    id: "furniture", href: "/handyman", where: YOURS,
-    headline: "Get it built today.",
-    body: "Flat-pack furniture and bunk beds put together, squared up, and put where you want them.",
-    image: "/services/furniture.webp",
-    alt: "A handyman kneeling on a living room floor assembling a flat-pack wardrobe with a drill",
-  },
-  {
-    id: "blinds", href: "/handyman", where: YOURS,
-    headline: "Get your blinds up today.",
-    body: "Measured, drilled and hung straight, on as many windows as you need.",
-    image: "/services/blinds.webp",
-    alt: "Two handymen fitting a window blind, one drilling the bracket while the other holds it level",
-  },
-  {
-    id: "cameras", href: "/handyman", where: YOURS,
-    headline: "Get your cameras up today.",
-    body: "Mounted, wired, and set up on your phone before we leave.",
-    image: "/services/cameras.webp",
-    alt: "A technician on a ladder fitting a security camera under the eaves of a house",
-  },
-  {
-    id: "bay", href: "/diy-garage", where: SHOP,
-    headline: "Work on it yourself today.",
-    body: "Rent the bay, the lift and the tools by the hour. Add a mechanic if you get stuck.",
-    image: "/services/bay.webp",
-    alt: "A man working underneath his own car raised on a two-post lift in a rental bay",
-  },
-  {
-    id: "wifi", href: "/it", where: YOURS,
-    headline: "Get your Wi-Fi working today.",
-    body: "Routers, extenders and mesh — a signal in the rooms that never had one.",
-  },
-  {
-    id: "computer", href: "/it", where: YOURS,
-    headline: "Get your computer fixed.",
-    body: "Slow machines, ones that will not start, files recovered, or a move to a new device.",
-  },
-  {
-    id: "website", href: "/it", where: YOURS,
-    headline: "Get your website built.",
-    body: "We agree the price first, build it, and hand it over to you.",
-  },
-  {
-    id: "reports", href: "/it", where: YOURS,
-    headline: "Get your numbers in order.",
-    body: "Spreadsheets, dashboards and reports for a small business that needs them in one place.",
+    id: "cameras",
+    image: "/hero/handyman-security-camera.webp",
+    alt: "A security camera mounted high on a brick wall",
   },
 ];
 
@@ -134,11 +77,43 @@ function subscribeReduced(onChange: () => void) {
 const getReduced = () => window.matchMedia(REDUCED_QUERY).matches;
 const getReducedOnServer = () => false;
 
+/** Hydration probe: false while server-rendering, true once the client owns it. */
+const subscribeNever = () => () => {};
+const getTrue = () => true;
+const getFalse = () => false;
+
+const CATALOG_ORDER = SLIDES.map((_, i) => i);
+
+/** Fisher-Yates. Returns a new array; never mutates the module-level catalog. */
+function shuffled(length: number): number[] {
+  const order = Array.from({ length }, (_, i) => i);
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return order;
+}
+
 export function ServiceSlides() {
   const [index, setIndex] = useState(0);
   const [held, setHeld] = useState(false);
   const reduced = useSyncExternalStore(subscribeReduced, getReduced, getReducedOnServer);
   const running = !held && !reduced;
+
+  /**
+   * Catalog order while server-rendering and through hydration, shuffled once
+   * the client owns the tree. Shuffling during the first render would make the
+   * server and client disagree on which photograph is first — a hydration
+   * mismatch — and shuffling in an effect would set state synchronously on
+   * mount and cascade a second render. `useSyncExternalStore` reports
+   * hydration instead, and the memo keeps the order stable across every
+   * subsequent render rather than reshuffling under the reader.
+   */
+  const hydrated = useSyncExternalStore(subscribeNever, getTrue, getFalse);
+  const order = useMemo(
+    () => (hydrated ? shuffled(SLIDES.length) : CATALOG_ORDER),
+    [hydrated],
+  );
 
   const next = useCallback(() => setIndex((i) => (i + 1) % SLIDES.length), []);
 
@@ -148,7 +123,7 @@ export function ServiceSlides() {
     return () => clearInterval(id);
   }, [running, next]);
 
-  const slide = SLIDES[index];
+  const slide = SLIDES[order[index]];
 
   return (
     <section
@@ -161,31 +136,44 @@ export function ServiceSlides() {
       onBlurCapture={() => setHeld(false)}
     >
       <div
-        className={`slides-stage ${slide.image ? "has-photo" : ""}`}
+        className="slides-stage"
         aria-live="polite"
       >
+        {/*
+          `sizes` is measured, not guessed. The panel is the 1.05fr half of a
+          1fr/1.05fr grid inside `.ledger` (max 74rem, 1.5rem padding a side,
+          3rem gap): (min(1184, vw) - 96) x 0.512. That is 473px at a 1024
+          viewport, where the old `34vw` claimed 348 — so the browser chose the
+          750w candidate for a slot needing 947 device px on a 2x screen and
+          upscaled it 1.26x. 48vw covers the 62-74rem band; past 74rem the
+          column stops growing at 557px.
+        */}
         {slide.image ? (
           <figure className="slide-figure" key={`${slide.id}-img`}>
             <Image
               src={slide.image}
               alt={slide.alt ?? ""}
               fill
-              sizes="(max-width: 62rem) 100vw, 34vw"
+              sizes="(max-width: 62rem) 100vw, (max-width: 74rem) 48vw, 560px"
               className="slide-photo"
               priority={index === 0}
             />
           </figure>
         ) : null}
-
-        <div className="slide" key={slide.id}>
-          <h2 className="slide-headline">{slide.headline}</h2>
-          <p className="slide-body">{slide.body}</p>
-          <p className="slide-where">{slide.where}</p>
-          <Link href={slide.href} className="btn-primary slide-cta">
-            See what it costs
-          </Link>
-        </div>
       </div>
+
+      <button type="button" className="slide-next" onClick={next}>
+        <span className="sr-only">Next photograph</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            d="M4 12h15M13 6l6 6-6 6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="square"
+          />
+        </svg>
+      </button>
     </section>
   );
 }
