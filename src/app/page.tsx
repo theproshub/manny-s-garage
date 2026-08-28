@@ -49,7 +49,7 @@ export default function Home() {
             {/* The four trades as four real estimate lines. This is the summary
                 block of the form doing an actual job for the reader: what we
                 do, where it happens, what it starts at — in one scan. */}
-            <ul className="trade-lines mt-6">
+            <ul className="trade-lines is-summary mt-6">
               {OPENING_TRADES.map((trade) => (
                 <li key={trade.href}>
                   <Link href={trade.href} className="trade-line">

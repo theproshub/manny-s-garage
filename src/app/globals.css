@@ -127,13 +127,18 @@ button:not(:disabled) { cursor: pointer; }
    where, and how much, in the document's own language. */
 .trade-lines { border-top: 1.5px solid var(--ink); }
 
-/* Small screens only, by request. On desktop the four full schedules sit just
-   below the fold with the same trades and their complete prices, so the
-   summary repeats work the reader is about to see anyway. On a phone those
-   schedules are a long scroll away, which is where the summary earns its
-   place. Hidden at the width the opening becomes two columns. */
+/* `is-summary` marks the home page's copy of these lines, which is the only
+   one that hides on desktop: there the four full schedules sit just below the
+   fold carrying the same trades and their complete prices, so the summary
+   repeats work the reader is about to see anyway. On a phone those schedules
+   are a long scroll away, which is where the summary earns its place.
+
+   The modifier exists because the rule used to apply to every `.trade-lines`
+   on the site. `/book` reuses the same construction for its four destinations,
+   where nothing repeats it further down — unscoped, that page rendered empty
+   above 62rem. Hidden at the width the opening becomes two columns. */
 @media (min-width: 62rem) {
-  .trade-lines { display: none; }
+  .trade-lines.is-summary { display: none; }
 }
 
 /* The price column is a fixed width, not shrink-wrapped to its contents.

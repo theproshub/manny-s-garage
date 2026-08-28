@@ -1,5 +1,4 @@
 /** Shared fixed prices for the /quote picker (keep in sync with service pages). */
-import { bookUrlWithSchedule } from "@/lib/booking-nav";
 
 export const DIY_HOURLY = 20;
 export const DIY_MECHANIC_HOURLY = 40;

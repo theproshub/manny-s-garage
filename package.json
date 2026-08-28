@@ -2,7 +2,7 @@
   "name": "manny's-garage",
   "version": "1.0.0",
   "private": true,
-  "description": "Modern auto repair website for Manny's Garage in Fargo, ND.",
+  "description": "Auto repair, handyman, DIY bay and I.T. for Fargo, ND. Booking runs off-site through ARI and Square.",
   "scripts": {
     "dev": "next dev --webpack",
     "dev:turbo": "next dev --turbopack",
@@ -14,15 +14,12 @@
   "keywords": [
     "nextjs",
     "tailwind",
-    "supabase",
-    "twilio",
     "auto-repair"
   ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@radix-ui/react-navigation-menu": "^1.2.14",
-    "@supabase/supabase-js": "^2.99.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.36.0",
     "lucide-react": "^0.577.0",
@@ -30,7 +27,6 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "tailwind-merge": "^3.5.0",
-    "twilio": "^5.13.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
