@@ -8,7 +8,6 @@ export const metadata: Metadata = {
     title: "I.T. Services & Pricing — Manny's Garage Fargo",
     description: "Website building, Wi-Fi, computer repair, and data services. Plain-English pricing.",
     url: "https://mannygarage.com/it/services",
-    images: [{ url: "https://mannygarage.com/hero/hero-bays.webp", width: 1200, height: 630, alt: "I.T. services and pricing at Manny's Garage" }],
   },
 };
 

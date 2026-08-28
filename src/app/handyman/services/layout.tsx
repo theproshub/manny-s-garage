@@ -8,7 +8,6 @@ export const metadata: Metadata = {
     title: "Handyman Services & Pricing — Manny's Garage Fargo",
     description: "TV mounting, furniture assembly, security cameras — fixed prices, fast booking.",
     url: "https://mannygarage.com/handyman/services",
-    images: [{ url: "https://mannygarage.com/hero/hero-handyman-services.webp", width: 1200, height: 630, alt: "Handyman services and pricing at Manny's Garage" }],
   },
 };
 

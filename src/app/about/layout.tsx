@@ -8,7 +8,6 @@ export const metadata: Metadata = {
     title: "About Manny's Garage — Fargo, ND",
     description: "Real people, fair prices, and quality work. One shop for auto, handyman, DIY, and I.T.",
     url: "https://mannygarage.com/about",
-    images: [{ url: "https://mannygarage.com/hero/hero-bays.webp", width: 1200, height: 630, alt: "Manny's Garage in Fargo ND" }],
   },
 };
 

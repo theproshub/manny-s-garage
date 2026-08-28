@@ -8,7 +8,6 @@ export const metadata: Metadata = {
     title: "Handyman Services in Fargo, ND — Manny's Garage",
     description: "TV mounting, security cameras, furniture assembly and more. Fast, reliable, fair price.",
     url: "https://mannygarage.com/handyman",
-    images: [{ url: "https://mannygarage.com/hero/hero-handyman.webp", width: 1200, height: 630, alt: "Handyman services at Manny's Garage Fargo ND" }],
   },
 };
 

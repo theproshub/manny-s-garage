@@ -47,7 +47,11 @@ export const metadata: Metadata = {
     siteName: "Manny's Garage",
     locale: "en_US",
     type: "website",
-    images: [{ url: "/logo-v2.webp", width: 203, height: 256, alt: "Manny's Garage logo" }],
+    /* No `images` here on purpose. `src/app/opengraph-image.tsx` supplies the
+       card and Next.js fills this in from it, at a correct 1200x630. Declaring
+       one here would override that route — which is how this ended up pointing
+       at the 203x256 logo, below every platform's large-card threshold, so the
+       most-shared URL on the site previewed as a thumbnail. */
   },
 };
 

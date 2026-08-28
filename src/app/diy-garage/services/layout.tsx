@@ -8,7 +8,6 @@ export const metadata: Metadata = {
     title: "DIY Bay Services & Pricing — Manny's Garage Fargo",
     description: "Hourly garage bay rental with lifts and tools. Everything a DIY mechanic needs.",
     url: "https://mannygarage.com/diy-garage/services",
-    images: [{ url: "https://mannygarage.com/hero/diy-garage-bay.webp", width: 1200, height: 630, alt: "DIY garage bay services at Manny's Garage" }],
   },
 };
 

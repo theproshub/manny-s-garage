@@ -13,7 +13,10 @@ const businessBase = {
     width: 203,
     height: 256,
   },
-  image: `${BASE_URL}/hero/hero-bays.webp`,
+  /* The generated estimate card, not the old hero banner: it is the one image
+     on the site that states the address, the phone and the four trades in
+     readable text, which is what a search result wants from `image`. */
+  image: `${BASE_URL}/opengraph-image`,
   telephone: BUSINESS.phone.e164,
   email: BUSINESS.email,
   address: {
