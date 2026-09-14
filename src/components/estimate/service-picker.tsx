@@ -11,6 +11,7 @@ import {
   hasPending,
   type ServiceOption,
 } from "@/lib/estimates";
+import { destinationForPath } from "@/lib/booking-destinations";
 
 /**
  * Pick your job, see what it costs.
@@ -36,6 +37,9 @@ export function ServicePicker() {
   const pending = hasPending(selected);
   const isQuoted = selected.status === "quoted";
   const isEstimate = selected.status === "estimate";
+  /* Non-null for anything with a real calendar; I.T. is quoted first and has
+     none, so its button asks rather than books. */
+  const dest = destinationForPath(selected.bookHref);
 
   return (
     <div className="picker">
@@ -155,22 +159,13 @@ export function ServicePicker() {
           </div>
 
           <div className="bd-foot">
-            {selected.bookHref.startsWith("http") ? (
-              <a
-                href={selected.bookHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
-              >
-                Book this
-              </a>
-            ) : (
-              <Link href={selected.bookHref} className="btn-primary">Ask about this</Link>
-            )}
+            <Link href={selected.bookHref} className="btn-primary">
+              {dest ? "Book this" : "Ask about this"}
+            </Link>
             <div className="bd-foot-meta">
-              {selected.bookHref.startsWith("http") ? (
+              {dest ? (
                 <span className="bd-foot-note">
-                  Opens {selected.mark === "A" ? "ARI" : "Square"} to pick a time
+                  Opens the {dest.provider} calendar here, on this site
                 </span>
               ) : null}
             </div>

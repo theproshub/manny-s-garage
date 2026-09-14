@@ -1079,3 +1079,66 @@ button:not(:disabled) { cursor: pointer; }
   .slide-figure { transition: none; }
 }
 
+
+/* ── The attached scheduler ──
+   The booking calendar is somebody else's page, so it gets the treatment the
+   form gives any attached sheet: ruled into the document with the same 1.5px
+   ink border as `.form-box`, not floated in a rounded card.
+
+   Height is the whole problem with a cross-origin frame — it cannot report
+   its own, and a short frame turns a calendar into a two-line scroll port.
+   `dvh` so the mobile URL bar collapsing does not crop it, a floor of 34rem
+   so a landscape phone still shows a month, and a ceiling so the sheet does
+   not tower on a desktop display. */
+.book-frame {
+  position: relative;
+  border: 1.5px solid var(--ink);
+  background: var(--surface);
+  height: clamp(34rem, calc(100dvh - 13rem), 56rem);
+}
+
+.book-frame-sheet {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Sits *under* the frame, never over it. An iframe paints transparent until
+   its document sets a background, so this shows through while the calendar is
+   in flight and is covered the moment it arrives — no JS in the path, and no
+   chance of a placeholder stranded on top of a working scheduler. It also
+   cannot intercept a tap meant for the calendar. */
+.book-frame-wait {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+}
+
+.book-fields { grid-template-columns: 1fr; }
+
+.book-fields .form-cell:last-child { border-bottom: 0; }
+
+@media (min-width: 40rem) {
+  .book-fields { grid-template-columns: repeat(3, 1fr); }
+  .book-fields .form-cell { border-bottom: 0; }
+}
+
+.book-back {
+  display: inline-block;
+  min-height: 44px;
+  padding: 0.625rem 0 0.625rem;
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+}
+
+.book-back:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }

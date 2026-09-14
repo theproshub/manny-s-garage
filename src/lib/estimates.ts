@@ -1,5 +1,5 @@
 import { RATES } from "@/lib/business";
-import { SQUARE_BOOKING_URL, ARI_AUTOMOTIVE_BOOKING_URL } from "@/lib/fixed-quote-options";
+import { bookingPath } from "@/lib/booking-destinations";
 
 /**
  * Every service Manny's Garage offers, each costed to a total.
@@ -42,9 +42,12 @@ const partsLine = (what: string): EstimateLine => ({
   amount: null,
 });
 
-const AUTO_HREF = ARI_AUTOMOTIVE_BOOKING_URL;
-const HAND_HREF = SQUARE_BOOKING_URL;
-const DIY_HREF = SQUARE_BOOKING_URL;
+/* Each trade books on our own page, where the provider's calendar is
+ * framed. See `booking-destinations.ts` for why the handoff stopped being
+ * a redirect. */
+const AUTO_HREF = bookingPath("automotive");
+const HAND_HREF = bookingPath("handyman");
+const DIY_HREF = bookingPath("diy");
 
 /* ── Car repair ── */
 const AUTO: ServiceOption[] = [
