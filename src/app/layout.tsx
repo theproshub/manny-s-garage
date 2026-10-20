@@ -1,26 +1,30 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo } from "next/font/google";
+import { Plus_Jakarta_Sans, Orbitron } from "next/font/google";
 import "./globals.css";
-import { Letterhead } from "@/components/estimate/letterhead";
-import { IndexTabs } from "@/components/estimate/index-tabs";
+import { StickyHeader } from "@/components/sticky-header";
+import { ActionBar } from "@/components/action-bar";
 import { Footer } from "@/components/footer";
 import { localBusinessSchema } from "@/lib/schema";
 
 /**
- * One family, differentiated by weight and width rather than by mixing three
- * typefaces. Archivo is a grotesque drawn for high legibility at small sizes
- * in print and on screen — sturdier and far less worn than the institutional
- * default it replaces.
+ * The shop's own pairing, restored: Plus Jakarta Sans carries body copy,
+ * Orbitron carries display — headings, figures and labels.
  *
- * There is no monospace. Money is set in Archivo with tabular figures, which
- * is what financial interfaces actually do; monospaced prices are the paper
- * receipt cliche the brief rules out.
+ * Both go through next/font rather than the `@import` the old stylesheet used.
+ * That import is still valid CSS and still reaches the browser, but it makes
+ * the typeface a runtime fetch from fonts.googleapis.com — which is why the
+ * display face silently fell back to the body face on first render. next/font
+ * self-hosts the same files and emits the variable at build time.
  */
-const archivo = Archivo({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: "variable",
-  axes: ["wdth"],
   variable: "--font-body",
+  display: "swap",
+});
+
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -68,7 +72,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={archivo.variable}>
+    <html lang="en" className={`${plusJakarta.variable} ${orbitron.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -77,10 +81,10 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen relative">
         <a href="#content" className="skip-link">Skip to content</a>
-        <Letterhead />
-        <IndexTabs />
+        <StickyHeader />
         <div id="content">{children}</div>
         <Footer />
+        <ActionBar />
       </body>
     </html>
   );

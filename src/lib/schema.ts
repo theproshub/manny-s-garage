@@ -9,9 +9,9 @@ const businessBase = {
   url: BASE_URL,
   logo: {
     "@type": "ImageObject",
-    url: `${BASE_URL}/logo-v2.webp`,
-    width: 203,
-    height: 256,
+    url: `${BASE_URL}/logo.webp`,
+    width: 873,
+    height: 264,
   },
   /* The generated estimate card, not the old hero banner: it is the one image
      on the site that states the address, the phone and the four trades in

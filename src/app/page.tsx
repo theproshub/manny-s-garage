@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Schedule } from "@/components/estimate/schedule";
-import { ServicePicker } from "@/components/estimate/service-picker";
+import { ServiceCard } from "@/components/animated-card";
+import { SectionHeading } from "@/components/section-heading";
+import { siteImages } from "@/lib/site-images";
 import { ServiceSlides } from "@/components/estimate/service-slides";
 import { NextStep } from "@/components/estimate/next-step";
 import { BUSINESS, appleMapsUrl, mapsEmbedUrl, mailtoUrl } from "@/lib/business";
@@ -9,12 +10,56 @@ import {
   HANDYMAN_ITEMS,
   DIY_ITEMS,
   IT_ITEMS,
-  DIY_INVENTORY,
-  PARTS_DISCLAIMER,
 } from "@/lib/service-catalog";
 import { formatUsd } from "@/components/estimate/line-item";
 import { TRADE_LOCATION } from "@/lib/trade-location";
 import { startsAt } from "@/lib/starts-at";
+
+/* Cover photographs for the four service cards.
+
+   Only real photographs of work go here. Several files under /hero are
+   photographs of the shop's printed signage — a board listing "Brakes and
+   Rotors / Oil Change / Tune Up" — and a sign that lists services is not a
+   picture of the work. Those were cycling into the Auto card, so a customer
+   looking for evidence of a repair got a photo of an advert instead.
+
+   The original lists pointed at /images/AUTO/**, which commit f8093bc removed
+   from public/ as unlicensed reference photography. Every path below is
+   verified present on disk. */
+const autoCardSlides = [
+  "/hero/auto-engine-bay.webp",
+  "/services/engine.webp",
+  "/hero/auto-brake-suspension.webp",
+  "/services/brakes.webp",
+  "/services/diag.webp",
+];
+
+const handymanCardSlides = [
+  "/hero/hero-handyman.webp",
+  "/services/tv.webp",
+  "/hero/handyman-security-camera.webp",
+  "/services/cameras.webp",
+  "/hero/handyman-furniture.webp",
+  "/services/furniture.webp",
+  "/services/assembly.webp",
+];
+
+const diyCardSlides = [
+  siteImages.diyGarage,
+  "/services/bay.webp",
+  "/services/tools.webp",
+];
+
+/* The one gap: there is no photograph of I.T. work in public/. This is the
+   shop's own storefront, which is at least a real picture of the business
+   rather than a stock laptop. Replace it when a real one exists. */
+const itCardSlides = [siteImages.itConsultant];
+
+/** The cheapest job in a trade, phrased the way the shop says it out loud. */
+function cardStartsAt(items: Parameters<typeof startsAt>[0]): string {
+  const from = startsAt(items);
+  return from === null ? "Priced after we look" : `From ${formatUsd(from)}`;
+}
 
 const OPENING_TRADES = [
   { name: "Automotive", mark: "A", href: "/auto", items: AUTO_ITEMS },
@@ -34,11 +79,7 @@ export default function Home() {
       <section className="ledger px-4 sm:px-6">
         <div className="hero">
           <div>
-            {/* Not "what we do" — the letterhead directly above already says
-                that and lists all four services. This label only has to carry
-                the half that is new. */}
-            <p className="field-label">What it costs</p>
-            <h1 className="press press-xl mt-2">
+            <h1 className="press press-xl">
               Four kinds of work. Every price up front.
             </h1>
             <p className="hero-said">
@@ -66,57 +107,73 @@ export default function Home() {
             </ul>
 
             <div className="hero-cta">
-              <Link href="/quote" className="btn-primary">See what your job costs</Link>
+              <Link href="/book" className="btn-primary">Book online</Link>
               <a href={BUSINESS.phone.tel} className="btn-outline">
                 Call {BUSINESS.phone.display}
               </a>
+              <Link href="/quote" className="hero-cta-plain">
+                See all prices
+              </Link>
             </div>
           </div>
           <ServiceSlides />
         </div>
       </section>
 
-      <section className="ledger px-4 pb-2 sm:px-6" aria-labelledby="examples">
-        <h2 id="examples" className="form-header text-xl">Pick your job, see the price</h2>
-        <p className="measure mt-1 text-sm text-[var(--ink-muted)]">
-          Everything we do, with the cost worked out for you. Choose a job to see what goes into the price.
-        </p>
-        <div className="mt-4"><ServicePicker /></div>
+      {/* ─── SERVICES ───
+          Four trades, four cards. Each carries the two things a customer opens
+          this page to find — what it starts at, and a way to book it — rather
+          than a category glyph and an arrow. */}
+      <section id="services" className="relative scroll-mt-24 sm:scroll-mt-28 lg:scroll-mt-32">
+        <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pb-16 pt-2 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-20 lg:px-8">
+          <SectionHeading
+            title="What we do"
+            description="Four trades, one shop. Prices below are what the job starts at — we confirm the parts cost before any work begins."
+          />
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <ServiceCard
+              title="Auto repair"
+              description="Oil changes, brakes, batteries, diagnostics, and recovery if you break down in Fargo."
+              imageSlides={autoCardSlides}
+              startsAt={cardStartsAt(AUTO_ITEMS)}
+              href="/auto"
+              bookHref="/book/automotive"
+              bookLabel="Book a repair"
+            />
+            <ServiceCard
+              title="Handyman"
+              description="TV mounting, security cameras, furniture and bunk beds built, blinds and curtains hung."
+              imageSlides={handymanCardSlides}
+              startsAt={cardStartsAt(HANDYMAN_ITEMS)}
+              href="/handyman"
+              bookHref="/book/handyman"
+              bookLabel="Book handyman"
+              priority
+            />
+            <ServiceCard
+              title="DIY bay"
+              description="Rent the bay by the hour with the lift, the air line and the tools. Add a mechanic if you want a hand."
+              imageSlides={diyCardSlides}
+              startsAt={cardStartsAt(DIY_ITEMS)}
+              href="/diy-garage"
+              bookHref="/book/diy"
+              bookLabel="Book the bay"
+            />
+            <ServiceCard
+              title="I.T."
+              description="Wi-Fi and internet set up, computers fixed, websites and spreadsheets built."
+              imageSlides={itCardSlides}
+              startsAt={cardStartsAt(IT_ITEMS)}
+              href="/it"
+            />
+          </div>
+        </div>
       </section>
-
-
-      <div className="mt-4 divide-y divide-[var(--rule)]">
-        <Schedule
-          mark="A"
-          heading="Automotive"
-          caption="Fixing and servicing cars."
-          items={AUTO_ITEMS}
-          footnote={PARTS_DISCLAIMER}
-        />
-        <Schedule
-          mark="H"
-          heading="Handyman"
-          caption="Jobs around the house."
-          items={HANDYMAN_ITEMS}
-        />
-        <Schedule
-          mark="D"
-          heading="DIY Bay"
-          caption={`Rent the bay by the hour. You get: ${DIY_INVENTORY.join(", ").toLowerCase()}.`}
-          items={DIY_ITEMS}
-        />
-        <Schedule
-          mark="I"
-          heading="I.T."
-          caption="Every job is different, so we look first, then price it."
-          items={IT_ITEMS}
-        />
-      </div>
 
       <NextStep href="/quote" />
 
       <section id="contact" className="ledger tier-prose px-4 sm:px-6">
-        <p className="field-label">Where we are</p>
         <h2 className="form-header mt-1 text-2xl">Find us</h2>
         <div className="mt-4 grid gap-6 md:grid-cols-2">
           <div>

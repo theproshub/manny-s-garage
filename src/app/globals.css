@@ -1,123 +1,180 @@
 @import "tailwindcss";
 
+/* ──────────────────────────────────────────────────────────────────────────
+   RESTORED SKIN — the design the shop ran before the work-order template.
+
+   The work-order layer is kept for structure: its measures, its responsive
+   behaviour and its component layout are all still here and still correct.
+   What changed is the paint. Every one of those components draws its colour
+   from the tokens below, so retoning this block re-skins all fifteen pages
+   at once rather than rewriting their markup.
+
+   Source: src/app/globals.css at 2c45ed9 — the last commit before
+   a096f1b "replace sci-fi design system with work-order UI".
+   ────────────────────────────────────────────────────────────────────────── */
+
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
 
-  --paper: #F7F7F5;
+  /* ── The light palette ──
+     A workshop is a bright place: white light, a painted floor, clean paper on
+     the counter. The ground is a cool near-white rather than the warm cream a
+     generated palette defaults to, and the ink is a true dark grey, so the
+     orange ends up the only warm thing on the page — the shop's colour rather
+     than decoration.
+
+     Two oranges, because one cannot do both jobs on a light ground.
+     --accent fills a button and carries white text.
+     --accent-strong is the darker one that can be text on white.
+     The old #ff7a1a measures 2.3:1 on white and is now only ever a fill
+     behind dark text, never text itself. */
+  --paper: #F2F3F5;
   --surface: #FFFFFF;
-  --ink: #16161A;
-  --rule: #E2E2DD;
-  --rule-strong: #C3C3BC;
-  --canary: #FBF3D4;
-  --stamp: #A8420A;
-  --ink-muted: #5A5A63;
+  --surface-elevated: #FFFFFF;
+  --ink: #15181D;
+  --ink-muted: #585F6B;
+  --rule: rgba(21, 24, 29, 0.14);
+  --rule-strong: rgba(21, 24, 29, 0.28);
 
-  /* Shop-floor layer. Zoned, not blended: these appear only on painted
-     wayfinding markers, never in the document body. --paint is 1.53:1 on
-     paper, so it is a fill colour only — never text on the paper ground. */
-  --floor: #2B2B28;
-  --paint: #F2C230;
+  --accent: #C24A00;
+  --accent-strong: #B4450B;
+  --accent-bright: #E8650A;
+  --accent-glow: rgba(194, 74, 0, 0.18);
+  --stamp: #B4450B;
+  --canary: rgba(194, 74, 0, 0.09);
 
-  /* Two measures, each meaning something: prose reads at 68ch, ledgers run
-     wider. The width tells you which kind of content you're looking at. */
+  /* I.T. keeps its cool counter-accent, darkened so it can carry text. */
+  --cool: #0E6F8A;
+  --cool-soft: rgba(14, 111, 138, 0.1);
+
+  --panel: #FFFFFF;
+  --panel-strong: #FFFFFF;
+  --panel-border: rgba(21, 24, 29, 0.14);
+  --muted: #585F6B;
+  --background: #F2F3F5;
+  --foreground: #15181D;
+  --neon-blue: #0E6F8A;
+
+  --transition-fast: 150ms ease;
+  --transition-base: 220ms ease;
+  --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-card: 0.5rem;
+  --radius-pill: 9999px;
+
+  --floor: #E7E9EC;
+  --paint: #C24A00;
+
   --measure-prose: 68ch;
   --measure-ledger: 74rem;
 }
 
-/* Dark mode is the shop's file copy: dark card stock, same structure. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #131316;
-    --surface: #1B1B1F;
-    --ink: #EDEDF0;
-    --rule: #2E2E33;
-    --rule-strong: #43434A;
-    --canary: #33301C;
-    --stamp: #F0873C;
-    --ink-muted: #9C9CA6;
-    --floor: #12120F;
-    --paint: #F2C230;
+/* These are element-level resets, so they belong in `base`. Left unlayered
+   they outrank every Tailwind utility — unlayered styles beat any layered
+   rule regardless of specificity — which silently killed `text-black` on the
+   header's Book button and would do the same to any colour utility a page
+   sets on a link. */
+@layer base {
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: rgba(194, 74, 0, 0.18);
   }
+
+  [id] { scroll-margin-top: 6rem; }
+
+  /* The ground: four stacked radials over a vertical fade — the orange bloom
+     top-centre and the cyan wash top-right are what made the old pages read as
+     one continuous space rather than a stack of cards. */
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body, "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif);
+    font-size: 1rem;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
+  }
+  button, input, textarea, select { font: inherit; }
+  button:not(:disabled) { cursor: pointer; }
+  input:focus, textarea:focus, select:focus { outline: none; }
+  ::selection { background: rgba(194, 74, 0, 0.22); }
 }
-
-* { box-sizing: border-box; }
-
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-[id] { scroll-margin-top: 6rem; }
-
-body {
-  margin: 0;
-  min-height: 100dvh;
-  padding-left: env(safe-area-inset-left, 0);
-  padding-right: env(safe-area-inset-right, 0);
-  padding-bottom: env(safe-area-inset-bottom, 0);
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-a { color: inherit; text-decoration: none; }
-button, input, textarea, select { font: inherit; }
-button:not(:disabled) { cursor: pointer; }
-::selection { background: var(--canary); color: var(--ink); }
 
 /* ── Figures ──
-   Every number on the site: prices, codes, hours, phone. Tabular so columns
-   actually align. Pairs with the canary band, which is the signature. */
-/* Money and quantities. Tabular figures so columns align — set in the body
-   face, not a monospace: financial interfaces do this, paper receipts do not. */
+   Every number on the site: prices, codes, hours, phone. Orbitron with
+   tabular figures — the old shop set its numerals in the display face, which
+   is where the instrument-panel read came from. */
 .figure {
+  font-family: var(--font-display), var(--font-body), sans-serif;
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum" 1;
-  letter-spacing: -0.005em;
+  letter-spacing: 0.02em;
 }
 
-/* ── Form headers and field labels ── */
+/* ── Form headers and field labels ──
+   Field labels carried the old cyber-label treatment: small, wide-tracked
+   Orbitron in the muted tone. */
 .field-label {
-  font-family: var(--font-body), sans-serif;
-  font-stretch: 92%;
-  font-size: 0.75rem;
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-muted);
 }
 
 .form-header {
-  font-family: var(--font-body), sans-serif;
-  font-stretch: 92%;
+  font-family: var(--font-display), var(--font-body), sans-serif;
   font-weight: 700;
-  letter-spacing: 0.01em;
-  line-height: 1.15;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
 }
 
-/* ── The press layer ──
-   A printed form carries two voices: what the press stamped onto the blank,
-   and what someone wrote into it. Archivo ships a width axis and the site was
-   loading it but parking everything at 92%, one notch off default — which is
-   exactly why the page had no typographic voice.
-
-   The press layer runs hard condensed and heavy. Entries, prices and prose
-   stay at normal width. The contrast is the whole point: two widths of one
-   family does the work three families would otherwise be hired for. */
+/* ── The display layer ──
+   Was the work-order "press" voice: one family, hard condensed, stamped onto
+   the blank. Restored to what the shop ran before — Orbitron, wide-tracked,
+   filled with the brushed-metal gradient so headings catch light against the
+   dark ground. The class name is kept because every page already calls it. */
 .press {
-  font-family: var(--font-body), sans-serif;
-  font-stretch: 58%;
+  font-family: var(--font-display), var(--font-body), sans-serif;
   font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: 0.004em;
+  line-height: 1.05;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   text-wrap: balance;
+  background: linear-gradient(180deg, #ffffff 0%, #e8e2da 45%, #c8c0b4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* Falls back to solid ink wherever the clip is unsupported. */
+  text-shadow: 0 0 60px rgba(21, 24, 29, 0.14);
 }
 
-.press-xl { font-size: clamp(2.5rem, 8.5vw, 5rem); }
-.press-lg { font-size: clamp(1.75rem, 4.4vw, 2.875rem); }
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .press { color: var(--ink); background: none; }
+}
+
+/* Orbitron sets wide and tall; the old scale ran smaller than the condensed
+   face it replaced here, so the clamps come down to keep long headings from
+   breaking the 360px column. */
+.press-xl { font-size: clamp(1.75rem, 6.2vw, 3.5rem); }
+.press-lg { font-size: clamp(1.375rem, 3.4vw, 2.125rem); }
 
 /* ── Opening schedule ──
    The page opens as the summary block of the estimate: the four trades as
@@ -416,99 +473,107 @@ button:not(:disabled) { cursor: pointer; }
   text-transform: uppercase;
 }
 
+/* White text on the light end of this gradient measures 4.74:1 and on the
+   dark end 6.22:1 — both clear AA for the 13-15px labels the buttons carry.
+   The brighter orange it replaced measured 4.40:1 at the light end, which
+   fails. Do not lighten these two stops without re-measuring. */
+
 /* ── Actions ──
-   The buttons were the one part of this site that was never sourced: a solid
-   accent rectangle beside an outlined twin of the same size, hovering with
-   `filter: brightness()`. That pair is on every site on the internet and said
-   nothing about a repair shop.
-
-   A button here is the form itself — two parts, white original over canary
-   second copy. The copy sits offset beneath the original with its own ruled
-   edge; hovering fans the sheets apart, pressing registers them back together
-   and drops the original into the copy's place.
-
-   The offset is drawn with `box-shadow` rather than a pseudo-element on
-   purpose. A negative-z `::after` paints *above* its parent's own background,
-   so the copy would cover the button it is supposed to sit under; an outer
-   box-shadow is the one thing that paints behind. Two layers: canary fill at
-   spread 0 over ink at spread 1px, which leaves a hairline showing as the
-   copy's cut edge. Without that rule it reads as a drop shadow, which is a
-   different — and much more fashionable — idea than a sheet of paper. */
+   Restored: the compact gradient pill and its outlined twin. The work-order
+   layer had replaced these with a two-sheet paper construction that fanned on
+   hover; the shop's own buttons were orange-gradient pills with an inset
+   highlight, lifting 1px on hover. */
 .btn-primary,
 .btn-outline {
-  --copy: 4px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  min-height: 2.75rem;
-  padding: 0.625rem 1.25rem;
-  font-family: var(--font-body), sans-serif;
-  font-stretch: 92%;
-  font-weight: 700;
-  font-size: 0.875rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  box-shadow:
-    var(--copy) var(--copy) 0 0 var(--canary),
-    var(--copy) var(--copy) 0 1px var(--ink);
-  transition:
-    box-shadow 120ms ease,
-    transform 120ms ease;
+  gap: 0.375rem;
+  border-radius: var(--radius-pill);
+  min-height: 2.375rem;
+  padding: 0.4375rem 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.25;
+  text-transform: none;
 }
 
 .btn-primary {
-  background: var(--stamp);
-  color: #fff;               /* 6.09:1 on --stamp. Measured, not guessed. */
-  border: 1px solid var(--stamp);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.03em;
+  border: 0;
+  background: linear-gradient(135deg, #C64C00 0%, #A83F00 100%);
+  box-shadow:
+    0 0 0 1px rgba(194, 74, 0, 0.28),
+    0 4px 16px rgba(194, 74, 0, 0.26),
+    inset 0 1px 0 rgba(21, 24, 29, 0.14);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-  .btn-primary { color: #1B1A17; }
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(21, 24, 29, 0.14), transparent);
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow:
+    0 0 0 1px rgba(194, 74, 0, 0.4),
+    0 6px 22px rgba(194, 74, 0, 0.32),
+    inset 0 1px 0 rgba(21, 24, 29, 0.14);
+}
+
+.btn-primary:hover::before { opacity: 1; }
+
+.btn-primary:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
 }
 
 .btn-outline {
-  background: var(--surface);
+  border: 1px solid rgba(21, 24, 29, 0.14);
+  background: rgba(21, 24, 29, 0.09);
+  font-weight: 500;
   color: var(--ink);
-  border: 1px solid var(--ink);
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease, box-shadow 180ms ease, color 180ms ease;
 }
 
-/* The sheets fan apart. */
-.btn-primary:hover,
-.btn-outline:hover { --copy: 7px; }
-
-/* And register. The original travels exactly the distance the copy sat at, so
-   it lands where the copy was rather than merely shrinking towards it. */
-.btn-primary:active,
-.btn-outline:active {
-  --copy: 0px;
-  transform: translate(4px, 4px);
+.btn-outline:hover {
+  border-color: rgba(21, 24, 29, 0.22);
+  background: rgba(21, 24, 29, 0.09);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
 }
 
 .btn-primary:focus-visible,
-.btn-outline:focus-visible { outline-offset: 3px; }
+.btn-outline:focus-visible { outline-offset: 2px; }
 
-/* Call and Book in the index bar: same construction, thinner copy. They sit in
-   a tight row against the right edge where a 4px sheet crowds the margin, and
-   they are navigation rather than the page's committing action.
-   These must stay below `.btn-*` — the two carry equal specificity, so at the
-   top of the file where `.tab-action` is otherwise defined the button rules
-   would simply win and the header would fan by 7px like everything else. */
-.tab-action { --copy: 2px; }
-.tab-action:hover { --copy: 4px; }
-.tab-action:active { transform: translate(2px, 2px); }
+/* Call and Book in the index bar are navigation rather than the page's
+   committing action, so they stay the quieter of the two treatments. */
+.tab-action { min-height: 2.125rem; padding: 0.3125rem 0.75rem; }
 
-@media (prefers-reduced-motion: reduce) {
-  .tab-action:active { transform: none; }
+@media (max-width: 639px) {
+  .btn-primary,
+  .btn-outline { padding: 0.5rem 0.875rem; font-size: 0.8125rem; }
 }
 
-/* The offset is structure, not decoration, so it stays. Only the travel goes. */
 @media (prefers-reduced-motion: reduce) {
   .btn-primary,
   .btn-outline { transition: none; }
 
-  .btn-primary:active,
-  .btn-outline:active { transform: none; }
+  .btn-primary:hover,
+  .btn-outline:hover,
+  .btn-primary:active { transform: none; }
 }
 
 :where(a, button, [role="button"], input, textarea, select):focus-visible {
@@ -1142,3 +1207,893 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 .book-back:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   THE RESTORED DESIGN SYSTEM
+   Lifted from src/app/globals.css at 2c45ed9 and reapplied over the
+   work-order structure above. Two parts: the shop's own vocabulary first
+   (panels, glows, dividers, badges, animations), then the mapping that
+   repaints the work-order primitives in it.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Noise / grain ── */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  opacity: 0.04;
+  background-image:
+    radial-gradient(circle at 20% 20%, #fff 0.5px, transparent 0.7px),
+    radial-gradient(circle at 80% 40%, #fff 0.5px, transparent 0.7px),
+    radial-gradient(circle at 35% 75%, #fff 0.5px, transparent 0.7px),
+    radial-gradient(circle at 65% 55%, #fff 0.5px, transparent 0.7px);
+  background-size: 18px 18px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Panels ── */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  box-shadow: inset 0 1px 0 rgba(21, 24, 29, 0.09);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.panel-strong {
+  background: var(--panel-strong);
+  border: 1px solid rgba(21, 24, 29, 0.09);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 rgba(21, 24, 29, 0.09),
+    0 4px 32px rgba(0, 0, 0, 0.4),
+    0 28px 56px -16px rgba(0, 0, 0, 0.6);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-smooth);
+}
+
+.panel-cyber {
+  background: var(--surface);
+  border: 1px solid rgba(21, 24, 29, 0.09);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 rgba(21, 24, 29, 0.09),
+    0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: border-color var(--transition-base), box-shadow var(--transition-smooth), transform var(--transition-smooth);
+}
+
+.panel-cyber:hover {
+  border-color: rgba(194, 74, 0, 0.25);
+  box-shadow:
+    inset 0 1px 0 rgba(194, 74, 0, 0.08),
+    0 12px 48px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(194, 74, 0, 0.06);
+}
+
+/* ── Accent / glow rings ── */
+.accent-ring {
+  box-shadow:
+    0 0 0 1px rgba(194, 74, 0, 0.2),
+    0 24px 60px rgba(194, 74, 0, 0.18);
+}
+
+.neon-ring {
+  box-shadow:
+    0 0 0 1px rgba(0, 212, 255, 0.2),
+    0 0 30px rgba(0, 212, 255, 0.12),
+    0 24px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Glows ── */
+.section-glow {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 20rem;
+  background: radial-gradient(circle, rgba(194, 74, 0, 0.14), transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.section-glow-blue {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 20rem;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.1), transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.hero-bg-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 50%, rgba(194, 74, 0, 0.06), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 85% 30%, rgba(0, 200, 255, 0.04), transparent 45%);
+  pointer-events: none;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  top: -80px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(194, 74, 0, 0.12) 0%, rgba(21, 24, 29, 0.09) 45%, transparent 70%);
+  filter: blur(72px);
+  pointer-events: none;
+  animation: hero-pulse-glow 5s ease-in-out infinite;
+}
+
+@media (max-width: 1023px) {
+  .hero-glow {
+    width: 280px;
+    height: 280px;
+    top: -40px;
+    right: -60px;
+    filter: blur(48px);
+  }
+}
+
+@keyframes hero-pulse-glow {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+/* ── Dividers ── */
+.orange-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(194, 74, 0, 0.5), rgba(21, 24, 29, 0.14), transparent);
+}
+
+.cyber-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.4), rgba(194, 74, 0, 0.3), transparent);
+}
+
+/* ── Typography helpers ── */
+.metal-text {
+  background: linear-gradient(180deg, #ffffff 0%, #e8e2da 45%, #c8c0b4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 60px rgba(21, 24, 29, 0.14);
+}
+
+.orbitron {
+  font-family: var(--font-display), monospace;
+  letter-spacing: 0.06em;
+}
+
+.neon-text {
+  color: var(--cool);
+  text-shadow: 0 0 12px rgba(0, 212, 255, 0.6), 0 0 30px rgba(0, 212, 255, 0.3);
+}
+
+.orange-glow-text {
+  color: #ff9a43;
+  text-shadow: 0 0 16px rgba(194, 74, 0, 0.5);
+}
+
+.section-title-accent {
+  display: block;
+  width: 3rem;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--neon-blue));
+  margin-top: 0.75rem;
+}
+
+/* ── Labels / badges ── */
+.soft-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(194, 74, 0, 0.32);
+  background: rgba(194, 74, 0, 0.1);
+  padding: 0.5rem 1rem;
+  color: var(--accent-strong);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.soft-label:hover {
+  border-color: rgba(194, 74, 0, 0.5);
+  box-shadow: 0 0 16px rgba(194, 74, 0, 0.15);
+}
+
+.premium-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(21, 24, 29, 0.14);
+  background: rgba(21, 24, 29, 0.09);
+  padding: 0.35rem 0.85rem;
+  color: var(--ink);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.premium-badge.badge-orange {
+  border-color: rgba(194, 74, 0, 0.3);
+  background: rgba(194, 74, 0, 0.1);
+  color: #ff9a43;
+}
+
+.cyber-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 212, 255, 0.35);
+  background: rgba(0, 212, 255, 0.08);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cool);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── Focus ring / safe area / image overlays ── */
+.focus-ring:focus-visible {
+  outline: 2px solid rgba(194, 74, 0, 0.7);
+  outline-offset: 2px;
+}
+
+.pb-safe { padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px)); }
+.pb-safe-fab { padding-bottom: max(5.5rem, calc(env(safe-area-inset-bottom, 0px) + 5rem)); }
+
+.img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(3, 5, 7, 0.92) 0%, rgba(3, 5, 7, 0.4) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+.img-side-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(3, 5, 7, 0.98) 0%, rgba(3, 5, 7, 0.7) 40%, transparent 100%);
+  pointer-events: none;
+}
+
+@media (max-width: 639px) {
+  .img-side-overlay {
+    background: linear-gradient(to top, rgba(3, 5, 7, 0.5) 0%, transparent 40%);
+  }
+}
+
+/* ── Animations ── */
+@keyframes float-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.animate-float { animation: float-up 0.7s ease both; }
+.animate-slide-right { animation: slide-in-right 0.7s ease both; }
+.blink { animation: blink 1.8s ease-in-out infinite; }
+
+.stat-bar {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), rgba(194, 74, 0, 0.15));
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(21, 24, 29, 0.3), transparent);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-glow,
+  .stat-bar::after,
+  .animate-float,
+  .animate-slide-right,
+  .blink { animation: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   MAPPING — work-order primitives, repainted
+   The pages' markup is unchanged. Each rule below takes a component built for
+   the printed form and restates it in the shop's vocabulary: hard 1.5px ink
+   borders become hairline cyber panels, square corners become --radius-card,
+   and the ink-filled bands become orange-gradient ones.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* The boxed field group, the service picker, the cost breakdown and the
+   booking sheet are all the same object in the old language: a panel. */
+.form-box,
+.picker,
+.bd,
+.slides,
+.book-frame {
+  border: 1px solid rgba(21, 24, 29, 0.09);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 rgba(21, 24, 29, 0.09),
+    0 8px 32px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: border-color var(--transition-base), box-shadow var(--transition-smooth);
+}
+
+.picker:hover,
+.bd:hover {
+  border-color: rgba(194, 74, 0, 0.25);
+  box-shadow:
+    inset 0 1px 0 rgba(194, 74, 0, 0.08),
+    0 12px 48px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(194, 74, 0, 0.06);
+}
+
+/* Inner cell rules go to the hairline and lose the right-hand edge at the
+   rounded corner, where a square divider would cut across the radius. */
+.form-cell {
+  border-right: 1px solid rgba(21, 24, 29, 0.09);
+  border-bottom: 1px solid rgba(21, 24, 29, 0.09);
+}
+
+/* The breakdown's total band: was ink-filled, now the accent gradient. */
+.bd-total {
+  background: linear-gradient(135deg, rgba(255, 133, 36, 0.16) 0%, rgba(224, 89, 0, 0.1) 100%);
+  border-top: 1px solid rgba(194, 74, 0, 0.28);
+  color: var(--ink);
+}
+
+.bd-total-figure { color: var(--accent-strong); text-shadow: 0 0 16px rgba(194, 74, 0, 0.5); }
+
+/* ── The schedule table ── */
+.sched thead th {
+  border-top: 0;
+  border-bottom: 1px solid rgba(194, 74, 0, 0.3);
+  color: var(--ink-muted);
+}
+
+.sched tbody td { border-bottom: 1px solid rgba(21, 24, 29, 0.09); }
+.sched .price-cell { color: var(--accent-strong); }
+
+/* ── Rules ──
+   The form's ruled lines become the orange gradient divider. `rule-total`
+   closed a column of figures, so it keeps the heavier of the two. */
+.rule-item { border-bottom: 1px solid rgba(21, 24, 29, 0.09); }
+
+.rule-total {
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, rgba(194, 74, 0, 0.5), rgba(21, 24, 29, 0.14), transparent) 1;
+}
+
+.rule-perforated { border-top: 1px dashed rgba(21, 24, 29, 0.14); }
+
+/* ── The trade schedule on the opening ── */
+.trade-lines { border-top: 1px solid rgba(194, 74, 0, 0.35); }
+.trade-line { border-bottom: 1px solid rgba(21, 24, 29, 0.09); }
+.trade-line:hover { background: rgba(194, 74, 0, 0.06); }
+.trade-line-price { color: var(--accent-strong); }
+
+/* ── The index rail ──
+   Translucent over the gradient ground rather than opaque paper, so the
+   bloom at the top of the page reads through it. */
+.tab-rail {
+  background: rgba(6, 9, 14, 0.82);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border-bottom: 1px solid rgba(21, 24, 29, 0.09);
+  box-shadow: 0 1px 0 rgba(194, 74, 0, 0.12), 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.tab {
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tab:hover { color: var(--ink); background: rgba(21, 24, 29, 0.09); }
+
+.tab-active {
+  background: rgba(194, 74, 0, 0.1);
+  border-color: rgba(194, 74, 0, 0.32);
+  color: var(--accent-strong);
+  box-shadow: 0 0 16px rgba(194, 74, 0, 0.15);
+}
+
+/* ── Stamps ──
+   The rubber stamp becomes the glowing badge it was before: pill, orange
+   tint, accent text. The double-ruled border of the open/closed mark goes —
+   that was the ink-pad construction. */
+.stamp {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  letter-spacing: 0.08em;
+  color: var(--accent-strong);
+  text-shadow: 0 0 16px rgba(194, 74, 0, 0.5);
+}
+
+.status-stamp {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(194, 74, 0, 0.35);
+  border-radius: var(--radius-pill);
+  outline: 0;
+  padding: 0.35rem 0.85rem;
+  background: rgba(194, 74, 0, 0.1);
+}
+
+.status-stamp.is-open {
+  color: #ff9a43;
+  text-shadow: 0 0 16px rgba(194, 74, 0, 0.5);
+}
+
+.status-stamp.is-shut {
+  color: var(--ink-muted);
+  border-color: rgba(21, 24, 29, 0.14);
+  background: rgba(21, 24, 29, 0.09);
+  text-shadow: none;
+}
+
+/* ── Page titles ── */
+.t-display {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.75rem, 5.6vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #ffffff 0%, #e8e2da 45%, #c8c0b4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 60px rgba(21, 24, 29, 0.14);
+}
+
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .t-display { color: var(--ink); background: none; }
+}
+
+.t-lead { color: var(--muted); }
+
+/* ── Panels that sit inside a panel ── */
+.picker-group.is-on {
+  background: rgba(194, 74, 0, 0.1);
+  color: var(--accent-strong);
+}
+
+.picker-group:hover { background: rgba(21, 24, 29, 0.09); color: var(--ink); }
+.picker-item:hover { background: rgba(194, 74, 0, 0.06); }
+
+/* The slide stage keeps its own ground — a photograph sits on it directly. */
+.slides { background: var(--floor); }
+
+/* The booking iframe's sheet must stay opaque white: it renders a third-party
+   calendar that draws dark text on a transparent ground, so the dark panel
+   behind it would leave that calendar unreadable. The frame around it is
+   restyled; the sheet itself is deliberately left alone. */
+.book-frame-sheet { background: #ffffff; border-radius: calc(var(--radius-card) - 1px); }
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 0 1px rgba(194, 74, 0, 0.4), 0 6px 22px rgba(194, 74, 0, 0.32);
+}
+
+:where(a, button, [role="button"], input, textarea, select):focus-visible {
+  outline: 2px solid rgba(194, 74, 0, 0.7);
+  outline-offset: 2px;
+}
+
+/* ── Header offset ──
+   The header is solid and fixed, so every page clears it by exactly its
+   height. One rule, no per-page exceptions: the previous scoped version
+   existed only because the old header floated transparently over the hero. */
+:root { --header-h: 4rem; --action-bar-h: 4.25rem; }
+
+@media (min-width: 640px) { :root { --header-h: 4.5rem; } }
+
+#content { padding-top: var(--header-h); }
+
+[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
+
+/* The fixed action bar must not cover the last line of a page. */
+@media (max-width: 63.99rem) {
+  body { padding-bottom: calc(var(--action-bar-h) + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* ── Selected rows ──
+   The picker marked its selection by inverting to solid ink — a printed-form
+   move that reads as a hole punched in the panel here. The old shop marked a
+   selection with the orange wash and an accent edge instead. */
+.picker-item.is-on {
+  background: rgba(194, 74, 0, 0.12);
+  color: var(--ink);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.picker-item.is-on .picker-item-price { color: var(--accent-strong); opacity: 1; }
+
+/* ── Schedule heading column ──
+   The identity column was measured for a hard-condensed face. Orbitron sets
+   roughly twice as wide, so "AUTOMOTIVE" and "HANDYMAN" — single words that
+   cannot wrap — overran 13rem and were clipped. The column widens and the
+   display size steps down to what actually fits it. */
+@media (min-width: 64rem) {
+  .sched-layout { grid-template-columns: 16rem minmax(0, 1fr); }
+  /* Clears the fixed header before sticking. */
+  .sched-layout > .sched-head { top: 8rem; }
+}
+
+.sched-head .press-lg {
+  font-size: clamp(1.125rem, 1.9vw, 1.5rem);
+  letter-spacing: 0.04em;
+}
+
+/* Long single words in the display face must never silently clip. */
+.press, .t-display { overflow-wrap: break-word; }
+
+/* ── Carousel dots: hit area ──
+   The slide indicators are 8px tall by design and that is how they should look.
+   8px is also the whole tap target, which on a phone is a miss waiting to
+   happen. A transparent ::after extends the hit area vertically to 44px and
+   horizontally just far enough to close the 8px gap between dots, so adjacent
+   targets tile edge to edge instead of overlapping. Overlapping 44px-wide
+   zones were worse than the original problem: the neighbouring dot's area sat
+   on top and swallowed the tap. The dot itself does not move or resize. */
+button[aria-label^="Go to slide"] {
+  position: relative;
+  touch-action: manipulation;
+}
+
+button[aria-label^="Go to slide"]::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(100% + 0.5rem);
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CHROME — header, menu, action bar
+   A shop's sign, not a floating glass capsule.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  height: var(--header-h);
+  background: var(--surface);
+  border-bottom: 1px solid rgba(21, 24, 29, 0.14);
+}
+
+/* A hairline of the shop's orange along the bottom edge — the one decorative
+   move kept, because it is the brand colour doing the job of a rule. */
+.site-header::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -1px 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(194, 74, 0, 0.55), transparent);
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+.nav-link:hover { color: var(--ink); background: rgba(21, 24, 29, 0.09); }
+
+/* The current section is marked with the shop's orange under the word, not a
+   sliding translucent pill. A customer needs to know where they are. */
+.nav-link.is-on {
+  color: var(--ink);
+  box-shadow: inset 0 -2px 0 var(--accent);
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.nav-toggle {
+  min-height: 44px;
+  min-width: 56px;
+  padding: 0 0.875rem;
+  border: 1px solid rgba(21, 24, 29, 0.14);
+  border-radius: 0.25rem;
+  background: rgba(21, 24, 29, 0.09);
+  color: var(--ink);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.nav-toggle:hover { background: rgba(21, 24, 29, 0.14); }
+
+.site-menu {
+  position: fixed;
+  inset: var(--header-h) 0 0 0;
+  z-index: 49;
+  overflow-y: auto;
+  background: var(--surface);
+  padding: 0.5rem 0 calc(2rem + env(safe-area-inset-bottom, 0px));
+  -webkit-overflow-scrolling: touch;
+}
+
+.site-menu-link {
+  display: block;
+  min-height: 56px;
+  padding: 1rem max(1.25rem, env(safe-area-inset-left));
+  border-bottom: 1px solid rgba(21, 24, 29, 0.09);
+  font-size: 1.0625rem;
+  color: var(--ink);
+}
+
+.site-menu-link:hover,
+.site-menu-link[aria-current="page"] { background: var(--canary); color: var(--accent-strong); }
+
+.site-menu-foot { padding: 1.5rem max(1.25rem, env(safe-area-inset-left)); }
+.site-menu-foot .btn-primary { display: flex; }
+
+/* ── Action bar ── */
+.action-bar {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 48;
+  display: grid;
+}
+
+/* Large screens keep the header in view, which already carries both actions. */
+@media (min-width: 64rem) {
+  .action-bar { display: none; }
+}
+
+.action-bar {
+  grid-template-columns: 1fr auto;
+  align-items: stretch;
+  gap: 0.75rem;
+  height: calc(var(--action-bar-h) + env(safe-area-inset-bottom, 0px));
+  padding: 0.625rem max(0.875rem, env(safe-area-inset-left));
+  padding-bottom: calc(0.625rem + env(safe-area-inset-bottom, 0px));
+  background: var(--surface);
+  border-top: 1px solid rgba(21, 24, 29, 0.14);
+}
+
+.action-bar-call {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: 0 0.25rem;
+}
+
+.action-bar-label {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+}
+
+.action-bar-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.action-bar-book {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 1.25rem;
+  border-radius: 0.3125rem;
+  background: linear-gradient(135deg, #C64C00 0%, #A83F00 100%);
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   STRIPPING THE DECORATIVE LAYER
+   These are the moves that make a page read as generated rather than built
+   for a shop: text filled with a metal gradient, blurred colour blooms behind
+   sections, a shimmer running along a bar, things fading up as you scroll.
+   None of them carries information. They are neutralised here, in one place,
+   rather than chased through thirty files.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Headings are ink on the ground. A gradient fill makes a heading harder to
+   read at exactly the sizes where headings matter. */
+.press,
+.t-display,
+.metal-text {
+  background: none;
+  -webkit-text-fill-color: var(--ink);
+  color: var(--ink);
+  text-shadow: none;
+}
+
+.orange-glow-text { color: var(--accent-strong); text-shadow: none; }
+.neon-text { color: var(--cool); text-shadow: none; }
+
+/* Blurred colour blooms and the animated shimmer. */
+.hero-glow,
+.section-glow,
+.section-glow-blue,
+.hero-bg-gradient,
+.noise-overlay { display: none; }
+
+.stat-bar::after { display: none; }
+
+/* Scroll-triggered entrances. The content is the point; it does not need to
+   be introduced. Framer Motion sets these inline, so they need the override. */
+.animate-float,
+.animate-slide-right { animation: none; }
+.blink { animation: none; }
+
+/* Decorative chips. `premium-badge` and friends were wrapping short strings —
+   a town name, a word like "Rental" — in a bordered pill. Rendered as plain
+   small caps instead: the string still reads, the furniture goes. */
+.premium-badge,
+.cyber-badge,
+.soft-label {
+  display: inline;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* The modifier is more specific than the neutraliser above, so it has to
+   clear the fill and border itself or the chip survives as an orange pill. */
+.premium-badge.badge-orange {
+  color: var(--accent-strong);
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+/* The gradient hairline under a centred heading divided nothing. */
+.section-title-accent { display: none; }
+
+/* Panels: square the corners off and drop the glass. A price table is a
+   price table. */
+.panel-cyber,
+.panel,
+.panel-strong {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: var(--surface-elevated);
+  box-shadow: none;
+}
+
+.panel-cyber:hover {
+  border-color: rgba(21, 24, 29, 0.14);
+  box-shadow: none;
+}
+
+.form-box,
+.picker,
+.bd,
+.slides,
+.book-frame {
+  border-radius: 0.5rem;
+  background: var(--surface-elevated);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+.picker:hover,
+.bd:hover { border-color: rgba(21, 24, 29, 0.14); box-shadow: none; }
+
+.book-frame-sheet { border-radius: 0.4375rem; }
+
+/* Buttons: a rectangle with a small radius reads as a control. The full pill
+   plus the orange halo was the most generated-looking thing on the page. */
+.btn-primary,
+.btn-outline {
+  border-radius: 0.3125rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.125rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.btn-primary { box-shadow: none; }
+.btn-primary:hover { transform: none; box-shadow: none; filter: brightness(1.07); }
+.btn-primary::before { display: none; }
+.btn-outline { backdrop-filter: none; -webkit-backdrop-filter: none; }
+.btn-outline:hover { transform: none; box-shadow: none; }
+
+.status-stamp { border-radius: 0.25rem; }
+
+/* A third action that is plainly a link, not a third button competing with
+   the two that matter. */
+.hero-cta-plain {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.hero-cta-plain:hover { color: var(--ink); }
+
+/* ── A note on why visibility is controlled here and not with a utility ──
+   `.btn-primary` sets `display: inline-flex` from this stylesheet, which is
+   unlayered. Unlayered rules beat anything in `@layer utilities` regardless of
+   specificity, so a Tailwind `hidden` or `lg:hidden` on a button silently does
+   nothing. (The same collision made `text-black` fail on this header's button
+   and `lg:hidden` fail on the action bar.) Any show/hide of an element that
+   also carries one of this file's component classes belongs here. */
+.header-book { display: none; }
+
+@media (min-width: 64rem) {
+  .header-book { display: inline-flex; }
+}
+
+/* Card actions sit in a two-column grid, so they stay the same size and the
+   four cards stay the same height regardless of label length. */
+.card-action {
+  width: 100%;
+  padding-inline: 0.375rem;
+  font-size: 0.8125rem;
+  text-align: center;
+  white-space: nowrap;
+}

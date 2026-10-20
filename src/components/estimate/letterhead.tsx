@@ -15,9 +15,9 @@ export function Letterhead() {
               <Image
                 src={siteImages.logo}
                 alt={BUSINESS.name}
-                width={48}
-                height={48}
-                className="h-11 w-auto"
+                width={873}
+                height={264}
+                className="h-9 w-auto"
                 priority
               />
             </Link>

@@ -26,8 +26,7 @@ export function NextStep({
 }) {
   return (
     <section className="ledger tier-prose px-4 sm:px-6" aria-labelledby="next-step">
-      <p className="field-label">What happens next</p>
-      <h2 id="next-step" className="form-header mt-1 text-2xl">How booking works</h2>
+      <h2 id="next-step" className="form-header text-2xl">How booking works</h2>
 
       <ol className="measure mt-4">
         {STEPS.map((step, i) => (

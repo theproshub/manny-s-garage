@@ -13,14 +13,14 @@ export function AutoFixedPricingGrid({ className, ...props }: ComponentPropsWith
         <li key={pkg.id}>
           <Link
             href={bookAutomotiveHref(pkg.price, `Auto: ${pkg.label} · ${pkg.sub}`)}
-            className="flex min-h-[4.5rem] flex-col justify-center rounded-xl border border-white/[0.08] bg-black/40 px-4 py-3 transition-colors hover:border-orange-500/40 hover:bg-orange-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
+            className="flex min-h-[4.5rem] flex-col justify-center rounded-xl border border-[var(--rule)] bg-[var(--surface)] px-4 py-3 transition-colors hover:border-[var(--accent)] hover:bg-[var(--canary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stamp)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]"
           >
             <div className="flex items-start justify-between gap-3">
               <div>
-                <span className="font-semibold text-white">{pkg.label}</span>
-                <p className="mt-0.5 text-xs text-zinc-500">{pkg.sub}</p>
+                <span className="font-semibold text-[var(--ink)]">{pkg.label}</span>
+                <p className="mt-0.5 text-xs text-[var(--ink-muted)]">{pkg.sub}</p>
               </div>
-              <span className="text-2xl font-bold text-orange-400">{pkg.price === 0 ? "Free" : `$${pkg.price}`}</span>
+              <span className="text-2xl font-bold text-[var(--accent-strong)]">{pkg.price === 0 ? "Free" : `$${pkg.price}`}</span>
             </div>
           </Link>
         </li>
