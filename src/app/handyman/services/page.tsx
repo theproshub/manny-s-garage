@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { BackToHome } from "@/components/back-to-home";
-import { ServiceStandardsSection } from "@/components/service-standards-section";
 
 const FURNITURE_PRICE = 50;
 const TV_PRICE_PER_INCH = 1.5;
@@ -316,14 +315,13 @@ export default function HandymanServicesPage() {
                   {FURNITURE_ITEM_OPTIONS.map((count) => {
                     const price = (count * FURNITURE_PRICE).toFixed(2);
                     return (
-                      <Link
+                      <div
                         key={count}
-                        href="/book/handyman"
-                        className="min-h-[44px] rounded-xl border border-[var(--rule)] bg-[var(--surface)] px-4 py-3 text-left transition-colors hover:bg-[var(--surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                        className="min-h-[44px] rounded-xl border border-[var(--rule)] bg-[var(--surface)] px-4 py-3 text-left"
                       >
                         <p className="text-sm font-bold text-[var(--ink)]">{count} {count === 1 ? "item" : "items"}</p>
                         <p className="text-xs font-semibold text-[var(--accent-strong)]">${price}</p>
-                      </Link>
+                      </div>
                     );
                   })}
                 </div>
@@ -368,14 +366,13 @@ export default function HandymanServicesPage() {
                     {TV_MOUNTING_OPTIONS.map((size) => {
                       const price = (size * TV_PRICE_PER_INCH).toFixed(2);
                       return (
-                        <Link
+                        <div
                           key={size}
-                          href="/book/handyman"
-                          className="min-h-[44px] rounded-xl border border-[var(--rule)] bg-[var(--surface)] px-4 py-3 text-left transition-colors hover:bg-[var(--surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                          className="min-h-[44px] rounded-xl border border-[var(--rule)] bg-[var(--surface)] px-4 py-3 text-left"
                         >
                           <p className="text-sm font-bold text-[var(--ink)]">{size}&quot;</p>
                           <p className="text-xs font-semibold text-[var(--accent-strong)]">${price}</p>
-                        </Link>
+                        </div>
                       );
                     })}
                   </div>
@@ -472,14 +469,13 @@ export default function HandymanServicesPage() {
                   {CAMERA_COUNT_OPTIONS.map((count) => {
                     const price = (count * CAMERA_PRICE).toFixed(2);
                     return (
-                      <Link
+                      <div
                         key={count}
-                        href="/book/handyman"
-                        className="min-h-[44px] rounded-xl border border-[var(--rule)] bg-[var(--surface)] px-4 py-3 text-left transition-colors hover:bg-[var(--surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                        className="min-h-[44px] rounded-xl border border-[var(--rule)] bg-[var(--surface)] px-4 py-3 text-left"
                       >
                         <p className="text-sm font-bold text-[var(--ink)]">{count} {count === 1 ? "camera" : "cameras"}</p>
                         <p className="text-xs font-semibold text-[var(--accent-strong)]">${price}</p>
-                      </Link>
+                      </div>
                     );
                   })}
                 </div>
@@ -505,7 +501,6 @@ export default function HandymanServicesPage() {
         </div>
       </section>
 
-      <ServiceStandardsSection variant="handyman" />
 
       {/* CTA */}
       <section className="relative mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">

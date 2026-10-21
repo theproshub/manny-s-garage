@@ -7,7 +7,6 @@ import { JsonLd } from "@/components/json-ld";
 import { handymanServiceSchema } from "@/lib/schema";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeading } from "@/components/section-heading";
-import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { BackToHome } from "@/components/back-to-home";
 
 /** Handyman hero slides (new portfolio + stock), shuffled order */
@@ -295,7 +294,6 @@ export default function HandymanPage() {
         </div>
       </section>
 
-      <ServiceStandardsSection variant="handyman" />
     </main>
   );
 }

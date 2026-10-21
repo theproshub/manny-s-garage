@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { JsonLd } from "@/components/json-ld";
 import { diyGarageSchema } from "@/lib/schema";
 import { BackToHome } from "@/components/back-to-home";
-import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { siteImages } from "@/lib/site-images";
 import { DIY_HOURLY, DIY_MECHANIC_HOURLY, DIY_MAX_HOURS } from "@/lib/fixed-quote-options";
 
@@ -81,8 +80,8 @@ export default function DIYGaragePage() {
             <div className="hero-glow" aria-hidden />
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[var(--rule)] bg-[var(--surface)] ring-1 ring-[var(--rule)] lg:aspect-[16/10]">
               <Image
-                src={siteImages.diyGarage}
-                alt="DIY garage bay with lift and equipment"
+                src={siteImages.bayToolWall}
+                alt="The tool wall and workbench in the rentable bay at Manny's Garage, Fargo ND"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -113,7 +112,6 @@ export default function DIYGaragePage() {
         </div>
       </section>
 
-      <ServiceStandardsSection variant="diy" />
     </main>
   );
 }

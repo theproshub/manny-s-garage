@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { BackToHome } from "@/components/back-to-home";
-import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { siteImages } from "@/lib/site-images";
 
 const HOURLY_RATE = 20;
@@ -125,8 +124,8 @@ export default function DIYGarageServicesPage() {
             <div className="hero-glow" aria-hidden />
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[var(--rule)] bg-[var(--surface)] ring-1 ring-[var(--rule)] lg:aspect-[16/10]">
               <Image
-                src={siteImages.diyGarage}
-                alt="DIY garage bay with lift and equipment"
+                src={siteImages.bayTireMachine}
+                alt="Tyre changer and air compressor in the DIY bay at Manny's Garage, Fargo ND"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -159,8 +158,8 @@ export default function DIYGarageServicesPage() {
             className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-[var(--rule)] bg-[var(--surface)]"
           >
             <Image
-              src={siteImages.diyGarage}
-              alt="DIY garage bay with lift and equipment"
+              src={siteImages.bayInterior}
+              alt="The rentable bay at Manny's Garage — lift post, bench and screens"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -209,7 +208,7 @@ export default function DIYGarageServicesPage() {
               <div className="mt-6 rounded-xl border border-[var(--rule)] bg-[var(--surface)] p-6">
                 <p className="text-sm font-semibold uppercase tracking-wider text-[var(--ink-muted)]">Pricing</p>
                 <p className="mt-2 text-3xl font-bold text-[var(--accent-strong)]">${MECHANIC_RATE_PER_HOUR} <span className="text-lg font-normal text-[var(--ink-muted)]">per hour</span></p>
-                <p className="mt-2 text-sm text-[var(--ink-muted)]">Optional. Book your bay first, then add mechanic hours when you schedule or at the shop.</p>
+                <p className="mt-2 text-sm text-[var(--ink-muted)]">Optional. Ask for mechanic hours when you call to book the bay, or add them at the shop.</p>
               </div>
               <ul className="mt-6 space-y-2 text-sm text-[var(--ink-muted)]">
                 {mechanicIncludes.map((item, i) => (
@@ -226,8 +225,15 @@ export default function DIYGarageServicesPage() {
               </Link>
             </div>
             <motion.div
-              className="order-1 lg:order-2 flex items-center justify-center rounded-2xl border border-[var(--rule)] bg-[var(--surface)] p-12"
+              className="relative order-1 lg:order-2 aspect-[4/3] overflow-hidden rounded-2xl border border-[var(--rule)] bg-[var(--surface)]"
             >
+              <Image
+                src={siteImages.bayToolChest}
+                alt="The roll-away tool chest in the bay at Manny's Garage"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </motion.div>
           </div>
         </div>
@@ -261,14 +267,13 @@ export default function DIYGarageServicesPage() {
         </div>
       </section>
 
-      <ServiceStandardsSection variant="diy" />
 
       {/* CTA */}
       <section className="relative mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-[var(--rule)] bg-[var(--surface)] backdrop-blur-sm p-6 sm:p-8">
           <div>
             <h2 className="text-xl font-bold text-[var(--ink)]">Need a custom session?</h2>
-            <p className="mt-1 text-[var(--ink-muted)]">Book DIY and add your preferred hours and mechanic time in the notes.</p>
+            <p className="mt-1 text-[var(--ink-muted)]">Call the shop with the hours you want and any mechanic time, and we will set it up.</p>
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link

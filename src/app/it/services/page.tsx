@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { BackToHome } from "@/components/back-to-home";
-import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { siteImages } from "@/lib/site-images";
 
 const networkIncludes = [
@@ -299,7 +298,6 @@ export default function ITServicesPage() {
         );
       })}
 
-      <ServiceStandardsSection variant="it" />
 
       {/* CTA */}
       <section className="relative mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">

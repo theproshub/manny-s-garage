@@ -8,7 +8,6 @@ import { itServiceSchema } from "@/lib/schema";
 import { AnimatePresence, motion } from "framer-motion";
 import { BUSINESS } from "@/lib/business";
 import { SectionHeading } from "@/components/section-heading";
-import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { BackToHome } from "@/components/back-to-home";
 import { siteImages } from "@/lib/site-images";
 
@@ -251,7 +250,6 @@ export default function ITPages() {
         </div>
       </section>
 
-      <ServiceStandardsSection variant="it" />
     </main>
   );
 }

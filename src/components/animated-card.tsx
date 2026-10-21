@@ -12,7 +12,7 @@ interface ServiceCardProps {
   /** What the cheapest job in this trade starts at, already formatted. */
   startsAt: string;
   href: string;
-  /** Straight to this trade's calendar. Omitted for I.T., which is quoted. */
+  /** Straight to this trade's booking page. Omitted for I.T., which is quoted. */
   bookHref?: string;
   /** Button text. Explicit, because lower-casing the title broke "DIY bay". */
   bookLabel?: string;
@@ -30,8 +30,8 @@ const SLIDESHOW_INTERVAL_MS = 6000;
  * word "Auto Repair", and an arrow after a link that is already a link is
  * decoration standing where information should be.
  *
- * What went in: the price the trade starts at, and a direct line to its
- * calendar. Those are the two questions someone opens this page with.
+ * What went in: the price the trade starts at, and a direct line to booking
+ * it. Those are the two questions someone opens this page with.
  */
 export function ServiceCard({
   title,

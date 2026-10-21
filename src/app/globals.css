@@ -2082,12 +2082,6 @@ button[aria-label^="Go to slide"]::after {
    nothing. (The same collision made `text-black` fail on this header's button
    and `lg:hidden` fail on the action bar.) Any show/hide of an element that
    also carries one of this file's component classes belongs here. */
-.header-book { display: none; }
-
-@media (min-width: 64rem) {
-  .header-book { display: inline-flex; }
-}
-
 /* Card actions sit in a two-column grid, so they stay the same size and the
    four cards stay the same height regardless of label length. */
 .card-action {

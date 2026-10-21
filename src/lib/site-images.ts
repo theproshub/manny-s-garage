@@ -2,6 +2,14 @@
  * Local image assets. All stock photography and remote hosts were removed —
  * real photos of the shop replace these as they become available, added as
  * captioned evidence rather than decoration.
+ *
+ * `/shop/` is that replacement arriving: ten photographs of this actual
+ * building on Main Ave S — the sign, the bays, the tyre stacks, the tool
+ * wall. They were shot on a phone in portrait, so each one is pre-cropped to
+ * a 1600x1000 landscape band rather than left for `object-cover` to guess at;
+ * a 9:16 frame dropped into a 16:10 hero loses two thirds of itself, and what
+ * survives is usually floor. Anything still pointing at `/hero/` or
+ * `/services/` below is stock, and is a candidate for the next real photo.
  */
 export const siteImages = {
   /**
@@ -21,12 +29,6 @@ export const siteImages = {
    */
   logo: "/logo.webp",
 
-  // —— Auto ——
-  /** Engine bay - diagnostics / automotive service (Michael Lock, Unsplash) */
-  diagnostics: "/hero/auto-engine-bay.webp",
-  /** Brake rotor & caliper - brake/suspension (Toby Hall, Unsplash) */
-  brakeSuspension: "/hero/auto-brake-suspension.webp",
-
   // —— Handyman ——
   /** Living room / furniture assembly (Francesca Tosolini, Unsplash) */
   handymanFurniture: "/hero/handyman-furniture.webp",
@@ -43,5 +45,26 @@ export const siteImages = {
    * Local hero image to avoid remote fetch failures in restricted environments.
    */
   itConsultant: "/hero/hero-bays.webp",
+
+  // —— The shop itself (real photographs, Oct 2026) ——
+  /** Street frontage: the painted sign over the open bay door. */
+  shopFront: "/shop/auto-shop-front.webp",
+  /** The sign again, wider, with the bay open and the floor visible behind. */
+  shopBayDoor: "/shop/auto-bay-door.webp",
+  /** Inside: cars up on the lifts under the strip lights. */
+  shopBays: "/shop/auto-bays.webp",
+  /** Tyre stock, stacked against the back wall. */
+  shopTires: "/shop/auto-tires.webp",
+  /** Parts shelving — CV axle shafts, cases, welding helmet. */
+  shopParts: "/shop/auto-parts.webp",
+
+  /** The rentable bay: lift post, bench and screens at the back. */
+  bayInterior: "/shop/diy-bay.webp",
+  /** The tool wall over the workbench — what a bay rental gets you. */
+  bayToolWall: "/shop/diy-tool-wall.webp",
+  /** Tyre changer and the air compressor beside it. */
+  bayTireMachine: "/shop/diy-tire-machine.webp",
+  /** The roll-away tool chest. */
+  bayToolChest: "/shop/diy-tool-chest.webp",
 
 } as const;

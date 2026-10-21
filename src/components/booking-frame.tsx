@@ -1,10 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { BookingDestination } from "@/lib/booking-destinations";
+import type { BookingCalendar } from "@/lib/booking-destinations";
 
 /**
  * The scheduler, embedded as the attached sheet of the work order.
+ *
+ * Takes a `BookingCalendar` rather than a whole destination, so a trade that
+ * books by phone cannot reach this component at all — the DIY bay used to
+ * frame Square here and no longer does, and the type is what keeps that from
+ * silently regressing into an empty frame.
  *
  * The placeholder sits *behind* the frame rather than over it, and that is
  * load-bearing. The iframe is in the server-rendered markup, so it can finish
@@ -22,7 +27,13 @@ import type { BookingDestination } from "@/lib/booking-destinations";
  * needs the direct link already sitting there, not produced by an error
  * branch that cannot detect its own error.
  */
-export function BookingFrame({ dest }: { dest: BookingDestination }) {
+export function BookingFrame({
+  name,
+  calendar,
+}: {
+  name: string;
+  calendar: BookingCalendar;
+}) {
   const [loaded, setLoaded] = useState(false);
   const [slow, setSlow] = useState(false);
 
@@ -37,13 +48,13 @@ export function BookingFrame({ dest }: { dest: BookingDestination }) {
         {!loaded ? (
           <p className="book-frame-wait">
             {slow
-              ? `The ${dest.provider} calendar is taking a while.`
-              : `Loading the ${dest.provider} calendar…`}
+              ? `The ${calendar.provider} calendar is taking a while.`
+              : `Loading the ${calendar.provider} calendar…`}
           </p>
         ) : null}
         <iframe
-          src={dest.url}
-          title={`${dest.name} booking calendar, run by ${dest.provider}`}
+          src={calendar.url}
+          title={`${name} booking calendar, run by ${calendar.provider}`}
           className="book-frame-sheet"
           onLoad={() => setLoaded(true)}
           // `payment` is scoped to the frame's own origin by default, which is
@@ -54,16 +65,16 @@ export function BookingFrame({ dest }: { dest: BookingDestination }) {
       </div>
 
       <p className="measure mt-3 text-sm text-[var(--ink-muted)]">
-        {dest.provider} runs this calendar
-        {dest.takesPayment ? " and takes the payment" : ""}, so what you type
-        goes to them. If it will not load here,{" "}
+        {calendar.provider} runs this calendar
+        {calendar.takesPayment ? " and takes the payment" : ""}, so what you
+        type goes to them. If it will not load here,{" "}
         <a
-          href={dest.url}
+          href={calendar.url}
           target="_blank"
           rel="noopener noreferrer"
           className="underline underline-offset-4"
         >
-          open it on {dest.provider}
+          open it on {calendar.provider}
           <span className="sr-only"> (opens in a new tab)</span>
         </a>
         .

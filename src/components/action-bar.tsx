@@ -9,9 +9,11 @@ import { SITE_PHONE_DISPLAY, SITE_PHONE_TEL } from "@/lib/contact";
  * equivalent of the number painted on the van door: call, or book, from
  * anywhere on the site, without scrolling and without opening a menu.
  *
- * Hidden from large screens, where the header stays in view and already
- * carries both. `--action-bar-h` reserves the space it occupies so the bar
- * never covers the last line of a page.
+ * Hidden from large screens, where the header stays in view with the phone
+ * number in it. The header used to carry a "Book online" button too and no
+ * longer does, so above `lg` the footer is what offers booking.
+ * `--action-bar-h` reserves the space it occupies so the bar never covers the
+ * last line of a page.
  */
 export function ActionBar() {
   return (

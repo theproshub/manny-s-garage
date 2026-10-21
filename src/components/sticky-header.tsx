@@ -21,9 +21,14 @@ import { ShopStatus } from "@/components/shop-status";
  * What went in: a plain solid bar. The four trades are named in it. The phone
  * number is written out rather than hidden behind a handset glyph. Whether
  * the shop is open right now sits beside it, because that is the question
- * someone asks immediately before deciding to call or to book. "Book online"
- * is the only filled button in the bar, so there is never a question about
- * which control starts the job.
+ * someone asks immediately before deciding to call or to book.
+ *
+ * The bar carries no "Book online" button any more, at either width, and the
+ * nav itself has never linked `/book`. Booking is reached from the pages, from
+ * the footer, and on phones from the persistent action bar — note that the
+ * action bar is `lg:hidden`, so on a desktop the footer is the only chrome
+ * that still offers it. Nothing in here is a filled button now, which leaves
+ * the phone number as the loudest thing in the bar.
  */
 
 const TRADES = [
@@ -95,10 +100,6 @@ export function StickyHeader() {
             <ShopStatus className="text-[11px]" />
           </div>
 
-          <Link href="/book" className="btn-primary header-book">
-            Book online
-          </Link>
-
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
@@ -131,9 +132,6 @@ export function StickyHeader() {
               {SITE_PHONE_DISPLAY}
             </a>
             <ShopStatus className="mt-1 text-xs" />
-            <Link href="/book" className="btn-primary mt-4 w-full">
-              Book online
-            </Link>
           </div>
         </div>
       )}

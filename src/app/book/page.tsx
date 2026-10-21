@@ -7,7 +7,7 @@ import { BOOKING_DESTINATIONS, bookingPath } from "@/lib/booking-destinations";
 export const metadata: Metadata = {
   title: "Book online — Manny's Garage, Fargo ND",
   description:
-    "Book auto repair, handyman work or a DIY bay at Manny's Garage in Fargo, ND. The ARI and Square calendars, both on our page.",
+    "Book auto repair or handyman work at Manny's Garage in Fargo, ND — the ARI and Square calendars, both on our page. DIY bay time and tech help are booked by phone.",
   alternates: { canonical: "/book" },
   openGraph: {
     title: "Book online — Manny's Garage",
@@ -30,24 +30,27 @@ export const metadata: Metadata = {
  * The shop already runs two real booking systems, and `/quote` has been
  * sending people to them all along. This page now does the same thing rather
  * than competing with them: pick the work, land on the calendar that actually
- * holds the slot and takes the payment. Each row goes to `/book/<trade>`,
- * where that calendar is framed on our own URL — see
+ * holds the slot and takes the payment. Automotive and handyman go to
+ * `/book/<trade>`, where that calendar is framed on our own URL — see
  * `lib/booking-destinations.ts`.
  *
- * I.T. is the exception and cannot be otherwise. Tech jobs are priced after
+ * Two lines do not open a calendar, and both are honest about it rather than
+ * dressed up as one. I.T. cannot be otherwise: tech jobs are priced after
  * someone looks at them, so there is no fixed service for Square to sell and
- * nothing to put in a calendar — that line is a phone call, which is honest
- * and works today. Do not "fix" it by pointing it at Square: the visitor would
- * land on a service list with no I.T. entry on it.
+ * nothing to put in a calendar. Do not "fix" it by pointing it at Square —
+ * the visitor would land on a service list with no I.T. entry on it. The DIY
+ * bay joined it when its Square embed was removed; bay time is taken on the
+ * phone now, so the row dials instead of pretending to schedule.
  */
 type Destination = {
   name: string;
   mark: keyof typeof TRADE_LOCATION;
   href: string;
-  /** Named in the row so nobody meets an unfamiliar brand by surprise. The
-   *  calendar no longer takes them off the site, but it is still not ours. */
+  /** Named in the row so nobody meets an unfamiliar brand by surprise. A
+   *  framed calendar no longer takes them off the site, but it is still not
+   *  ours; "Call" says the row goes to a phone instead. */
   via: string;
-  /** I.T. is the one line that leaves the page, and it leaves to a phone. */
+  /** The rows that leave the page, and both leave to a phone. */
   leaves: boolean;
 };
 
@@ -56,22 +59,22 @@ const DESTINATIONS: Destination[] = [
     name: BOOKING_DESTINATIONS.automotive.name,
     mark: "A",
     href: bookingPath("automotive"),
-    via: BOOKING_DESTINATIONS.automotive.provider,
+    via: "ARI",
     leaves: false,
   },
   {
     name: BOOKING_DESTINATIONS.handyman.name,
     mark: "H",
     href: bookingPath("handyman"),
-    via: BOOKING_DESTINATIONS.handyman.provider,
+    via: "Square",
     leaves: false,
   },
   {
     name: BOOKING_DESTINATIONS.diy.name,
     mark: "D",
-    href: bookingPath("diy"),
-    via: BOOKING_DESTINATIONS.diy.provider,
-    leaves: false,
+    href: BUSINESS.phone.tel,
+    via: "Call",
+    leaves: true,
   },
   {
     name: "I.T.",
@@ -90,9 +93,10 @@ export default function BookPage() {
           <p className="field-label">Book online</p>
           <h1 className="press press-lg mt-2">Pick the work</h1>
           <p className="hero-said">
-            Each one opens the calendar that holds the slot, right here on this
-            page. You pick the time, and that is the booking — nothing waits on
-            us to read a form.
+            The top two open the calendar that holds the slot, right here on
+            this page — you pick the time, and that is the booking. The bottom
+            two are a phone call, because nothing on the other end can sell
+            them.
           </p>
 
           <ul className="trade-lines mt-6">
@@ -127,10 +131,10 @@ export default function BookPage() {
           </ul>
 
           <p className="measure mt-6 text-sm text-[var(--ink-muted)]">
-            Automotive books through ARI. House jobs and the DIY bay book
-            through Square, which also takes the payment. Both calendars run on
-            our pages, so you never leave the site to book. Tech help is quoted
-            after we look at it, so that one is a call or a text to{" "}
+            Automotive books through ARI and house jobs book through Square,
+            which also takes the payment. Both calendars run on our pages, so
+            you never leave the site to book either one. Bay time and tech help
+            are not on a calendar — those are a call or a text to{" "}
             <a
               href={BUSINESS.phone.tel}
               className="figure underline underline-offset-4"
@@ -153,7 +157,7 @@ export default function BookPage() {
         {/* Numbered because the order genuinely matters; it is a sequence. */}
         <ol className="measure mt-4">
           {[
-            "Pick your time on the calendar that opens on this page.",
+            "Pick your time on the calendar that opens on this page, or call us for the bay.",
             "We tell you the price before we start any work.",
             "You say yes, then we get it done.",
           ].map((step, i) => (

@@ -8,36 +8,29 @@ import { autoServiceSchema } from "@/lib/schema";
 import { motion, AnimatePresence } from "framer-motion";
 import { BackToHome } from "@/components/back-to-home";
 import { BUSINESS } from "@/lib/business";
-import { SectionHeading } from "@/components/section-heading";
 import { AutoFixedPricingGrid } from "@/components/auto-fixed-pricing-grid";
-import { ServiceStandardsSection } from "@/components/service-standards-section";
+import { siteImages } from "@/lib/site-images";
 import { AUTO_PRICING_PARTS_DISCLAIMER } from "@/lib/fixed-quote-options";
 
+/* Five photographs of this shop, each one different. The previous ten slides
+   were stock, and three of them were the same two files shown twice over to
+   pad the carousel out — ten dots under a picture that only ever had seven
+   things to show. Every slide below is the building on Main Ave S. */
 const AUTO_HERO_IMAGES = [
-  "/hero/hero-bays.webp",
-  "/hero/hero-auto-slide-services.webp",
-  "/hero/hero-auto-slide-diy.webp",
-  "/services/engine.webp",
-  "/services/diag.webp",
-  "/hero/auto-engine-bay.webp",
-  "/hero/auto-brake-suspension.webp",
-  "/hero/auto-engine-bay.webp",
-  "/hero/auto-brake-suspension.webp",
-  "/services/engine.webp",
+  siteImages.shopBays,
+  siteImages.shopBayDoor,
+  siteImages.shopTires,
+  siteImages.shopParts,
+  siteImages.shopFront,
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 
 const autoHeroSlideLabels = [
-  "Service Bays",
-  "Repair & Maintenance",
-  "DIY Bay Option",
-  "Diagnostics & Repair",
-  "Professional Service",
-  "Trusted Mechanics",
-  "Fargo Auto Service",
-  "Audio and Trunk Setup",
-  "Engine Detail Close-Up",
-  "Oil Service",
+  "Cars up on the lifts",
+  "The bay door, open",
+  "Tyre stock",
+  "Parts on the shelf",
+  "The shop on Main Ave S",
 ];
 
 /** Simple list: 4 main categories so users can quickly choose and book */
@@ -48,14 +41,7 @@ const autoServices = [
   { title: "Battery & Charging", short: "No-start help, battery test, and alternator work." },
 ];
 
-const autoFaqs = [
-  { q: "Do I need an appointment for automotive service?", a: "Yes. Book online or call us and we will lock in a time that works for you. Same-day and next-day slots are often available." },
-  { q: "Do you work on my make and model?", a: "We service most cars and light trucks. If you are not sure, give us a quick call and we will confirm before you book." },
-];
-
-
 export default function AutoPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
   const [carouselPaused, setCarouselPaused] = useState(false);
 
@@ -217,41 +203,6 @@ export default function AutoPage() {
             </Link>
           </p>
         </section>
-      </section>
-
-      <ServiceStandardsSection variant="auto" />
-
-      {/* ─── FAQ ─── */}
-      <section className="relative mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-        <SectionHeading title="Questions we get asked" />
-        <div className="mt-8 space-y-2 sm:mt-10 sm:space-y-3">
-          {autoFaqs.map((faq, i) => (
-            <motion.div
-              key={i}
-              className="overflow-hidden rounded-2xl border border-[var(--rule)] bg-[var(--surface)] backdrop-blur-sm"
-            >
-              <button
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="flex w-full min-h-[44px] items-center justify-between p-4 text-left sm:p-5"
-              >
-                <span className="font-semibold text-[var(--ink)] pr-4 text-sm sm:text-base">{faq.q}</span>
-              </button>
-              <AnimatePresence>
-                {openFaq === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <p className="px-4 pb-4 text-[var(--ink-muted)] text-sm sm:px-5 sm:pb-5 sm:text-base">{faq.a}</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
-        </div>
       </section>
 
       {/* ─── CTA ─── */}

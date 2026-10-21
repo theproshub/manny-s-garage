@@ -37,9 +37,13 @@ export function ServicePicker() {
   const pending = hasPending(selected);
   const isQuoted = selected.status === "quoted";
   const isEstimate = selected.status === "estimate";
-  /* Non-null for anything with a real calendar; I.T. is quoted first and has
-     none, so its button asks rather than books. */
+  /* Non-null for anything with a booking page of its own; I.T. is quoted
+     first and has none, so its button asks rather than books. Having a page
+     is not the same as having a calendar — the DIY bay has the first and not
+     the second, so the note below reads off `method`, not off `dest`. */
   const dest = destinationForPath(selected.bookHref);
+  const calendar =
+    dest?.method.kind === "calendar" ? dest.method : null;
 
   return (
     <div className="picker">
@@ -163,9 +167,13 @@ export function ServicePicker() {
               {dest ? "Book this" : "Ask about this"}
             </Link>
             <div className="bd-foot-meta">
-              {dest ? (
+              {calendar ? (
                 <span className="bd-foot-note">
-                  Opens the {dest.provider} calendar here, on this site
+                  Opens the {calendar.provider} calendar here, on this site
+                </span>
+              ) : dest ? (
+                <span className="bd-foot-note">
+                  Bay time is booked by phone — the number is on the next page
                 </span>
               ) : null}
             </div>

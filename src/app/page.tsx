@@ -26,12 +26,13 @@ import { startsAt } from "@/lib/starts-at";
    The original lists pointed at /images/AUTO/**, which commit f8093bc removed
    from public/ as unlicensed reference photography. Every path below is
    verified present on disk. */
+/* Card slideshows load every frame at once (see animated-card.tsx), so each
+   extra entry is an image the homepage downloads whether or not it is ever
+   shown. Three apiece, all of them this shop. */
 const autoCardSlides = [
-  "/hero/auto-engine-bay.webp",
-  "/services/engine.webp",
-  "/hero/auto-brake-suspension.webp",
-  "/services/brakes.webp",
-  "/services/diag.webp",
+  siteImages.shopBays,
+  siteImages.shopFront,
+  siteImages.shopTires,
 ];
 
 const handymanCardSlides = [
@@ -45,9 +46,9 @@ const handymanCardSlides = [
 ];
 
 const diyCardSlides = [
-  siteImages.diyGarage,
-  "/services/bay.webp",
-  "/services/tools.webp",
+  siteImages.bayInterior,
+  siteImages.bayToolWall,
+  siteImages.bayToolChest,
 ];
 
 /* The one gap: there is no photograph of I.T. work in public/. This is the
@@ -80,7 +81,7 @@ export default function Home() {
         <div className="hero">
           <div>
             <h1 className="press press-xl">
-              Four kinds of work. Every price up front.
+              Fargo&apos;s one stop shop.
             </h1>
             <p className="hero-said">
               See what your job costs before you call. Nothing gets added at

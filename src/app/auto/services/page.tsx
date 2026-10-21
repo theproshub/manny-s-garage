@@ -5,28 +5,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { BackToHome } from "@/components/back-to-home";
-import { ServiceStandardsSection } from "@/components/service-standards-section";
 import { AutoFixedPricingGrid } from "@/components/auto-fixed-pricing-grid";
 import { AUTO_PRICING_PARTS_DISCLAIMER } from "@/lib/fixed-quote-options";
+import { siteImages } from "@/lib/site-images";
 
+/* Four of the shop's own photographs. Was seven stock slides, two of them
+   repeats — see the note on AUTO_HERO_IMAGES in ../page.tsx. */
 const AUTO_SERVICES_HERO_IMAGES = [
-  "/hero/hero-bays.webp",
-  "/hero/hero-auto-slide-services.webp",
-  "/services/engine.webp",
-  "/hero/auto-engine-bay.webp",
-  "/hero/auto-engine-bay.webp",
-  "/hero/auto-brake-suspension.webp",
-  "/services/engine.webp",
+  siteImages.shopBays,
+  siteImages.shopParts,
+  siteImages.shopTires,
+  siteImages.shopBayDoor,
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 const autoServicesHeroLabels = [
-  "Service Bays",
-  "Services Overview",
-  "Auto Diagnostics",
-  "Auto Repair",
-  "Audio and Trunk Setup",
-  "Engine Detail Close-Up",
-  "Oil Service",
+  "Cars up on the lifts",
+  "Parts on the shelf",
+  "Tyre stock",
+  "The bay door, open",
 ];
 
 const diagnosticsIncludes = [
@@ -327,7 +323,6 @@ export default function AutoServicesPage() {
         </p>
       </section>
 
-      <ServiceStandardsSection variant="auto" />
 
       {/* CTA */}
       <section className="relative mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
