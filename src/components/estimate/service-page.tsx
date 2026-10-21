@@ -20,7 +20,7 @@ type ServicePageProps = {
 
 const SHARED_TERMS = [
   "We work by appointment. There is often a slot free today or tomorrow.",
-  "You book and pay through Square.",
+  "You book and pay through Manny's Garage.",
 ];
 
 export function ServicePage({

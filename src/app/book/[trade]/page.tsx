@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const title = `Book ${dest.name.toLowerCase()} — Manny's Garage, Fargo ND`;
   const description =
     dest.method.kind === "calendar"
-      ? `Pick ${dest.picking} at Manny's Garage in Fargo, ND. The ${dest.method.provider} calendar, on our page.`
+      ? `Pick ${dest.picking} at Manny's Garage in Fargo, ND. The ${BUSINESS.name} calendar, on our page.`
       : `Call Manny's Garage in Fargo, ND to book ${dest.picking}. We take bay time by phone.`;
 
   return {
@@ -76,7 +76,7 @@ export default async function BookTradePage({ params }: Params) {
               </dt>
               <dd className="figure mt-1 text-sm">
                 {method.kind === "calendar"
-                  ? `${method.provider}${method.takesPayment ? " · payment too" : ""}`
+                  ? `${BUSINESS.name}${method.takesPayment ? " · payment too" : ""}`
                   : "Phone · the shop"}
               </dd>
             </div>
@@ -89,7 +89,10 @@ export default async function BookTradePage({ params }: Params) {
           {method.kind === "calendar" ? (
             <>
               <div className="mt-6">
-                <BookingFrame name={dest.name} calendar={method} />
+                <BookingFrame
+                  name={dest.name}
+                  calendar={{ url: method.url, takesPayment: method.takesPayment }}
+                />
               </div>
 
               <p className="measure mt-6 text-sm text-[var(--ink-muted)]">

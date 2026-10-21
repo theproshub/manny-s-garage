@@ -30,45 +30,43 @@ type HandymanServiceItem = {
   title: string;
   /** Price and duration shown on the right (e.g. "$50 ・ 1 hr 30 min+"). */
   details: string;
-  href: string;
   subtitle?: string;
 };
 
+/* A price menu, not a set of buttons. Each row used to be a Link carrying a
+   per-service `book.squareup.com` URL, opened in a new tab — so a list sitting
+   under the words "Book on our site" was the one thing on the page that threw
+   you off it, straight past /book/handyman and the framing it exists for.
+   The rows state the price; the two buttons below do the booking. */
 const SERVICES_LIST: HandymanServiceItem[] = [
   {
     title: "Furniture Assembly",
     details: "$50 ・ 1 hr 30 min+",
-    href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/PG7XPCFE4CPARQ6FUDEJW6RS",
   },
   {
     title: "TV Mounting",
     subtitle: "Full Motion, Fixed, Swivel, Tilting Mounts",
     details: "$50 ・ 1 hr",
-    href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/M2YUQDN2RI423A5BOIZ5ETNE",
   },
   {
     title: "General Assembly",
     subtitle: "Vanity Mirror, Shoe Rack, Computer Desk, TV Stand.",
     details: "$65 ・ 45 min+",
-    href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/LCVWYFYVCL6JMM3PJYKN5OOY",
   },
   {
     title: "General Mounting",
     subtitle: "Fire Place, Floating TV Stand, Shelves, Window Curtain, Picture Frames",
     details: "$30 ・ 30 min+",
-    href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/DFOYDSFKCJIUCFO55X6KPQT2",
   },
   {
     title: "Security Camera Installation",
     subtitle: "POE, Analog & Wired Cameras",
     details: "$120 ・ 1 hr 30 min+",
-    href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/HBHVTO4FFIR72Z7TXFQ35Y5Q",
   },
   {
     title: "Office, Home & Entertainment",
     subtitle: "Gaming Room, Home Office, LED Lights, & Home Entertainment",
     details: "$80 ・ 45 min+",
-    href: "https://book.squareup.com/appointments/oes899qrhoj8mt/location/L6S9GY1Z49K39/services/KRXFADU6JYBDCUM5ZS6PJ3CC",
   },
 ];
 
@@ -242,7 +240,7 @@ export default function HandymanPage() {
       <section className="relative mx-auto max-w-7xl scroll-mt-28 px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
         <SectionHeading
           title="Handyman services and prices"
-          description="Our handyman menu with starting prices below. Book on our site."
+          description="The menu and what each job starts at. Booking is one step below — it does not happen on this list."
         />
         <motion.div
           className="mt-8 sm:mt-10 rounded-2xl border border-[var(--rule)] bg-[var(--surface)] overflow-hidden"
@@ -250,18 +248,13 @@ export default function HandymanPage() {
           <ul className="divide-y divide-[var(--rule)]">
             {SERVICES_LIST.map((service) => (
               <li key={service.title}>
-                <Link
-                  href={service.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 sm:py-5 text-left transition-colors hover:bg-[var(--surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-inset"
-                >
+                <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 sm:py-5 text-left">
                   <span className="max-w-2xl">
                     <span className="block font-medium text-[var(--ink)]">{service.title}</span>
                     {service.subtitle ? <span className="mt-0.5 block text-sm text-[var(--ink-muted)]">{service.subtitle}</span> : null}
                   </span>
                   <span className="font-semibold text-[var(--accent-strong)]">{service.details}</span>
-                </Link>
+                </div>
               </li>
             ))}
           </ul>

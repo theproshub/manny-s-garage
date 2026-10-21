@@ -45,7 +45,7 @@ export function NextStep({
       </div>
 
       <p className="mt-3 text-sm text-[var(--ink-muted)]">
-        You book and pay through Square.
+        You book and pay through Manny&apos;s Garage.
       </p>
     </section>
   );

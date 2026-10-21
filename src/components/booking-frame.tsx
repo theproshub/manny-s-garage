@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { BookingCalendar } from "@/lib/booking-destinations";
+import { BUSINESS } from "@/lib/business";
 
 /**
  * The scheduler, embedded as the attached sheet of the work order.
@@ -26,13 +27,26 @@ import type { BookingCalendar } from "@/lib/booking-destinations";
  * sees a scheduler that will not take the last step. Anyone in that position
  * needs the direct link already sitting there, not produced by an error
  * branch that cannot detect its own error.
+ *
+ * The chrome around the frame carries the shop's name, not the provider's.
+ * `provider` stays on the type because it is true and it picks the URL, but
+ * it is not rendered and not handed to this component — see the prop type.
+ * Note what the rename does and does not cover: the frame itself paints the
+ * provider's own interface, and a card statement carries their descriptor, so
+ * a customer still meets the name at the point of payment — just not from our
+ * copy first.
  */
 export function BookingFrame({
   name,
   calendar,
 }: {
   name: string;
-  calendar: BookingCalendar;
+  /* Deliberately not the whole `BookingCalendar`: this is a client component,
+     so every field handed to it is serialised into the page payload, and
+     `provider` would put the vendor's name in the HTML of a page that no
+     longer says it anywhere. Only the two fields the markup actually uses
+     cross the boundary. */
+  calendar: Pick<BookingCalendar, "url" | "takesPayment">;
 }) {
   const [loaded, setLoaded] = useState(false);
   const [slow, setSlow] = useState(false);
@@ -48,13 +62,13 @@ export function BookingFrame({
         {!loaded ? (
           <p className="book-frame-wait">
             {slow
-              ? `The ${calendar.provider} calendar is taking a while.`
-              : `Loading the ${calendar.provider} calendar…`}
+              ? `The ${BUSINESS.name} calendar is taking a while.`
+              : `Loading the ${BUSINESS.name} calendar…`}
           </p>
         ) : null}
         <iframe
           src={calendar.url}
-          title={`${name} booking calendar, run by ${calendar.provider}`}
+          title={`${name} booking calendar — ${BUSINESS.name}`}
           className="book-frame-sheet"
           onLoad={() => setLoaded(true)}
           // `payment` is scoped to the frame's own origin by default, which is
@@ -65,16 +79,16 @@ export function BookingFrame({
       </div>
 
       <p className="measure mt-3 text-sm text-[var(--ink-muted)]">
-        {calendar.provider} runs this calendar
-        {calendar.takesPayment ? " and takes the payment" : ""}, so what you
-        type goes to them. If it will not load here,{" "}
+        {BUSINESS.name} runs this calendar
+        {calendar.takesPayment ? " and takes the payment" : ""}. If it will
+        not load here,{" "}
         <a
           href={calendar.url}
           target="_blank"
           rel="noopener noreferrer"
           className="underline underline-offset-4"
         >
-          open it on {calendar.provider}
+          open it in a new tab
           <span className="sr-only"> (opens in a new tab)</span>
         </a>
         .

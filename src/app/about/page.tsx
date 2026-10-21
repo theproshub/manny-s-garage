@@ -53,7 +53,7 @@ export default function AboutPage() {
           ))}
           <div className="flex justify-between gap-4 py-2">
             <dt className="field-label">Booking</dt>
-            <dd className="text-right text-sm">Through Square</dd>
+            <dd className="text-right text-sm">Through Manny&apos;s Garage</dd>
           </div>
         </dl>
       </section>

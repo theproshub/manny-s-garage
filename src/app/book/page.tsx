@@ -7,7 +7,7 @@ import { BOOKING_DESTINATIONS, bookingPath } from "@/lib/booking-destinations";
 export const metadata: Metadata = {
   title: "Book online — Manny's Garage, Fargo ND",
   description:
-    "Book auto repair or handyman work at Manny's Garage in Fargo, ND — the ARI and Square calendars, both on our page. DIY bay time and tech help are booked by phone.",
+    "Book auto repair or handyman work at Manny's Garage in Fargo, ND — the Manny's Garage calendars, both on our page. DIY bay time and tech help are booked by phone.",
   alternates: { canonical: "/book" },
   openGraph: {
     title: "Book online — Manny's Garage",
@@ -46,9 +46,12 @@ type Destination = {
   name: string;
   mark: keyof typeof TRADE_LOCATION;
   href: string;
-  /** Named in the row so nobody meets an unfamiliar brand by surprise. A
-   *  framed calendar no longer takes them off the site, but it is still not
-   *  ours; "Call" says the row goes to a phone instead. */
+  /** The action word at the end of the row. It reads "Book" on every line by
+   *  the owner's call: the column used to name the provider — ARI, Square,
+   *  Call — and no longer does. Who runs the calendar is still stated on the
+   *  destination page's "Scheduled through" field and in the paragraph under
+   *  this list, so the disclosure survives; it just is not the first thing a
+   *  customer reads. */
   via: string;
   /** The rows that leave the page, and both leave to a phone. */
   leaves: boolean;
@@ -59,28 +62,28 @@ const DESTINATIONS: Destination[] = [
     name: BOOKING_DESTINATIONS.automotive.name,
     mark: "A",
     href: bookingPath("automotive"),
-    via: "ARI",
+    via: "Book",
     leaves: false,
   },
   {
     name: BOOKING_DESTINATIONS.handyman.name,
     mark: "H",
     href: bookingPath("handyman"),
-    via: "Square",
+    via: "Book",
     leaves: false,
   },
   {
     name: BOOKING_DESTINATIONS.diy.name,
     mark: "D",
     href: BUSINESS.phone.tel,
-    via: "Call",
+    via: "Book",
     leaves: true,
   },
   {
     name: "I.T.",
     mark: "I",
     href: BUSINESS.phone.tel,
-    via: "Call",
+    via: "Book",
     leaves: true,
   },
 ];
@@ -131,10 +134,11 @@ export default function BookPage() {
           </ul>
 
           <p className="measure mt-6 text-sm text-[var(--ink-muted)]">
-            Automotive books through ARI and house jobs book through Square,
-            which also takes the payment. Both calendars run on our pages, so
-            you never leave the site to book either one. Bay time and tech help
-            are not on a calendar — those are a call or a text to{" "}
+            Automotive and house jobs both book through Manny&apos;s Garage,
+            and house jobs take the payment at the same time. Both calendars
+            run on our pages, so you never leave the site to book either one.
+            Bay time and tech help are not on a calendar — those are a call or
+            a text to{" "}
             <a
               href={BUSINESS.phone.tel}
               className="figure underline underline-offset-4"

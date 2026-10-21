@@ -12,6 +12,7 @@ import {
   type ServiceOption,
 } from "@/lib/estimates";
 import { destinationForPath } from "@/lib/booking-destinations";
+import { BUSINESS } from "@/lib/business";
 
 /**
  * Pick your job, see what it costs.
@@ -169,7 +170,7 @@ export function ServicePicker() {
             <div className="bd-foot-meta">
               {calendar ? (
                 <span className="bd-foot-note">
-                  Opens the {calendar.provider} calendar here, on this site
+                  Opens the {BUSINESS.name} calendar here, on this site
                 </span>
               ) : dest ? (
                 <span className="bd-foot-note">
