@@ -243,6 +243,36 @@
   white-space: nowrap;
 }
 
+/* The booking list puts a label in that second track — "Book auto repair" —
+   where every other list puts a price. 8.5rem fits "from $40.00" and does not
+   fit these, and because the track is also the label's shaded panel, an
+   overrun spills the text off the left edge of its own background. Each row
+   is its own grid, so sizing the track to content would let every row pick a
+   different width and leave the panels ragged down the page; one fixed width
+   wide enough for the longest label keeps that edge straight. */
+.trade-lines.is-actions .trade-line {
+  grid-template-columns: minmax(0, 1fr) 11.25rem;
+}
+
+/* The labels in this column name the job ("Book auto repair"), not a price,
+   so on a narrow screen `nowrap` pushes the text out past the panel it sits
+   on and crowds the trade name beside it. Below the breakpoint it wraps and
+   stays inside its own block. */
+@media (max-width: 30rem) {
+  .trade-line-price {
+    white-space: normal;
+    text-align: right;
+    line-height: 1.25;
+    padding: 0.5rem 0.75rem;
+  }
+
+  /* Narrow screens cap the track and let the label wrap inside it rather
+     than crowd the trade name. */
+  .trade-lines.is-actions .trade-line {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 7.5rem);
+  }
+}
+
 /* ── Measures ── */
 .measure { max-width: var(--measure-prose); }
 /* min() so the measure and the overflow guard are one declaration. Written as

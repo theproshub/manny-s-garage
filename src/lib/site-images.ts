@@ -58,7 +58,10 @@ export const siteImages = {
   /** Parts shelving — CV axle shafts, cases, welding helmet. */
   shopParts: "/shop/auto-parts.webp",
 
-  /** The rentable bay: lift post, bench and screens at the back. */
+  /** The rentable bay, empty and ready: the two-post lift standing over a
+   *  clear floor, with the tool chest and workstation behind it. This is the
+   *  DIY hero — the page promises "a bay with a lift, tools, and air" and
+   *  this is the only photograph that shows the lift. */
   bayInterior: "/shop/diy-bay.webp",
   /** The tool wall over the workbench — what a bay rental gets you. */
   bayToolWall: "/shop/diy-tool-wall.webp",

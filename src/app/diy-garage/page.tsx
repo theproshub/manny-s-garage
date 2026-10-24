@@ -80,8 +80,8 @@ export default function DIYGaragePage() {
             <div className="hero-glow" aria-hidden />
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[var(--rule)] bg-[var(--surface)] ring-1 ring-[var(--rule)] lg:aspect-[16/10]">
               <Image
-                src={siteImages.bayToolWall}
-                alt="The tool wall and workbench in the rentable bay at Manny's Garage, Fargo ND"
+                src={siteImages.bayInterior}
+                alt="The rentable bay at Manny's Garage in Fargo, ND — two-post lift, tool chest and workstation"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"

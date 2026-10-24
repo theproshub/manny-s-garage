@@ -46,12 +46,14 @@ type Destination = {
   name: string;
   mark: keyof typeof TRADE_LOCATION;
   href: string;
-  /** The action word at the end of the row. It reads "Book" on every line by
-   *  the owner's call: the column used to name the provider — ARI, Square,
-   *  Call — and no longer does. Who runs the calendar is still stated on the
-   *  destination page's "Scheduled through" field and in the paragraph under
-   *  this list, so the disclosure survives; it just is not the first thing a
-   *  customer reads. */
+  /** The action at the end of the row. This column has been three things: it
+   *  named the provider (ARI, Square, Call), then read a bare "Book" on every
+   *  line, and now names the job being booked. The middle version was the
+   *  weakest — four identical words down a column tell the reader nothing and
+   *  read as decoration. Naming the work makes the row a sentence you can
+   *  read across: "Automotive · bring it to 1341 Main Ave S · book auto
+   *  repair". Keep these short; `.trade-line-price` is `white-space: nowrap`,
+   *  so a long label does not wrap, it squeezes the trade name beside it. */
   via: string;
   /** The rows that leave the page, and both leave to a phone. */
   leaves: boolean;
@@ -62,28 +64,28 @@ const DESTINATIONS: Destination[] = [
     name: BOOKING_DESTINATIONS.automotive.name,
     mark: "A",
     href: bookingPath("automotive"),
-    via: "Book",
+    via: "Book auto repair",
     leaves: false,
   },
   {
     name: BOOKING_DESTINATIONS.handyman.name,
     mark: "H",
     href: bookingPath("handyman"),
-    via: "Book",
+    via: "Book handyman",
     leaves: false,
   },
   {
     name: BOOKING_DESTINATIONS.diy.name,
     mark: "D",
     href: BUSINESS.phone.tel,
-    via: "Book",
+    via: "Book bay time",
     leaves: true,
   },
   {
     name: "I.T.",
     mark: "I",
     href: BUSINESS.phone.tel,
-    via: "Book",
+    via: "Book tech help",
     leaves: true,
   },
 ];
@@ -102,7 +104,7 @@ export default function BookPage() {
             them.
           </p>
 
-          <ul className="trade-lines mt-6">
+          <ul className="trade-lines is-actions mt-6">
             {DESTINATIONS.map((d) => {
               const inside = (
                 <>
