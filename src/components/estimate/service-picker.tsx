@@ -108,7 +108,7 @@ export function ServicePicker() {
                 </dt>
                 <dd className="bd-value">
                   {line.amount === null ? (
-                    <span className="bd-pending">Confirmed first</span>
+                    <span className="bd-pending">We’ll confirm</span>
                   ) : line.amount === 0 ? (
                     <span className="bd-included">Included</span>
                   ) : (
@@ -128,7 +128,7 @@ export function ServicePicker() {
               {pending ? (
                 <div className="bd-row bd-subtotal">
                   <dt className="bd-label">Parts</dt>
-                  <dd className="bd-value bd-pending">Confirmed before work</dd>
+                  <dd className="bd-value bd-pending">We’ll confirm first</dd>
                 </div>
               ) : null}
             </div>
@@ -147,12 +147,12 @@ export function ServicePicker() {
               </p>
               <p className="bd-total-note">
                 {isQuoted
-                  ? "Every tech job is different, so we will not guess at a number."
+                  ? "Every tech job is different, so we’d rather look first than guess."
                   : total === 0
-                    ? "We do not charge for this."
+                    ? "This one’s on us."
                     : isEstimate
-                      ? "Parts still to add — we tell you before we start."
-                      : "This is the price. Nothing gets added."}
+                      ? "Parts still to add — we’ll tell you what they cost before we start."
+                      : "That’s what you pay. Nothing gets added on."}
               </p>
             </div>
             {!isQuoted ? (
@@ -165,7 +165,7 @@ export function ServicePicker() {
 
           <div className="bd-foot">
             <Link href={selected.bookHref} className="btn-primary">
-              {dest ? "Book this" : "Ask about this"}
+              {dest ? "Book This" : "Ask About This"}
             </Link>
             <div className="bd-foot-meta">
               {calendar ? (
@@ -174,7 +174,7 @@ export function ServicePicker() {
                 </span>
               ) : dest ? (
                 <span className="bd-foot-note">
-                  Bay time is booked by phone — the number is on the next page
+                  Priced after we look — the number is on the next page
                 </span>
               ) : null}
             </div>

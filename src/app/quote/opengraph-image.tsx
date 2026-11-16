@@ -5,5 +5,5 @@ export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
 export default function Image() {
-  return ogCard("What it costs");
+  return ogCard("What’s this going to cost?");
 }

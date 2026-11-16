@@ -66,7 +66,7 @@ export default function DIYGarageServicesPage() {
               transition={{ duration: 0.5, delay: 0.06 }}
               className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
             >
-              <span className="metal-text block">DIY Bay Pricing</span>
+              <span className="metal-text block">DIY Bay pricing</span>
               <motion.span
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -79,7 +79,7 @@ export default function DIYGarageServicesPage() {
                 />
                 <span className="text-base font-medium tracking-wide text-[var(--ink)]/95 sm:text-lg sm:tracking-normal lg:text-xl">
                   <span className="text-[var(--accent-strong)]">$20/hr bay rental</span>
-                  <span className="text-[var(--ink)]/90">—optional mechanic assistance.</span>
+                  <span className="text-[var(--ink)]/90">—you only pay for the hours you use. A mechanic is optional.</span>
                 </span>
               </motion.span>
             </motion.h1>
@@ -103,13 +103,13 @@ export default function DIYGarageServicesPage() {
                 href="/book/diy"
  className="btn-primary inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book DIY bay
+                Book DIY Bay
               </Link>
               <Link
                 href="/quote?for=diy"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Fixed pricing
+                Fixed Pricing
               </Link>
             </motion.div>
           </div>
@@ -146,7 +146,7 @@ export default function DIYGarageServicesPage() {
             className="hero-scroll-hint flex flex-col items-center gap-1.5 text-[var(--ink-muted)] transition-colors hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
             aria-label="Scroll to services"
           >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See details</span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest">See Details</span>
           </a>
         </motion.div>
       </section>
@@ -190,7 +190,7 @@ export default function DIYGarageServicesPage() {
               href="/book/diy"
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              Book bay time
+              Book Bay Time
             </Link>
           </div>
         </div>
@@ -208,7 +208,7 @@ export default function DIYGarageServicesPage() {
               <div className="mt-6 rounded-xl border border-[var(--rule)] bg-[var(--surface)] p-6">
                 <p className="text-sm font-semibold uppercase tracking-wider text-[var(--ink-muted)]">Pricing</p>
                 <p className="mt-2 text-3xl font-bold text-[var(--accent-strong)]">${MECHANIC_RATE_PER_HOUR} <span className="text-lg font-normal text-[var(--ink-muted)]">per hour</span></p>
-                <p className="mt-2 text-sm text-[var(--ink-muted)]">Optional. Ask for mechanic hours when you call to book the bay, or add them at the shop.</p>
+                <p className="mt-2 text-sm text-[var(--ink-muted)]">Optional. Add mechanic hours in the notes when you book, or ask for them at the shop.</p>
               </div>
               <ul className="mt-6 space-y-2 text-sm text-[var(--ink-muted)]">
                 {mechanicIncludes.map((item, i) => (
@@ -221,7 +221,7 @@ export default function DIYGarageServicesPage() {
                 href="/book/diy"
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book bay + mechanic
+                Book Bay + Mechanic
               </Link>
             </div>
             <motion.div
@@ -241,7 +241,7 @@ export default function DIYGarageServicesPage() {
 
       {/* Equipment */}
       <section id="equipment" className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-bold text-[var(--ink)] sm:text-3xl mb-6">Included Equipment</h2>
+        <h2 className="text-2xl font-bold text-[var(--ink)] sm:text-3xl mb-6">Included equipment</h2>
         <p className="text-[var(--ink-muted)] max-w-2xl mb-10">
           Every bay rental includes access to the following. No extra fees for tool use.
         </p>
@@ -280,13 +280,13 @@ export default function DIYGarageServicesPage() {
               href="/book/diy"
  className="btn-primary group inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              Book DIY Garage
+              Book DIY Bay Time
             </Link>
             <Link
               href="/diy-garage"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              Back to DIY Garage
+              Back to DIY Bay
             </Link>
           </div>
         </div>

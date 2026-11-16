@@ -12,10 +12,10 @@ import { BUSINESS } from "@/lib/business";
  * shop-internal codes that meant nothing to a visitor.
  */
 const TABS = [
-  { label: "Automotive", href: "/auto" },
+  { label: "Automotive Service", href: "/auto" },
   { label: "Handyman", href: "/handyman" },
   { label: "DIY Bay", href: "/diy-garage" },
-  { label: "I.T.", href: "/it" },
+  { label: "I.T. Service", href: "/it" },
   { label: "Prices", href: "/quote" },
 ];
 

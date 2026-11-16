@@ -65,7 +65,7 @@ export const DIY_INVENTORY: readonly string[] = [
 ];
 
 export const PARTS_DISCLAIMER =
-  "Prices are for the work, not the parts. We tell you what the parts cost before we start.";
+  "These prices cover the work, not the parts. We’ll always tell you what the parts cost before we start.";
 
 export function tvMountPrice(inches: number): number {
   return inches * RATES.tvMountPerInch;

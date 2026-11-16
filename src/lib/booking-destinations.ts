@@ -1,5 +1,6 @@
 import {
   SQUARE_BOOKING_URL,
+  DIY_SQUARE_BOOKING_URL,
   ARI_AUTOMOTIVE_BOOKING_URL,
 } from "@/lib/fixed-quote-options";
 
@@ -17,12 +18,13 @@ import {
  * hosts allow it: neither sends `X-Frame-Options` nor a `frame-ancestors`
  * policy.
  *
- * The DIY bay is no longer one of them. Its Square calendar came out, and bay
- * time is now taken by phone — the same way I.T. already works on `/book`.
- * That is why `method` is a union rather than a nullable URL: a trade with no
- * calendar is a real state of this business, not a gap waiting to be filled,
- * and the type should make a caller handle it instead of rendering an empty
- * frame. Two trades frame a scheduler, two take a call.
+ * The DIY bay is one of them again: Square now holds a service for the bay
+ * itself, so it is framed here like the other two instead of sending the
+ * visitor to the phone. `method` stays a union rather than a nullable URL,
+ * because a trade with no calendar is still a real state of this business —
+ * I.T. is quoted after we look, and nothing on `/book` pretends otherwise.
+ * The type should make a caller handle that instead of rendering an empty
+ * frame. Three trades frame a scheduler; tech help takes a call.
  *
  * The provider is still named on every surface that has one — on the picker
  * row, on the header field, and under the frame. Keeping the customer on our
@@ -54,6 +56,8 @@ export type BookingDestination = {
   /** Trade key on the estimate — matches `ServiceOption.mark`. */
   mark: string;
   name: string;
+  /** Reads after "Book " in the page heading, so it is lower case and natural. */
+  booking: string;
   /** What the visitor is actually choosing, calendar or call. */
   picking: string;
   method: BookingMethod;
@@ -63,7 +67,8 @@ export const BOOKING_DESTINATIONS: Record<BookingTradeId, BookingDestination> = 
   automotive: {
     id: "automotive",
     mark: "A",
-    name: "Automotive",
+    name: "Automotive Service",
+    booking: "a Car Repair",
     picking: "a time to bring the car in",
     method: {
       kind: "calendar",
@@ -76,6 +81,7 @@ export const BOOKING_DESTINATIONS: Record<BookingTradeId, BookingDestination> = 
     id: "handyman",
     mark: "H",
     name: "Handyman",
+    booking: "a Handyman Job",
     picking: "the job and a time we come to you",
     method: {
       kind: "calendar",
@@ -88,8 +94,14 @@ export const BOOKING_DESTINATIONS: Record<BookingTradeId, BookingDestination> = 
     id: "diy",
     mark: "D",
     name: "DIY Bay",
+    booking: "DIY Bay Time",
     picking: "the hours you want the bay",
-    method: { kind: "phone" },
+    method: {
+      kind: "calendar",
+      provider: "Square",
+      url: DIY_SQUARE_BOOKING_URL,
+      takesPayment: true,
+    },
   },
 };
 

@@ -41,10 +41,27 @@ export const siteImages = {
 
   // —— I.T ——
   /**
-   * Laptop / tech workspace.
-   * Local hero image to avoid remote fetch failures in restricted environments.
+   * The four I.T. jobs, one photograph each: a laptop opened up, a router
+   * being set up, a site being built, a report being read. They match the
+   * four rows the estimate offers under I.T. Service, in the same order.
+   *
+   * These were sitting unused in `references/generated-service-photos/` while
+   * every I.T. surface — this page's hero, the services hero, the home card —
+   * pointed at `/hero/hero-bays.webp`, a photograph of the car bays. The name
+   * and the comment here both said "laptop / tech workspace" and the file
+   * underneath was a garage, so the one trade that never happens in the
+   * building was the one illustrated by it.
+   *
+   * Still stock, like everything under `/hero/`, and still a candidate for a
+   * real photograph of the shop's own bench.
    */
-  itConsultant: "/hero/hero-bays.webp",
+  itConsultant: "/hero/it-computer.webp",
+  /** Router in hand — the Wi-Fi and internet set-up job. */
+  itWifi: "/hero/it-wifi.webp",
+  /** A site being built at the desk — the website and app job. */
+  itWebsite: "/hero/it-website.webp",
+  /** A printed chart being read — the spreadsheets and reports job. */
+  itReports: "/hero/it-reports.webp",
 
   // —— The shop itself (real photographs, Oct 2026) ——
   /** Street frontage: the painted sign over the open bay door. */

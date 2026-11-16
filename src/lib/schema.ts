@@ -61,14 +61,14 @@ export function localBusinessSchema() {
   return {
     ...businessBase,
     description:
-      "Manny's Garage — auto repair, handyman, DIY bay, and I.T. in Fargo, ND. One shop, no runaround.",
+      "Manny's Garage — Automotive Service, Handyman, DIY Bay, and I.T. Service in Fargo, ND. One shop, no runaround.",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Manny's Garage Services",
       itemListElement: [
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Auto Repair" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Automotive Service" } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Handyman Services" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "DIY Garage Bay Rental" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "DIY Bay Rental" } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "I.T. Support" } },
       ],
     },
@@ -80,13 +80,13 @@ export function autoServiceSchema() {
     ...businessBase,
     "@context": "https://schema.org",
     "@type": "AutoRepair",
-    name: "Manny's Garage — Automotive",
+    name: "Manny's Garage — Automotive Service",
     description:
-      "Automotive repair in Fargo, ND. Oil changes, brake jobs, diagnostics, battery replacement, and emergency roadside assistance.",
-    serviceType: "Automotive Repair",
+      "Automotive service in Fargo, ND. Oil changes, brake jobs, diagnostics, battery replacement, and emergency roadside assistance.",
+    serviceType: "Automotive Service",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Automotive Services",
+      name: "Automotive Service",
       itemListElement: [
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Oil Change", price: "40", priceCurrency: "USD" } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Brake Pad Replacement", price: "180", priceCurrency: "USD" } },
@@ -124,7 +124,7 @@ export function diyGarageSchema() {
     ...businessBase,
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "Manny's Garage — DIY Bay Rental",
+    name: "Manny's Garage — DIY Bay",
     description:
       "DIY garage bay rental in Fargo, ND. Rent a fully equipped bay by the hour to work on your own vehicle.",
     serviceType: "Garage Bay Rental",

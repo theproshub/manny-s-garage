@@ -29,9 +29,9 @@ const orbitron = Orbitron({
 });
 
 export const metadata: Metadata = {
-  title: "Manny's Garage — Auto, Handyman, DIY Bay & I.T. | Fargo, ND",
+  title: "Manny's Garage — Automotive Service, Handyman, DIY Bay & I.T. Service | Fargo, ND",
   description:
-    "Manny's Garage — auto repair, handyman, DIY bay, and I.T. in Fargo, ND. Repair your ride, upgrade your home, rent a bay, or sort your tech. One shop—no runaround.",
+    "Manny's Garage — Automotive Service, Handyman, DIY Bay, and I.T. Service in Fargo, ND. Repair your ride, upgrade your home, rent a bay, or sort your tech. One shop—no runaround.",
   metadataBase: new URL("https://mannygarage.com"),
   alternates: { canonical: "/" },
   verification: { google: "google8b2e203404a03e46" },
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
   openGraph: {
     title: "Manny's Garage — Fargo's One-Stop Shop",
-    description: "Auto repair, handyman, DIY bay, and I.T. in Fargo, ND.",
+    description: "Automotive Service, Handyman, DIY Bay, and I.T. Service in Fargo, ND.",
     url: "https://mannygarage.com",
     siteName: "Manny's Garage",
     locale: "en_US",
@@ -80,7 +80,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen relative">
-        <a href="#content" className="skip-link">Skip to content</a>
+        <a href="#content" className="skip-link">Skip to Content</a>
         <StickyHeader />
         <div id="content">{children}</div>
         <Footer />

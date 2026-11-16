@@ -23,11 +23,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const dest = BOOKING_DESTINATIONS[trade as BookingTradeId];
   if (!dest) return {};
 
-  const title = `Book ${dest.name.toLowerCase()} — Manny's Garage, Fargo ND`;
+  const title = `Book ${dest.booking} — Manny's Garage, Fargo ND`;
   const description =
     dest.method.kind === "calendar"
       ? `Pick ${dest.picking} at Manny's Garage in Fargo, ND. The ${BUSINESS.name} calendar, on our page.`
-      : `Call Manny's Garage in Fargo, ND to book ${dest.picking}. We take bay time by phone.`;
+      : `Call Manny's Garage in Fargo, ND to book ${dest.picking}. We take this one by phone.`;
 
   return {
     title,
@@ -57,7 +57,7 @@ export default async function BookTradePage({ params }: Params) {
             ← All booking
           </Link>
 
-          <h1 className="press press-lg mt-3">Book {dest.name}</h1>
+          <h1 className="press press-lg mt-3">Book {dest.booking}</h1>
 
           {/* The header fields of the sheet. Each one answers a question the
               visitor has before they touch a calendar — or pick up a phone:
@@ -111,9 +111,9 @@ export default async function BookTradePage({ params }: Params) {
                The number is the action, not a footnote under a dead embed. */
             <div className="mt-6">
               <p className="measure">
-                Bay time is booked over the phone. Tell us the hours you want
-                and whether you want a mechanic on it, and we will put you in
-                the book while you are on the call.
+                This one gets booked over the phone. Tell us what you need and
+                when suits you, and we’ll put you in the book while you’re still
+                on the call.
               </p>
 
               <a href={BUSINESS.phone.tel} className="btn-primary mt-5">
@@ -121,13 +121,10 @@ export default async function BookTradePage({ params }: Params) {
               </a>
 
               <p className="measure mt-4 text-sm text-[var(--ink-muted)]">
-                Texting the same number works too. If you would rather see what
-                a session costs before you call,{" "}
-                <Link
-                  href="/quote?for=diy"
-                  className="underline underline-offset-4"
-                >
-                  the bay rates are here
+                Texting the same number works too. And if you’d rather see what
+                it costs before you call,{" "}
+                <Link href="/quote" className="underline underline-offset-4">
+                  our prices are here
                 </Link>
                 .
               </p>

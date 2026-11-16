@@ -56,7 +56,7 @@ const batteryIncludes = [
 const sections = [
   {
     id: "diagnostics",
-    title: "Diagnostics & Check Engine",
+    title: "Diagnostics & Check-Engine Lights",
     description: "If a light is on or something feels off, we’ll scan and verify what’s actually happening.",
     includes: diagnosticsIncludes,
     stat: "Same-day results",
@@ -127,7 +127,7 @@ export default function AutoServicesPage() {
               transition={{ duration: 0.5, delay: 0.06 }}
               className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
             >
-              <span className="metal-text block">Auto Services</span>
+              <span className="metal-text block">Automotive Service pricing</span>
               <motion.span
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -139,8 +139,8 @@ export default function AutoServicesPage() {
                   aria-hidden
                 />
                 <span className="text-base font-medium tracking-wide text-[var(--ink)]/95 sm:text-lg sm:tracking-normal lg:text-xl">
-                  <span className="text-[var(--accent-strong)]">Choose fast</span>
-                  <span className="text-[var(--ink)]/90">—we’ll confirm your written estimate before any work.</span>
+                  <span className="text-[var(--accent-strong)]">Priced before we start</span>
+                  <span className="text-[var(--ink)]/90">—you’ll have the estimate in writing before we touch your car.</span>
                 </span>
               </motion.span>
             </motion.h1>
@@ -151,7 +151,7 @@ export default function AutoServicesPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-[var(--accent)] pl-4 text-[15px] leading-[1.6] text-[var(--ink-muted)] sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Pick what sounds closest below. If you’re not sure, book and we’ll route you correctly—no surprises, no pressure.{" "}
+              Pick whatever sounds closest below. If you’re not sure, just book it — we’ll work out what you actually need when you get here.{" "}
               {AUTO_PRICING_PARTS_DISCLAIMER}
             </motion.p>
 
@@ -165,19 +165,19 @@ export default function AutoServicesPage() {
                 href="/quote?for=auto"
  className="btn-primary inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Fixed auto prices
+                Fixed Automotive Prices
               </Link>
               <Link
                 href="/book/automotive"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book (any job)
+                Book (Any Job)
               </Link>
               <Link
                 href="/auto"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Auto overview
+                Automotive Overview
               </Link>
             </motion.div>
           </div>
@@ -296,7 +296,7 @@ export default function AutoServicesPage() {
                     href="/auto"
  className="btn-outline inline-flex items-center justify-center gap-2 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                   >
-                    Start intake
+                    Start Intake
                   </Link>
                 </div>
               </motion.section>
@@ -310,7 +310,7 @@ export default function AutoServicesPage() {
         className="relative mx-auto max-w-7xl scroll-mt-28 px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8"
       >
         <h2 className="text-center text-xl font-bold text-[var(--ink)] sm:text-2xl">
-          Common <span className="orange-glow-text">Fixed Starting Prices</span>
+          Common <span className="orange-glow-text">fixed starting prices</span>
         </h2>
         <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-[var(--ink-muted)]">
           Starting prices for common jobs—we&apos;ll confirm your vehicle and any parts before work. {AUTO_PRICING_PARTS_DISCLAIMER}
@@ -318,7 +318,7 @@ export default function AutoServicesPage() {
         <AutoFixedPricingGrid className="mx-auto mt-8 max-w-5xl" />
         <p className="mt-6 text-center text-sm text-[var(--ink-muted)]">
           <Link href="/quote?for=auto" className="text-[var(--accent-strong)] hover:underline">
-            Open full pricing page →
+            Open Full Pricing Page →
           </Link>
         </p>
       </section>
@@ -336,13 +336,13 @@ export default function AutoServicesPage() {
               href="/book/automotive"
  className="btn-primary group inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              Book Automotive Service
+              Book a Car Repair
             </Link>
             <Link
               href="/auto"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              Back to Automotive
+              Back to Automotive Service
             </Link>
           </div>
         </div>

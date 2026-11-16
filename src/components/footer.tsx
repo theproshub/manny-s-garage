@@ -24,7 +24,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm leading-6 text-[var(--ink-muted)]">
-              Auto repair, handyman services, I.T. support, and DIY garage rentals in one place. Local service you can trust in Fargo.
+              Automotive Service, Handyman, I.T. Service, and DIY Bay rentals in one place. Local service you can trust in Fargo.
             </p>
           </div>
 
@@ -33,12 +33,12 @@ export function Footer() {
             <p className="orbitron mb-5 text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--ink-muted)]">Services</p>
             <ul className="flex flex-col gap-3">
               {[
-                { label: "Auto repair", href: "/auto" },
+                { label: "Automotive Service", href: "/auto" },
                 { label: "Handyman", href: "/handyman" },
-                { label: "DIY bay", href: "/diy-garage" },
-                { label: "I.T.", href: "/it" },
+                { label: "DIY Bay", href: "/diy-garage" },
+                { label: "I.T. Service", href: "/it" },
                 { label: "Prices", href: "/quote" },
-                { label: "Book online", href: "/book" },
+                { label: "Book Online", href: "/book" },
               ].map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="group inline-flex min-h-[44px] items-center gap-2 py-2 text-sm text-[var(--ink)] transition-colors hover:text-[var(--accent-strong)]">
@@ -54,7 +54,7 @@ export function Footer() {
               {[
                 { label: "About", href: "/about" },
                 { label: "Our Facility", href: "/about" },
-                { label: "Book online", href: "/book" },
+                { label: "Book Online", href: "/book" },
                 { label: "Contact", href: "/#contact" },
               ].map((link) => (
                 <li key={link.label}>

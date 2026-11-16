@@ -44,7 +44,7 @@ const smartHomeIncludes = [
 const sections = [
   {
     id: "web-dev",
-    title: "Website & app building",
+    title: "Website & App Building",
     description: "Simple, modern sites for local businesses—fast, mobile-friendly, and easy to update.",
     includes: webDevIncludes,
     stat: "Website pricing",
@@ -111,7 +111,7 @@ export default function ITServicesPage() {
               transition={{ duration: 0.5, delay: 0.06 }}
               className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
             >
-              <span className="metal-text block">I.T. Services</span>
+              <span className="metal-text block">I.T. services</span>
               <motion.span
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -124,7 +124,7 @@ export default function ITServicesPage() {
                 />
                 <span className="text-base font-medium tracking-wide text-[var(--ink)]/95 sm:text-lg sm:tracking-normal lg:text-xl">
                   <span className="text-[var(--cool)]">Quote on request</span>
-                  <span className="text-[var(--ink)]/90">—book a consult to confirm scope and pricing.</span>
+                  <span className="text-[var(--ink)]/90">—every tech job is different, so we’d rather look first than guess.</span>
                 </span>
               </motion.span>
             </motion.h1>
@@ -217,7 +217,7 @@ export default function ITServicesPage() {
                     <p className="text-sm font-semibold uppercase tracking-wider text-[var(--ink-muted)]">Website pricing</p>
                     <div className="mt-3 grid gap-3 sm:grid-cols-2">
                       <div className="rounded-xl border border-[var(--rule)] bg-[var(--surface)] p-4">
-                        <p className="text-sm font-semibold text-[var(--ink)]">Starter site</p>
+                        <p className="text-sm font-semibold text-[var(--ink)]">Starter Site</p>
                         <p className="mt-1 text-2xl font-bold text-[var(--cool)]">$299</p>
                         <p className="mt-1 text-xs text-[var(--ink-muted)]">Single page · contact form</p>
                         <ul className="mt-3 space-y-1.5 text-xs text-[var(--ink-muted)]">
@@ -228,7 +228,7 @@ export default function ITServicesPage() {
                         </ul>
                       </div>
                       <div className="rounded-xl border border-[var(--rule)] bg-[var(--surface)] p-4">
-                        <p className="text-sm font-semibold text-[var(--ink)]">Business site</p>
+                        <p className="text-sm font-semibold text-[var(--ink)]">Business Site</p>
                         <p className="mt-1 text-2xl font-bold text-[var(--cool)]">$599</p>
                         <p className="mt-1 text-xs text-[var(--ink-muted)]">Up to 5 pages · basic SEO</p>
                         <ul className="mt-3 space-y-1.5 text-xs text-[var(--ink-muted)]">
@@ -239,7 +239,7 @@ export default function ITServicesPage() {
                         </ul>
                       </div>
                       <div className="rounded-xl border border-[var(--rule)] bg-[var(--surface)] p-4">
-                        <p className="text-sm font-semibold text-[var(--ink)]">Online store</p>
+                        <p className="text-sm font-semibold text-[var(--ink)]">Online Store</p>
                         <p className="mt-1 text-2xl font-bold text-[var(--cool)]">$999+</p>
                         <p className="mt-1 text-xs text-[var(--ink-muted)]">Products · payments · setup</p>
                         <ul className="mt-3 space-y-1.5 text-xs text-[var(--ink-muted)]">
@@ -250,7 +250,7 @@ export default function ITServicesPage() {
                         </ul>
                       </div>
                       <div className="rounded-xl border border-[var(--rule)] bg-[var(--surface)] p-4">
-                        <p className="text-sm font-semibold text-[var(--ink)]">Care plan</p>
+                        <p className="text-sm font-semibold text-[var(--ink)]">Care Plan</p>
                         <p className="mt-1 text-2xl font-bold text-[var(--cool)]">$49/mo</p>
                         <p className="mt-1 text-xs text-[var(--ink-muted)]">Updates · small changes</p>
                         <ul className="mt-3 space-y-1.5 text-xs text-[var(--ink-muted)]">
@@ -274,13 +274,6 @@ export default function ITServicesPage() {
                     </p>
                   </div>
                 )}
-                <ul className="mt-6 space-y-2 text-sm text-[var(--ink-muted)]">
-                  {section.includes.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
                 <Link
                   href="/quote"
                   className="mt-8 inline-flex items-center gap-2 rounded-full border-2 border-[var(--cool)] bg-[var(--cool-soft)] px-6 py-3 font-semibold text-[var(--cool)] transition-colors hover:bg-[var(--cool-soft)] hover:border-cyan-400 group"
@@ -289,9 +282,16 @@ export default function ITServicesPage() {
                 </Link>
               </div>
               <div className={`rounded-2xl border border-[var(--rule)] bg-[var(--surface)] p-8 ${!isEven ? "lg:order-1" : ""}`}>
-                <p className="text-sm text-[var(--ink-muted)]">
-                  We use and support technologies like Ubiquiti UniFi, TrueNAS, Home Assistant, pfSense, and Proxmox where they fit your needs.
+                <p className="text-sm font-semibold uppercase tracking-wider text-[var(--ink-muted)]">
+                  What&apos;s included
                 </p>
+                <ul className="mt-4 text-sm text-[var(--ink-muted)]">
+                  {section.includes.map((item, i) => (
+                    <li key={i} className="rule-item py-2.5 leading-relaxed">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </section>
@@ -299,11 +299,18 @@ export default function ITServicesPage() {
       })}
 
 
+      <section className="relative mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+        <p className="measure text-sm text-[var(--ink-muted)]">
+          We use and support technologies like Ubiquiti UniFi, TrueNAS, Home
+          Assistant, pfSense, and Proxmox where they fit your needs.
+        </p>
+      </section>
+
       {/* CTA */}
       <section className="relative mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-[var(--rule)] border-[var(--cool)] bg-[var(--surface)] backdrop-blur-sm p-6 sm:p-8">
           <div>
-            <h2 className="text-xl font-bold text-[var(--ink)]">Need I.T. Support?</h2>
+            <h2 className="text-xl font-bold text-[var(--ink)]">Need I.T. support?</h2>
             <p className="mt-1 text-[var(--ink-muted)]">Book a consult and we’ll get back to you with a quote and next steps.</p>
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">

@@ -10,7 +10,7 @@ import { SITE_PHONE_DISPLAY, SITE_PHONE_TEL } from "@/lib/contact";
  * anywhere on the site, without scrolling and without opening a menu.
  *
  * Hidden from large screens, where the header stays in view with the phone
- * number in it. The header used to carry a "Book online" button too and no
+ * number in it. The header used to carry a "Book Online" button too and no
  * longer does, so above `lg` the footer is what offers booking.
  * `--action-bar-h` reserves the space it occupies so the bar never covers the
  * last line of a page.
@@ -23,7 +23,7 @@ export function ActionBar() {
         <span className="figure action-bar-value">{SITE_PHONE_DISPLAY}</span>
       </a>
       <Link href="/book" className="action-bar-book">
-        Book online
+        Book Online
       </Link>
     </div>
   );

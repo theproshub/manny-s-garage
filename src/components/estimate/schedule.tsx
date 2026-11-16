@@ -119,7 +119,7 @@ export function Schedule({ mark, heading, caption, items, total, footnote }: Sch
                         </span>
                       </span>
                       <Link href="/quote" className="btn-primary shrink-0">
-                        Get a price
+                        Get a Price
                       </Link>
                     </div>
                   </td>

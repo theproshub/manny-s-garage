@@ -5,12 +5,12 @@ import { TRADE_LOCATION } from "@/lib/trade-location";
 import { BOOKING_DESTINATIONS, bookingPath } from "@/lib/booking-destinations";
 
 export const metadata: Metadata = {
-  title: "Book online — Manny's Garage, Fargo ND",
+  title: "Book Online — Manny's Garage, Fargo ND",
   description:
-    "Book auto repair or handyman work at Manny's Garage in Fargo, ND — the Manny's Garage calendars, both on our page. DIY bay time and tech help are booked by phone.",
+    "Book Automotive Service, Handyman work or DIY Bay time at Manny's Garage in Fargo, ND — the Manny's Garage calendars, all on our page. Tech help is booked by phone.",
   alternates: { canonical: "/book" },
   openGraph: {
-    title: "Book online — Manny's Garage",
+    title: "Book Online — Manny's Garage",
     description: "Pick the work and the right calendar opens on this site.",
     url: "https://mannygarage.com/book",
   },
@@ -64,28 +64,28 @@ const DESTINATIONS: Destination[] = [
     name: BOOKING_DESTINATIONS.automotive.name,
     mark: "A",
     href: bookingPath("automotive"),
-    via: "Book auto repair",
+    via: "Book Automotive Service",
     leaves: false,
   },
   {
     name: BOOKING_DESTINATIONS.handyman.name,
     mark: "H",
     href: bookingPath("handyman"),
-    via: "Book handyman",
+    via: "Book Handyman",
     leaves: false,
   },
   {
     name: BOOKING_DESTINATIONS.diy.name,
     mark: "D",
-    href: BUSINESS.phone.tel,
-    via: "Book bay time",
-    leaves: true,
+    href: bookingPath("diy"),
+    via: "Book DIY Bay Time",
+    leaves: false,
   },
   {
-    name: "I.T.",
+    name: "I.T. Service",
     mark: "I",
     href: BUSINESS.phone.tel,
-    via: "Book tech help",
+    via: "Book Tech Help",
     leaves: true,
   },
 ];
@@ -95,13 +95,13 @@ export default function BookPage() {
     <main>
       <section className="ledger px-4 pb-2 sm:px-6">
         <div className="tier-prose">
-          <p className="field-label">Book online</p>
+          <p className="field-label">Book Online</p>
           <h1 className="press press-lg mt-2">Pick the work</h1>
           <p className="hero-said">
-            The top two open the calendar that holds the slot, right here on
-            this page — you pick the time, and that is the booking. The bottom
-            two are a phone call, because nothing on the other end can sell
-            them.
+            The top three open the calendar that holds the slot, right here on
+            this page — you pick the time, and that is the booking. Tech help is
+            the last one and it is a phone call, because we price that job after
+            we have looked at it.
           </p>
 
           <ul className="trade-lines is-actions mt-6">
@@ -136,11 +136,11 @@ export default function BookPage() {
           </ul>
 
           <p className="measure mt-6 text-sm text-[var(--ink-muted)]">
-            Automotive and house jobs both book through Manny&apos;s Garage,
-            and house jobs take the payment at the same time. Both calendars
-            run on our pages, so you never leave the site to book either one.
-            Bay time and tech help are not on a calendar — those are a call or
-            a text to{" "}
+            Automotive Service, house jobs and bay time all book through
+            Manny&apos;s Garage, and house jobs and bay time take the payment at
+            the same time. Every one of those calendars runs on our pages, so
+            you never leave the site to book. Tech help is the one that is not
+            on a calendar — that is a call or a text to{" "}
             <a
               href={BUSINESS.phone.tel}
               className="figure underline underline-offset-4"

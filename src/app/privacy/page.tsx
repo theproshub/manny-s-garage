@@ -10,7 +10,7 @@ export default function PrivacyPage() {
   return (
     <main className="ledger tier-prose px-4 sm:px-6">
       <p className="field-label">Policy</p>
-      <h1 className="form-header mt-1 text-3xl">Privacy Policy</h1>
+      <h1 className="form-header mt-1 text-3xl">Privacy policy</h1>
 
       <div className="measure mt-6 space-y-4">
         <p>

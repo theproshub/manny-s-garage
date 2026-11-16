@@ -19,7 +19,7 @@ const STEPS = [
 
 export function NextStep({
   href,
-  label = "Book online",
+  label = "Book Online",
 }: {
   href: string;
   label?: string;

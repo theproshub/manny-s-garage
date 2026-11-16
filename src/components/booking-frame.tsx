@@ -8,8 +8,9 @@ import { BUSINESS } from "@/lib/business";
  * The scheduler, embedded as the attached sheet of the work order.
  *
  * Takes a `BookingCalendar` rather than a whole destination, so a trade that
- * books by phone cannot reach this component at all — the DIY bay used to
- * frame Square here and no longer does, and the type is what keeps that from
+ * books by phone cannot reach this component at all. The DIY bay has moved
+ * across that line in both directions — out to the phone, and now back onto a
+ * Square service of its own — and the type is what keeps either move from
  * silently regressing into an empty frame.
  *
  * The placeholder sits *behind* the frame rather than over it, and that is

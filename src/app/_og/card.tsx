@@ -38,10 +38,10 @@ const CANARY = "#F7E9AE";
 const MUTED = "#5A5A63";
 
 const TRADES = [
-  { name: "Automotive", mark: "A", items: AUTO_ITEMS },
+  { name: "Automotive Service", mark: "A", items: AUTO_ITEMS },
   { name: "Handyman", mark: "H", items: HANDYMAN_ITEMS },
   { name: "DIY Bay", mark: "D", items: DIY_ITEMS },
-  { name: "I.T.", mark: "I", items: IT_ITEMS },
+  { name: "I.T. Service", mark: "I", items: IT_ITEMS },
 ] as const;
 
 /**

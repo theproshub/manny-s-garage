@@ -13,13 +13,22 @@ import { siteImages } from "@/lib/site-images";
 
 const IT_SERVICES_BASE = "/it/services";
 const HERO_SLIDE_DURATION_MS = 4500;
+/* The hero rotated through the car bays, the DIY bay, an automotive slide and
+   a handyman grid — four pictures of the three trades this page is not about.
+   It now shows the four I.T. jobs themselves, in the order the estimate lists
+   them. */
 const IT_HERO_IMAGES = [
-  "/hero/hero-bays.webp",
-  "/hero/diy-garage-bay.webp",
-  "/hero/hero-auto-slide-services.webp",
-  "/hero/hero-handyman-grid.webp",
+  siteImages.itWifi,
+  siteImages.itConsultant,
+  siteImages.itWebsite,
+  siteImages.itReports,
 ] as const;
-const itHeroSlideLabels = ["Service bays", "DIY bay", "Auto services", "Home installs"] as const;
+const itHeroSlideLabels = [
+  "Wi-Fi and internet set up",
+  "A computer opened up",
+  "A site being built",
+  "Reports off the spreadsheet",
+] as const;
 
 const itServices = [
   {
@@ -95,7 +104,7 @@ export default function ITPages() {
               transition={{ duration: 0.5, delay: 0.06 }}
               className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
             >
-              <span className="metal-text block">Tech Help</span>
+              <span className="metal-text block">Tech help</span>
             </motion.h1>
 
             <motion.p

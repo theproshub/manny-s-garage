@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "DIY Bay Services & Pricing | Garage Rental Fargo ND — Manny's Garage",
   description:
-    "See what's included in a DIY bay rental at Manny's Garage, Fargo ND. Lifts, tools, and workspace available by the hour. Perfect for DIY mechanics.",
+    "See what's included in a DIY Bay rental at Manny's Garage, Fargo ND. Lifts, tools, and workspace available by the hour. Perfect for DIY mechanics.",
   openGraph: {
     title: "DIY Bay Services & Pricing — Manny's Garage Fargo",
     description: "Hourly garage bay rental with lifts and tools. Everything a DIY mechanic needs.",

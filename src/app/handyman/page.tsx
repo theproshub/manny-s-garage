@@ -45,39 +45,39 @@ const SERVICES_LIST: HandymanServiceItem[] = [
   },
   {
     title: "TV Mounting",
-    subtitle: "Full Motion, Fixed, Swivel, Tilting Mounts",
+    subtitle: "Full-motion, fixed, swivel and tilting mounts",
     details: "$50 ・ 1 hr",
   },
   {
     title: "General Assembly",
-    subtitle: "Vanity Mirror, Shoe Rack, Computer Desk, TV Stand.",
+    subtitle: "Vanity mirrors, shoe racks, computer desks, TV stands",
     details: "$65 ・ 45 min+",
   },
   {
     title: "General Mounting",
-    subtitle: "Fire Place, Floating TV Stand, Shelves, Window Curtain, Picture Frames",
+    subtitle: "Fireplaces, floating TV stands, shelves, curtain rails, picture frames",
     details: "$30 ・ 30 min+",
   },
   {
     title: "Security Camera Installation",
-    subtitle: "POE, Analog & Wired Cameras",
+    subtitle: "PoE, analog and wired cameras",
     details: "$120 ・ 1 hr 30 min+",
   },
   {
     title: "Office, Home & Entertainment",
-    subtitle: "Gaming Room, Home Office, LED Lights, & Home Entertainment",
+    subtitle: "Gaming rooms, home offices, LED lighting and home entertainment",
     details: "$80 ・ 45 min+",
   },
 ];
 
 const handymanHeroSlideLabels = [
-  "TV & Media",
-  "TV Mounting",
-  "Smart Lighting",
-  "Home Installs",
-  "Projector & Screen",
-  "Security & Cameras",
-  "Home Theater",
+  "TV & media",
+  "TV mounting",
+  "Smart lighting",
+  "Home installs",
+  "Projector & screen",
+  "Security & cameras",
+  "Home theater",
   "Bedroom Setup",
   "Professional Install",
   "LED & Mood Lighting",
@@ -155,7 +155,7 @@ export default function HandymanPage() {
                 href="/book/handyman"
  className="btn-primary inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book online
+                Book Online
               </Link>
             </motion.div>
           </div>
@@ -261,11 +261,11 @@ export default function HandymanPage() {
         </motion.div>
       </section>
 
-      {/* Fixed pricing — one page, tap a price */}
+      {/* Fixed Pricing — one page, tap a price */}
       <section id="calculator" className="relative border-y border-[var(--rule)] bg-[var(--surface)] py-16 sm:py-20 backdrop-blur-sm">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <SectionHeading
-            title="Book handyman work"
+            title="Book Handyman work"
             description="Pick the service and the appointment time, without leaving our site."
           />
           <motion.div
@@ -281,7 +281,7 @@ export default function HandymanPage() {
               href="/book/handyman"
               className="btn-primary inline-flex w-full max-w-xs items-center justify-center gap-1.5 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto"
             >
-              Book online
+              Book Online
             </Link>
           </motion.div>
         </div>

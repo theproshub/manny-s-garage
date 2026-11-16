@@ -63,10 +63,10 @@ function cardStartsAt(items: Parameters<typeof startsAt>[0]): string {
 }
 
 const OPENING_TRADES = [
-  { name: "Automotive", mark: "A", href: "/auto", items: AUTO_ITEMS },
+  { name: "Automotive Service", mark: "A", href: "/auto", items: AUTO_ITEMS },
   { name: "Handyman", mark: "H", href: "/handyman", items: HANDYMAN_ITEMS },
   { name: "DIY Bay", mark: "D", href: "/diy-garage", items: DIY_ITEMS },
-  { name: "I.T.", mark: "I", href: "/it", items: IT_ITEMS },
+  { name: "I.T. Service", mark: "I", href: "/it", items: IT_ITEMS },
 ].map((trade) => ({
   name: trade.name,
   href: trade.href,
@@ -84,8 +84,8 @@ export default function Home() {
               Fargo&apos;s one stop shop.
             </h1>
             <p className="hero-said">
-              See what your job costs before you call. Nothing gets added at
-              the end.
+              No one likes a surprise bill. See what your job costs here first,
+              and we won’t start until you’re happy with the number.
             </p>
 
             {/* The four trades as four real estimate lines. This is the summary
@@ -108,12 +108,12 @@ export default function Home() {
             </ul>
 
             <div className="hero-cta">
-              <Link href="/book" className="btn-primary">Book online</Link>
+              <Link href="/book" className="btn-primary">Book Online</Link>
               <a href={BUSINESS.phone.tel} className="btn-outline">
                 Call {BUSINESS.phone.display}
               </a>
               <Link href="/quote" className="hero-cta-plain">
-                See all prices
+                See All Prices
               </Link>
             </div>
           </div>
@@ -129,18 +129,18 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pb-16 pt-2 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-20 lg:px-8">
           <SectionHeading
             title="What we do"
-            description="Four trades, one shop. Prices below are what the job starts at — we confirm the parts cost before any work begins."
+            description="Four trades, one shop. The prices below are where each job starts — we’ll always confirm what the parts cost before any work begins."
           />
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <ServiceCard
-              title="Auto repair"
+              title="Automotive Service"
               description="Oil changes, brakes, batteries, diagnostics, and recovery if you break down in Fargo."
               imageSlides={autoCardSlides}
               startsAt={cardStartsAt(AUTO_ITEMS)}
               href="/auto"
               bookHref="/book/automotive"
-              bookLabel="Book a repair"
+              bookLabel="Book a Repair"
             />
             <ServiceCard
               title="Handyman"
@@ -149,20 +149,20 @@ export default function Home() {
               startsAt={cardStartsAt(HANDYMAN_ITEMS)}
               href="/handyman"
               bookHref="/book/handyman"
-              bookLabel="Book handyman"
+              bookLabel="Book Handyman"
               priority
             />
             <ServiceCard
-              title="DIY bay"
+              title="DIY Bay"
               description="Rent the bay by the hour with the lift, the air line and the tools. Add a mechanic if you want a hand."
               imageSlides={diyCardSlides}
               startsAt={cardStartsAt(DIY_ITEMS)}
               href="/diy-garage"
               bookHref="/book/diy"
-              bookLabel="Book the bay"
+              bookLabel="Book the Bay"
             />
             <ServiceCard
-              title="I.T."
+              title="I.T. Service"
               description="Wi-Fi and internet set up, computers fixed, websites and spreadsheets built."
               imageSlides={itCardSlides}
               startsAt={cardStartsAt(IT_ITEMS)}

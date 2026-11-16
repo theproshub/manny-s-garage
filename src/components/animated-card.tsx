@@ -27,7 +27,7 @@ const SLIDESHOW_INTERVAL_MS = 6000;
  * What came out: the category icon in a glowing rounded square, the uppercase
  * tag pill over the photo, the "Learn more →" row, and the fade-up-on-scroll.
  * A generic glyph of a car tells a customer nothing they did not get from the
- * word "Auto Repair", and an arrow after a link that is already a link is
+ * word "Automotive Service", and an arrow after a link that is already a link is
  * decoration standing where information should be.
  *
  * What went in: the price the trade starts at, and a direct line to booking
@@ -90,7 +90,7 @@ export function ServiceCard({
             </Link>
           ) : (
             <Link href="/quote" className="btn-primary card-action">
-              Get a price
+              Get a Price
             </Link>
           )}
           <Link href={href} className="btn-outline card-action">

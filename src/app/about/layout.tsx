@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Us | Manny's Garage — Fargo's One-Stop Shop",
   description:
-    "Learn about Manny's Garage in Fargo, ND. Auto repair, handyman, DIY bays, and I.T. — real people, fair prices, and quality work you can count on.",
+    "Learn about Manny's Garage in Fargo, ND. Automotive Service, Handyman, DIY Bays, and I.T. Service — real people, fair prices, and quality work you can count on.",
   openGraph: {
     title: "About Manny's Garage — Fargo, ND",
-    description: "Real people, fair prices, and quality work. One shop for auto, handyman, DIY, and I.T.",
+    description: "Real people, fair prices, and quality work. One shop for Automotive Service, Handyman, DIY Bay, and I.T. Service",
     url: "https://mannygarage.com/about",
   },
 };

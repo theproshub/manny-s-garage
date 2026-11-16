@@ -82,7 +82,7 @@ export default function AutoPage() {
               transition={{ duration: 0.5, delay: 0.06 }}
               className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
             >
-              <span className="metal-text block">Auto Repair</span>
+              <span className="metal-text block">Automotive Service</span>
             </motion.h1>
 
             <motion.p
@@ -104,7 +104,7 @@ export default function AutoPage() {
                 href="/book/automotive"
                 className="btn-primary inline-flex items-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book a repair
+                Book a Repair
               </Link>
               <Link
                 href="/quote?for=auto"
@@ -139,7 +139,7 @@ export default function AutoPage() {
             >
               <div
                 aria-live="polite"
-                aria-label={`Slide ${heroSlideIndex + 1}: ${autoHeroSlideLabels[heroSlideIndex] ?? "Auto Service"}`}
+                aria-label={`Slide ${heroSlideIndex + 1}: ${autoHeroSlideLabels[heroSlideIndex] ?? "Automotive Service"}`}
                 className="sr-only"
               />
               <AnimatePresence mode="popLayout">
@@ -153,7 +153,7 @@ export default function AutoPage() {
                 >
                   <Image
                     src={AUTO_HERO_IMAGES[heroSlideIndex]}
-                    alt={`Auto repair in Fargo, ND — ${autoHeroSlideLabels[heroSlideIndex] ?? "Auto Service"}`}
+                    alt={`Auto repair in Fargo, ND — ${autoHeroSlideLabels[heroSlideIndex] ?? "Auto repair"}`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -191,7 +191,7 @@ export default function AutoPage() {
           aria-labelledby="auto-fixed-pricing-heading"
         >
           <h2 id="auto-fixed-pricing-heading" className="text-center text-xl font-bold text-[var(--ink)] sm:text-2xl">
-            Common <span className="orange-glow-text">Fixed Starting Prices</span>
+            Common <span className="orange-glow-text">fixed starting prices</span>
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-[var(--ink-muted)]">
             Starting prices for common jobs—we&apos;ll confirm your vehicle and any parts before work. {AUTO_PRICING_PARTS_DISCLAIMER}
@@ -199,7 +199,7 @@ export default function AutoPage() {
           <AutoFixedPricingGrid className="mx-auto mt-8 max-w-5xl" />
           <p className="mt-6 text-center text-sm text-[var(--ink-muted)]">
             <Link href="/quote?for=auto" className="text-[var(--accent-strong)] hover:underline">
-              Open full pricing page →
+              Open Full Pricing Page →
             </Link>
           </p>
         </section>

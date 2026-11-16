@@ -36,10 +36,10 @@ export function Letterhead() {
           <div className="form-cell">
             <p className="field-label">What we do</p>
             <ul className="text-sm leading-snug">
-              <li>Auto repair</li>
+              <li>Automotive Service</li>
               <li>Handyman</li>
-              <li>DIY bay rental</li>
-              <li>Tech help</li>
+              <li>DIY Bay rental</li>
+              <li>I.T. Service</li>
             </ul>
           </div>
 

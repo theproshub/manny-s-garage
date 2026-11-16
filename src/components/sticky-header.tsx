@@ -23,7 +23,7 @@ import { ShopStatus } from "@/components/shop-status";
  * the shop is open right now sits beside it, because that is the question
  * someone asks immediately before deciding to call or to book.
  *
- * The bar carries no "Book online" button any more, at either width, and the
+ * The bar carries no "Book Online" button any more, at either width, and the
  * nav itself has never linked `/book`. Booking is reached from the pages, from
  * the footer, and on phones from the persistent action bar — note that the
  * action bar is `lg:hidden`, so on a desktop the footer is the only chrome
@@ -32,10 +32,10 @@ import { ShopStatus } from "@/components/shop-status";
  */
 
 const TRADES = [
-  { href: "/auto", label: "Auto repair" },
+  { href: "/auto", label: "Automotive Service" },
   { href: "/handyman", label: "Handyman" },
-  { href: "/diy-garage", label: "DIY bay" },
-  { href: "/it", label: "I.T." },
+  { href: "/diy-garage", label: "DIY Bay" },
+  { href: "/it", label: "I.T. Service" },
 ] as const;
 
 const ALSO = [

@@ -11,10 +11,11 @@ export default function QuotePage() {
         <p className="field-label">
           {BUSINESS.address.locality}, {BUSINESS.address.region} · Our prices
         </p>
-        <h1 className="t-display mt-2 max-w-[18ch]">What will it cost?</h1>
+        <h1 className="t-display mt-2 max-w-[18ch]">What’s this going to cost?</h1>
         <p className="measure t-lead mt-4">
-          Pick the job you need. We show you the work that goes into it, what
-          each part costs, and the total — before you book anything.
+          Pick the job you need and we’ll show you everything that goes into
+          it — the work, what each part costs, and the total. All before you
+          book anything.
         </p>
       </section>
 
@@ -27,18 +28,19 @@ export default function QuotePage() {
         <ul className="measure mt-2">
           <li className="rule-item py-2 text-sm">{PARTS_DISCLAIMER}</li>
           <li className="rule-item py-2 text-sm">
-            A fixed price is the price. An estimate means parts still need
-            adding, and we tell you what they cost before we start.
+            If it says fixed, that’s what you pay. If it says estimate, there
+            are still parts to add — and we’ll tell you what they cost before
+            we start.
           </li>
           <li className="rule-item py-2 text-sm">
-            We work by appointment. There is often a slot free today or tomorrow.
+            We work by appointment, and there’s often something free today or tomorrow.
           </li>
           <li className="py-2 text-sm">
-            Not sure which one you need? Call us on{" "}
+            Not sure which one you need? Just call us on{" "}
             <a href={BUSINESS.phone.tel} className="figure underline underline-offset-4">
               {BUSINESS.phone.display}
             </a>{" "}
-            and we will work it out with you.
+            and we’ll figure it out together.
           </li>
         </ul>
       </section>

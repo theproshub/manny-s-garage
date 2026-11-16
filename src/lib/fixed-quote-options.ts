@@ -13,6 +13,18 @@ export const SQUARE_BOOKING_URL =
 export const HANDYMAN_SQUARE_BOOKING_URL =
   SQUARE_BOOKING_URL;
 
+/**
+ * The DIY bay's own Square service, rather than the service picker the
+ * handyman link opens. Same merchant and location; the trailing id is the bay
+ * itself, so the visitor lands on that service with nothing to choose first.
+ *
+ * The `savt` query parameter the shop copied out of the browser is a Square
+ * visitor token tied to one session. It is deliberately not kept: it would
+ * pin every visitor to a stale session and it is not part of the address.
+ */
+export const DIY_SQUARE_BOOKING_URL =
+  `${SQUARE_BOOKING_URL}/QEJNSDBZREXOAJLZ4SKTRCKP`;
+
 /** TV wall mount — $1.50/inch at listed sizes */
 export const HANDYMAN_TV_PACKAGES: { label: string; price: number }[] = [
   { label: "32″ TV Mount", price: 48 },
@@ -119,12 +131,12 @@ export type AutoFixedPackage = {
 
 /** Shown next to automotive fixed-price lists (quote, book, auto pages). */
 export const AUTO_PRICING_PARTS_DISCLAIMER =
-  "Listed price does not include parts unless otherwise noted—we confirm parts cost before work.";
+  "These prices cover the work, not the parts, unless a line says otherwise. We’ll tell you what the parts cost before we start.";
 
 export const AUTO_FIXED_PACKAGES: AutoFixedPackage[] = [
   {
     id: "diag",
-    label: "Automotive Diagnostic (Check Engine Light)",
+    label: "Diagnostic for a Check-Engine Light",
     sub: "Code scan and basic report",
     price: 0,
   },
@@ -142,19 +154,19 @@ export const AUTO_FIXED_PACKAGES: AutoFixedPackage[] = [
   },
   {
     id: "engine-tuneup",
-    label: "Engine Tuneup",
+    label: "Engine Tune-Up",
     sub: "Starting at · parts not included",
     price: 180,
   },
   {
     id: "brake-pads-pair",
-    label: "Brake Pads Replacement (Pair)",
+    label: "Brake Pads, Replaced (Pair)",
     sub: "Pads · parts not included",
     price: 180,
   },
   {
     id: "brake-pads-rotors-pair",
-    label: "Brake Pads & Rotors Replacement (Pair)",
+    label: "Brake Pads & Rotors, Replaced (Pair)",
     sub: "Pads & rotors · parts not included",
     price: 200,
   },

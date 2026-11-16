@@ -66,7 +66,7 @@ export default function DIYGaragePage() {
                 href="/book/diy"
  className="btn-primary inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book the bay
+                Book the Bay
               </Link>
             </motion.div>
           </div>
@@ -94,7 +94,7 @@ export default function DIYGaragePage() {
 
       <section id="quote" className="relative scroll-mt-28 border-t border-[var(--rule)] bg-[var(--surface)] py-14 sm:py-20">
         <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-[var(--ink)] sm:text-2xl">Fixed Bay Packages</h2>
+          <h2 className="text-xl font-bold text-[var(--ink)] sm:text-2xl">Fixed bay packages</h2>
           <p className="mt-2 text-sm text-[var(--ink-muted)]">
             {`$${DIY_HOURLY}/hr bay · $${DIY_MECHANIC_HOURLY}/hr mechanic · tap a total, then complete booking.`}
           </p>
@@ -106,7 +106,7 @@ export default function DIYGaragePage() {
           </Link>
           <p className="mt-6 text-xs text-[var(--ink-muted)]">
             <Link href="/diy-garage/services" className="text-[var(--accent-strong)] hover:underline">
-              Full equipment list &amp; details
+              Full Equipment List &amp; Details
             </Link>
           </p>
         </div>

@@ -76,9 +76,9 @@ const HANDYMAN_SERVICES_HERO_IMAGES = [
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 const handymanServicesHeroLabels = [
-  "TV Mounting",
-  "Security Cameras",
-  "Handyman Services",
+  "TV mounting",
+  "Security cameras",
+  "Handyman services",
 ];
 
 export default function HandymanServicesPage() {
@@ -148,7 +148,7 @@ export default function HandymanServicesPage() {
               transition={{ duration: 0.5, delay: 0.06 }}
               className="text-[2rem] font-bold leading-[1.2] tracking-tight min-[375px]:text-[2.5rem] sm:text-4xl sm:leading-[1.18] lg:text-[3rem] lg:leading-[1.15] xl:text-5xl"
             >
-              <span className="metal-text block">Handyman Pricing</span>
+              <span className="metal-text block">Handyman pricing</span>
               <motion.span
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -161,7 +161,7 @@ export default function HandymanServicesPage() {
                 />
                 <span className="text-base font-medium tracking-wide text-[var(--ink)]/95 sm:text-lg sm:tracking-normal lg:text-xl">
                   <span className="text-[var(--accent-strong)]">Fixed rates</span>
-                  <span className="text-[var(--ink)]/90">—Furniture, TV Mounting, and Security Cameras.</span>
+                  <span className="text-[var(--ink)]/90">—furniture, TV mounting and security cameras. The price you see is the price you pay.</span>
                 </span>
               </motion.span>
             </motion.h1>
@@ -185,13 +185,13 @@ export default function HandymanServicesPage() {
                 href="/book/handyman"
                 className="btn-primary inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book online
+                Book Online
               </Link>
               <Link
                 href="/book/handyman"
                 className="btn-outline inline-flex items-center gap-1.5 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                View services
+                View Services
               </Link>
             </motion.div>
           </div>
@@ -341,7 +341,7 @@ export default function HandymanServicesPage() {
               href="/book/handyman"
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              Book online
+              Book Online
             </Link>
           </div>
         </div>
@@ -392,7 +392,7 @@ export default function HandymanServicesPage() {
                 href="/book/handyman"
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book online
+                Book Online
               </Link>
             </div>
             <motion.div
@@ -495,7 +495,7 @@ export default function HandymanServicesPage() {
               href="/book/handyman"
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              Book online
+              Book Online
             </Link>
           </div>
         </div>
@@ -514,7 +514,7 @@ export default function HandymanServicesPage() {
               href="/book/handyman"
  className="btn-primary group inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              Book online
+              Book Online
             </Link>
             <Link
               href="/handyman"

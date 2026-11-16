@@ -11,7 +11,7 @@ export default function TermsPage() {
   return (
     <main className="ledger tier-prose px-4 sm:px-6">
       <p className="field-label">Terms</p>
-      <h1 className="form-header mt-1 text-3xl">Terms of Service</h1>
+      <h1 className="form-header mt-1 text-3xl">Terms of service</h1>
 
       <div className="measure mt-6 space-y-4">
         <h2 className="form-header text-lg">Prices</h2>

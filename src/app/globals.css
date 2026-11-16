@@ -155,8 +155,8 @@
   font-family: var(--font-display), var(--font-body), sans-serif;
   font-weight: 800;
   line-height: 1.05;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  text-transform: none;
   text-wrap: balance;
   background: linear-gradient(180deg, #ffffff 0%, #e8e2da 45%, #c8c0b4 100%);
   -webkit-background-clip: text;
@@ -217,8 +217,8 @@
   font-stretch: 76%;
   font-weight: 700;
   font-size: 1.375rem;
-  letter-spacing: 0.006em;
-  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  text-transform: none;
 }
 
 .trade-line-where {
@@ -1702,8 +1702,8 @@
   font-weight: 800;
   font-size: clamp(1.75rem, 5.6vw, 3.25rem);
   line-height: 1.08;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  text-transform: none;
   background: linear-gradient(180deg, #ffffff 0%, #e8e2da 45%, #c8c0b4 100%);
   -webkit-background-clip: text;
   background-clip: text;
