@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { formatUsd } from "./line-item";
 import { WhereBadge } from "./where-badge";
 import {
   SERVICE_GROUPS,
+  groupForSlug,
   optionsInGroup,
   optionTotal,
   hasPending,
@@ -24,8 +26,38 @@ import { BUSINESS } from "@/lib/business";
  * A service is always selected — there is no empty state to decode.
  */
 export function ServicePicker() {
-  const [group, setGroup] = useState<string>(SERVICE_GROUPS[0]);
-  const [selected, setSelected] = useState<ServiceOption>(optionsInGroup(SERVICE_GROUPS[0])[0]);
+  /* `/quote?for=diy` opens the DIY Bay tab. Eight links across the site passed
+     this and nothing read it, so "the bay rates are here" landed the reader on
+     Automotive Service — the first tab — and the price they had been promised
+     was two clicks away with no sign it had moved. */
+  const params = useSearchParams();
+  const slug = params.get("for");
+  const wanted = groupForSlug(slug);
+
+  const [group, setGroup] = useState<string>(wanted ?? SERVICE_GROUPS[0]);
+  const [selected, setSelected] = useState<ServiceOption>(
+    optionsInGroup(wanted ?? SERVICE_GROUPS[0])[0],
+  );
+
+  /* Reading the param into `useState` only covers the first render. Moving
+     between `?for=auto` and `?for=diy` is the same route, so React keeps this
+     component mounted and the initialiser never runs again. Adjusting during
+     render — rather than in an effect — is React's own answer to that, and it
+     repaints before the stale tab is ever shown. */
+  const [lastSlug, setLastSlug] = useState<string | null>(slug);
+  if (slug !== lastSlug) {
+    setLastSlug(slug);
+    /* An absent or unreadable `for=` falls back to the first tab rather than
+       leaving whatever was open, so the address decides what is shown and
+       `/quote` means the same thing however the reader arrived at it. Only a
+       change of slug resets anything, so tabs the reader picks by hand stay
+       picked. */
+    const next = wanted ?? SERVICE_GROUPS[0];
+    if (next !== group) {
+      setGroup(next);
+      setSelected(optionsInGroup(next)[0]);
+    }
+  }
 
   const options = optionsInGroup(group);
 

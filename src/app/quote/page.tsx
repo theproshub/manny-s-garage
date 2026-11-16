@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { ServicePicker } from "@/components/estimate/service-picker";
 import { BUSINESS } from "@/lib/business";
 import { PARTS_DISCLAIMER } from "@/lib/service-catalog";
@@ -19,8 +20,14 @@ export default function QuotePage() {
         </p>
       </section>
 
+      {/* The picker reads `?for=` to open the trade the link named, which is a
+          search param, which means it cannot prerender without a boundary —
+          the build refuses the page outright otherwise. The fallback holds the
+          picker's own height so the page does not jump as it swaps in. */}
       <div className="ledger px-4 sm:px-6">
-        <ServicePicker />
+        <Suspense fallback={<div className="min-h-[32rem]" aria-hidden />}>
+          <ServicePicker />
+        </Suspense>
       </div>
 
       <section className="ledger tier-prose px-4 sm:px-6">

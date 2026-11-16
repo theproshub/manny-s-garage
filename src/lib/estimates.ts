@@ -192,6 +192,38 @@ export const SERVICE_OPTIONS: readonly ServiceOption[] = [...AUTO, ...HOUSE, ...
 
 export const SERVICE_GROUPS = ["Automotive Service", "Handyman", "DIY Bay", "I.T. Service"] as const;
 
+/**
+ * `/quote?for=<slug>` -> the tab that link should open.
+ *
+ * Keyed on the trade mark rather than the group label. The labels have been
+ * renamed twice ("Car repair" -> "Auto Repair" -> "Automotive Service") and a
+ * table written against them goes stale without failing: the link still
+ * resolves, it just opens the wrong trade. The marks are the estimate's own
+ * join key and do not move.
+ *
+ * Both the route word and the trade word are accepted, because the links in
+ * the wild use the route (`for=diy`, `/diy-garage`) while a person writing one
+ * by hand reaches for the trade.
+ */
+const MARK_BY_SLUG: Record<string, string> = {
+  auto: "A",
+  automotive: "A",
+  handyman: "H",
+  house: "H",
+  diy: "D",
+  bay: "D",
+  it: "I",
+  tech: "I",
+};
+
+/** The group a `for=` slug names, or null if it names nothing we have. */
+export function groupForSlug(slug: string | null | undefined): string | null {
+  if (!slug) return null;
+  const mark = MARK_BY_SLUG[slug.trim().toLowerCase()];
+  if (!mark) return null;
+  return SERVICE_OPTIONS.find((o) => o.mark === mark)?.group ?? null;
+}
+
 export function optionsInGroup(group: string): ServiceOption[] {
   return SERVICE_OPTIONS.filter((o) => o.group === group);
 }
