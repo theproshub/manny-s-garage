@@ -16,6 +16,8 @@ interface ServiceCardProps {
   bookHref?: string;
   /** Button text. Explicit, because lower-casing the title broke "DIY bay". */
   bookLabel?: string;
+  /** Where the price button goes when a trade has no booking page of its own. */
+  priceHref?: string;
   priority?: boolean;
 }
 
@@ -41,6 +43,7 @@ export function ServiceCard({
   href,
   bookHref,
   bookLabel,
+  priceHref = "/quote",
   priority = false,
 }: ServiceCardProps) {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -56,7 +59,12 @@ export function ServiceCard({
 
   return (
     <article className="flex flex-col overflow-hidden rounded-lg border border-[var(--rule)] bg-[var(--surface-elevated)]">
-      <Link href={href} className="relative block h-40 w-full overflow-hidden sm:h-44">
+      <Link
+        href={href}
+        aria-hidden
+        tabIndex={-1}
+        className="relative block h-40 w-full overflow-hidden sm:h-44"
+      >
         {imageSlides.map((src, i) => (
           <Image
             key={src + i}
@@ -89,12 +97,12 @@ export function ServiceCard({
               {bookLabel ?? `Book ${title}`}
             </Link>
           ) : (
-            <Link href="/quote" className="btn-primary card-action">
+            <Link href={priceHref} className="btn-primary card-action">
               Get a Price
             </Link>
           )}
           <Link href={href} className="btn-outline card-action">
-            Prices
+            Details
           </Link>
         </div>
       </div>

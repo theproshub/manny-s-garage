@@ -1754,18 +1754,13 @@
    The header is solid and fixed, so every page clears it by exactly its
    height. One rule, no per-page exceptions: the previous scoped version
    existed only because the old header floated transparently over the hero. */
-:root { --header-h: 4rem; --action-bar-h: 4.25rem; }
+:root { --header-h: 4rem; }
 
 @media (min-width: 640px) { :root { --header-h: 4.5rem; } }
 
 #content { padding-top: var(--header-h); }
 
 [id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
-
-/* The fixed action bar must not cover the last line of a page. */
-@media (max-width: 63.99rem) {
-  body { padding-bottom: calc(var(--action-bar-h) + env(safe-area-inset-bottom, 0px)); }
-}
 
 /* ── Selected rows ──
    The picker marked its selection by inverting to solid ink — a printed-form
@@ -1904,68 +1899,6 @@ button[aria-label^="Go to slide"]::after {
 
 .site-menu-foot { padding: 1.5rem max(1.25rem, env(safe-area-inset-left)); }
 .site-menu-foot .btn-primary { display: flex; }
-
-/* ── Action bar ── */
-.action-bar {
-  position: fixed;
-  inset: auto 0 0 0;
-  z-index: 48;
-  display: grid;
-}
-
-/* Large screens keep the header in view, which already carries both actions. */
-@media (min-width: 64rem) {
-  .action-bar { display: none; }
-}
-
-.action-bar {
-  grid-template-columns: 1fr auto;
-  align-items: stretch;
-  gap: 0.75rem;
-  height: calc(var(--action-bar-h) + env(safe-area-inset-bottom, 0px));
-  padding: 0.625rem max(0.875rem, env(safe-area-inset-left));
-  padding-bottom: calc(0.625rem + env(safe-area-inset-bottom, 0px));
-  background: var(--surface);
-  border-top: 1px solid rgba(21, 24, 29, 0.14);
-}
-
-.action-bar-call {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 0;
-  padding: 0 0.25rem;
-}
-
-.action-bar-label {
-  font-size: 0.6875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-muted);
-}
-
-.action-bar-value {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--ink);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.action-bar-book {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 0 1.25rem;
-  border-radius: 0.3125rem;
-  background: linear-gradient(135deg, #C64C00 0%, #A83F00 100%);
-  color: #fff;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
 
 /* ══════════════════════════════════════════════════════════════════════════
    STRIPPING THE DECORATIVE LAYER

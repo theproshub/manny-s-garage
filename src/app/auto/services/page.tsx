@@ -21,64 +21,64 @@ const HERO_SLIDE_DURATION_MS = 4500;
 const autoServicesHeroLabels = [
   "Cars up on the lifts",
   "Parts on the shelf",
-  "Tyre stock",
+  "Tire stock",
   "The bay door, open",
 ];
 
 const diagnosticsIncludes = [
-  "OBD2 / manufacturer-level fault code scan",
-  "Live data and readiness checks",
-  "Same-day results; report sent before any work",
-  "Clear explanation of findings and recommended next steps",
+  "We read every code, including the ones only your make stores",
+  "We watch the live readings with the engine running",
+  "You get the results the same day, before anyone touches anything",
+  "We tell you what we found in plain English, and what we’d do next",
 ];
 
 const brakeIncludes = [
-  "Brake pad and rotor inspection and replacement",
-  "Caliper service and brake fluid flush",
-  "Suspension bushings, struts, and ball joints",
-  "OEM or quality aftermarket parts",
+  "Pads and rotors checked, and replaced if they need it",
+  "Calipers serviced and the brake fluid flushed",
+  "Bushings, struts and ball joints, while we’re under there",
+  "Your choice of factory parts or good aftermarket ones",
 ];
 
 const engineIncludes = [
-  "Oil changes and filter replacement",
-  "Tune-ups: plugs, coils, air/fuel filters",
-  "Timing belts and serpentine belts",
-  "Scheduled maintenance per your manual",
+  "Oil and filter changed",
+  "Tune-ups — plugs, coils, air and fuel filters",
+  "Timing and serpentine belts",
+  "Whatever your manual says is due next",
 ];
 
 const batteryIncludes = [
-  "Battery test and charging system check",
-  "Battery replacement and registration when required",
-  "Starter and alternator diagnostics",
-  "~90-minute turnaround when parts in stock",
+  "Battery tested and the charging system checked",
+  "A new battery installed, and registered if your car needs that",
+  "Starter and alternator looked at while we’re there",
+  "About 90 minutes, if we have the part on the shelf",
 ];
 
 const sections = [
   {
     id: "diagnostics",
     title: "Diagnostics & Check-Engine Lights",
-    description: "If a light is on or something feels off, we’ll scan and verify what’s actually happening.",
+    description: "Light on, or the car just feels off? We’ll scan it and find out what’s really going on.",
     includes: diagnosticsIncludes,
     stat: "Same-day results",
   },
   {
     id: "brake-suspension",
     title: "Brake & Suspension Repair",
-    description: "Squeaks, grinding, pulling, or rough ride—get safety-critical items checked and fixed.",
+    description: "Squeaking, grinding, pulling to one side, riding rough. We check everything that stops the car and fix what needs it.",
     includes: brakeIncludes,
-    stat: "OEM-quality parts",
+    stat: "Factory-quality parts",
   },
   {
     id: "engine-maintenance",
     title: "Engine, Tune-Ups & Maintenance",
-    description: "Stay on schedule with oil, filters, plugs, belts, and manufacturer-recommended maintenance.",
+    description: "Oil, filters, plugs, belts. We keep you on the schedule your car was built around.",
     includes: engineIncludes,
-    stat: "Full-spectrum care",
+    stat: "Kept on schedule",
   },
   {
     id: "battery-charging",
     title: "Battery, Starter & Charging",
-    description: "No-start, slow crank, or dead battery. We test the system and fix the root cause.",
+    description: "Won’t start, or turns over slow? We test the whole system and fix what’s actually causing it.",
     includes: batteryIncludes,
     stat: "90-min turnaround",
   },
@@ -151,7 +151,7 @@ export default function AutoServicesPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-[var(--accent)] pl-4 text-[15px] leading-[1.6] text-[var(--ink-muted)] sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Pick whatever sounds closest below. If you’re not sure, just book it — we’ll work out what you actually need when you get here.{" "}
+              Pick whatever sounds closest below. Not sure? Just book it and we’ll figure out what you actually need when you get here.{" "}
               {AUTO_PRICING_PARTS_DISCLAIMER}
             </motion.p>
 
@@ -165,19 +165,13 @@ export default function AutoServicesPage() {
                 href="/quote?for=auto"
  className="btn-primary inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Fixed Automotive Prices
+                All Automotive Prices
               </Link>
               <Link
                 href="/book/automotive"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book (Any Job)
-              </Link>
-              <Link
-                href="/auto"
- className="btn-outline inline-flex items-center gap-2 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-              >
-                Automotive Overview
+                Book a Repair
               </Link>
             </motion.div>
           </div>
@@ -241,20 +235,6 @@ export default function AutoServicesPage() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 sm:bottom-6 lg:bottom-8"
-        >
-          <a
-            href="#diagnostics"
-            className="hero-scroll-hint flex flex-col items-center gap-1.5 text-[var(--ink-muted)] transition-colors hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
-            aria-label="Scroll to services"
-          >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See Services</span>
-          </a>
-        </motion.div>
       </section>
 
       <section className="relative mx-auto max-w-7xl px-4 pb-20 sm:px-6 sm:pb-24 lg:px-8">
@@ -290,13 +270,7 @@ export default function AutoServicesPage() {
                     href="/book/automotive"
  className="btn-outline group inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                   >
-                    See Pricing / Book
-                  </Link>
-                  <Link
-                    href="/auto"
- className="btn-outline inline-flex items-center justify-center gap-2 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-                  >
-                    Start Intake
+                    Book a Repair
                   </Link>
                 </div>
               </motion.section>
@@ -313,12 +287,12 @@ export default function AutoServicesPage() {
           Common <span className="orange-glow-text">fixed starting prices</span>
         </h2>
         <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-[var(--ink-muted)]">
-          Starting prices for common jobs—we&apos;ll confirm your vehicle and any parts before work. {AUTO_PRICING_PARTS_DISCLAIMER}
+          These are starting prices for the usual jobs. We’ll match it to your car and go over it with you first. {AUTO_PRICING_PARTS_DISCLAIMER}
         </p>
         <AutoFixedPricingGrid className="mx-auto mt-8 max-w-5xl" />
         <p className="mt-6 text-center text-sm text-[var(--ink-muted)]">
           <Link href="/quote?for=auto" className="text-[var(--accent-strong)] hover:underline">
-            Open Full Pricing Page →
+            All Automotive Prices →
           </Link>
         </p>
       </section>
@@ -329,14 +303,14 @@ export default function AutoServicesPage() {
         <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-[var(--rule)] bg-[var(--surface)] backdrop-blur-sm p-6 sm:p-8">
           <div>
             <h2 className="text-xl font-bold text-[var(--ink)]">Book a time</h2>
-            <p className="mt-1 text-[var(--ink-muted)]">Book automotive service and we’ll confirm your appointment and next steps.</p>
+            <p className="mt-1 text-[var(--ink-muted)]">Pick a time that works for you. We’ll confirm it and tell you exactly what happens next.</p>
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link
               href="/book/automotive"
  className="btn-primary group inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              Book a Car Repair
+              Book a Repair
             </Link>
             <Link
               href="/auto"

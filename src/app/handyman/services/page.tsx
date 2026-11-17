@@ -41,32 +41,32 @@ const CAMERA_SLIDES = [
 const CAMERA_SLIDE_DURATION_MS = 4500;
 
 const furnitureIncludes = [
-  "Beds, bed frames, and headboards",
-  "Dressers, nightstands, and chests",
+  "Beds, bed frames and headboards",
+  "Dressers, nightstands and chests of drawers",
   "Bookshelves and storage cabinets",
-  "Desks and office furniture",
-  "Wardrobes and closet systems",
-  "Assembly of flat-pack (e.g. IKEA-style) items",
-  "Basic leveling and hardware tightening",
-  "Removal of packaging and debris",
+  "Desks and anything for the office",
+  "Closet systems and armoires",
+  "Boxed furniture from any store, IKEA included",
+  "Leveled up, with every bolt tightened",
+  "We take the boxes and packaging away with us",
 ];
 
 const tvIncludes = [
-  "Full-motion, tilting, or fixed mount (you supply or we can quote)",
-  "Stud finder and secure wall anchoring",
-  "Wire concealment and cable management",
-  "Connection to existing HDMI/AV equipment",
-  "Leveling and final positioning",
-  "Up to 85\" screen size; larger by quote",
+  "Full-motion, tilting or fixed mounts — bring your own or ask us to price one",
+  "We find the studs and anchor it properly",
+  "Cables tucked away out of sight",
+  "Hooked up to whatever you already have",
+  "Leveled, and set exactly where you want it",
+  "Up to 85 inches; anything bigger, just ask",
 ];
 
 const cameraIncludes = [
-  "Indoor or outdoor camera placement",
-  "Drilling and mounting (brick, siding, soffit)",
-  "Power and network cable run (within 30 ft of outlet/router)",
-  "App setup and device pairing",
-  "Basic recording and motion settings",
-  "Per-camera pricing; multi-camera discounts on request",
+  "Indoors or out, wherever you want the view",
+  "Mounted into brick, siding or soffit",
+  "Power and network cable run, up to 30 ft from an outlet or your router",
+  "Set up on your phone before we leave",
+  "Recording and motion alerts switched on for you",
+  "Priced per camera. Ask us if you want several",
 ];
 
 const HANDYMAN_SERVICES_HERO_IMAGES = [
@@ -172,7 +172,7 @@ export default function HandymanServicesPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-[var(--accent)] pl-4 text-[15px] leading-[1.6] text-[var(--ink-muted)] sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Pick your service below to see what&apos;s included, then book on our site.
+              Here’s what comes with each job. Take a look, then pick a time.
             </motion.p>
 
             <motion.div
@@ -188,10 +188,10 @@ export default function HandymanServicesPage() {
                 Book Online
               </Link>
               <Link
-                href="/book/handyman"
+                href="/quote?for=handyman"
                 className="btn-outline inline-flex items-center gap-1.5 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                View Services
+                All Prices
               </Link>
             </motion.div>
           </div>
@@ -255,20 +255,6 @@ export default function HandymanServicesPage() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 sm:bottom-6 lg:bottom-8"
-        >
-          <a
-            href="#furniture"
-            className="hero-scroll-hint flex flex-col items-center gap-1.5 text-[var(--ink-muted)] transition-colors hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
-            aria-label="Scroll to services"
-          >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See Services</span>
-          </a>
-        </motion.div>
       </section>
 
       {/* Furniture Assembly */}
@@ -303,12 +289,12 @@ export default function HandymanServicesPage() {
           <div>
             <h2 className="text-2xl font-bold text-[var(--ink)] sm:text-3xl">Furniture Assembly</h2>
             <p className="mt-3 text-[var(--ink-muted)] leading-relaxed">
-              We assemble beds, dressers, nightstands, cabinets, bookshelves, and more—so you don&apos;t have to. Professional assembly with proper tools and cleanup.
+              Beds, dressers, nightstands, cabinets, bookshelves. We&apos;ll put it together so you don&apos;t have to, and the boxes leave with us.
             </p>
             <div className="mt-6 rounded-xl border border-[var(--rule)] bg-[var(--surface)] p-6">
               <p className="text-sm font-semibold uppercase tracking-wider text-[var(--ink-muted)]">Pricing</p>
               <p className="mt-2 text-3xl font-bold text-[var(--accent-strong)]">${FURNITURE_PRICE} <span className="text-lg font-normal text-[var(--ink-muted)]">per item</span></p>
-              <p className="mt-2 text-sm text-[var(--ink-muted)]">Multiple items in one visit: same rate per piece. Large or complex items may be quoted separately.</p>
+              <p className="mt-2 text-sm text-[var(--ink-muted)]">More than one piece in the same visit? Same rate each. If something’s really big, we’ll price it with you first.</p>
               <div className="mt-4">
                 <p className="text-sm font-medium text-[var(--ink)] mb-2">Select item count</p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -326,7 +312,7 @@ export default function HandymanServicesPage() {
                   })}
                 </div>
                 <p className="mt-3 text-xs text-[var(--ink-muted)]">
-                  Need more than 6 items? Book and add details in the notes—we&apos;ll confirm your exact quote.
+                  More than six? Book anyway and tell us in the notes — we&apos;ll confirm your total before we start.
                 </p>
               </div>
             </div>
@@ -354,12 +340,12 @@ export default function HandymanServicesPage() {
             <div className="order-2 lg:order-1">
               <h2 className="text-2xl font-bold text-[var(--ink)] sm:text-3xl">TV Mounting</h2>
               <p className="mt-3 text-[var(--ink-muted)] leading-relaxed">
-                Professional TV mounting with wire management so your setup looks clean. We handle full-motion, tilting, and fixed mounts on drywall or studs.
+                We find the studs, hang it straight, and hide the cables. Full-motion, tilting or fixed, on drywall or studs.
               </p>
               <div className="mt-6 rounded-xl border border-[var(--rule)] bg-[var(--surface)] p-6">
                 <p className="text-sm font-semibold uppercase tracking-wider text-[var(--ink-muted)]">Pricing</p>
                 <p className="mt-2 text-3xl font-bold text-[var(--accent-strong)]">${TV_PRICE_PER_INCH.toFixed(2)} <span className="text-lg font-normal text-[var(--ink-muted)]">per inch (diagonal)</span></p>
-                <p className="mt-2 text-sm text-[var(--ink-muted)]">Based on your TV&apos;s screen size. Example: 55&quot; = ${(55 * TV_PRICE_PER_INCH).toFixed(2)}. Mount hardware not included unless specified.</p>
+                <p className="mt-2 text-sm text-[var(--ink-muted)]">Price goes by screen size, so a 55&quot; runs ${(55 * TV_PRICE_PER_INCH).toFixed(2)}. The bracket isn’t included unless we say so.</p>
                 <div className="mt-4">
                   <p className="text-sm font-medium text-[var(--ink)] mb-2">Select your TV size</p>
                   <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -377,7 +363,7 @@ export default function HandymanServicesPage() {
                     })}
                   </div>
                   <p className="mt-3 text-xs text-[var(--ink-muted)]">
-                    Don&apos;t see your size? Book and add details in the notes—we&apos;ll confirm your exact quote.
+                    Don&apos;t see your size? Book anyway and tell us in the notes — we&apos;ll confirm your total before we start.
                   </p>
                 </div>
               </div>
@@ -457,12 +443,12 @@ export default function HandymanServicesPage() {
           <div>
             <h2 className="text-2xl font-bold text-[var(--ink)] sm:text-3xl">Security Camera Installation</h2>
             <p className="mt-3 text-[var(--ink-muted)] leading-relaxed">
-              We install and configure indoor and outdoor security cameras, run cables where needed, and get your app and recording set up.
+              We put the cameras where they see what you need, run the cable, and set the app up before we go.
             </p>
             <div className="mt-6 rounded-xl border border-[var(--rule)] bg-[var(--surface)] p-6">
               <p className="text-sm font-semibold uppercase tracking-wider text-[var(--ink-muted)]">Pricing</p>
               <p className="mt-2 text-3xl font-bold text-[var(--accent-strong)]">${CAMERA_PRICE}</p>
-              <p className="mt-2 text-sm text-[var(--ink-muted)]">Includes mounting, basic cable run, and app setup. Cameras and NVR/DVR supplied by you or quoted separately.</p>
+              <p className="mt-2 text-sm text-[var(--ink-muted)]">That covers mounting, the cable run, and getting the app working. You buy the cameras and recorder, or we can price them for you.</p>
               <div className="mt-4">
                 <p className="text-sm font-medium text-[var(--ink)] mb-2">Select camera count</p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -480,7 +466,7 @@ export default function HandymanServicesPage() {
                   })}
                 </div>
                 <p className="mt-3 text-xs text-[var(--ink-muted)]">
-                  Need more than 6 cameras? Book and add details in the notes—we&apos;ll confirm your exact quote.
+                  More than six cameras? Book anyway and tell us in the notes — we&apos;ll confirm your total before we start.
                 </p>
               </div>
             </div>
@@ -506,8 +492,8 @@ export default function HandymanServicesPage() {
       <section className="relative mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-[var(--rule)] bg-[var(--surface)] backdrop-blur-sm p-6 sm:p-8">
           <div>
-            <h2 className="text-xl font-bold text-[var(--ink)]">Need a custom quote?</h2>
-            <p className="mt-1 text-[var(--ink-muted)]">Combine services or ask about items not listed. Add your details when you book.</p>
+            <h2 className="text-xl font-bold text-[var(--ink)]">Something not on the list?</h2>
+            <p className="mt-1 text-[var(--ink-muted)]">Stack a few jobs together, or ask about something you don’t see here. Just tell us in the notes when you book.</p>
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link

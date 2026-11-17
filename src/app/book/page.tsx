@@ -98,10 +98,9 @@ export default function BookPage() {
           <p className="field-label">Book Online</p>
           <h1 className="press press-lg mt-2">Pick the work</h1>
           <p className="hero-said">
-            The top three open the calendar that holds the slot, right here on
-            this page — you pick the time, and that is the booking. Tech help is
-            the last one and it is a phone call, because we price that job after
-            we have looked at it.
+            The first three pull up a calendar right here. Pick a time and
+            you’re on the schedule. Tech help is the last one, and that one’s a
+            phone call — we need to see the job before we can price it.
           </p>
 
           <ul className="trade-lines is-actions mt-6">
@@ -136,11 +135,10 @@ export default function BookPage() {
           </ul>
 
           <p className="measure mt-6 text-sm text-[var(--ink-muted)]">
-            Automotive Service, house jobs and bay time all book through
-            Manny&apos;s Garage, and house jobs and bay time take the payment at
-            the same time. Every one of those calendars runs on our pages, so
-            you never leave the site to book. Tech help is the one that is not
-            on a calendar — that is a call or a text to{" "}
+            Car work, house jobs and bay time all book right here, and the last
+            two take the payment while you’re at it. You won’t get bounced to
+            another website to finish. Tech help is the only one without a
+            calendar, so just call or text us at{" "}
             <a
               href={BUSINESS.phone.tel}
               className="figure underline underline-offset-4"
@@ -163,9 +161,9 @@ export default function BookPage() {
         {/* Numbered because the order genuinely matters; it is a sequence. */}
         <ol className="measure mt-4">
           {[
-            "Pick your time on the calendar that opens on this page, or call us for the bay.",
-            "We tell you the price before we start any work.",
-            "You say yes, then we get it done.",
+            "Pick a time on the calendar here, or call us for the bay.",
+            "We tell you what it costs before we touch anything.",
+            "You give us the okay, and we get to work.",
           ].map((step, i) => (
             <li key={step} className="rule-item flex gap-4 py-3">
               <span className="figure shrink-0 text-[var(--stamp)]">
@@ -176,7 +174,7 @@ export default function BookPage() {
           ))}
         </ol>
         <p className="mt-4 text-sm text-[var(--ink-muted)]">
-          Not sure which one you need?{" "}
+          Not sure which one you need? Call us and we’ll point you to it:{" "}
           <a
             href={BUSINESS.phone.tel}
             className="figure underline underline-offset-4"

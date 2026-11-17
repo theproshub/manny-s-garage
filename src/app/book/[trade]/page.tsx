@@ -96,8 +96,9 @@ export default async function BookTradePage({ params }: Params) {
               </div>
 
               <p className="measure mt-6 text-sm text-[var(--ink-muted)]">
-                Pick your time and that is the booking — nothing waits on us to
-                read a form. Stuck, or not sure this is the right one?{" "}
+                Pick a time and you’re on the schedule. Nothing sits in a form
+                waiting on us to read it. Stuck, or not sure this is the right
+                one? Just give us a call:{" "}
                 <a
                   href={BUSINESS.phone.tel}
                   className="figure underline underline-offset-4"
@@ -111,9 +112,9 @@ export default async function BookTradePage({ params }: Params) {
                The number is the action, not a footnote under a dead embed. */
             <div className="mt-6">
               <p className="measure">
-                This one gets booked over the phone. Tell us what you need and
-                when suits you, and we’ll put you in the book while you’re still
-                on the call.
+                We book this one over the phone. Tell us what you need and when
+                you want it, and we’ll get you on the schedule before you hang
+                up.
               </p>
 
               <a href={BUSINESS.phone.tel} className="btn-primary mt-5">
@@ -121,10 +122,10 @@ export default async function BookTradePage({ params }: Params) {
               </a>
 
               <p className="measure mt-4 text-sm text-[var(--ink-muted)]">
-                Texting the same number works too. And if you’d rather see what
-                it costs before you call,{" "}
-                <Link href="/quote" className="underline underline-offset-4">
-                  our prices are here
+                Texting that same number works too. Want to see what it costs
+                first?{" "}
+                <Link href="/quote?for=it" className="underline underline-offset-4">
+                  Our prices are here
                 </Link>
                 .
               </p>

@@ -57,16 +57,16 @@ const AUTO: ServiceOption[] = [
     status: "estimate", bookHref: AUTO_HREF,
     lines: [
       { label: "Labor", detail: "Drain, refill and new filter", amount: 40 },
-      { label: "Fluid check", detail: "We top up what needs it", amount: 0 },
+      { label: "Fluid check", detail: "We top off what needs it", amount: 0 },
       partsLine("Oil and filter for your car"),
     ],
   },
   {
     id: "brakes", mark: "A", group: "Automotive Service",
-    service: "Front or Rear Brake Pads", summary: "New pads on one axle, fitted and checked.",
+    service: "Front or Rear Brake Pads", summary: "New pads on one axle, installed and checked.",
     status: "estimate", bookHref: AUTO_HREF,
     lines: [
-      { label: "Labor", detail: "Fit new pads, one axle (2 wheels)", amount: 180 },
+      { label: "Labor", detail: "New pads on one axle (2 wheels)", amount: 180 },
       { label: "Brake check", detail: "We look over the whole system", amount: 0 },
       partsLine("Brake pads for your car"),
     ],
@@ -76,16 +76,16 @@ const AUTO: ServiceOption[] = [
     service: "New Battery", summary: "Tested first — if yours is fine, you keep it.",
     status: "estimate", bookHref: AUTO_HREF,
     lines: [
-      { label: "Labor", detail: "Test, remove and fit", amount: 40 },
+      { label: "Labor", detail: "Test, remove and install", amount: 40 },
       partsLine("Battery for your car"),
     ],
   },
   {
     id: "check-engine", mark: "A", group: "Automotive Service",
-    service: "Check Engine Light", summary: "We read the fault and explain it in plain words.",
+    service: "Check Engine Light", summary: "We read the code and explain it in plain words.",
     status: "fixed", bookHref: AUTO_HREF,
     lines: [
-      { label: "Fault reading", detail: "Free if we go on to do the repair", amount: 0 },
+      { label: "Code reading", detail: "Free if we go on to do the repair", amount: 0 },
     ],
   },
   {
@@ -93,7 +93,7 @@ const AUTO: ServiceOption[] = [
     service: "Broken Down in Fargo", summary: "Jump start, tire change, or a tow back to the shop.",
     status: "fixed", bookHref: AUTO_HREF,
     lines: [
-      { label: "Call-out", detail: "Anywhere in Fargo", amount: 60 },
+      { label: "Service call", detail: "Anywhere in Fargo", amount: 60 },
     ],
   },
 ];
@@ -104,7 +104,7 @@ const TV_SIZES = [32, 43, 55, 65, 75, 85] as const;
 const TV: ServiceOption[] = TV_SIZES.map((size) => ({
   id: `tv-${size}`, mark: "H", group: "Handyman",
   service: `${size}-inch TV on the Wall`,
-  summary: "Measured, mounted and levelled.",
+  summary: "Measured, mounted and leveled.",
   status: "fixed" as const, bookHref: HAND_HREF,
   lines: [
     {
@@ -120,7 +120,7 @@ const HOUSE: ServiceOption[] = [
   ...TV,
   {
     id: "furniture", mark: "H", group: "Handyman",
-    service: "Furniture Put Together", summary: "Flat-pack built and put where you want it.",
+    service: "Furniture Put Together", summary: "Boxed furniture built and put where you want it.",
     status: "fixed", bookHref: HAND_HREF,
     lines: [{ label: "Assembly", detail: "Per item", amount: RATES.furniturePerItem }],
   },
@@ -134,7 +134,7 @@ const HOUSE: ServiceOption[] = [
     id: "blinds", mark: "H", group: "Handyman",
     service: "Blinds or Curtains Hung", summary: "Measured, drilled and hung straight.",
     status: "fixed", bookHref: HAND_HREF,
-    lines: [{ label: "Fitting", detail: "Per window", amount: RATES.windowTreatment }],
+    lines: [{ label: "Installation", detail: "Per window", amount: RATES.windowTreatment }],
   },
   ...[1, 2, 3, 4].map((n) => ({
     id: `cameras-${n}`, mark: "H", group: "Handyman",
@@ -179,9 +179,9 @@ const BAY: ServiceOption[] = [
 /* ── I.T. ── */
 const TECH: ServiceOption[] = [
   { id: "wifi", service: "Wi-Fi and Internet Set Up", summary: "Routers, extenders and mesh — signal in every room." },
-  { id: "computer", service: "Computer Fixed", summary: "Slow machines, ones that will not start, files recovered." },
-  { id: "website", service: "A Website or App Built", summary: "We agree the price first, build it and hand it over." },
-  { id: "reports", service: "Spreadsheets and Reports", summary: "Your numbers in one place, for a small business." },
+  { id: "computer", service: "Computer Fixed", summary: "Slow machines, ones that won’t start, files recovered." },
+  { id: "website", service: "A Website or App Built", summary: "We agree on the price first, build it, and hand it over." },
+  { id: "reports", service: "Spreadsheets and Reports", summary: "All your numbers in one place, built for a small business." },
 ].map((t) => ({
   ...t, mark: "I", group: "I.T. Service",
   status: "quoted" as const, bookHref: "/book",

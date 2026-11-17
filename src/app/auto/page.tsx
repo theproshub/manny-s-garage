@@ -28,7 +28,7 @@ const HERO_SLIDE_DURATION_MS = 4500;
 const autoHeroSlideLabels = [
   "Cars up on the lifts",
   "The bay door, open",
-  "Tyre stock",
+  "Tire stock",
   "Parts on the shelf",
   "The shop on Main Ave S",
 ];
@@ -91,7 +91,9 @@ export default function AutoPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-5 text-[15px] leading-[1.6] text-[var(--ink)] sm:mt-6 sm:text-base sm:leading-[1.7]"
             >
-              Oil changes, brakes, check engine light, A/C, battery, and more. Prices are listed — parts are not included unless we say so.
+              Oil changes, brakes, A/C, dead batteries, check engine lights.
+              Every price is right on this page, and we’ll tell you what the
+              parts run before we start.
             </motion.p>
 
             <motion.div
@@ -194,12 +196,17 @@ export default function AutoPage() {
             Common <span className="orange-glow-text">fixed starting prices</span>
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-[var(--ink-muted)]">
-            Starting prices for common jobs—we&apos;ll confirm your vehicle and any parts before work. {AUTO_PRICING_PARTS_DISCLAIMER}
+            These are starting prices for the usual jobs. We’ll match it to your car and go over it with you first. {AUTO_PRICING_PARTS_DISCLAIMER}
           </p>
           <AutoFixedPricingGrid className="mx-auto mt-8 max-w-5xl" />
           <p className="mt-6 text-center text-sm text-[var(--ink-muted)]">
             <Link href="/quote?for=auto" className="text-[var(--accent-strong)] hover:underline">
-              Open Full Pricing Page →
+              All Automotive Prices →
+            </Link>
+          </p>
+          <p className="mt-2 text-center text-sm text-[var(--ink-muted)]">
+            <Link href="/auto/services" className="text-[var(--accent-strong)] hover:underline">
+              What each repair includes →
             </Link>
           </p>
         </section>
@@ -214,7 +221,7 @@ export default function AutoPage() {
           <div className="relative z-10">
             <h2 className="text-xl font-bold text-[var(--ink)] mb-3 sm:mb-4 sm:text-2xl md:text-4xl">Book a time</h2>
             <p className="text-[var(--ink-muted)] mb-6 sm:mb-8 text-base sm:text-lg max-w-xl mx-auto">
-              Tell us what the car is doing. We look at it, give you the price, and you decide from there.
+              Tell us what the car’s doing. The noise, the light, the leak. We’ll look at it, give you a price, and you take it from there.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
               <a
@@ -227,7 +234,7 @@ export default function AutoPage() {
                 href="/book/automotive"
                 className="btn-outline inline-flex items-center gap-1.5 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book Directly
+                Book a Repair
               </Link>
             </div>
           </div>

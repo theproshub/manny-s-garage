@@ -131,61 +131,61 @@ export type AutoFixedPackage = {
 
 /** Shown next to automotive fixed-price lists (quote, book, auto pages). */
 export const AUTO_PRICING_PARTS_DISCLAIMER =
-  "These prices cover the work, not the parts, unless a line says otherwise. We’ll tell you what the parts cost before we start.";
+  "These prices cover the labor, not the parts, unless a line says otherwise. We’ll tell you what the parts run before anything starts.";
 
 export const AUTO_FIXED_PACKAGES: AutoFixedPackage[] = [
   {
     id: "diag",
     label: "Diagnostic for a Check-Engine Light",
-    sub: "Code scan and basic report",
+    sub: "We read the codes and explain them",
     price: 0,
   },
   {
     id: "oil-conv",
     label: "Conventional Oil Change",
-    sub: "Up to 5 qts · standard filter · parts not included",
+    sub: "Up to 5 qts · standard filter",
     price: 40,
   },
   {
     id: "oil-syn",
     label: "Full Synthetic Oil Change",
-    sub: "Up to 5 qts · premium filter · parts not included",
+    sub: "Up to 5 qts · premium filter",
     price: 65,
   },
   {
     id: "engine-tuneup",
     label: "Engine Tune-Up",
-    sub: "Starting at · parts not included",
+    sub: "Starts here, depending on the engine",
     price: 180,
   },
   {
     id: "brake-pads-pair",
     label: "Brake Pads, Replaced (Pair)",
-    sub: "Pads · parts not included",
+    sub: "Pads, one pair",
     price: 180,
   },
   {
     id: "brake-pads-rotors-pair",
     label: "Brake Pads & Rotors, Replaced (Pair)",
-    sub: "Pads & rotors · parts not included",
+    sub: "Pads and rotors, one pair",
     price: 200,
   },
   {
     id: "brake-complete-set",
     label: "Complete Brake Set (Pads & Rotors)",
-    sub: "Front and rear set · parts not included",
+    sub: "Front and rear, the whole set",
     price: 350,
   },
   {
     id: "battery",
     label: "Battery Replacement",
-    sub: "Installation · parts not included",
+    sub: "Installed and tested",
     price: 40,
   },
   {
     id: "roadside",
     label: "Emergency Roadside Assistance",
-    sub: "Lockout, flat tire, or jumpstart",
+    sub: "Locked out, flat tire, or a jump start",
     price: 60,
   },
 ];

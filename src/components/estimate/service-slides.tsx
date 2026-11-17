@@ -71,12 +71,12 @@ const SLIDES: Slide[] = [
   {
     id: "bay",
     image: "/services/bay.webp",
-    alt: "A car raised on lifts in a workshop bay",
+    alt: "A car up on the lift in a shop bay",
   },
   {
     id: "assembly",
     image: "/services/assembly.webp",
-    alt: "A handyman drilling into a white timber frame",
+    alt: "A handyman drilling into a white wood frame",
   },
   {
     id: "tools",
@@ -86,7 +86,7 @@ const SLIDES: Slide[] = [
   {
     id: "tv",
     image: "/services/tv.webp",
-    alt: "A living room with a television mounted on the wall above a sideboard",
+    alt: "A living room with a television mounted on the wall above a TV stand",
   },
   {
     id: "furniture",

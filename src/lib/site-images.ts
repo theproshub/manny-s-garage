@@ -39,29 +39,19 @@ export const siteImages = {
   /** Garage with car on lifts - DIY bay rental (Lorenzo Hamers, Unsplash) */
   diyGarage: "/hero/diy-garage-bay.webp",
 
-  // —— I.T ——
-  /**
-   * The four I.T. jobs, one photograph each: a laptop opened up, a router
-   * being set up, a site being built, a report being read. They match the
-   * four rows the estimate offers under I.T. Service, in the same order.
-   *
-   * These were sitting unused in `references/generated-service-photos/` while
-   * every I.T. surface — this page's hero, the services hero, the home card —
-   * pointed at `/hero/hero-bays.webp`, a photograph of the car bays. The name
-   * and the comment here both said "laptop / tech workspace" and the file
-   * underneath was a garage, so the one trade that never happens in the
-   * building was the one illustrated by it.
-   *
-   * Still stock, like everything under `/hero/`, and still a candidate for a
-   * real photograph of the shop's own bench.
-   */
-  itConsultant: "/hero/it-computer.webp",
-  /** Router in hand — the Wi-Fi and internet set-up job. */
-  itWifi: "/hero/it-wifi.webp",
-  /** A site being built at the desk — the website and app job. */
-  itWebsite: "/hero/it-website.webp",
-  /** A printed chart being read — the spreadsheets and reports job. */
-  itReports: "/hero/it-reports.webp",
+  /* —— I.T ——
+     No key here, deliberately.
+
+     Four generated images (`it-computer`, `it-wifi`, `it-website`,
+     `it-reports`) used to sit in this slot, and before them
+     `/hero/hero-bays.webp` — which is itself an illustration of three signed
+     bays, not a photograph. The client rejected the generated set, so the
+     I.T. surfaces now use the shop's own photographs below, the same as every
+     other trade.
+
+     There is still no real photograph of I.T. work being done. Until there
+     is, the honest picture is the building itself. Add the key back when a
+     real photo of the bench exists — not a generated stand-in. */
 
   // —— The shop itself (real photographs, Oct 2026) ——
   /** Street frontage: the painted sign over the open bay door. */

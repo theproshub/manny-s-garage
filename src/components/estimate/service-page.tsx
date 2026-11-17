@@ -19,7 +19,7 @@ type ServicePageProps = {
 };
 
 const SHARED_TERMS = [
-  "We work by appointment. There is often a slot free today or tomorrow.",
+  "We run on appointments, but there’s usually something open today or tomorrow.",
   "You book and pay through Manny's Garage.",
 ];
 
@@ -54,7 +54,8 @@ export function ServicePage({
             <li key={t} className="rule-item py-2 text-sm">{t}</li>
           ))}
           <li className="py-2 text-sm">
-            Not sure? Give us a call:{" "}
+            Not sure which one you need? Give us a call and we’ll figure it out
+            together:{" "}
             <a href={BUSINESS.phone.tel} className="figure underline underline-offset-4">
               {BUSINESS.phone.display}
             </a>

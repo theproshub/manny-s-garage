@@ -24,7 +24,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm leading-6 text-[var(--ink-muted)]">
-              Automotive Service, Handyman, I.T. Service, and DIY Bay rentals in one place. Local service you can trust in Fargo.
+              Cars, houses, computers, and a bay you can rent by the hour. One shop in Fargo. Come to us, or we’ll come to you.
             </p>
           </div>
 
@@ -53,9 +53,9 @@ export function Footer() {
             <ul className="flex flex-col gap-3">
               {[
                 { label: "About", href: "/about" },
-                { label: "Our Facility", href: "/about" },
-                { label: "Book Online", href: "/book" },
                 { label: "Contact", href: "/#contact" },
+                { label: "Privacy Policy", href: "/privacy" },
+                { label: "Terms of Service", href: "/terms" },
               ].map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="group inline-flex min-h-[44px] items-center gap-2 py-2 text-sm text-[var(--ink)] transition-colors hover:text-[var(--cool)]">

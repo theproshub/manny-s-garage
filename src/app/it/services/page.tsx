@@ -7,75 +7,75 @@ import { BackToHome } from "@/components/back-to-home";
 import { siteImages } from "@/lib/site-images";
 
 const networkIncludes = [
-  "Wi-Fi site survey and access point placement",
-  "Ethernet drops and cable runs",
-  "Router and switch configuration",
-  "Gigabit-ready and mesh support",
+  "We walk the building and figure out where the signal needs help",
+  "Cable runs and jacks where you want them",
+  "Router and switches set up properly, not left on defaults",
+  "Gigabit-ready, and mesh if the building needs it",
 ];
 
 const webDevIncludes = [
-  "Fast, mobile-friendly design",
-  "One-page or multi-page sites",
-  "Contact form + basic SEO setup",
-  "Hosting/domain setup help (if needed)",
+  "Loads fast and looks right on a phone",
+  "One page or a whole site, whichever you need",
+  "A contact form, and the basics so people can find you on Google",
+  "Help with hosting and your domain if you want it",
 ];
 
 const pcIncludes = [
-  "Custom builds: gaming, workstation, and general use",
-  "Hardware diagnostics and repair",
-  "OS installs, driver updates, and tuning",
-  "Same-day diagnostics when possible",
+  "Built to order — gaming, work, or the family computer",
+  "We find the broken part and replace it",
+  "Windows reinstalled, drivers updated, the machine running fast again",
+  "Same-day answer whenever we can manage it",
 ];
 
 const dataIncludes = [
-  "Data recovery from failing or failed drives",
-  "NAS setup with automated backups",
-  "Local and cloud backup strategy",
-  "Zero-knowledge / encrypted options where applicable",
+  "Files pulled off drives that are failing, or already gone",
+  "A drive at home that backs itself up so you don’t have to remember",
+  "One copy here, one copy somewhere else",
+  "Encrypted, so nobody but you can read it",
 ];
 
 const smartHomeIncludes = [
-  "Smart home hub and device integration",
-  "Lights, locks, thermostats, cameras on one network",
-  "Local control and privacy-first where possible",
-  "Routine maintenance and troubleshooting",
+  "One hub, with your devices actually talking to it",
+  "Lights, locks, thermostat and cameras on one network",
+  "Still works in your house when the internet is out",
+  "We stay on call when something stops working",
 ];
 
 const sections = [
   {
     id: "web-dev",
     title: "Website & App Building",
-    description: "Simple, modern sites for local businesses—fast, mobile-friendly, and easy to update.",
+    description: "A simple, modern site for your business — quick to load, easy to update, and yours to keep.",
     includes: webDevIncludes,
     stat: "Website pricing",
   },
   {
     id: "network",
     title: "Network Infrastructure",
-    description: "Enterprise-grade Wi-Fi setups, ethernet drops, and router configurations for fast, reliable coverage at home or in your small business.",
+    description: "Dead spots, slow corners, a router you restart every week. We get the signal into every room and leave it working.",
     includes: networkIncludes,
     stat: "Gigabit Ready",
   },
   {
     id: "pc-builds",
     title: "Custom PC Builds & Repair",
-    description: "From high-end gaming rigs and workstations to diagnosing hardware failures and blue screens. We build, repair, and optimize.",
+    description: "A machine that’s slow, won’t start, or a new one built to your budget. Gaming rigs and work machines both.",
     includes: pcIncludes,
     stat: "Same-Day Diagnostics",
   },
   {
     id: "data-recovery",
     title: "Data Recovery & Backup",
-    description: "Secure retrieval from failing drives and implementation of automated, encrypted NAS and cloud backups so you don’t lose data.",
+    description: "If a drive is failing we’ll try to get your files off it, then set up backups so it doesn’t happen again.",
     includes: dataIncludes,
-    stat: "Zero-Knowledge Options",
+    stat: "Private and encrypted",
   },
   {
     id: "smart-home",
     title: "Smart Home & Automation",
-    description: "Unify lights, locks, cameras, thermostats, and more into a single, cohesive system with local control and minimal cloud dependency.",
+    description: "Lights, locks, cameras and the thermostat on one system you actually control, without it all going through someone else’s cloud.",
     includes: smartHomeIncludes,
-    stat: "Local Control",
+    stat: "Works without internet",
   },
 ];
 
@@ -135,7 +135,7 @@ export default function ITServicesPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-[var(--cool)] pl-4 text-[15px] leading-[1.6] text-[var(--ink-muted)] sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Networks, PC builds, data recovery, and smart home. Pick a category below and we&apos;ll quote before starting any work.
+              Networks, computers, lost files, smart home. Find the one that sounds like your problem. You’ll have a price before any work starts.
             </motion.p>
 
             <motion.div
@@ -145,10 +145,10 @@ export default function ITServicesPage() {
               className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
             >
               <Link
-                href="/quote"
+                href="/quote?for=it"
                 className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-[var(--cool)] px-6 py-3 text-sm font-bold text-white transition-transform hover:-translate-y-0.5 hover:bg-[var(--cool)] hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cool)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base"
               >
-                Get an I.T. Price
+                Get a Price
               </Link>
               <Link
                 href="/it"
@@ -169,8 +169,8 @@ export default function ITServicesPage() {
             <div className="hero-glow" aria-hidden />
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[var(--cool)] bg-[var(--surface)] ring-1 ring-[var(--rule)] lg:aspect-[16/10]">
               <Image
-                src={siteImages.itConsultant}
-                alt="I.T and networking services"
+                src={siteImages.shopFront}
+                alt="Manny's Garage on Main Ave S, Fargo ND — where the I.T. work is booked"
                 fill
                 className="object-cover opacity-90"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -181,20 +181,6 @@ export default function ITServicesPage() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 sm:bottom-6 lg:bottom-8"
-        >
-          <a
-            href="#network"
-            className="hero-scroll-hint flex flex-col items-center gap-1.5 text-[var(--ink-muted)] transition-colors hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cool)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
-            aria-label="Scroll to services"
-          >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See Services</span>
-          </a>
-        </motion.div>
       </section>
 
       {sections.map((section, idx) => {
@@ -262,7 +248,7 @@ export default function ITServicesPage() {
                       </div>
                     </div>
                     <p className="mt-3 text-sm text-[var(--ink-muted)]">
-                      Hosting, domain, and paid tools are not included unless noted. We’ll confirm your exact scope and total before we start.
+                      Hosting, your domain and any paid tools aren’t in these prices unless we say so. We’ll go over the full total with you before we start.
                     </p>
                   </div>
                 ) : (
@@ -270,15 +256,15 @@ export default function ITServicesPage() {
                     <p className="text-sm font-semibold uppercase tracking-wider text-[var(--ink-muted)]">Pricing</p>
                     <p className="mt-2 text-xl font-bold text-[var(--cool)]">Quote on request</p>
                     <p className="mt-2 text-sm text-[var(--ink-muted)]">
-                      Scope and price depend on your setup. Book I.T service and describe your needs—we’ll confirm a quote before starting.
+                      What it costs depends on your setup. Tell us what you’ve got and we’ll price it, and you get that number before we start.
                     </p>
                   </div>
                 )}
                 <Link
-                  href="/quote"
+                  href="/quote?for=it"
                   className="mt-8 inline-flex items-center gap-2 rounded-full border-2 border-[var(--cool)] bg-[var(--cool-soft)] px-6 py-3 font-semibold text-[var(--cool)] transition-colors hover:bg-[var(--cool-soft)] hover:border-cyan-400 group"
                 >
-                  See Pricing
+                  Get a Price
                 </Link>
               </div>
               <div className={`rounded-2xl border border-[var(--rule)] bg-[var(--surface)] p-8 ${!isEven ? "lg:order-1" : ""}`}>
@@ -301,8 +287,9 @@ export default function ITServicesPage() {
 
       <section className="relative mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
         <p className="measure text-sm text-[var(--ink-muted)]">
-          We use and support technologies like Ubiquiti UniFi, TrueNAS, Home
-          Assistant, pfSense, and Proxmox where they fit your needs.
+          We work with gear like Ubiquiti UniFi, TrueNAS, Home Assistant,
+          pfSense and Proxmox when it’s the right fit. If none of those names
+          mean anything to you, no worries. That part’s our job.
         </p>
       </section>
 
@@ -310,15 +297,15 @@ export default function ITServicesPage() {
       <section className="relative mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-[var(--rule)] border-[var(--cool)] bg-[var(--surface)] backdrop-blur-sm p-6 sm:p-8">
           <div>
-            <h2 className="text-xl font-bold text-[var(--ink)]">Need I.T. support?</h2>
-            <p className="mt-1 text-[var(--ink-muted)]">Book a consult and we’ll get back to you with a quote and next steps.</p>
+            <h2 className="text-xl font-bold text-[var(--ink)]">Not sure where to start?</h2>
+            <p className="mt-1 text-[var(--ink-muted)]">Tell us what’s going on and we’ll come back with a price and a plan.</p>
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link
-              href="/quote"
+              href="/quote?for=it"
               className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-[var(--cool)] px-5 py-3 text-sm font-bold text-white transition-transform hover:-translate-y-0.5 hover:bg-[var(--cool)] hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cool)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:text-base group"
             >
-              Get an I.T. Price
+              Get a Price
             </Link>
             <Link
               href="/it"

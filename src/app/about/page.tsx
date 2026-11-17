@@ -8,15 +8,15 @@ export default function AboutPage() {
         <p className="field-label">The basics</p>
         <h1 className="form-header mt-1 text-3xl sm:text-4xl">About the shop</h1>
         <p className="measure mt-3">
-          We started Manny&apos;s Garage to take the hassle out of car and
-          house jobs: a straight price, a straight answer, and the work done.
-          Four kinds of work in one place, so you are not calling three
-          different people to get one afternoon sorted.
+          We started Manny&apos;s Garage to take the headache out of car and
+          house work. You get a straight price, a straight answer, and the job
+          done. Four kinds of work under one roof, so you’re not calling three
+          different people to get through one afternoon.
         </p>
         <p className="measure mt-3">
-          If we can put a price on it, it is on this site. For the jobs that are
-          different every time, we look first and tell you the price before we
-          start. You decide from there.
+          If we can put a price on it, it’s already on this site. The jobs that
+          change every time, we look at first and then give you a number. You
+          decide from there. Nobody here is going to talk you into anything.
         </p>
       </section>
 
@@ -58,7 +58,7 @@ export default function AboutPage() {
         </dl>
       </section>
 
-      <NextStep href="/quote" />
+      <NextStep href="/book" />
     </main>
   );
 }

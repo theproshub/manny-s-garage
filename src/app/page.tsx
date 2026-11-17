@@ -51,10 +51,10 @@ const diyCardSlides = [
   siteImages.bayToolChest,
 ];
 
-/* The one gap: there is no photograph of I.T. work in public/. This is the
-   shop's own storefront, which is at least a real picture of the business
-   rather than a stock laptop. Replace it when a real one exists. */
-const itCardSlides = [siteImages.itConsultant];
+/* The shop's own storefront. There is no photograph of I.T. work in public/,
+   and the generated stand-ins that were here have been removed, so this card
+   shows the real business rather than an invented bench. */
+const itCardSlides = [siteImages.shopFront];
 
 /** The cheapest job in a trade, phrased the way the shop says it out loud. */
 function cardStartsAt(items: Parameters<typeof startsAt>[0]): string {
@@ -84,8 +84,7 @@ export default function Home() {
               Fargo&apos;s one stop shop.
             </h1>
             <p className="hero-said">
-              No one likes a surprise bill. See what your job costs here first,
-              and we won’t start until you’re happy with the number.
+              Fargo&apos;s Premier All-in-One Service
             </p>
 
             {/* The four trades as four real estimate lines. This is the summary
@@ -108,10 +107,7 @@ export default function Home() {
             </ul>
 
             <div className="hero-cta">
-              <Link href="/book" className="btn-primary">Book Online</Link>
-              <a href={BUSINESS.phone.tel} className="btn-outline">
-                Call {BUSINESS.phone.display}
-              </a>
+              <Link href="/book" className="btn-primary">Main Menu</Link>
               <Link href="/quote" className="hero-cta-plain">
                 See All Prices
               </Link>
@@ -129,13 +125,13 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pb-16 pt-2 pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pb-20 lg:px-8">
           <SectionHeading
             title="What we do"
-            description="Four trades, one shop. The prices below are where each job starts — we’ll always confirm what the parts cost before any work begins."
+            description="Car, house, or computer — same phone call for all of it. The prices below are where things start, and we’ll tell you what the parts run before we touch anything."
           />
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <ServiceCard
               title="Automotive Service"
-              description="Oil changes, brakes, batteries, diagnostics, and recovery if you break down in Fargo."
+              description="Oil changes, brakes, batteries, check engine lights. Break down in Fargo and we’ll come get you."
               imageSlides={autoCardSlides}
               startsAt={cardStartsAt(AUTO_ITEMS)}
               href="/auto"
@@ -144,7 +140,7 @@ export default function Home() {
             />
             <ServiceCard
               title="Handyman"
-              description="TV mounting, security cameras, furniture and bunk beds built, blinds and curtains hung."
+              description="TVs on the wall, cameras up, furniture and bunk beds built, blinds and curtains hung."
               imageSlides={handymanCardSlides}
               startsAt={cardStartsAt(HANDYMAN_ITEMS)}
               href="/handyman"
@@ -154,7 +150,7 @@ export default function Home() {
             />
             <ServiceCard
               title="DIY Bay"
-              description="Rent the bay by the hour with the lift, the air line and the tools. Add a mechanic if you want a hand."
+              description="Rent a bay by the hour. Lift, air hose, and all the tools. Want a mechanic with you? Just add one."
               imageSlides={diyCardSlides}
               startsAt={cardStartsAt(DIY_ITEMS)}
               href="/diy-garage"
@@ -163,16 +159,17 @@ export default function Home() {
             />
             <ServiceCard
               title="I.T. Service"
-              description="Wi-Fi and internet set up, computers fixed, websites and spreadsheets built."
+              description="Wi-Fi, computers, websites, spreadsheets. Tell us what’s acting up and we’ll take care of it."
               imageSlides={itCardSlides}
               startsAt={cardStartsAt(IT_ITEMS)}
               href="/it"
+              priceHref="/quote?for=it"
             />
           </div>
         </div>
       </section>
 
-      <NextStep href="/quote" />
+      <NextStep href="/book" />
 
       <section id="contact" className="ledger tier-prose px-4 sm:px-6">
         <h2 className="form-header mt-1 text-2xl">Find us</h2>

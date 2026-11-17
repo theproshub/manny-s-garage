@@ -136,7 +136,9 @@ export default function HandymanPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-5 text-[15px] leading-[1.6] text-[var(--ink)] sm:mt-6 sm:text-base sm:leading-[1.7]"
             >
-              TV mounting, security cameras, furniture assembly, and more. Browse handyman services and book right here on our site.
+              TVs on the wall, cameras up, furniture built and moved where you
+              want it. Check the prices, then pick a time. It all happens right
+              here.
             </motion.p>
 
             <motion.div
@@ -145,12 +147,6 @@ export default function HandymanPage() {
               transition={{ duration: 0.5, delay: 0.18 }}
               className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7"
             >
-              <Link
-                href="/book/handyman"
- className="btn-outline inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
-              >
-                View Services
-              </Link>
               <Link
                 href="/book/handyman"
  className="btn-primary inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
@@ -226,21 +222,21 @@ export default function HandymanPage() {
           transition={{ delay: 0.8, duration: 0.5 }}
           className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 sm:bottom-6 lg:bottom-8"
         >
-          <Link
-            href="/book/handyman"
+          <a
+            href="#prices"
             className="hero-scroll-hint flex flex-col items-center gap-1.5 text-[var(--ink-muted)] transition-colors hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
-            aria-label="See handyman services and book"
+            aria-label="Jump to handyman prices"
           >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See Services</span>
-          </Link>
+            <span className="text-[10px] font-semibold uppercase tracking-widest">Prices Below</span>
+          </a>
         </motion.div>
       </section>
 
       {/* Services & Pricing — simple list */}
-      <section className="relative mx-auto max-w-7xl scroll-mt-28 px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+      <section id="prices" className="relative mx-auto max-w-7xl scroll-mt-28 px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
         <SectionHeading
           title="Handyman services and prices"
-          description="The menu and what each job starts at. Booking is one step below — it does not happen on this list."
+          description="Here’s the list and what each job runs. Look it over, and book when you’re ready — that part’s just below."
         />
         <motion.div
           className="mt-8 sm:mt-10 rounded-2xl border border-[var(--rule)] bg-[var(--surface)] overflow-hidden"
@@ -266,16 +262,16 @@ export default function HandymanPage() {
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <SectionHeading
             title="Book Handyman work"
-            description="Pick the service and the appointment time, without leaving our site."
+            description="Pick a time and you’re booked, right here. Want the details on a job first? They’re on the services page."
           />
           <motion.div
             className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
           >
             <Link
-              href="/book/handyman"
+              href="/handyman/services"
               className="btn-outline group inline-flex w-full max-w-xs items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto"
             >
-              See All Services
+              What&apos;s Included
             </Link>
             <Link
               href="/book/handyman"

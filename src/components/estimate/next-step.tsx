@@ -12,9 +12,9 @@ import { BUSINESS } from "@/lib/business";
  * Numbered because the order genuinely matters; it is a sequence, not a list.
  */
 const STEPS = [
-  "Book online or call, and pick a time that works for you.",
-  "We tell you the price before we start any work.",
-  "You say yes, then we get it done.",
+  "Book online or give us a call and pick a time.",
+  "We tell you what it costs before we start.",
+  "You give us the okay, and we get it done.",
 ];
 
 export function NextStep({

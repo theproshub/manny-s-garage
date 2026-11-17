@@ -47,7 +47,7 @@ export default function DIYGaragePage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-5 text-[15px] leading-[1.6] text-[var(--ink)] sm:mt-6 sm:text-base sm:leading-[1.7]"
             >
-              {`Rent a bay with a lift, tools, and air — $${DIY_HOURLY}/hr. Add a mechanic for $${DIY_MECHANIC_HOURLY}/hr if you want help. Up to ${DIY_MAX_HOURS} hours per session.`}
+              {`The bay’s yours by the hour. Lift, air hose, tools — $${DIY_HOURLY}/hr. Need a hand with the tricky part? A mechanic runs $${DIY_MECHANIC_HOURLY}/hr. Book up to ${DIY_MAX_HOURS} hours at a time.`}
             </motion.p>
 
             <motion.div
@@ -60,7 +60,7 @@ export default function DIYGaragePage() {
                 href="/quote?for=diy"
  className="btn-outline inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                See Pricing
+                See Bay Prices
               </Link>
               <Link
                 href="/book/diy"
@@ -94,15 +94,15 @@ export default function DIYGaragePage() {
 
       <section id="quote" className="relative scroll-mt-28 border-t border-[var(--rule)] bg-[var(--surface)] py-14 sm:py-20">
         <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-[var(--ink)] sm:text-2xl">Fixed bay packages</h2>
+          <h2 className="text-xl font-bold text-[var(--ink)] sm:text-2xl">What a session costs</h2>
           <p className="mt-2 text-sm text-[var(--ink-muted)]">
-            {`$${DIY_HOURLY}/hr bay · $${DIY_MECHANIC_HOURLY}/hr mechanic · tap a total, then complete booking.`}
+            {`Pick your hours. The bay’s $${DIY_HOURLY}/hr, and a mechanic’s $${DIY_MECHANIC_HOURLY}/hr if you want one with you.`}
           </p>
           <Link
             href="/quote?for=diy"
             className="btn-primary group mt-8 inline-flex items-center justify-center gap-1.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
           >
-            Choose Your Price
+            See Bay Prices
           </Link>
           <p className="mt-6 text-xs text-[var(--ink-muted)]">
             <Link href="/diy-garage/services" className="text-[var(--accent-strong)] hover:underline">

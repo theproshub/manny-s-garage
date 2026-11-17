@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
+import Link from "next/link";
 import { ServicePicker } from "@/components/estimate/service-picker";
 import { BUSINESS } from "@/lib/business";
 import { PARTS_DISCLAIMER } from "@/lib/service-catalog";
@@ -14,9 +15,8 @@ export default function QuotePage() {
         </p>
         <h1 className="t-display mt-2 max-w-[18ch]">What’s this going to cost?</h1>
         <p className="measure t-lead mt-4">
-          Pick the job you need and we’ll show you everything that goes into
-          it — the work, what each part costs, and the total. All before you
-          book anything.
+          Pick your job and we’ll break the whole thing down for you. The
+          labor, the parts, and what it comes to. All before you book a thing.
         </p>
       </section>
 
@@ -35,15 +35,22 @@ export default function QuotePage() {
         <ul className="measure mt-2">
           <li className="rule-item py-2 text-sm">{PARTS_DISCLAIMER}</li>
           <li className="rule-item py-2 text-sm">
-            If it says fixed, that’s what you pay. If it says estimate, there
-            are still parts to add — and we’ll tell you what they cost before
-            we start.
+            Fixed means that’s the price, period. Estimate means parts still go
+            on top, and we’ll tell you what they run before we start.
           </li>
           <li className="rule-item py-2 text-sm">
-            We work by appointment, and there’s often something free today or tomorrow.
+            We run on appointments, but there’s usually something open today or tomorrow.
+          </li>
+          <li className="rule-item py-2 text-sm">
+            Want the full detail on a job? It&apos;s on that trade&apos;s own
+            page:{" "}
+            <Link href="/auto" className="underline underline-offset-4">Automotive Service</Link>,{" "}
+            <Link href="/handyman" className="underline underline-offset-4">Handyman</Link>,{" "}
+            <Link href="/diy-garage" className="underline underline-offset-4">DIY Bay</Link>, or{" "}
+            <Link href="/it" className="underline underline-offset-4">I.T. Service</Link>.
           </li>
           <li className="py-2 text-sm">
-            Not sure which one you need? Just call us on{" "}
+            Not sure which one you need? Just call us at{" "}
             <a href={BUSINESS.phone.tel} className="figure underline underline-offset-4">
               {BUSINESS.phone.display}
             </a>{" "}

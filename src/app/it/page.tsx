@@ -13,21 +13,20 @@ import { siteImages } from "@/lib/site-images";
 
 const IT_SERVICES_BASE = "/it/services";
 const HERO_SLIDE_DURATION_MS = 4500;
-/* The hero rotated through the car bays, the DIY bay, an automotive slide and
-   a handyman grid — four pictures of the three trades this page is not about.
-   It now shows the four I.T. jobs themselves, in the order the estimate lists
-   them. */
+/* Two real photographs of the shop, and nothing invented.
+
+   This hero has now held three sets. First the car bays, the DIY bay and a
+   handyman grid — pictures of the three trades this page is not about. Then
+   four generated images of I.T. work, which the client rejected. What is left
+   that is true is the building: no photograph of the shop's own bench exists
+   yet, so the page shows the business rather than inventing the work. */
 const IT_HERO_IMAGES = [
-  siteImages.itWifi,
-  siteImages.itConsultant,
-  siteImages.itWebsite,
-  siteImages.itReports,
+  siteImages.shopFront,
+  siteImages.shopBayDoor,
 ] as const;
 const itHeroSlideLabels = [
-  "Wi-Fi and internet set up",
-  "A computer opened up",
-  "A site being built",
-  "Reports off the spreadsheet",
+  "The shop on Main Ave S",
+  "The bay door, open",
 ] as const;
 
 const itServices = [
@@ -35,14 +34,14 @@ const itServices = [
     id: "web-dev",
     title: "Website & App Building",
     navLabel: "Websites",
-    short: "Need a website or online store? We build it for you—fast, mobile-friendly, and easy to manage.",
+    short: "Need a website or an online store? We’ll build it. Fast, works on phones, easy to update.",
     href: `${IT_SERVICES_BASE}#web-dev`,
   },
   {
     id: "database",
     title: "Data & Reporting",
     navLabel: "Data",
-    short: "We organize your business data so you can look things up, run reports, and stop using spreadsheets.",
+    short: "We get your numbers organized so you can look things up and run reports without wrestling a spreadsheet.",
     href: `${IT_SERVICES_BASE}#database`,
   },
   {
@@ -113,7 +112,7 @@ export default function ITPages() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-5 text-[15px] leading-[1.6] text-[var(--ink)] sm:mt-6 sm:text-base sm:leading-[1.7]"
             >
-              Wi-Fi setup, computer repair, websites, and anything tech. Tell us what’s not working and we’ll sort it out.
+              Wi-Fi, computer repair, websites, anything tech. Tell us what’s acting up and we’ll take care of it.
             </motion.p>
 
             <motion.div
@@ -129,7 +128,7 @@ export default function ITPages() {
                 Call {BUSINESS.phone.display}
               </a>
               <Link
-                href="/quote"
+                href="/quote?for=it"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--cool)] hover:bg-[var(--cool-soft)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cool)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 Get a Price
@@ -181,27 +180,13 @@ export default function ITPages() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 sm:bottom-6 lg:bottom-8"
-        >
-          <a
-            href="#services"
-            className="hero-scroll-hint flex flex-col items-center gap-1.5 text-[var(--ink-muted)] transition-colors hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cool)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-md"
-            aria-label="Scroll to services"
-          >
-            <span className="text-[10px] font-semibold uppercase tracking-widest">See Services</span>
-          </a>
-        </motion.div>
       </section>
 
       {/* ─── SERVICES ─── */}
       <section id="services" className="relative mx-auto max-w-7xl scroll-mt-28 px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
         <SectionHeading
           title="I.T. and support"
-          description="Websites, data, Wi-Fi, computers. Every job is different, so we look first and then give you a fixed price."
+          description="Websites, data, Wi-Fi, computers. Every job’s a little different, so we look first and then give you one price. Yes or no, up to you."
         />
 
         <nav aria-label="Jump to service" className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10">
@@ -251,10 +236,10 @@ export default function ITPages() {
             Call {BUSINESS.phone.display}
           </a>
           <Link
-                href="/quote"
+                href="/quote?for=it"
             className="text-sm font-medium text-[var(--ink-muted)] hover:text-[var(--cool)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--cool)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded"
           >
-            Get a Price →
+            Get a Price
           </Link>
         </div>
       </section>

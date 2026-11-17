@@ -19,7 +19,7 @@ export const AUTO_ITEMS: readonly LineItem[] = [
   { code: "A-210", description: "New brake pads", spec: "per axle (2 wheels)", price: 180 },
   {
     code: "A-310",
-    description: "Check engine light — find the fault",
+    description: "Check engine light — find the problem",
     spec: "per visit",
     price: 0,
     note: "Free if we do the repair.",
@@ -28,7 +28,7 @@ export const AUTO_ITEMS: readonly LineItem[] = [
 ];
 
 export const HANDYMAN_ITEMS: readonly LineItem[] = [
-  { code: "H-110", description: "TV put up on the wall", spec: "per inch of screen", price: RATES.tvMountPerInch },
+  { code: "H-110", description: "TV mounted on the wall", spec: "per inch of screen", price: RATES.tvMountPerInch },
   { code: "H-210", description: "Furniture put together", spec: "per item", price: RATES.furniturePerItem },
   { code: "H-220", description: "Bunk bed put together", spec: "per item", price: RATES.bunkBed },
   { code: "H-230", description: "Blinds or curtains hung", spec: "per item", price: RATES.windowTreatment },
@@ -65,7 +65,7 @@ export const DIY_INVENTORY: readonly string[] = [
 ];
 
 export const PARTS_DISCLAIMER =
-  "These prices cover the work, not the parts. We’ll always tell you what the parts cost before we start.";
+  "These prices cover the labor, not the parts. We’ll always tell you what the parts run before we start.";
 
 export function tvMountPrice(inches: number): number {
   return inches * RATES.tvMountPerInch;

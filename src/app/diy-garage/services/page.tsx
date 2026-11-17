@@ -21,17 +21,17 @@ const equipment = [
 ];
 
 const bayIncludes = [
-  "Full access to the bay for the duration of your booking",
-  "Car lift, diagnostic scanner, oil change and tire equipment",
-  "Air compressor, power tools, workbench, and lighting",
-  "Up to 8 hours per session; multi-session bookings available",
+  "The bay is yours for the whole booking",
+  "Lift, diagnostic scanner, oil and tire tools",
+  "Air compressor, power tools, workbench and good lighting",
+  "Up to 8 hours at a time, and you can book more than one session",
 ];
 
 const mechanicIncludes = [
-  "Professional mechanic on hand for guidance or hands-on help",
-  "Diagnostics, repairs, or supervision at your pace",
-  "Billed in addition to bay rental; book in 1-hour increments",
-  "For the jobs you would rather not start on your own",
+  "A mechanic beside you, to advise or to lend a hand",
+  "Diagnosing, repairing, or just keeping an eye — at your pace",
+  "Charged on top of the bay, by the hour",
+  "For the job you’d rather not start on your own",
 ];
 
 export default function DIYGarageServicesPage() {
@@ -90,7 +90,7 @@ export default function DIYGarageServicesPage() {
               transition={{ duration: 0.5, delay: 0.12 }}
               className="mt-6 border-l-2 border-[var(--accent)] pl-4 text-[15px] leading-[1.6] text-[var(--ink-muted)] sm:mt-7 sm:text-base sm:leading-[1.65]"
             >
-              Clear pricing for bay rental and mechanic add-on. See what’s included, then book your time.
+              Here’s what the bay costs and what’s in it. Pick your hours and it’s yours.
             </motion.p>
 
             <motion.div
@@ -103,13 +103,13 @@ export default function DIYGarageServicesPage() {
                 href="/book/diy"
  className="btn-primary inline-flex items-center justify-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book DIY Bay
+                Book the Bay
               </Link>
               <Link
                 href="/quote?for=diy"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Fixed Pricing
+                All Bay Prices
               </Link>
             </motion.div>
           </div>
@@ -125,7 +125,7 @@ export default function DIYGarageServicesPage() {
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[var(--rule)] bg-[var(--surface)] ring-1 ring-[var(--rule)] lg:aspect-[16/10]">
               <Image
                 src={siteImages.bayTireMachine}
-                alt="Tyre changer and air compressor in the DIY bay at Manny's Garage, Fargo ND"
+                alt="Tire changer and air compressor in the DIY bay at Manny's Garage, Fargo ND"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -172,12 +172,12 @@ export default function DIYGarageServicesPage() {
           <div>
             <h2 className="text-2xl font-bold text-[var(--ink)] sm:text-3xl">Bay Rental</h2>
             <p className="mt-3 text-[var(--ink-muted)] leading-relaxed">
-              Work on your own vehicle in a fully equipped bay with professional tools and a car lift. Perfect for oil changes, brakes, diagnostics, and more.
+              Your car, your pace, our lift. Oil change, brakes, chasing down a noise — the tools are already here.
             </p>
             <div className="mt-6 rounded-xl border border-[var(--rule)] bg-[var(--surface)] p-6">
               <p className="text-sm font-semibold uppercase tracking-wider text-[var(--ink-muted)]">Pricing</p>
               <p className="mt-2 text-3xl font-bold text-[var(--accent-strong)]">${HOURLY_RATE} <span className="text-lg font-normal text-[var(--ink-muted)]">per hour</span></p>
-              <p className="mt-2 text-sm text-[var(--ink-muted)]">Minimum 1 hour. Max {MAX_HOURS} hours per session. All equipment included.</p>
+              <p className="mt-2 text-sm text-[var(--ink-muted)]">One hour minimum, {MAX_HOURS} hours max in a session. Everything in the bay comes with it.</p>
             </div>
             <ul className="mt-6 space-y-2 text-sm text-[var(--ink-muted)]">
               {bayIncludes.map((item, i) => (
@@ -190,7 +190,7 @@ export default function DIYGarageServicesPage() {
               href="/book/diy"
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              Book Bay Time
+              Book the Bay
             </Link>
           </div>
         </div>
@@ -203,12 +203,12 @@ export default function DIYGarageServicesPage() {
             <div className="order-2 lg:order-1">
               <h2 className="text-2xl font-bold text-[var(--ink)] sm:text-3xl">Mechanic Assistance</h2>
               <p className="mt-3 text-[var(--ink-muted)] leading-relaxed">
-                Add a professional mechanic to your bay session for guidance, hands-on help, or full repair assistance. Billed per hour in addition to bay rental.
+                Stuck on one bolt? Want someone looking over your shoulder? Add a mechanic by the hour on top of the bay.
               </p>
               <div className="mt-6 rounded-xl border border-[var(--rule)] bg-[var(--surface)] p-6">
                 <p className="text-sm font-semibold uppercase tracking-wider text-[var(--ink-muted)]">Pricing</p>
                 <p className="mt-2 text-3xl font-bold text-[var(--accent-strong)]">${MECHANIC_RATE_PER_HOUR} <span className="text-lg font-normal text-[var(--ink-muted)]">per hour</span></p>
-                <p className="mt-2 text-sm text-[var(--ink-muted)]">Optional. Add mechanic hours in the notes when you book, or ask for them at the shop.</p>
+                <p className="mt-2 text-sm text-[var(--ink-muted)]">Totally optional. Mention it in the notes when you book, or just ask when you get here.</p>
               </div>
               <ul className="mt-6 space-y-2 text-sm text-[var(--ink-muted)]">
                 {mechanicIncludes.map((item, i) => (
@@ -221,7 +221,7 @@ export default function DIYGarageServicesPage() {
                 href="/book/diy"
  className="btn-primary group mt-8 inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                Book Bay + Mechanic
+                Book the Bay
               </Link>
             </div>
             <motion.div
@@ -262,7 +262,7 @@ export default function DIYGarageServicesPage() {
             href="/book/diy"
  className="btn-outline inline-flex items-center gap-2 rounded-full border-[var(--rule)] bg-[var(--surface)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-colors hover:border-[var(--rule)] hover:bg-[var(--surface)] hover:text-[var(--ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
           >
-            Book DIY Bay
+            Book the Bay
           </Link>
         </div>
       </section>
@@ -272,15 +272,15 @@ export default function DIYGarageServicesPage() {
       <section className="relative mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-[var(--rule)] bg-[var(--surface)] backdrop-blur-sm p-6 sm:p-8">
           <div>
-            <h2 className="text-xl font-bold text-[var(--ink)]">Need a custom session?</h2>
-            <p className="mt-1 text-[var(--ink-muted)]">Call the shop with the hours you want and any mechanic time, and we will set it up.</p>
+            <h2 className="text-xl font-bold text-[var(--ink)]">Want something different?</h2>
+            <p className="mt-1 text-[var(--ink-muted)]">Call us with the hours you want and whether you need a mechanic. We’ll set it up.</p>
           </div>
           <div className="flex flex-wrap gap-3 sm:gap-4">
             <Link
               href="/book/diy"
  className="btn-primary group inline-flex items-center gap-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
-              Book DIY Bay Time
+              Book the Bay
             </Link>
             <Link
               href="/diy-garage"

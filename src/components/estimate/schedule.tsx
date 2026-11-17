@@ -112,10 +112,10 @@ export function Schedule({ mark, heading, caption, items, total, footnote }: Sch
                   <td className="sched-quote-cell" colSpan={2}>
                     <div className="sched-quote">
                       <span>
-                        <span className="field-label block">Priced on inspection</span>
+                        <span className="field-label block">Priced after we look</span>
                         <span className="sched-quote-said">
-                          We look at the job first, then give you a fixed price.
-                          Nothing starts until you have said yes to it.
+                          We look at the job first, then give you one price.
+                          Nothing happens until you say go.
                         </span>
                       </span>
                       <Link href="/quote" className="btn-primary shrink-0">

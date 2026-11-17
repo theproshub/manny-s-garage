@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Orbitron } from "next/font/google";
 import "./globals.css";
 import { StickyHeader } from "@/components/sticky-header";
-import { ActionBar } from "@/components/action-bar";
 import { Footer } from "@/components/footer";
 import { localBusinessSchema } from "@/lib/schema";
 
@@ -31,7 +30,7 @@ const orbitron = Orbitron({
 export const metadata: Metadata = {
   title: "Manny's Garage — Automotive Service, Handyman, DIY Bay & I.T. Service | Fargo, ND",
   description:
-    "Manny's Garage — Automotive Service, Handyman, DIY Bay, and I.T. Service in Fargo, ND. Repair your ride, upgrade your home, rent a bay, or sort your tech. One shop—no runaround.",
+    "Manny's Garage — Automotive Service, Handyman, DIY Bay, and I.T. Service in Fargo, ND. Repair your ride, upgrade your home, rent a bay, or fix your tech. One shop—no runaround.",
   metadataBase: new URL("https://mannygarage.com"),
   alternates: { canonical: "/" },
   verification: { google: "google8b2e203404a03e46" },
@@ -84,7 +83,6 @@ export default function RootLayout({
         <StickyHeader />
         <div id="content">{children}</div>
         <Footer />
-        <ActionBar />
       </body>
     </html>
   );

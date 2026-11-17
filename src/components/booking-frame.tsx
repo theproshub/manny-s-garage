@@ -81,8 +81,8 @@ export function BookingFrame({
 
       <p className="measure mt-3 text-sm text-[var(--ink-muted)]">
         {BUSINESS.name} runs this calendar
-        {calendar.takesPayment ? " and takes the payment" : ""}. If it will
-        not load here,{" "}
+        {calendar.takesPayment ? " and takes the payment" : ""}. If it won’t
+        load,{" "}
         <a
           href={calendar.url}
           target="_blank"

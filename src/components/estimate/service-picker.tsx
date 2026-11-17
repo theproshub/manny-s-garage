@@ -14,7 +14,6 @@ import {
   type ServiceOption,
 } from "@/lib/estimates";
 import { destinationForPath } from "@/lib/booking-destinations";
-import { BUSINESS } from "@/lib/business";
 
 /**
  * Pick your job, see what it costs.
@@ -96,7 +95,7 @@ export function ServicePicker() {
 
       <div className="picker-body">
         <div className="picker-list">
-          <p className="field-label px-4 pt-3 pb-1">Choose your job</p>
+          <p className="field-label px-4 pt-3 pb-1">Pick your job</p>
           <ul>
             {options.map((o) => {
               const on = o.id === selected.id;
@@ -140,7 +139,7 @@ export function ServicePicker() {
                 </dt>
                 <dd className="bd-value">
                   {line.amount === null ? (
-                    <span className="bd-pending">We’ll confirm</span>
+                    <span className="bd-pending">We’ll price it</span>
                   ) : line.amount === 0 ? (
                     <span className="bd-included">Included</span>
                   ) : (
@@ -154,13 +153,13 @@ export function ServicePicker() {
           {!isQuoted ? (
             <div className="bd-sum">
               <div className="bd-row bd-subtotal">
-                <dt className="bd-label">{pending ? "Work subtotal" : "Subtotal"}</dt>
+                <dt className="bd-label">{pending ? "Labor subtotal" : "Subtotal"}</dt>
                 <dd className="bd-value bd-amount">{formatUsd(total)}</dd>
               </div>
               {pending ? (
                 <div className="bd-row bd-subtotal">
                   <dt className="bd-label">Parts</dt>
-                  <dd className="bd-value bd-pending">We’ll confirm first</dd>
+                  <dd className="bd-value bd-pending">Priced before we start</dd>
                 </div>
               ) : null}
             </div>
@@ -179,11 +178,11 @@ export function ServicePicker() {
               </p>
               <p className="bd-total-note">
                 {isQuoted
-                  ? "Every tech job is different, so we’d rather look first than guess."
+                  ? "Every tech job is different, so we’d rather look at it than guess."
                   : total === 0
                     ? "This one’s on us."
                     : isEstimate
-                      ? "Parts still to add — we’ll tell you what they cost before we start."
+                      ? "Parts still go on top. We’ll tell you what they run before we start."
                       : "That’s what you pay. Nothing gets added on."}
               </p>
             </div>
@@ -202,11 +201,11 @@ export function ServicePicker() {
             <div className="bd-foot-meta">
               {calendar ? (
                 <span className="bd-foot-note">
-                  Opens the {BUSINESS.name} calendar here, on this site
+                  Opens our calendar right here on this page
                 </span>
               ) : dest ? (
                 <span className="bd-foot-note">
-                  Priced after we look — the number is on the next page
+                  We price this one after we look at it
                 </span>
               ) : null}
             </div>
