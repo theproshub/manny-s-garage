@@ -35,14 +35,14 @@ const autoCardSlides = [
   siteImages.shopTires,
 ];
 
+/* The living room, the tool flat-lay and the man drilling the frame were
+   pulled at the client's request, so this card is down to the two jobs the
+   library still has real photographs of: TV mounting and cameras. */
 const handymanCardSlides = [
   "/hero/hero-handyman.webp",
   "/services/tv.webp",
   "/hero/handyman-security-camera.webp",
   "/services/cameras.webp",
-  "/hero/handyman-furniture.webp",
-  "/services/furniture.webp",
-  "/services/assembly.webp",
 ];
 
 const diyCardSlides = [
@@ -51,10 +51,14 @@ const diyCardSlides = [
   siteImages.bayToolChest,
 ];
 
-/* The shop's own storefront. There is no photograph of I.T. work in public/,
-   and the generated stand-ins that were here have been removed, so this card
-   shows the real business rather than an invented bench. */
-const itCardSlides = [siteImages.shopFront];
+/* Stock, but photographs of the actual work rather than the storefront that
+   stood in for it — code on a screen, cabling run, a phone set up. Three, to
+   match the other cards. */
+const itCardSlides = [
+  siteImages.itCode,
+  siteImages.itNetwork,
+  siteImages.itPhone,
+];
 
 /** The cheapest job in a trade, phrased the way the shop says it out loud. */
 function cardStartsAt(items: Parameters<typeof startsAt>[0]): string {

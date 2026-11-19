@@ -27,11 +27,12 @@ import Image from "next/image";
  * in, cut from their full-resolution masters. Credits are recorded in
  * `docs/service-photography.md`.
  *
- * **I.T. still has no photograph.** The four trades are equal peers everywhere
- * else on this site; here it is three Automotive, five Handyman, one DIY and
- * nothing for Tech help, because the library holds nothing for it that is not
- * stamped with someone else's brand. That imbalance is a known debt, not a
- * decision — see `docs/service-photography.md`.
+ * **I.T. now has photographs and Handyman has fewer.** The count is three
+ * Automotive, two Handyman, one DIY and three Tech help. Tech help went from
+ * nothing to three when the client supplied them; Handyman lost `assembly`,
+ * `tools` and `furniture` when the client asked for those three pulled. The
+ * remaining Handyman gap — furniture work has no picture at all now — is a
+ * debt, not a decision; see `docs/service-photography.md`.
  *
  * No progress rail and no counter: the order is shuffled per visit, so "03/05"
  * would be counting a sequence the reader has no reason to complete.
@@ -74,29 +75,29 @@ const SLIDES: Slide[] = [
     alt: "A car up on the lift in a shop bay",
   },
   {
-    id: "assembly",
-    image: "/services/assembly.webp",
-    alt: "A handyman drilling into a white wood frame",
-  },
-  {
-    id: "tools",
-    image: "/services/tools.webp",
-    alt: "A cordless drill, hammer, bits and screws laid out on a workbench",
-  },
-  {
     id: "tv",
     image: "/services/tv.webp",
     alt: "A living room with a television mounted on the wall above a TV stand",
   },
   {
-    id: "furniture",
-    image: "/services/furniture.webp",
-    alt: "A living room with an assembled sofa, coffee table and dining set",
-  },
-  {
     id: "cameras",
     image: "/services/cameras.webp",
     alt: "A security camera mounted high on a brick wall",
+  },
+  {
+    id: "it-code",
+    image: "/it/it-code.webp",
+    alt: "Code open on a laptop screen with the app it builds previewed beside it",
+  },
+  {
+    id: "it-network",
+    image: "/it/it-network.webp",
+    alt: "A patch panel with network cables run into it and bundled",
+  },
+  {
+    id: "it-phone",
+    image: "/it/it-phone.webp",
+    alt: "A phone lying on a desk with its home screen full of apps",
   },
 ];
 

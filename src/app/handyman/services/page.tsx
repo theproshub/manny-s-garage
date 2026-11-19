@@ -13,24 +13,20 @@ const TV_MOUNTING_OPTIONS = [32, 43, 55, 65, 75, 85] as const;
 const FURNITURE_ITEM_OPTIONS = [1, 2, 3, 4, 5, 6] as const;
 const CAMERA_COUNT_OPTIONS = [1, 2, 3, 4, 5, 6] as const;
 
-const FURNITURE_SLIDES = [
-  "/services/furniture.webp",
-  "/services/assembly.webp",
-  "/hero/handyman-furniture.webp",
-  "/hero/hero-handyman-services.webp",
-  "/services/furniture.webp",
-  "/services/assembly.webp",
-  "/hero/handyman-furniture.webp",
-  "/hero/hero-handyman-service-list.webp",
-];
-const FURNITURE_SLIDE_DURATION_MS = 4500;
+/* Furniture Assembly has no picture any more, and that is deliberate.
 
-const TV_SLIDES = [
-  "/services/assembly.webp",
-  "/services/tv.webp",
-  "/services/furniture.webp",
-  "/hero/hero-handyman.webp",
-];
+   Every photograph this section ran — the living room, the tool flat-lay,
+   the man drilling a frame — was pulled at the client's request. What was
+   left in the library were the `hero-*` banners, which are marketing
+   collages with a cartoon mascot and a service list baked into the pixels
+   (see docs/service-photography.md), and a photograph of a mounted TV,
+   which is the section below's job and not this one's.
+
+   So the section runs as one column of text and pricing rather than
+   captioning a wrong picture "Furniture Assembly". Put the panel back when
+   a real photograph of an assembled piece exists. */
+
+const TV_SLIDES = ["/services/tv.webp"];
 const TV_SLIDE_DURATION_MS = 4500;
 
 const CAMERA_SLIDES = [
@@ -70,19 +66,16 @@ const cameraIncludes = [
 ];
 
 const HANDYMAN_SERVICES_HERO_IMAGES = [
-  "/services/assembly.webp",
   "/services/cameras.webp",
   "/hero/hero-handyman-services.webp",
 ];
 const HERO_SLIDE_DURATION_MS = 4500;
 const handymanServicesHeroLabels = [
-  "TV mounting",
   "Security cameras",
   "Handyman services",
 ];
 
 export default function HandymanServicesPage() {
-  const [furnitureSlideIndex, setFurnitureSlideIndex] = useState(0);
   const [tvSlideIndex, setTvSlideIndex] = useState(0);
   const [cameraSlideIndex, setCameraSlideIndex] = useState(0);
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
@@ -95,13 +88,6 @@ export default function HandymanServicesPage() {
     }, HERO_SLIDE_DURATION_MS);
     return () => clearInterval(t);
   }, [carouselPaused]);
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      setFurnitureSlideIndex((i) => (i + 1) % FURNITURE_SLIDES.length);
-    }, FURNITURE_SLIDE_DURATION_MS);
-    return () => clearInterval(t);
-  }, []);
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -259,33 +245,7 @@ export default function HandymanServicesPage() {
 
       {/* Furniture Assembly */}
       <section id="furniture" className="relative mx-auto max-w-7xl scroll-mt-28 px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
-          <motion.div
-            className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-[var(--rule)] bg-[var(--surface)]"
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={furnitureSlideIndex}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4 }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src={FURNITURE_SLIDES[furnitureSlideIndex]}
-                  alt="Furniture assembly service"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </motion.div>
-            </AnimatePresence>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-            <div className="absolute bottom-4 left-4 flex items-center gap-3">
-              <span className="font-bold text-white text-lg">Furniture Assembly</span>
-            </div>
-          </motion.div>
+        <div className="max-w-2xl">
           <div>
             <h2 className="text-2xl font-bold text-[var(--ink)] sm:text-3xl">Furniture Assembly</h2>
             <p className="mt-3 text-[var(--ink-muted)] leading-relaxed">

@@ -168,9 +168,12 @@ export default function ITServicesPage() {
           >
             <div className="hero-glow" aria-hidden />
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[var(--cool)] bg-[var(--surface)] ring-1 ring-[var(--rule)] lg:aspect-[16/10]">
+              {/* The patch panel, not the storefront that used to sit here. The
+                  /it hero leads on the code screen, so this page leads on the
+                  cabling: two pages one click apart, two different pictures. */}
               <Image
-                src={siteImages.shopFront}
-                alt="Manny's Garage on Main Ave S, Fargo ND — where the I.T. work is booked"
+                src={siteImages.itNetwork}
+                alt="A patch panel with the network runs made, bundled and labelled"
                 fill
                 className="object-cover opacity-90"
                 sizes="(max-width: 1024px) 100vw, 50vw"

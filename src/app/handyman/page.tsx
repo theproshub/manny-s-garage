@@ -9,17 +9,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeading } from "@/components/section-heading";
 import { BackToHome } from "@/components/back-to-home";
 
-/** Handyman hero slides (new portfolio + stock), shuffled order */
+/* Handyman hero slides. The furniture photographs — the living room, the
+   tool flat-lay and the man drilling a frame — were pulled at the client's
+   request, which took five of the twelve entries with them. The repeats that
+   padded the rotation went too: with this few frames, the same picture
+   twice in a row reads as a bug rather than a rhythm. */
 const HANDYMAN_HERO_IMAGES = [
   "/services/tv.webp",
-  "/services/assembly.webp",
   "/services/cameras.webp",
-  "/hero/handyman-security-camera.webp",
-  "/services/furniture.webp",
-  "/services/furniture.webp",
-  "/services/assembly.webp",
-  "/hero/handyman-furniture.webp",
-  "/services/tv.webp",
   "/hero/handyman-security-camera.webp",
   "/hero/hero-handyman.webp",
   "/hero/hero-handyman-service-list.webp",
@@ -70,20 +67,17 @@ const SERVICES_LIST: HandymanServiceItem[] = [
   },
 ];
 
+/* One label per slide, in slide order — these are the alt text and the
+   aria-live announcement, so they have to name what is actually in the
+   frame. There were thirteen labels for twelve slides before this, which
+   meant every announcement after the first was describing a different
+   picture than the one on screen. */
 const handymanHeroSlideLabels = [
-  "TV & media",
   "TV mounting",
-  "Smart lighting",
-  "Home installs",
-  "Projector & screen",
-  "Security & cameras",
-  "Home theater",
-  "Bedroom Setup",
-  "Professional Install",
-  "LED & Mood Lighting",
-  "Handyman Service",
-  "Fargo Handyman",
-  "Handyman Service List",
+  "Security cameras",
+  "A camera going up on the wall",
+  "Handyman services",
+  "What we install",
 ];
 
 export default function HandymanPage() {

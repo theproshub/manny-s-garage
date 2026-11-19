@@ -13,20 +13,26 @@ import { siteImages } from "@/lib/site-images";
 
 const IT_SERVICES_BASE = "/it/services";
 const HERO_SLIDE_DURATION_MS = 4500;
-/* Two real photographs of the shop, and nothing invented.
+/* The work itself, in three pictures.
 
-   This hero has now held three sets. First the car bays, the DIY bay and a
+   This hero has now held four sets. First the car bays, the DIY bay and a
    handyman grid — pictures of the three trades this page is not about. Then
-   four generated images of I.T. work, which the client rejected. What is left
-   that is true is the building: no photograph of the shop's own bench exists
-   yet, so the page shows the business rather than inventing the work. */
+   four generated images of I.T. work, which the client rejected. Then the
+   storefront and the bay door, true photographs of a building that says
+   nothing about computers.
+
+   These three are stock rather than this shop's own bench, but each one shows
+   a thing on the list below: a screen with code on it, a patch panel with the
+   runs made, a phone full of apps. The order matches the service cards. */
 const IT_HERO_IMAGES = [
-  siteImages.shopFront,
-  siteImages.shopBayDoor,
+  siteImages.itCode,
+  siteImages.itNetwork,
+  siteImages.itPhone,
 ] as const;
 const itHeroSlideLabels = [
-  "The shop on Main Ave S",
-  "The bay door, open",
+  "Websites and apps, built here",
+  "Wi-Fi and cabling, run and labelled",
+  "Phones and computers, set up and fixed",
 ] as const;
 
 const itServices = [

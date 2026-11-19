@@ -8,8 +8,9 @@
  * wall. They were shot on a phone in portrait, so each one is pre-cropped to
  * a 1600x1000 landscape band rather than left for `object-cover` to guess at;
  * a 9:16 frame dropped into a 16:10 hero loses two thirds of itself, and what
- * survives is usually floor. Anything still pointing at `/hero/` or
- * `/services/` below is stock, and is a candidate for the next real photo.
+ * survives is usually floor. `/it/` is cropped to the same band for the same
+ * reason. Anything pointing at `/hero/`, `/services/` or `/it/` below is
+ * stock, and is a candidate for the next real photo.
  */
 export const siteImages = {
   /**
@@ -30,8 +31,10 @@ export const siteImages = {
   logo: "/logo.webp",
 
   // —— Handyman ——
-  /** Living room / furniture assembly (Francesca Tosolini, Unsplash) */
-  handymanFurniture: "/hero/handyman-furniture.webp",
+  /* `handymanFurniture` was here — the living room with the sofa and the
+     dining set. Pulled at the client's request along with `/services/
+     furniture.webp`, `/services/tools.webp` and `/services/assembly.webp`.
+     Furniture work now has no photograph on the site at all. */
   /** Security camera installation (Alexis Dreher, Unsplash) */
   handymanCameras: "/hero/handyman-security-camera.webp",
 
@@ -39,19 +42,27 @@ export const siteImages = {
   /** Garage with car on lifts - DIY bay rental (Lorenzo Hamers, Unsplash) */
   diyGarage: "/hero/diy-garage-bay.webp",
 
-  /* —— I.T ——
-     No key here, deliberately.
+  // —— I.T ——
+  /* Three photographs supplied by the client, Nov 2026. They are stock
+     rather than this shop's own bench — no photograph of the bench exists
+     yet — but they are photographs of the actual work: a screen with code
+     on it, a patch panel with the cables run, a phone covered in apps.
 
-     Four generated images (`it-computer`, `it-wifi`, `it-website`,
-     `it-reports`) used to sit in this slot, and before them
-     `/hero/hero-bays.webp` — which is itself an illustration of three signed
-     bays, not a photograph. The client rejected the generated set, so the
-     I.T. surfaces now use the shop's own photographs below, the same as every
-     other trade.
+     They replace what was here. First four generated I.T. images, which the
+     client rejected; then the storefront and the bay door, shown because the
+     building was the only true picture available. The building is still true,
+     but it says nothing about I.T., so it has gone back to the Auto surfaces
+     it belongs to. */
 
-     There is still no real photograph of I.T. work being done. Until there
-     is, the honest picture is the building itself. Add the key back when a
-     real photo of the bench exists — not a generated stand-in. */
+  /** Code on a laptop screen with the app preview beside it — websites,
+   *  stores, and the business apps. (Lalo Rosas, Pexels) */
+  itCode: "/it/it-code.webp",
+  /** A patch panel with the runs made and bundled — Wi-Fi, cabling, the
+   *  router and switches. (Sejio402, Pexels) */
+  itNetwork: "/it/it-network.webp",
+  /** A phone's home screen, apps and all — the device side of the work.
+   *  (Amar Rockz, Pexels) */
+  itPhone: "/it/it-phone.webp",
 
   // —— The shop itself (real photographs, Oct 2026) ——
   /** Street frontage: the painted sign over the open bay door. */

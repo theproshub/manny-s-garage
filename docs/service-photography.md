@@ -1,37 +1,65 @@
 # Service photography
 
-The home page slideshow runs **nine real photographs**, all Unsplash, cut from
-their full-resolution masters in `references/job-photos/` to
-`public/services/*.webp` at **1872×1170** — the panel's 16:10 aspect, with
-enough resolution to clear DPR 3.
+The home page slideshow runs **nine real photographs**, cut from their
+full-resolution masters to **1872×1170** (`public/services/*.webp`) or
+**1600×1000** (`public/it/*.webp`) — the panel's 16:10 aspect, with enough
+resolution to clear DPR 3.
 
-| Slide | Photographer | Master |
-| --- | --- | --- |
-| `brakes` | Toby Hall | `toby-hall-ii4XEyJEm_I` (6048×4024) |
-| `engine` | Michael Lock | `michael-lock-xEPZKFzGrVw` (3500×2333) |
-| `diag` | Compagnons | `compagnons-TnEe6BdBC2M` (3776×2764) |
-| `bay` | Lorenzo Hamers | none — see below |
-| `assembly` | Simone Impei | `simone-impei-eZaKj3xAzTE` (7360×4912) |
-| `tools` | Benjamin Lehman | `benjamin-lehman-EJU7A__krX0` (5760×3840) |
-| `tv` | Thom Milkovic | `thom-milkovic-uV1weWrJnRM` (7793×5189) |
-| `furniture` | Francesca Tosolini | `francesca-tosolini-DmOhItSo49k` (5472×3648) |
-| `cameras` | Alexis Dreher | `alexis-dreher-MfnLwbch9_o` (2956×1971) |
+| Slide | Photographer | Source | Master |
+| --- | --- | --- | --- |
+| `brakes` | Toby Hall | Unsplash | `toby-hall-ii4XEyJEm_I` (6048×4024) |
+| `engine` | Michael Lock | Unsplash | `michael-lock-xEPZKFzGrVw` (3500×2333) |
+| `diag` | Compagnons | Unsplash | `compagnons-TnEe6BdBC2M` (3776×2764) |
+| `bay` | Lorenzo Hamers | Unsplash | none — see below |
+| `tv` | Thom Milkovic | Unsplash | `thom-milkovic-uV1weWrJnRM` (7793×5189) |
+| `cameras` | Alexis Dreher | Unsplash | `alexis-dreher-MfnLwbch9_o` (2956×1971) |
+| `it-code` | Lalo Rosas | Pexels | `pexels-lalorosas-907489` (4032×3024) |
+| `it-network` | Sejio402 | Pexels | `pexels-sejio402-6466143` (5196×3212) |
+| `it-phone` | Amar Rockz | Pexels | `pexels-amar-rockz-5253002` (6000×4000) |
 
 `bay` is the exception: no master survives, only the 1024×682 copy that was in
 `public/hero/`. It is exported at **1024×640**, its true ceiling, rather than
 stretched to match the others — an upscale would add bytes and no detail.
 
+## Three photographs were pulled, Nov 2026
+
+The client asked for three Handyman photographs removed from every surface:
+
+| File | What it showed |
+| --- | --- |
+| `public/services/furniture.webp` | A living room with a sofa, coffee table and dining set |
+| `public/hero/handyman-furniture.webp` | The same living room, 1024×682 crop |
+| `public/services/tools.webp` | A drill, hammer, bits and screws laid out on wood |
+| `public/services/assembly.webp` | A man drilling into a white wood frame |
+
+All four files are deleted and no code references them. The masters are still
+in `references/job-photos/` if the decision is ever reversed.
+
+## I.T. now has photographs
+
+Three, supplied by the client the same day, cropped to `public/it/*.webp`.
+They are stock rather than this shop's own bench, but each one shows work the
+I.T. pages actually sell: a screen with code on it, a patch panel with the
+runs made, a phone full of apps. They run on `/it` (hero carousel), on
+`/it/services` (hero, `it-network`), on the home page I.T. card, and in the
+home page slideshow above.
+
+The gap they filled was real: Tech help had nothing, because the only tech
+frames in the library were a TV showing the Netflix logo and another showing
+Spotify — both carry a third party's brand mark and should not ship on a
+commercial site.
+
 ## Two open gaps
 
-**I.T. has no photograph.** Three Automotive, five Handyman, one DIY, nothing
-for Tech help. The four trades are equal peers everywhere else on this site, so
-this is a debt, not a decision. The only tech frames in the library are a TV
-showing the Netflix logo and another showing Spotify — both carry a third
-party's brand mark and should not ship on a commercial site.
+**Furniture work has no photograph at all.** It was the one Handyman job with
+pictures, and all three were pulled. The Furniture Assembly section of
+`/handyman/services` now runs as a single column of text and pricing rather
+than captioning a wrong picture; put the image panel back when a real
+photograph of an assembled piece exists.
 
-**Only `assembly` shows a person working.** The rest are objects and rooms,
-which reads colder than a service business wants. New photography should put
-people in the frame.
+**Nothing shows a person working.** `assembly` was the only frame that did,
+and it has gone. The rest are objects and rooms, which reads colder than a
+service business wants. New photography should put people in the frame.
 
 ## The generated set was pulled
 
